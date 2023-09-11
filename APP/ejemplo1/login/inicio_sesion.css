@@ -1,0 +1,83 @@
+
+body{
+    background: rgb(0,87,7);
+    background: linear-gradient(7deg, rgba(0,87,7,1) 0%, rgba(62,149,69,1) 44%, rgba(153,255,170,1) 100%);
+    height: 100vh;
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    font-size: 75%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+#container{
+    display: flex;
+    background-color: #2E2E2E;
+    text-align: center;
+    border-radius: 10px;
+    padding: 26px;
+    text-align: left;
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+#title{
+    color: #EAEAEA;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.link{
+    color: #0895dc;
+    font-size: 15px;
+}
+#contraseña-olvidada {
+    margin-top: -5px;
+    margin-bottom: 20px;
+}
+#register-p{
+    color: #C4C4C4;
+    font-size: 15px;
+}
+input{
+    padding: 5px;
+    border-radius: 5px 5px 5px 5px;
+    background-color: #1B1B1B;
+    border: 0;
+    height: 33px;
+    width: 500px;
+    color: #EAEAEA;
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+
+button{
+    border-radius: 5px 5px 5px 5px;
+    background-color: rgb(0,87,7);
+    border: 0;
+    height: 40px;
+    width: 510px;
+    color: #EAEAEA;
+    font-size: 17px;
+    transition: .1s;
+}
+button:hover{
+    background-color: #646464;
+    transition: .1s;
+}
+
+.input-container{
+    display: flex;
+    align-items: center;
+}
+i {
+    position: absolute;
+    color: beige;
+    margin-top: -5px;
+    cursor: pointer;
+    transform: translateX(475px);
+}
+.fa-eye {
+    padding-left: 1px;
+}

@@ -1,0 +1,125 @@
+body, html{
+    height: 100%;
+}
+body{
+    background: rgb(0,87,7);
+    background: linear-gradient(7deg, rgba(0,87,7,1) 0%, rgba(62,149,69,1) 44%, rgba(153,255,170,1) 100%);
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    font-size: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0px;
+    overflow: hidden;
+}
+#registro{
+    display: flex;
+    background-color: #2E2E2E;
+    place-items: center;
+    justify-content: center;
+    margin: auto;
+    text-align: center;
+    box-sizing: border-box;
+    border: 1px solid #2E2E2E;
+    height: 625px;
+    width: 565px;
+    border-radius: 10px 10px 10px 10px;
+    padding: 26px;
+    text-align: left;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 565px;
+}
+input{
+    padding: 5px;
+    border-radius: 5px 5px 5px 5px;
+    background-color: #1B1B1B;
+    border: 0;
+    height: 33px;
+    width: 500px;
+    color: #EAEAEA;
+    font-size: 17px;
+    margin-bottom: 5px;
+}
+input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer-spin-button { 
+        -webkit-appearance: none; 
+        margin: 0; 
+      }
+      input[type=number] { 
+        -moz-appearance:textfield; 
+    }
+#file{
+    height: 66px;
+}
+::-webkit-file-upload-button {
+    border-radius: 5px 5px 5px 5px;
+    background-color: rgb(0,87,7);
+    border: 0;
+    height: 40px;
+    width: 200px;
+    color: #EAEAEA;
+    font-size: 17px;
+    -webkit-appearance: button;
+    padding: 7px 10px;
+}
+#text{
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    color: #EAEAEA;
+    font-size: 17px;
+    text-align: center;
+    height: 11px;
+}
+#title{
+    color: #EAEAEA;
+    text-align: center;
+    height: 11px;
+}
+
+.contraseñas{
+    display: flex;
+    align-items: center;
+}
+i {
+    position: absolute;
+    color: beige;
+    cursor: pointer;
+    margin-left: -35px;
+    margin-top: 15px;
+}
+label{
+    color: #C4C4C4;
+    font-size: 16px;
+    font-weight: bold;
+}
+button{
+    border-radius: 5px 5px 5px 5px;
+    background-color: rgb(0,87,7);
+    border: 0;
+    height: 40px;
+    width: 510px;
+    color: #EAEAEA;
+    font-size: 17px;
+}
+#name{
+    display: flex;
+    flex-direction: row;
+}
+#columna1{
+    display: flex;
+    flex-direction: column;
+    margin-right: 7px;
+}
+#columna1 > input{
+    width: 241px;
+}
+#login{
+    color: #C4C4C4;
+    font-size: 15px;
+}
+#link{
+    color: #0895dc;
+    font-size: 15px;
+}

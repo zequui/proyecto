@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="Registro.css">
+    <link rel="stylesheet" href="../normalize.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <script src="https://kit.fontawesome.com/6b0ad3d290.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div id="registro">
+        <form id="signin-form">
+            <h1 id="title">Registrate</h1>
+            <p id="text"> Crea una cuenta para registrar inicidentes</p>
+            <div id="name">
+                <div id="columna1">
+                    <label>Nombre</label>
+                    <input type="text" name="user" required>
+                </div>
+                <div id="columna1">
+                    <label>Apellido</label>
+                    <input type="text" name="user" required>
+                </div>
+            </div>
+
+                <label>Correo electronico o Telefono</label>
+                <input type="text" name="email" required>
+
+                <label>Cedula</label>
+                <input type="number" name="number" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
+
+                <label>Foto de la cedula</label>
+                <input type="file" name="file" id="file" required>
+
+                <div class="contraseña">
+                <label>Contraseña</label>
+                <input type="password" name="password" required id="password-signin" class="password">
+                <i class="fa-solid fa-eye-slash" id="seekingBtn"></i>
+                </div>
+
+                <div class="Contraseña">
+                <label>Confirmar contraseña</label>
+                <input type="password" required id="passwordCheck-signin" class="password">
+                <i class="fa-solid fa-eye-slash" id="seekingBtn"></i>
+                </div>
+
+            <p id="password-alert" class="hidden"></p>
+            <button type="submit">Ingresar</button>
+            
+    <p id="login">Si ya tienes una cuenta clickea <a id="link" href="../login/inicio_sesion.html">aquí</a></p>
+        </form>
+
+    </div>
+    <script>
+        const passwordInputs = Array.from(document.querySelectorAll('.password'))
+        const seekingBtns = document.querySelectorAll('#seekingBtn')
+
+        console.log(seekingBtns);
+
+        function togglePassword(eye, passwordInput) {
+  eye.classList.toggle("fa-eye");
+  eye.classList.toggle("fa-eye-slash");
+  passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+}
+
+seekingBtns.forEach((seekingBtn) => {
+  seekingBtn.addEventListener("click", (e) => {
+    const actualEye = e.currentTarget;
+    const actualPasswordId = actualEye.previousElementSibling.id;
+    const passwordInput = passwordInputs.find(
+      (input) => input.id === actualPasswordId
+    );
+    togglePassword(actualEye, passwordInput);
+  });
+});
+    </script>
+</body>
+</html>
