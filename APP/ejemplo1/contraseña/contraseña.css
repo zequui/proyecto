@@ -9,7 +9,7 @@ body{
     align-items: center;
     overflow: hidden;
 }
-#container{
+#password{
     display: flex;
     background-color: #2E2E2E;
     text-align: center;
@@ -17,16 +17,16 @@ body{
     padding: 26px;
     text-align: left;
 }
-form {
+form{
     display: flex;
     flex-direction: column;
 }
-#title{
+#password__title{
     color: #EAEAEA;
     margin-bottom: 15px;
     text-align: center;
 }
-.text{
+#password__text{
     color: #C4C4C4;
     font-size: 16px;
     font-weight: bold;

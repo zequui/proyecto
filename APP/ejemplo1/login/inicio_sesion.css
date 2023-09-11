@@ -18,7 +18,7 @@ body{
     padding: 26px;
     text-align: left;
 }
-form {
+form{
     display: flex;
     flex-direction: column;
 }
@@ -27,7 +27,12 @@ form {
     margin-bottom: 15px;
     text-align: center;
 }
-
+.text{
+    color: #C4C4C4;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
 .link{
     color: #0895dc;
     font-size: 15px;
