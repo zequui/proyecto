@@ -10,78 +10,76 @@
     </head>
     <body>
         <div id="container">
-            <h1 id="title">Registrar incidente</h1>
-            <p id="text"> Por favor complete todos los campos con la informacion correcta</p>
-        <div id="container2">      
-            <div class="registro">
-                <form id="reg-registro">
-                    <div id="divisor">
-                        <hr class="hr1"><h2>Datos personales</h2><hr class="hr1">
-                    </div>
-    
-                    <div id="name">
-                        <div id="columna1">
-                            <label>Nombre</label>
-                            <input type="text" name="user" required>
+
+            <h1 id="container__title">Registrar incidente</h1>
+            <p id="container__text"> Por favor complete todos los campos con la informacion correcta</p>
+
+            <form id="container__form">
+                <div id="form__container">   
+                    <div class="container__col">
+                        <div class="col__divider">
+                            <hr class="hr1"><h2>Datos personales</h2><hr class="hr1">
                         </div>
-    
-                        <div id="columna1">
-                            <label>Apellido</label>
-                            <input type="text" name="user" required>
-                        </div>
-                    </div>
         
-                    <label>Telefono</label>
-                    <input type="text" name="email" required>
-    
-                    <label>Cedula</label>
-                    <input type="number" name="number" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
-    
-                    <div id="divisor">
-                        <hr class="hr2"><h2>incidente</h2><hr class="hr2">
-                    </div>
-    
-                    <div class="titulo-contenido">
-                        <label>Titulo</label> <p class="texto">(inserte un titulo adecuado para ser indentificado mas facilmente)</p>
-                    </div>
-                    <input type="text" name="titulo" required>
-                    
-                    <label>Tipo de incidente</label>
-                    <div id="lista">
-                        <div class="contenedor">
-                            <input type="checkbox" name="tipo" value="Hurto">Hurto</input>
-                        </div><div class="contenedor">
-                            <input type="checkbox" name="tipo" value="Acoso">Acoso</input>
-                        </div><div class="contenedor">
-                            <input type="checkbox" name="tipo" value="Violencia">Violencia</input>
-                        </div><div class="contenedor">
-                            <input type="checkbox" name="tipo" value="Conducta inadecuada">Conducta inadecuada</input>
-                        </div><div class="contenedor">
-                            <input type="checkbox" name="tipo" value="tenencia de sustancias ilicitas">Tenencia de sustancias ilicitas</input>
-                        </div><div class="contenedor">
-                            <input type="checkbox" name="tipo" value="tenencia de objeto dañino">Tenencia de objeto dañino</input>
-                        </div><div class="contenedor">
-                            <input type="checkbox" name="tipo" value="Vandalismo">Vandalismo</input>
+                        <div id="name">
+                            <div id="columna1">
+                                <label>Nombre</label>
+                                <input type="text" name="name" required>
+                            </div>
+        
+                            <div id="columna1">
+                                <label>Apellido</label>
+                                <input type="text" name="surname" required>
+                            </div>
+                        </div>
+            
+                        <label>Telefono</label>
+                        <input type="text" name="email" required>
+        
+                        <label>Cedula</label>
+                        <input type="number" name="number" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
+        
+                        <div class="col__divider">
+                            <hr class="hr2"><h2>incidente</h2><hr class="hr2">
+                        </div>
+        
+                        <div class="titulo-contenido">
+                            <label>Titulo</label> <p class="texto">(inserte un titulo adecuado para ser indentificado mas facilmente)</p>
+                        </div>
+                        <input type="text" name="titulo" required>
+                        
+                        <label>Tipo de incidente</label>
+                        <div id="lista">
+                            <div class="contenedor">
+                                <input type="checkbox" name="tipo" value="Hurto">Hurto</input>
+                            </div><div class="contenedor">
+                                <input type="checkbox" name="tipo" value="Acoso">Acoso</input>
+                            </div><div class="contenedor">
+                                <input type="checkbox" name="tipo" value="Violencia">Violencia</input>
+                            </div><div class="contenedor">
+                                <input type="checkbox" name="tipo" value="Conducta inadecuada">Conducta inadecuada</input>
+                            </div><div class="contenedor">
+                                <input type="checkbox" name="tipo" value="tenencia de sustancias ilicitas">Tenencia de sustancias ilicitas</input>
+                            </div><div class="contenedor">
+                                <input type="checkbox" name="tipo" value="tenencia de objeto dañino">Tenencia de objeto dañino</input>
+                            </div><div class="contenedor">
+                                <input type="checkbox" name="tipo" value="Vandalismo">Vandalismo</input>
+                            </div>
                         </div>
                     </div>
-                      
-                </form>
-            </div>
-            <div class="registro">
-                <form>
-                    <div class="titulo-contenido">
-                    <label>Fecha</label><p class="texto">(inserte la fecha en la que sucedio el incidente)</p>
+                    <div class="container__col">
+                            <div class="titulo-contenido">
+                            <label>Fecha</label><p class="texto">(inserte la fecha en la que sucedio el incidente)</p>
+                            </div>
+                            <input type="date" name="descripcion" id="fecha-incidente" required>
+                            <label>Descripcion</label>
+                            <textarea id="description"></textarea>
+                            <label>Archivo relevante</label>
+                            <input type="file" id="file">
                     </div>
-                    <input type="date" name="descripcion" id="fecha-incidente" required>
-                    <label>Descripcion</label>
-                    <textarea id="description"></textarea>
-                    <label>Archivo relevante</label>
-                    <input type="file" id="file">
-                </form>
-            </div>
-        </div>
-        <button type="submit">Ingresar</button> 
-    </div> 
-         
+                </div>
+                <button type="submit">Ingresar</button>
+            </form>
+        </div>   
     </body>
-    </html>
+</html>
