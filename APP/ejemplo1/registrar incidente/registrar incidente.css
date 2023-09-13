@@ -62,7 +62,7 @@ h2{
     align-items: center;
     justify-content: center;
 }
-.hr1{
+.divider__hr--1{
     width: 175px;
     height: 1px;
     color: #EAEAEA;
@@ -79,16 +79,16 @@ input{
     font-size: 17px;
     margin-bottom: 5px;
 }
-#name{
+#container__name{
     display: flex;
     flex-direction: row;
 }
-#columna1{
+#name__col{
     display: flex;
     flex-direction: column;
     margin-right: 7px;
 }
-#columna1 > input{
+#name__col > input{
     width: 241px;
 }
 label{
@@ -103,18 +103,18 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
   input[type=number] { 
     -moz-appearance:textfield; 
 }
-.hr2{
+.divider__hr--2{
     width: 210px;
     height: 1px;
     color: #EAEAEA;
     background-color:  #EAEAEA;
 }
-.titulo-contenido{
+.col__title{
     display: flex;
     align-items: center;
     height: 21px;
 }
-.texto{
+.title__text{
     font-family: "Segoe UI", Tahoma, sans-serif;
     color: #C4C4C4;
     font-size: 11px;
@@ -165,12 +165,12 @@ input[type="checkbox"]{
     width: 33px;
     height: 25px;
 }
-#fecha-incidente[type="date"]::-webkit-calendar-picker-indicator {
+#col__date[type="date"]::-webkit-calendar-picker-indicator {
     filter: invert(1);
     border-radius: 50%;
     padding: 4px;
 }
-#description{
+#col__description{
     padding: 5px;
     border-radius: 5px 5px 5px 5px;
     background-color: #1B1B1B;
@@ -182,7 +182,7 @@ input[type="checkbox"]{
     font-size: 17px;
     margin-bottom: 5px;
 }
-#file{
+#col__file{
     height: 40px;
 }
 ::-webkit-file-upload-button {
