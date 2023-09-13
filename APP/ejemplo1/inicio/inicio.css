@@ -8,7 +8,7 @@ body{
     font-family: "Segoe UI", Tahoma, sans-serif;
     
 }
-#inicio__button{
+#body__button{
     display: flex;
     background-color: rgb(0,87,7);
     border-radius: 10px 10px 10px 10px;
@@ -24,11 +24,11 @@ body{
     margin-right: 15px;
     color: #EAEAEA;
 }
+#body__button:hover{
+    background-color: #646464;
+}
 i{
    margin-right: 5px; 
-}
-#inicio_button:hover{
-    background-color: #646464;
 }
 #container{
     display: flex;

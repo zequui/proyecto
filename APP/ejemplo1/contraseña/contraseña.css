@@ -9,7 +9,7 @@ body{
     align-items: center;
     overflow: hidden;
 }
-#password{
+#container{
     display: flex;
     background-color: #2E2E2E;
     text-align: center;
@@ -21,18 +21,6 @@ form{
     display: flex;
     flex-direction: column;
 }
-#password__title{
-    color: #EAEAEA;
-    margin-bottom: 15px;
-    text-align: center;
-}
-#password__text{
-    color: #C4C4C4;
-    font-size: 16px;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
 input{
     padding: 5px;
     border-radius: 5px 5px 5px 5px;
@@ -44,7 +32,17 @@ input{
     font-size: 17px;
     margin-bottom: 20px;
 }
-
+#form__title{
+    color: #EAEAEA;
+    margin-bottom: 15px;
+    text-align: center;
+}
+#form__text{
+    color: #C4C4C4;
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
 button{
     border-radius: 5px 5px 5px 5px;
     background-color: rgb(0,87,7);

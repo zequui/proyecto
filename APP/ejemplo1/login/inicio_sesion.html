@@ -12,18 +12,18 @@
 <body>
     <div id="container">
         <form action= "inicio_sesion.php" method="get">
-            <h1 id="title">Inicie sesion</h1>
+            <h1 id="form__title">Inicie sesion</h1>
 
-            <p class="text">Correo electronico, cedula o numero telefonico</p>
+            <p id="form__text">Correo electronico, cedula o numero telefonico</p>
             <input type="email" name="email">
 
-            <p class="text">Contraseña</p>
-            <div class="input-container">
-                <input type="password" name="contraseña" id="password">
-                <i class="fa-solid fa-eye-slash fa-xl" id="seekingBtn"></i>
+            <p id="form__text">Contraseña</p>
+            <div class="form__container">
+                <input type="password" name="contraseña">
+                <i class="fa-solid fa-eye-slash fa-xl" id="container__seekingBtn"></i>
             </div>
             
-            <a href="../contraseña/contraseña.html" class="link" id="contraseña-olvidada">Has olvidado tu contraseña?</a>
+            <a href="../contraseña/contraseña.html" id="form__link">Has olvidado tu contraseña?</a>
             <button type="submit">Ingresar</button>
         </form>
     </div>
@@ -54,7 +54,7 @@
     -->
     <script>
         const passwordInput = document.querySelector('#password')
-        const seekingBtn = document.querySelector('#seekingBtn')
+        const seekingBtn = document.querySelector('#container__seekingBtn')
 
         seekingBtn.addEventListener('click', () => {
             seekingBtn.classList.toggle('fa-eye-slash')
