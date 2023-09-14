@@ -38,6 +38,30 @@ form{
     text-align: center;
     height: 11px;
 }
+#form__text{
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    color: #EAEAEA;
+    font-size: 17px;
+    text-align: center;
+    height: 11px;
+}
+#form__name{
+    display: flex;
+    flex-direction: row;
+}
+#name__col{
+    display: flex;
+    flex-direction: column;
+    margin-right: 7px;
+}
+#name__col > input{
+    width: 241px;
+}
+label{
+    color: #C4C4C4;
+    font-size: 16px;
+    font-weight: bold;
+}
 input{
     padding: 5px;
     border-radius: 5px 5px 5px 5px;
@@ -56,7 +80,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
       input[type=number] { 
         -moz-appearance:textfield; 
     }
-#file{
+#form__file{
     height: 66px;
 }
 ::-webkit-file-upload-button {
@@ -70,28 +94,12 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
     -webkit-appearance: button;
     padding: 7px 10px;
 }
-#text{
-    font-family: "Segoe UI", Tahoma, sans-serif;
-    color: #EAEAEA;
-    font-size: 17px;
-    text-align: center;
-    height: 11px;
-}
-.contraseñas{
-    display: flex;
-    align-items: center;
-}
 i {
     position: absolute;
     color: beige;
     cursor: pointer;
     margin-left: -35px;
     margin-top: 15px;
-}
-label{
-    color: #C4C4C4;
-    font-size: 16px;
-    font-weight: bold;
 }
 button{
     border-radius: 5px 5px 5px 5px;
@@ -102,23 +110,11 @@ button{
     color: #EAEAEA;
     font-size: 17px;
 }
-#name{
-    display: flex;
-    flex-direction: row;
-}
-#columna1{
-    display: flex;
-    flex-direction: column;
-    margin-right: 7px;
-}
-#columna1 > input{
-    width: 241px;
-}
-#login{
+#form__p{
     color: #C4C4C4;
     font-size: 15px;
 }
-#link{
+#form__link{
     color: #0895dc;
     font-size: 15px;
 }

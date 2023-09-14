@@ -13,13 +13,13 @@
     <div id="container">
         <form>
             <h1 id="form__title">Registrate</h1>
-            <p id="text"> Crea una cuenta para registrar inicidentes</p>
-            <div id="name">
-                <div id="columna1">
+            <p id="form__text"> Crea una cuenta para registrar inicidentes</p>
+            <div id="form__name">
+                <div id="name__col">
                     <label>Nombre</label>
                     <input type="text" name="user" required>
                 </div>
-                <div id="columna1">
+                <div id="name__col">
                     <label>Apellido</label>
                     <input type="text" name="user" required>
                 </div>
@@ -32,24 +32,24 @@
                 <input type="number" name="number" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
 
                 <label>Foto de la cedula</label>
-                <input type="file" name="file" id="file" required>
+                <input type="file" name="file" id="form__file" required>
 
-                <div class="contraseña">
-                <label>Contraseña</label>
-                <input type="password" name="password" required id="password-signin" class="password">
-                <i class="fa-solid fa-eye-slash" id="seekingBtn"></i>
+                <div>
+                    <label>Contraseña</label>
+                    <input type="password" name="password" required id="password-signin">
+                    <i class="fa-solid fa-eye-slash" id="seekingBtn"></i>
                 </div>
 
-                <div class="Contraseña">
-                <label>Confirmar contraseña</label>
-                <input type="password" required id="passwordCheck-signin" class="password">
-                <i class="fa-solid fa-eye-slash" id="seekingBtn"></i>
+                <div>
+                    <label>Confirmar contraseña</label>
+                    <input type="password" required id="passwordCheck-signin">
+                    <i class="fa-solid fa-eye-slash" id="seekingBtn"></i>
                 </div>
 
             <p id="password-alert" class="hidden"></p>
             <button type="submit">Ingresar</button>
             
-    <p id="login">Si ya tienes una cuenta clickea <a id="link" href="../login/inicio_sesion.html">aquí</a></p>
+            <p id="form__p">Si ya tienes una cuenta clickea <a id="form__link" href="../login/inicio_sesion.html">aquí</a></p>
         </form>
 
     </div>
