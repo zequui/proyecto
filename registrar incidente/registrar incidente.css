@@ -13,6 +13,28 @@ body{
     margin: 0px;
     overflow: hidden;
 }
+#body__button{
+    background-color: rgb(0,87,7);
+    border-radius: 10px;
+    border: 1px solid rgb(0,87,7);
+    position: absolute;
+    right: 0;
+    top: -12px;
+    height: 40px;
+    width: 150px;
+    font-size: 17px;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin-right: 15px;
+    color: #EAEAEA;
+}
+#body__button:hover{
+    background-color: #646464;
+}
+i{
+   margin-right: 5px; 
+}
 #container{
     background-color: #2E2E2E;
     border-radius: 10px;
