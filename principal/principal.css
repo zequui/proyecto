@@ -2,11 +2,12 @@
     background: rgb(0,87,7);
     background: linear-gradient(7deg, rgba(0,87,7,1) 0%, rgba(62,149,69,1) 44%, rgba(153,255,170,1) 100%);
     height: 100vh;
+    font-family: "Segoe UI", Tahoma, sans-serif;
     overflow: hidden;
 }
 /* Estilos para la barra de navegación */
 .navbar {
-    background-color: #333;
+    background-color: hsl(0, 0%, 29%);
     overflow: hidden;
   }
   
@@ -36,3 +37,19 @@
       text-align: left;
     }
   }
+
+  #emergent{
+    display: flex;
+    height: 85%;
+    background-color: #2E2E2E;
+    text-align: center;
+    border-radius: 0px 0px 10px 10px;
+    padding: 26px;
+    text-align: left;
+  }
+
+  #emergent__title{
+    color: #EAEAEA;
+    text-align: center;
+    height: 11px;
+}
