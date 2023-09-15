@@ -18,6 +18,19 @@ body{
     padding: 26px;
     text-align: left;
 }
+#container__error{
+    background-color: #2E2E2E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 160px;
+    color: #EAEAEA;
+    font-size: 17px;
+    height: 43px;
+    width: 562px;
+    border-radius: 10px;
+}
 form{
     display: flex;
     flex-direction: column;
@@ -35,7 +48,7 @@ form{
 }
 input{
     padding: 5px;
-    border-radius: 5px 5px 5px 5px;
+    border-radius: 5px;
     background-color: #1B1B1B;
     border: 0;
     height: 33px;

@@ -1,12 +1,13 @@
 <?php
 include "../negocio/usuario.php";
 session_start();
+$_SESSION["inicio exitoso"] = false;
 if(isset($_POST["email"]) && $_POST["contraseña"]) {
     $email = $_POST["email"];
     $contraseña = $_POST["contraseña"];
 
     $listaUsuarios = usuario::getRepo();
-    $_SESSION["inicio exitoso"] = false;
+    
 
     foreach($listaUsuarios as $usuarios){
         if($email == $usuarios->getCorreo() && $contraseña == $usuarios->getContraseña())  {
@@ -17,10 +18,10 @@ if(isset($_POST["email"]) && $_POST["contraseña"]) {
     if($_SESSION["inicio exitoso"]){
         header("location: ../principal/principal.html");
     }else{
-        header("location: ../login/inicio_sesion.html");
+        header("location: ../login/inicio_sesion.php");
     }
 }else{
-    header("location: ../login/inicio_sesion.html");
+    header("location: ../login/inicio_sesion.php");
 }
 
 ?>
