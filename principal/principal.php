@@ -8,11 +8,19 @@
     <title>principal</title>
 </head>
 <body>
-    <div class="navbar">
+    <div id="container">
+        <div id="container__navbar">
         <a href="#inicio">Incidentes emergentes</a>
         <a href="#acerca">Incidentes en curso</a>
         <a href="#servicios">Incidentes pasados</a>
         <a href="#contacto">Historial de Estudiantes</a>
+        </div>
+        <?php
+            include '../negocio/usuario.php';
+            session_start();
+            $usuario = new usuario('dsadasd', 'Lucas', 'Rodriguez', 'lasdadassd', 'abcdefghijlmnopq');
+            echo '<p id="container__fullname">'.$usuario->getNombre().' '.$usuario->getApellido().'</p>';
+        ?>
       </div>
     <div id="emergent">
         <h1 id=emergent__title>Incidentes emergentes</h1>

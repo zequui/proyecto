@@ -6,24 +6,32 @@
     overflow: hidden;
 }
 /* Estilos para la barra de navegación */
-.navbar {
+#container {
     background-color: #4a4a4a;
     overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
-  
   /* Estilos para los elementos de la barra de navegación */
-  .navbar a {
-    float: left;
-    display: block;
+  #container__navbar a {
     color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
     text-decoration: none;
     transition: .1s;
+    padding:20px 10px;
+  }
+  #container__fullname {
+    margin-right: 20px;
+    transition: .2s;
+    cursor: pointer;
+  }
+  #container__fullname:hover{
+    color:#f2f2f2;
+    transition: .2s;
   }
   
   /* Estilos para los elementos de la barra de navegación al pasar el cursor sobre ellos */
-  .navbar a:hover {
+  #container__navbar a:hover {
     background-color: #ddd;
     color: black;
     transition: .1s;
@@ -52,6 +60,7 @@
     color: #EAEAEA;
     text-align: left;
     height: 11px;
+    margin-bottom: 40px;
 }
 .emergent__incident {
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
@@ -71,13 +80,16 @@
   border: none;
   cursor: pointer;
   border-radius: 5px;
-  padding: 10px;
+  padding-top: 2px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
-  rgba(0, 0, 0, 0.3) 0px 7px 13px -3px; 
+              rgba(0, 0, 0, 0.3) 0px 7px 13px -3px; 
   transition: .1s;
 }
 .incident__button:hover{
   background-color: #246e2a;
+  transform: scale(1.2);
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+              rgba(0, 0, 0, 0.3) 0px 7px 13px -3px; 
   transition: .1s;
 }
 
