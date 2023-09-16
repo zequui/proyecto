@@ -1,8 +1,4 @@
 <?php
-//CREATE USER 'prueba'@'localhost' IDENTIFIED BY 'prueba1234';
-//GRANT ALL PRIVILEGES ON . TO 'prueba'@'localhost' WITH GRANT OPTION;
-//flush privileges;
-
 class conexion {
     private $user;
     private $password;
@@ -17,7 +13,7 @@ class conexion {
     } 
 
     public function getConnection() {
-        $dsn ='mysql:host=localhost:'.$this->puerto.';dbname='.$this->baseDeDatos.';charset=UTF8';
+        $dsn ='mysql:host=192.168.1.5:'.$this->puerto.';dbname='.$this->baseDeDatos.';charset=UTF8';
         try{
             $pdo = new PDO($dsn, $this->user, $this->password);
             if($pdo) {

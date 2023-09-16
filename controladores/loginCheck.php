@@ -16,7 +16,7 @@ if(isset($_POST["email"]) && $_POST["contraseña"]) {
         }
     }
     if($_SESSION["inicio exitoso"]){
-        header("location: ../principal/principal.html");
+        header("location: ../principal/principal.php");
     }else{
         header("location: ../login/inicio_sesion.php");
     }

@@ -10,6 +10,10 @@ body{
     align-items: center;
     overflow: hidden;
 }
+#contenedor{
+    display: flex;
+    flex-direction: column;
+}
 #container{
     display: flex;
     background-color: #2E2E2E;
@@ -18,22 +22,10 @@ body{
     padding: 26px;
     text-align: left;
 }
-#container__error{
-    background-color: #2E2E2E;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    bottom: 160px;
-    color: #EAEAEA;
-    font-size: 17px;
-    height: 43px;
-    width: 562px;
-    border-radius: 10px;
-}
 form{
     display: flex;
     flex-direction: column;
+
 }
 #form__title{
     color: #EAEAEA;
@@ -91,4 +83,15 @@ button:hover{
     background-color: #646464;
     transition: .1s;
 }
-
+#container__error{
+    background-color: #2E2E2E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    color: #EAEAEA;
+    font-size: 17px;
+    height: 43px;
+    width: 562px;
+    border-radius: 10px;
+}
