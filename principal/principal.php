@@ -18,7 +18,7 @@
         <?php
             include '../negocio/usuario.php';
             session_start();
-            $usuario = new usuario('dsadasd', 'Lucas', 'Rodriguez', 'lasdadassd', 'abcdefghijlmnopq');
+            $usuario = $_SESSION['usuario logeado'];
             echo '<p id="container__fullname"><i class="fa-solid fa-right-to-bracket fa-lg"></i>'.$usuario->getNombre().' '.$usuario->getApellido().'</p>';
         ?>
     </div>
