@@ -16,7 +16,7 @@
             <h1 id="container__title">Registrar incidente</h1>
             <p id="container__text"> Por favor complete todos los campos con la informacion correcta</p>
 
-            <form id="container__form">
+            <form id="container__form" action="../controladores/IncidentSave.php" method="posts">
                 <div id="form__container">   
                     <div class="container__col">
                         <div class="col__divider">
@@ -73,9 +73,9 @@
                             <div class="col__title">
                             <label>Fecha</label><p class="title__text">(inserte la fecha en la que sucedio el incidente)</p>
                             </div>
-                            <input type="date" name="descripcion" id="col__date" required>
+                            <input type="date" name="fecha" id="col__date" required>
                             <label>Descripcion</label>
-                            <textarea id="col__description"></textarea>
+                            <textarea id="col__description" name="Descripcion"></textarea>
                             <label>Archivo relevante</label>
                             <input type="file" id="col__file">
                     </div>
