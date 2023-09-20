@@ -10,8 +10,8 @@
     <title>inicio sesion</title>
 </head>
 <body>
-    <div id="contenedor">
-        <div id="container">
+    <div id="container--main">
+        <div id="container--main__container">
             <form action= "../controladores/loginCheck.php" method="post">
                 <h1 id="form__title">Inicie sesion</h1>
 
@@ -28,15 +28,17 @@
                 <button type="submit">Ingresar</button>
             </form>
         </div>
+        <div id="container--main__container--error">
         <?php
         session_start();
         if(isset($_SESSION['inicio exitoso']) && !$_SESSION['inicio exitoso']){
-            echo '<div id="container__error">
-                <p>El usuario o contraseña son incorrectos</p>
-            </div>';
+            echo '
+                <p id="container--error__error">El usuario o contraseña son incorrectos</p>
+            ';
             unset($_SESSION['inicio exitoso']);
         }
         ?>
+        </div>
     </div>
     <script src="inicio_sesion.js"></script>
 </body>

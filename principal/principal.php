@@ -18,7 +18,7 @@
         <?php
             include '../negocio/usuario.php';
             session_start();
-            $usuario = $_SESSION['usuario logeado'];
+            $usuario = new usuario('dsadasd', 'Lucas', 'Rodriguez', 'lasdadassd', 'abcdefghijlmnopq');
             echo '<p id="container__fullname"><i class="fa-solid fa-right-to-bracket fa-lg"></i>'.$usuario->getNombre().' '.$usuario->getApellido().'</p>';
         ?>
     </div>
@@ -33,8 +33,8 @@
             </div>
         </div>
         <div id="inicident__information">
-    
-            </div>
+            <p></p>
+        </div>
     </div>
 </body>
 </html>
