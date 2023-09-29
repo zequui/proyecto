@@ -59,9 +59,9 @@ include "../persistencia/repoIncidentes.php";
         return $repIncidentes->getIncidents();
     }
 
-    public static function setIncident($fecha, $titulo, $descripcion, $estado, $tipo) {
+    public static function setIncident($fecha, $titulo, $descripcion, $estado, $tipo, $file, $ext) {
         $repIncidentes = new repositorioIncidente();
-        $repIncidentes->setIncidents($fecha, $titulo, $descripcion, $estado, $tipo);
+        $repIncidentes->setIncidents($fecha, $titulo, $descripcion, $estado, $tipo, $file, $ext);
     }
     
 }

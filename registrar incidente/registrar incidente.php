@@ -27,7 +27,7 @@
             <h1 id="container__title">Registrar incidente</h1>
             <p id="container__text"> Por favor complete todos los campos con la informacion correcta</p>
 
-            <form id="container__form" action="../controladores/IncidentSave.php" method="post">
+            <form id="container__form" action="../controladores/IncidentSave.php" method="post" enctype="multipart/form-data">
                 <div id="form__container">   
                     <div class="container__col">
                         <div class="col__divider">
@@ -88,7 +88,7 @@
                             <label>Descripcion</label>
                             <textarea id="col__description" name="descripcion"></textarea>
                             <label>Archivo relevante</label>
-                            <input type="file" id="col__file">
+                            <input type="file" id="col__file" name="archivo_relevante">
                     </div>
                 </div>
                 <button type="submit">Ingresar</button>

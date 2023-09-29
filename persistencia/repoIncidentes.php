@@ -17,8 +17,8 @@ class repositorioIncidente {
         }
         return $incidentes;
     }
-    public function setIncidents($fecha, $titulo, $descripcion, $estado, $tipo) {
-        $stmt=$this->PDO->query("INSERT INTO `incidentes` (`id`, `fecha`, `titulo`, `descripcion`, `estado`, `tipo`,`nombreArchivo`,`extArchivo`) VALUES (NULL, '".$fecha."', '".$titulo."', '".$descripcion."', '".$estado."', '".$tipo."','','');");
+    public function setIncidents($fecha, $titulo, $descripcion, $estado, $tipo, $file, $ext) {
+        $stmt=$this->PDO->query("INSERT INTO `incidentes` (`id`, `fecha`, `titulo`, `descripcion`, `estado`, `tipo`,`nombreArchivo`,`extArchivo`) VALUES (NULL, '".$fecha."', '".$titulo."', '".$descripcion."', '".$estado."', '".$tipo."','".$file."','".$ext."');");
     }
 }
 ?>
