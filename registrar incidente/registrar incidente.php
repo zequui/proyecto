@@ -10,6 +10,17 @@
         <title>registro de inicidentes</title>
     </head>
     <body>
+    <?php
+        session_start();
+        if(isset($_SESSION['incidente enviado']) && $_SESSION['incidente enviado']){
+            echo '
+            <div id="container__alert">
+            <p id="alert__p">Se ha enviado la informacion</p>
+            </div>
+            ';
+            unset($_SESSION['incidente enviado']);
+        }
+        ?>
         <button id="body__button" onclick="location.href='../login/inicio_sesion.php'"><i class="fa-solid fa-right-to-bracket"></i>Acceder</button>
         <div id="container">
 
@@ -82,6 +93,7 @@
                 </div>
                 <button type="submit">Ingresar</button>
             </form>
-        </div>   
+        </div> 
+    <script src="registrar incidente.js"></script>
     </body>
 </html>

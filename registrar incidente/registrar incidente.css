@@ -227,3 +227,21 @@ button{
     font-size: 17px;
     margin-top: 20px;
 }
+#container__alert{
+    background-color: #2E2E2E;
+    border-radius: 10px;
+    display: flex;
+    height: 75px;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    padding: 7px;
+    border: 3px solid rgba(153,255,170,1);
+}
+#alert__p{
+    font-family: "Segoe UI", Tahoma, sans-serif;
+    color: #C4C4C4;
+    font-size: 25px;
+    font-weight: bold;
+    
+}
