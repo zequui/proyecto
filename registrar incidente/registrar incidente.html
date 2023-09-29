@@ -16,7 +16,7 @@
             <h1 id="container__title">Registrar incidente</h1>
             <p id="container__text"> Por favor complete todos los campos con la informacion correcta</p>
 
-            <form id="container__form" action="../controladores/IncidentSave.php" method="posts">
+            <form id="container__form" action="../controladores/IncidentSave.php" method="post">
                 <div id="form__container">   
                     <div class="container__col">
                         <div class="col__divider">
@@ -53,19 +53,19 @@
                         <label>Tipo de incidente</label>
                         <div id="lista">
                             <div class="contenedor">
-                                <input type="checkbox" name="tipo" value="Hurto">Hurto</input>
+                                <input type="radio" name="tipo" value="0">Hurto</input>
                             </div><div class="contenedor">
-                                <input type="checkbox" name="tipo" value="Acoso">Acoso</input>
+                                <input type="radio" name="tipo" value="1">Acoso</input>
                             </div><div class="contenedor">
-                                <input type="checkbox" name="tipo" value="Violencia">Violencia</input>
+                                <input type="radio" name="tipo" value="2">Violencia</input>
                             </div><div class="contenedor">
-                                <input type="checkbox" name="tipo" value="Conducta inadecuada">Conducta inadecuada</input>
+                                <input type="radio" name="tipo" value="3">Conducta inadecuada</input>
                             </div><div class="contenedor">
-                                <input type="checkbox" name="tipo" value="tenencia de sustancias ilicitas">Tenencia de sustancias ilicitas</input>
+                                <input type="radio" name="tipo" value="4">Tenencia de sustancias ilicitas</input>
                             </div><div class="contenedor">
-                                <input type="checkbox" name="tipo" value="tenencia de objeto dañino">Tenencia de objeto dañino</input>
+                                <input type="radio" name="tipo" value="5">Tenencia de objeto dañino</input>
                             </div><div class="contenedor">
-                                <input type="checkbox" name="tipo" value="Vandalismo">Vandalismo</input>
+                                <input type="radio" name="tipo" value="6">Vandalismo</input>
                             </div>
                         </div>
                     </div>
@@ -75,7 +75,7 @@
                             </div>
                             <input type="date" name="fecha" id="col__date" required>
                             <label>Descripcion</label>
-                            <textarea id="col__description" name="Descripcion"></textarea>
+                            <textarea id="col__description" name="descripcion"></textarea>
                             <label>Archivo relevante</label>
                             <input type="file" id="col__file">
                     </div>

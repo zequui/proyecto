@@ -8,12 +8,12 @@ class conexion {
     public function __construct() {
         $this->user = 'quantum';
         $this->password = 'quantum';
-        $this->baseDeDatos = 'bd_ri';
+        $this->baseDeDatos = 'bd_ri2';
         $this->puerto = 3306;
     } 
 
     public function getConnection() {
-        $dsn ='mysql:host=192.168.1.5:'.$this->puerto.';dbname='.$this->baseDeDatos.';charset=UTF8';
+        $dsn ='mysql:host=zequi-vivobook:'.$this->puerto.';dbname='.$this->baseDeDatos.';charset=UTF8';
         try{
             $pdo = new PDO($dsn, $this->user, $this->password);
             if($pdo) {
