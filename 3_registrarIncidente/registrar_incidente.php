@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <script src="https://kit.fontawesome.com/6b0ad3d290.js" crossorigin="anonymous"></script>
-        <link rel="stylesheet" href="registrar incidente.css">
+        <link rel="stylesheet" href="registrar_incidente.css">
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,7 +21,7 @@
             unset($_SESSION['incidente enviado']);
         }
         ?>
-        <button id="body__button" onclick="location.href='../login/inicio_sesion.php'"><i class="fa-solid fa-right-to-bracket"></i>Acceder</button>
+        <button id="body__button" onclick="location.href='../1_login/inicio_sesion.php'"><i class="fa-solid fa-right-to-bracket"></i>Acceder</button>
         <div id="container">
 
             <h1 id="container__title">Registrar incidente</h1>
@@ -94,6 +94,6 @@
                 <button type="submit">Ingresar</button>
             </form>
         </div> 
-    <script src="registrar incidente.js"></script>
+    <script src="registrar_incidente.js"></script>
     </body>
 </html>

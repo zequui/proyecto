@@ -24,7 +24,7 @@
                     <i class="fa-solid fa-eye-slash fa-xl" id="container__seekingBtn"></i>
                 </div>
                 
-                <a href="../contraseña/contraseña.html" id="form__link">Has olvidado tu contraseña?</a>
+                <a href="../1.1_contraseña/contraseña.html" id="form__link">Has olvidado tu contraseña?</a>
                 <button type="submit">Ingresar</button>
             </form>
         </div>
