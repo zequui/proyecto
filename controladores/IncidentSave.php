@@ -11,7 +11,6 @@ $tipo = (int)$_POST['tipo'];
 if(!empty($_FILES['archivo_relevante'])){
     $dir='../recursos/';
     $ext=pathinfo($_FILES['archivo_relevante']['name'], PATHINFO_EXTENSION);
-    $_FILES['archivo_relevante']['name'] = 'archivo_relevante'.date('d-m-Y H-i-s', time()).'.'.$ext;
     $name = $_FILES['archivo_relevante']['name'];
     
     $path = $dir.$name;
@@ -26,6 +25,8 @@ if(!empty($_FILES['archivo_relevante'])){
 
 
 incidente::setIncident($fecha, $titulo, $descripcion, $estado, $tipo, $file, $ext);
+unlink($path);
 $_SESSION["incidente enviado"]=true;
-header("location:../registrar incidente/registrar incidente.php");
+#'archivo_relevante'.date('d-m-Y H-i-s', time()).
+header("location:../3_registrarIncidente/registrar_incidente.php");
 ?>
