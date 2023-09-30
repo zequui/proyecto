@@ -18,14 +18,22 @@
         <?php
             include '../negocio/usuario.php';
             session_start();
-            $usuario = new usuario('dsadasd', 'Lucas', 'Rodriguez', 'lasdadassd', 'abcdefghijlmnopq');
+            if(!isset($_SESSION['usuario logeado']) || !$_SESSION['inicio exitoso']){
+                header('location: ../1_login/inicio_sesion.php');
+            }
+            $usuario = $_SESSION['usuario logeado'];
             echo '<p id="container__fullname"><i class="fa-solid fa-right-to-bracket fa-lg"></i>'.$usuario->getNombre().' '.$usuario->getApellido().'</p>';
         ?>
     </div>
     <div id="emergent">
         <h1 id=emergent__title>Incidentes emergentes</h1>
-        <div class="emergent__incident">
-            <p id="incident__name">inicidente asdasd</p>
+        <?php
+        include '../controladores/getIncidents.php';
+        $incidents=getNewIncidents();
+        foreach($incidents as $incident){
+            echo '
+            <div class="emergent__incident">
+            <p id="incident__name">'.$incident->getTitulo().'</p>
             <div id="incident__container">
                 <button class="container__button"><i class="fa-solid fa-xmark fa-2xl" style="color: #001f10;"></i></i></button>
                 <button class="container__button"><i class="fa-solid fa-check fa-2xl" style="color: #001f10;"></i></button>
@@ -33,8 +41,11 @@
             </div>
         </div>
         <div id="inicident__information">
-            <p></p>
+            <p>'.$incident->getDescripcion().'</p>
         </div>
+        ';
+        }
+        ?>
     </div>
 </body>
 </html>
