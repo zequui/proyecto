@@ -29,10 +29,11 @@
         <h1 id=emergent__title>Incidentes emergentes</h1>
         <?php
         include '../controladores/getIncidents.php';
-        $incidents=getNewIncidents();
+        $incidents=array_reverse(getNewIncidents());
+        $i=0;
         foreach($incidents as $incident){
             echo '
-            <div class="emergent__incident">
+            <div class="emergent__incident" id="incident_'.$i.'">
             <p id="incident__name">'.$incident->getTitulo().'</p>
             <div id="incident__container">
                 <button class="container__button"><i class="fa-solid fa-xmark fa-2xl" style="color: #001f10;"></i></i></button>
@@ -44,6 +45,7 @@
             <p>'.$incident->getDescripcion().'</p>
         </div>
         ';
+        $i++;
         }
         ?>
     </div>
