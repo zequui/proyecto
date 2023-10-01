@@ -44,18 +44,16 @@
         }
         public static function setPersona($ci, $name, $surname, $phone){
             $repPersonas = new repositorioPersonas();
-            $personExist = false;
-            foreach($repPersonas as $persona){
-                if($persona->getCi() == $ci){
-                    $personExist = true;
-                }
+            $CIlist = [];
+            foreach ($repPersonas as $persona) {
+                $CIlist[] = $persona->getCi();
             }
-            if($personExist){
-                return ;
-            }else{
+            
+            if (!in_array($ci, $CIlist)) {
                 $repPersonas->setPersonas($ci, $name, $surname, $phone);
             }
 
         }
     }
+
 ?>

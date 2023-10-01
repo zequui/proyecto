@@ -1,6 +1,7 @@
 <?php
 include "../negocio/incidente.php";
 include "../negocio/persona.php";
+include "../negocio/relaciones.php";
 
 session_start();
 if(!isset($_POST['name']) || !isset($_POST['surname']) || !isset($_POST['phoneNumber']) || !isset($_POST['ci']) || !isset($_POST['fecha']) || !isset($_POST['titulo']) || !isset($_POST['descripcion']) || !isset($_POST['tipo'])){
@@ -34,6 +35,8 @@ if(!empty($_FILES['archivo_relevante'])){
 
 Persona::setPersona($ciPersona, $namePersona, $surnamePersona, $telefonoPersona);
 incidente::setIncident($fecha, $titulo, $descripcion, $estado, $tipo, $file, $ext);
+
+Persona_Incidente::setPersonaIncidente($ciPersona, 0, $titulo, $descripcion);
 
 unlink($path);
 $_SESSION["incidente enviado"]=true;
