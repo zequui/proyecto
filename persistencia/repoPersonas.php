@@ -1,4 +1,4 @@
-<?
+<?php
 include_once "conexion.php";
 
 class repositorioPersonas {
@@ -16,6 +16,10 @@ class repositorioPersonas {
             array_push($usuarios, new persona($row["ci"],$row["nombre"],$row["apellido"],$row["telefono"]));
         }
         return $usuarios;
+    }
+
+    public function setPersonas($ci, $name, $surname, $phone){
+        $stmt=$this->PDO->query("INSERT INTO personas (ci, apellido, nombre, telefono) VALUES ('".$ci."', '".$surname."', '".$name."', '".$phone."');");
     }
 }
 

@@ -47,10 +47,10 @@
                         </div>
             
                         <label>Telefono</label>
-                        <input type="number" name="number" minlength="8" maxlength="9" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
+                        <input type="number" name="phoneNumber" minlength="8" maxlength="9" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
         
                         <label>Cedula</label>
-                        <input type="number" name="cedula" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
+                        <input type="number" name="ci" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
         
                         <div class="col__divider">
                             <hr class="divider__hr--2"><h2>incidente</h2><hr class="divider__hr--2">

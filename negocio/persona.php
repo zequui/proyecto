@@ -6,6 +6,7 @@
         private $nombre;
         private $apellido;
         private $telefono;
+        private $incidentsID;
 
         public function  __construct($ci, $nombre, $apellido, $telefono)
         {
@@ -30,10 +31,31 @@
         public function getTelefono() {
             return $this->telefono;
         }
+        public function getIncidentsID() {
+            return $this->incidentsID;
+        }
+        public function setIncidentsID($IDs) {
+            $this->incidentsID = $IDs;
+        }
 
         public static function getRepo() {
             $repPersonas = new repositorioPersonas();
             return $repPersonas->getPersonas();
+        }
+        public static function setPersona($ci, $name, $surname, $phone){
+            $repPersonas = new repositorioPersonas();
+            $personExist = false;
+            foreach($repPersonas as $persona){
+                if($persona->getCi() == $ci){
+                    $personExist = true;
+                }
+            }
+            if($personExist){
+                return ;
+            }else{
+                $repPersonas->setPersonas($ci, $name, $surname, $phone);
+            }
+
         }
     }
 ?>
