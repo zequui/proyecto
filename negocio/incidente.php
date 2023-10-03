@@ -54,7 +54,7 @@ include "../persistencia/repoIncidentes.php";
         return $this->extArchivo;
     }
     
-    public static function getIncidents() {
+    public static function getRepo() {
         $repIncidentes = new repositorioIncidente();
         return $repIncidentes->getIncidents();
     }

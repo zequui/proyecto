@@ -31,12 +31,6 @@
         public function getTelefono() {
             return $this->telefono;
         }
-        public function getIncidentsID() {
-            return $this->incidentsID;
-        }
-        public function setIncidentsID($IDs) {
-            $this->incidentsID = $IDs;
-        }
 
         public static function getRepo() {
             $repPersonas = new repositorioPersonas();

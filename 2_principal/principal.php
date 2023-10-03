@@ -30,7 +30,8 @@
         <?php
         include_once '../controladores/getIncidents.php';
         include_once '../controladores/loadFiles.php';
-        
+        include_once '../controladores/getPersonaIncidente.php';
+
         $incidents=array_reverse(getNewIncidents());
         foreach($incidents as $incident){
             echo '
@@ -53,7 +54,7 @@
                         <div><a href="'.loadFile($incident).'" download="archvoRelevante'.$incident->getID().'">Descargar</a></div>
                     </div>
                     <div class="information__col">
-                        <p> hola </p>
+                        <p>'.getPersonaIncidente_Denunciante($incident->getID())->getNombre().'</p>
                     </div>
                 </div>
             </div>

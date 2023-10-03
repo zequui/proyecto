@@ -2,7 +2,7 @@
 include_once '../negocio/incidente.php';
 
 function getNewIncidents(){
-    $allIncidents = incidente::getIncidents();
+    $allIncidents = incidente::getRepo();
     if(empty($allIncidents)){
         return [];
     }
