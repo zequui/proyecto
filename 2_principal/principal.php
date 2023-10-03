@@ -34,6 +34,8 @@
 
         $incidents=array_reverse(getNewIncidents());
         foreach($incidents as $incident){
+            $denunciante = getPersonaIncidente_Denunciante($incident->getID());
+            
             echo '
             <div class="emergent__incident" id="'.$incident->getID().'">
                 <div class="incident__title">
@@ -54,7 +56,8 @@
                         <div><a href="'.loadFile($incident).'" download="archvoRelevante'.$incident->getID().'">Descargar</a></div>
                     </div>
                     <div class="information__col">
-                        <p>'.getPersonaIncidente_Denunciante($incident->getID())->getNombre().'</p>
+                        <p>'.$denunciante->getNombre().' '.$denunciante->getApellido().'</p>
+                        <p>'.$denunciante->getCi().'</p>
                     </div>
                 </div>
             </div>
