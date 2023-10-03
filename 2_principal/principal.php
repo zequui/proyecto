@@ -30,22 +30,30 @@
         <?php
         include '../controladores/getIncidents.php';
         $incidents=array_reverse(getNewIncidents());
-        $i=0;
         foreach($incidents as $incident){
             echo '
-            <div class="emergent__incident" id="incident_'.$i.'">
-            <p id="incident__name">'.$incident->getTitulo().'</p>
-            <div id="incident__container">
-                <button class="container__button"><i class="fa-solid fa-xmark fa-2xl" style="color: #001f10;"></i></i></button>
-                <button class="container__button"><i class="fa-solid fa-check fa-2xl" style="color: #001f10;"></i></button>
-                <button class="container__button"><i class="fa-solid fa-arrow-down-long fa-2xl" style="color: #001f10;"></i></button>
+            <div class="emergent__incident" id="'.$incident->getID().'">
+                <div class="incident__title">
+                <p id="incident__name">'.$incident->getTitulo().'</p>
+                    <div id="incident__container">
+                        <button class="container__button"><i class="fa-solid fa-xmark fa-2xl" style="color: #001f10;"></i></i></button>
+                        <button class="container__button"><i class="fa-solid fa-check fa-2xl" style="color: #001f10;"></i></button>
+                        <button class="container__button"><i class="fa-solid fa-arrow-down-long fa-2xl" style="color: #001f10;"></i></button>
+                    </div>
+                </div>
+                <div class="inicident__information">
+                    <div class="information__description">
+                        <p class="description__p">'.$incident->getDescripcion().'</p>
+                    </div>
+                    <div class="information__col">
+                        <p> hola </p>
+                    </div>
+                    <div class="information__col">
+                        <p> hola </p>
+                    </div>
+                </div>
             </div>
-        </div>
-        <div id="inicident__information">
-            <p>'.$incident->getDescripcion().'</p>
-        </div>
         ';
-        $i++;
         }
         ?>
     </div>

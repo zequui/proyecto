@@ -6,14 +6,14 @@ class conexion {
     private $puerto;
 
     public function __construct() {
-        $this->user = 'lucas';
-        $this->password = '2004';
-        $this->baseDeDatos = 'RI_db';
+        $this->user = 'quantum';
+        $this->password = 'quantum';
+        $this->baseDeDatos = 'bd_ri2';
         $this->puerto = 3306;
     } 
 
     public function getConnection() {
-        $dsn ='mysql:host=lucasPC:'.$this->puerto.';dbname='.$this->baseDeDatos.';charset=UTF8';
+        $dsn ='mysql:host=localhost:'.$this->puerto.';dbname='.$this->baseDeDatos.';charset=UTF8';
         try{
             $pdo = new PDO($dsn, $this->user, $this->password);
             if($pdo) {

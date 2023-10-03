@@ -59,7 +59,7 @@
                         <div class="col__title">
                             <label>Titulo</label> <p class="title__text">(inserte un titulo adecuado para ser indentificado mas facilmente)</p>
                         </div>
-                        <input type="text" name="titulo" required>
+                        <input type="text" name="titulo" maxlength="25" required>
                         
                         <label>Tipo de incidente</label>
                         <div id="lista">
