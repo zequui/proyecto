@@ -45,14 +45,14 @@
         public static function setPersona($ci, $name, $surname, $phone){
             $repPersonas = new repositorioPersonas();
             echo "hola";
-            $listCI = [];
-            foreach ($repPersonas as $persona) {
-                array_push($listCI, $persona->getCi());   
-                echo $persona->getCi(); 
+            global $personExist;
+            foreach ($repPersonas->getPersonas() as $persona) {
+                if($ci == $persona->getCi()){
+                    $personExist = true;
+                } 
             }
-            echo '----------'.$ci;
 
-            if (!in_array($ci, $listCI)) {
+            if (!$personExist) {
                 $repPersonas->setPersonas($ci, $name, $surname, $phone);
             }
 

@@ -1,5 +1,5 @@
 <?php
-include '../negocio/incidente.php';
+include_once '../negocio/incidente.php';
 
 function getNewIncidents(){
     $allIncidents = incidente::getIncidents();

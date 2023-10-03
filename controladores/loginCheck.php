@@ -1,5 +1,5 @@
 <?php
-include "../negocio/usuario.php";
+include_once "../negocio/usuario.php";
 session_start();
 $_SESSION["inicio exitoso"] = false;
 if(isset($_POST["email"]) && $_POST["contraseña"]) {

@@ -1,10 +1,10 @@
 <?php
-include "../negocio/incidente.php";
-include "../negocio/persona.php";
-include "../negocio/relaciones.php";
+include_once "../negocio/incidente.php";
+include_once "../negocio/persona.php";
+include_once "../negocio/relaciones.php";
 
 session_start();
-if(!isset($_POST['name']) || !isset($_POST['surname']) || !isset($_POST['phoneNumber']) || !isset($_POST['ci']) || !isset($_POST['fecha']) || !isset($_POST['titulo']) || !isset($_POST['descripcion']) || !isset($_POST['tipo'])){
+if(empty($_POST['name']) || empty($_POST['surname']) || empty($_POST['phoneNumber']) || empty($_POST['ci']) || empty($_POST['fecha']) || empty($_POST['titulo']) || empty($_POST['descripcion']) || empty($_POST['tipo'])){
     header("location:../3_registrarIncidente/registrar_incidente.php");
 }
 $namePersona = $_POST['name'];

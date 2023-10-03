@@ -16,7 +16,7 @@
             <a href="#contacto" class="navbar__element">Historial de Estudiantes</a>
         </div>
         <?php
-            include '../negocio/usuario.php';
+            include_once '../negocio/usuario.php';
             session_start();
             if(!isset($_SESSION['usuario logeado']) || !$_SESSION['inicio exitoso']){
                 header('location: ../1_login/inicio_sesion.php');
@@ -28,7 +28,9 @@
     <div id="emergent">
         <h1 id=emergent__title>Incidentes emergentes</h1>
         <?php
-        include '../controladores/getIncidents.php';
+        include_once '../controladores/getIncidents.php';
+        include_once '../controladores/loadFiles.php';
+        
         $incidents=array_reverse(getNewIncidents());
         foreach($incidents as $incident){
             echo '
@@ -46,7 +48,9 @@
                         <p class="description__p">'.$incident->getDescripcion().'</p>
                     </div>
                     <div class="information__col">
-                        <p> hola </p>
+                        <div>'.$incident->getFecha().'</div>
+                        <div></div>
+                        <div><a href="'.loadFile($incident).'" download="archvoRelevante'.$incident->getID().'">Descargar</a></div>
                     </div>
                     <div class="information__col">
                         <p> hola </p>

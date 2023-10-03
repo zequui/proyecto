@@ -18,8 +18,8 @@ include "../persistencia/repoIncidentes.php";
         $this->descripcion = $descripcion;
         $this->estado = $estado;
         $this->tipo = $tipo;
-        $this->tipo = $nomArchivo;
-        $this->tipo = $extArchivo;
+        $this->nomArchivo = $nomArchivo;
+        $this->extArchivo = $extArchivo;
     }
     
     public function getID() {
