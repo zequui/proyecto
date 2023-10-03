@@ -91,7 +91,7 @@
                             <input type="file" id="col__file" name="archivo_relevante">
                     </div>
                 </div>
-                <button type="submit">Ingresar</button>
+                <button type="submit" id="form__submit">Ingresar</button>
             </form>
         </div> 
     <script src="registrar_incidente.js"></script>
