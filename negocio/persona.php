@@ -44,12 +44,15 @@
         }
         public static function setPersona($ci, $name, $surname, $phone){
             $repPersonas = new repositorioPersonas();
-            $CIlist = [];
+            echo "hola";
+            $listCI = [];
             foreach ($repPersonas as $persona) {
-                $CIlist[] = $persona->getCi();
+                array_push($listCI, $persona->getCi());   
+                echo $persona->getCi(); 
             }
-            
-            if (!in_array($ci, $CIlist)) {
+            echo '----------'.$ci;
+
+            if (!in_array($ci, $listCI)) {
                 $repPersonas->setPersonas($ci, $name, $surname, $phone);
             }
 
