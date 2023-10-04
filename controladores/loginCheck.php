@@ -15,11 +15,11 @@ if(isset($_POST["email"]) && $_POST["contraseña"]) {
             $_SESSION["usuario logeado"] = $usuarios;
         }
     }
-    
+
     if($_SESSION["usuario logeado"]->getIsAdmin()){
         
     } else {
-        header("location: ../2_principal/principal.php");
+        header("location: ../2_principalMod/principal.php");
     }
 
     if(!$_SESSION['inicio exitoso']){
