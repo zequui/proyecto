@@ -12,7 +12,7 @@ if(isset($_POST["email"]) && $_POST["contraseña"]) {
     foreach($listaUsuarios as $usuario){
         if($email == $usuario->getCorreo() && $contraseña == $usuario->getContraseña())  {
             $_SESSION["inicio exitoso"] = true;
-            $_SESSION["usuario logeado"] = $usuarios;
+            $_SESSION["usuario logeado"] = $usuario;
         }
     }
 
