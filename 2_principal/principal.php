@@ -47,17 +47,25 @@
                     </div>
                 </div>
                 <div class="inicident__information">
-                    <div class="information__description">
+                    <div class="information__col">
+                        <label>Descripcion</label>
                         <p class="description__p">'.$incident->getDescripcion().'</p>
                     </div>
                     <div class="information__col">
-                        <div>'.$incident->getFecha().'</div>
-                        <div></div>
-                        <div><a href="'.loadFile($incident).'" download="archvoRelevante'.$incident->getID().'">Descargar</a></div>
-                    </div>
+                        <label>Fecha</label>
+                        <div class="description__p">'.$incident->getFecha().'</div>
+                        <div></div>';
+                        if(!empty($incident->getArchivo())){
+                         echo ' <label>Archivo a descargar</label>
+                         <div class="description__p"><a href="'.loadFile($incident).'" download="archvoRelevante'.$incident->getID().'">Descargar</a></div>';
+                        }
+                       
+                    echo '</div>
                     <div class="information__col">
-                        <p>'.$denunciante->getNombre().' '.$denunciante->getApellido().'</p>
-                        <p>'.$denunciante->getCi().'</p>
+                        <label>Nombre y Apellido</label>
+                        <p class="description__p">'.$denunciante->getNombre().' '.$denunciante->getApellido().'</p>
+                        <label>Cedula</label>
+                        <p class="description__p">'.$denunciante->getCi().'</p>
                     </div>
                 </div>
             </div>
