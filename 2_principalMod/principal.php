@@ -43,10 +43,10 @@
                     <div id="incident__container">
                         <button class="container__button"><i class="fa-solid fa-xmark fa-2xl" style="color: #001f10;"></i></i></button>
                         <button class="container__button"><i class="fa-solid fa-check fa-2xl" style="color: #001f10;"></i></button>
-                        <button class="container__button"><i class="fa-solid fa-arrow-down-long fa-2xl" style="color: #001f10;"></i></button>
+                        <button class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl" style="color: #001f10;"></i></button>
                     </div>
                 </div>
-                <div class="inicident__information">
+                <div class="inicident__information hidden">
                     <div class="information__col">
                         <label>Descripcion</label>
                         <p class="description__p">'.$incident->getDescripcion().'</p>
@@ -73,5 +73,6 @@
         }
         ?>
     </div>
+    <script src="app.js"></script>
 </body>
 </html>

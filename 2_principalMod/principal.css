@@ -146,5 +146,7 @@ label{
   font-size: 17px;
 }
 
-
-
+.hidden{
+  display: none;
+  
+}
