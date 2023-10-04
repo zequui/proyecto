@@ -1,19 +1,21 @@
 <?php
 include "../persistencia/repoUsuarios.php";
-    class usuario {
+    class Usuario {
         private $ci;
         private $nombre;
         private $apellido;
         private $correo;
         private $contraseña;
+        private $isAdmin;
 
-        public function  __construct($ci, $nombre, $apellido, $correo, $contraseña)
+        public function  __construct($ci, $nombre, $apellido, $correo, $contraseña, $tipo)
         {
             $this->ci = $ci;
             $this->nombre = $nombre;
             $this->apellido = $apellido;
             $this->correo = $correo;
             $this->contraseña = $contraseña;
+            $this->isAdmin = $tipo;
         }
         
         public function getCi() {
@@ -34,6 +36,10 @@ include "../persistencia/repoUsuarios.php";
 
         public function getContraseña() {
             return $this->contraseña;
+        }
+
+        public function getIsAdmin() {
+            return $this->isAdmin;
         }
 
         public static function getRepo() {

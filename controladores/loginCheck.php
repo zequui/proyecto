@@ -9,19 +9,23 @@ if(isset($_POST["email"]) && $_POST["contraseña"]) {
     $listaUsuarios = usuario::getRepo();
     
 
-    foreach($listaUsuarios as $usuarios){
-        if($email == $usuarios->getCorreo() && $contraseña == $usuarios->getContraseña())  {
+    foreach($listaUsuarios as $usuario){
+        if($email == $usuario->getCorreo() && $contraseña == $usuario->getContraseña())  {
             $_SESSION["inicio exitoso"] = true;
             $_SESSION["usuario logeado"] = $usuarios;
         }
     }
-    if($_SESSION["inicio exitoso"]){
+    
+    if($_SESSION["usuario logeado"]->getIsAdmin()){
+        
+    } else {
         header("location: ../2_principal/principal.php");
-    }else{
+    }
+
+    if(!$_SESSION['inicio exitoso']){
         header("location: ../1_login/inicio_sesion.php");
     }
-}else{
+} else {
     header("location: ../1_login/inicio_sesion.php");
 }
-
 ?>
