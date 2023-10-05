@@ -161,6 +161,7 @@ label{
 
 
 .hidden{
+  visibility: hidden;
   margin-bottom: -70px;
   margin-top: 0 ;
   height: 60px;
