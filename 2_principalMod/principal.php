@@ -22,13 +22,13 @@
                 header('location: ../1_login/inicio_sesion.php');
             }
             $usuario = $_SESSION['usuario logeado'];
-            echo '<p id="container__fullname"><i class="fa-solid fa-right-to-bracket fa-lg"></i>'.$usuario->getNombre().' '.$usuario->getApellido().'</p>';
+            echo '<p id="container__fullname">'.$usuario->getNombre().' '.$usuario->getApellido().'<i class="fa-solid fa-chevron-down"></i></p>';
         ?>
-        <div id="container__subMenu">
-            <a href="" class="subMenu__option">Cerrar sesion</a>
-        </div>
     </div>
     <div id="emergent">
+        <div id="container__subMenu" class="subMenu-hidden">
+            <a href="../controladores/exitSession.php" class="subMenu__option"><i class="fa-solid fa-right-to-bracket fa-lg"></i>Cerrar sesion</a>
+        </div>
         <h1 id=emergent__title>Incidentes emergentes</h1>
         <?php
         include_once '../controladores/getIncidents.php';
@@ -49,7 +49,7 @@
                         <button class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl" style="color: #001f10;"></i></button>
                     </div>
                 </div>
-                <div class="inicident__information hidden">
+                <div class="inicident__information incident__information-hidden">
                     <div class="information__col">
                         <label>Descripcion</label>
                         <p class="description__p">'.$incident->getDescripcion().'</p>
