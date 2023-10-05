@@ -35,6 +35,12 @@
         include_once '../controladores/loadFiles.php';
         include_once '../controladores/getPersonaIncidente.php';
 
+        $files = glob('../recursos/*');
+        if(!empty($files))
+            foreach($files as $file){
+                unlink($file);
+            }
+
         $incidents=array_reverse(getNewIncidents());
         foreach($incidents as $incident){
             $denunciante = getPersonaIncidente_Denunciante($incident->getID());

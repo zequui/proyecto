@@ -16,15 +16,17 @@ if(isset($_POST["email"]) && $_POST["contraseña"]) {
         }
     }
 
+    if(!$_SESSION['inicio exitoso']){
+        header("location: ../1_login/inicio_sesion.php");
+    }
+
     if($_SESSION["usuario logeado"]->getIsAdmin()){
         
     } else {
         header("location: ../2_principalMod/principal.php");
     }
 
-    if(!$_SESSION['inicio exitoso']){
-        header("location: ../1_login/inicio_sesion.php");
-    }
+
 } else {
     header("location: ../1_login/inicio_sesion.php");
 }
