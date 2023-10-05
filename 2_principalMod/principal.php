@@ -24,6 +24,9 @@
             $usuario = $_SESSION['usuario logeado'];
             echo '<p id="container__fullname"><i class="fa-solid fa-right-to-bracket fa-lg"></i>'.$usuario->getNombre().' '.$usuario->getApellido().'</p>';
         ?>
+        <div id="container__subMenu">
+            <a href="" class="subMenu__option">Cerrar sesion</a>
+        </div>
     </div>
     <div id="emergent">
         <h1 id=emergent__title>Incidentes emergentes</h1>
