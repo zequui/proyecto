@@ -66,9 +66,13 @@
                     echo '</div>
                     <div class="information__col">
                         <label>Nombre y Apellido</label>
-                        <p class="description__p">'.$denunciante->getNombre().' '.$denunciante->getApellido().'</p>
+                        <p class="col__p">'.$denunciante->getNombre().' '.$denunciante->getApellido().'</p>
+
                         <label>Cedula</label>
-                        <p class="description__p">'.$denunciante->getCi().'</p>
+                        <p class="col__p">'.$denunciante->getCi().'</p>
+                        
+                        <label>Telefono</label>
+                        <p class="col__p">'.$denunciante->getTelefono().'</p>
                     </div>
                 </div>
             </div>
