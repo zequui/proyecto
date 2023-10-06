@@ -27,7 +27,7 @@
     </div>
     <div id="emergent">
         <div id="container__subMenu" class="subMenu-hidden">
-            <a href="../controladores/exitSession.php" class="subMenu__option"><i class="fa-solid fa-right-to-bracket fa-lg"></i>Cerrar sesion</a>
+            <a href="../controladores/exitSession.php" class="subMenu__option"><i class="fa-solid fa-right-from-bracket fa-lg"></i>Cerrar sesion</a>
         </div>
         <h1 id=emergent__title>Incidentes emergentes</h1>
         <?php
@@ -50,9 +50,9 @@
                 <div class="incident__title">
                 <p id="incident__name">'.$incident->getTitulo().'</p>
                     <div id="incident__container">
-                        <button class="container__button"><i class="fa-solid fa-xmark fa-2xl" style="color: #001f10;"></i></i></button>
-                        <button class="container__button"><i class="fa-solid fa-check fa-2xl" style="color: #001f10;"></i></button>
-                        <button class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl" style="color: #001f10;"></i></button>
+                        <button class="container__button"><i class="fa-solid fa-x fa-xl"></i></i></button>
+                        <button class="container__button"><i class="fa-solid fa-check fa-2xl"></i></button>
+                        <button class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl"></i></button>
                     </div>
                 </div>
                 <div class="inicident__information incident__information-hidden">

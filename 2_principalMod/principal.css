@@ -30,7 +30,7 @@
     transition: .1s;
     border-radius: 10px;
   }
-  .fa-right-to-bracket{
+  .fa-right-from-bracket{
     padding-right: 10px;
   }
   #container__fullname {
@@ -143,6 +143,7 @@
   border: none;
   cursor: pointer;
   border-radius: 5px;
+  color: #001f10;
   padding-top: 2px;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
               rgba(0, 0, 0, 0.3) 0px 7px 13px -3px; 
