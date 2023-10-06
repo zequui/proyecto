@@ -7,41 +7,38 @@ body{
     font-family: "Segoe UI", Tahoma, sans-serif;
     font-size: 75%;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0px;
     overflow: hidden;
 }
 #body__button{
     background-color: rgb(0,87,7);
+    border: none;
+    padding: 10px 30px;
     border-radius: 10px;
-    border: 1px solid rgb(0,87,7);
     position: absolute;
-    right: 0;
-    top: -12px;
-    height: 40px;
-    width: 150px;
+    right: 15px;
+    top: 15px;
     font-size: 17px;
     text-align: center;
     justify-content: center;
     align-items: center;
-    margin-right: 15px;
     color: #EAEAEA;
 }
 #body__button:hover{
-    background-color: #646464;
+    background-color: #507c45;
 }
 i{
    margin-right: 5px; 
 }
+
 #container{
     background-color: #2E2E2E;
     border-radius: 10px;
     display: flex;
     align-items: center;
     flex-direction: column;
-    height: 690px;
+    padding-bottom: 10px;
 }
 #container__form{
     display: flex;
@@ -51,14 +48,12 @@ i{
 }
 #form__container{
     display: flex;
-    height: 525px;
 }
+
 .container__col{
     display: flex;
     margin: auto;
     box-sizing: border-box;
-    height: 565px;
-    width: 565px;
     border-radius: 10px;
     padding: 26px;
     text-align: left;
@@ -92,7 +87,7 @@ h2{
 }
 input{
     padding: 5px;
-    border-radius: 5px 5px 5px 5px;
+    border-radius: 5px;
     background-color: #1B1B1B;
     border: 0;
     height: 33px;
@@ -217,7 +212,7 @@ input[type="radio"]{
     -webkit-appearance: button;
     padding: 7px 10px;
 }
-button{
+#form__submit{
     border-radius: 5px 5px 5px 5px;
     background-color: rgb(0,87,7);
     border: 0;
@@ -226,6 +221,9 @@ button{
     color: #EAEAEA;
     font-size: 17px;
     margin-top: 20px;
+}
+button{
+    border: solid 1px;
 }
 #container__alert{
     background-color: #2E2E2E;

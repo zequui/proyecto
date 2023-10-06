@@ -13,7 +13,7 @@ class repositorioPersonas {
         $stmt=$this->PDO->query("SELECT * FROM personas");
         
         while($row=$stmt->fetch()) {
-            array_push($usuarios, new persona($row["ci"],$row["nombre"],$row["apellido"],$row["telefono"]));
+            array_push($usuarios, new persona($row["ci"],$row["nombre"],$row["apellido"], '0'.$row["telefono"]));
         }
         return $usuarios;
     }

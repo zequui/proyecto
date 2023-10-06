@@ -2,6 +2,9 @@ body, html{
     height: 100%;
 }
 body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: rgb(0, 87, 7);
     background: linear-gradient(7deg, rgba(0,87,7,1) 0%, rgba(62, 149, 69, 1) 44%, rgba(153, 255, 170, 1) 100%);
     overflow: hidden;
@@ -11,20 +14,19 @@ body{
 #body__button{
     background-color: rgb(0,87,7);
     border-radius: 10px;
-    border: 1px solid rgb(0,87,7);
+    border: none;
     position: absolute;
-    right: 0;
-    height: 40px;
-    width: 150px;
+    right: 15px;
+    top: 15px;
+    padding: 10px 30px;
     font-size: 17px;
     text-align: center;
     justify-content: center;
     align-items: center;
-    margin-right: 15px;
     color: #EAEAEA;
 }
 #body__button:hover{
-    background-color: #646464;
+    background-color: #507c45;
 }
 i{
    margin-right: 5px; 
@@ -33,19 +35,12 @@ i{
     display: flex;
     flex-direction: column;
     background-color: #2E2E2E;
-    place-items: center;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
     margin: auto;
     text-align: center;
     box-sizing: border-box;
     border: 1px solid #2E2E2E;
     height: 170px;
-    width: 355px;
-    border-radius: 10px 10px 10px 10px;
+    border-radius: 10px;
     padding: 26px;
     
 }
@@ -60,11 +55,10 @@ i{
     background-color: rgb(0,87,7);
     border: 0;
     height: 40px;
-    width: 300px;
+    width: 100%;
     color: #EAEAEA;
     font-size: 17px;
 }
 #container__button:hover{
-    background-color: #646464;
-    color: #EAEAEA;
+    background-color: #507c45;
 }

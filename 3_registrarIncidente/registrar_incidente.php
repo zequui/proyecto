@@ -12,12 +12,21 @@
     <body>
     <?php
         session_start();
-        if(isset($_SESSION['incidente enviado']) && $_SESSION['incidente enviado']){
-            echo '
-            <div id="container__alert">
-            <p id="alert__p">Se ha enviado la informacion</p>
-            </div>
-            ';
+        if(isset($_SESSION['incidente enviado'])){
+            if($_SESSION['incidente enviado']){
+                echo '
+                <div id="container__alert">
+                <p id="alert__p">Se ha enviado la informacion</p>
+                </div>
+                ';
+            } else {
+                echo '
+                <div id="container__alert">
+                <p id="alert__p">Hubo un error al enviar el incidente</p>
+                </div>
+                ';
+            }
+
             unset($_SESSION['incidente enviado']);
         }
         ?>
