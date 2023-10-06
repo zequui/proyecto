@@ -14,7 +14,7 @@ if(checkIfEmpty()){
     $titulo = $_POST["titulo"];
     $descripcion = $_POST["descripcion"];
     $estado = 0;
-    $tipo = (int)$_POST['tipo'];
+    $tipo = $_POST['tipo'];
 
     if(!empty($_FILES['archivo_relevante'])){
         $dir='../recursos/';

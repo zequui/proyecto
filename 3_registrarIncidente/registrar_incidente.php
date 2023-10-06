@@ -68,24 +68,24 @@
                         <div class="col__title">
                             <label>Titulo</label> <p class="title__text">(inserte un titulo adecuado para ser indentificado mas facilmente)</p>
                         </div>
-                        <input type="text" name="titulo" maxlength="25" required>
+                        <input type="text" name="titulo" maxlength="35" required>
                         
                         <label>Tipo de incidente</label>
                         <div id="lista">
                             <div class="contenedor">
-                                <input type="radio" name="tipo" value="0">Hurto</input>
+                                <input type="radio" name="tipo" value="Hurto">Hurto</input>
                             </div><div class="contenedor">
-                                <input type="radio" name="tipo" value="1">Acoso</input>
+                                <input type="radio" name="tipo" value="Acoso">Acoso</input>
                             </div><div class="contenedor">
-                                <input type="radio" name="tipo" value="2">Violencia</input>
+                                <input type="radio" name="tipo" value="Violencia">Violencia</input>
                             </div><div class="contenedor">
-                                <input type="radio" name="tipo" value="3">Conducta inadecuada</input>
+                                <input type="radio" name="tipo" value="Conducta inadecuada">Conducta inadecuada</input>
                             </div><div class="contenedor">
-                                <input type="radio" name="tipo" value="4">Tenencia de sustancias ilicitas</input>
+                                <input type="radio" name="tipo" value="Tenencia de sustancias ilicitas">Tenencia de sustancias ilicitas</input>
                             </div><div class="contenedor">
-                                <input type="radio" name="tipo" value="5">Tenencia de objeto dañino</input>
+                                <input type="radio" name="tipo" value="Tenencia de objeto dañino">Tenencia de objeto dañino</input>
                             </div><div class="contenedor">
-                                <input type="radio" name="tipo" value="6">Vandalismo</input>
+                                <input type="radio" name="tipo" value="Vandalismo">Vandalismo</input>
                             </div>
                         </div>
                     </div>

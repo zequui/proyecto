@@ -26,7 +26,7 @@
         ?>
     </div>
     <div id="emergent">
-        <div id="container__subMenu" class="subMenu-hidden">
+        <div id="emergent__subMenu" class="subMenu-hidden">
             <a href="../controladores/exitSession.php" class="subMenu__option"><i class="fa-solid fa-right-from-bracket fa-lg"></i>Cerrar sesion</a>
         </div>
         <h1 id=emergent__title>Incidentes emergentes</h1>
@@ -63,7 +63,9 @@
                     <div class="information__col">
                         <label>Fecha</label>
                         <div class="description__p">'.$incident->getFecha().'</div>
-                        <div></div>';
+                        <div></div>
+                        <label>Tipo</label>
+                        <div class="description__p">'.$incident->getTipo().'</div>';
                         if(!empty($incident->getArchivo())){
                          echo ' <label>Archivo a descargar</label>
                          <div class="description__p"><a href="'.loadFile($incident).'" download="archvoRelevante'.$incident->getID().'">Descargar</a></div>';
