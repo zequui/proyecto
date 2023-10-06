@@ -53,14 +53,15 @@
       text-align: left;
     }
   }
-  #container__subMenu {
+  #container__subMenu{
     position: absolute;
     z-index: 100;
     background-color: #4a4a4a;
     padding: 10px;
     right: 0;
     top: 73px;
-    
+    height: 20%;
+    width: 20%;
   }
   #emergent{
     display: flex;
@@ -134,7 +135,7 @@
   margin-top: 10px;
   padding-top: 10px;
   justify-content: space-between;
-  align-items: center;
+  padding-bottom: 10px;
   transition: .1s;
 }
 .information__col{
@@ -158,8 +159,6 @@ label{
   color: #EAEAEA;
   font-size: 17px;
 }
-
-
 .hidden{
   visibility: hidden;
   margin-bottom: -70px;
@@ -168,8 +167,6 @@ label{
   overflow: hidden;
   transform: translateY(-70px);
 }
-
-
 i{
   transition: .1s;
 }

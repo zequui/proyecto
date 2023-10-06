@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="shortcut icon" href="https://img.icons8.com/fluency/48/repository.png" type="image/x-icon">
     <script src="https://kit.fontawesome.com/6b0ad3d290.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
