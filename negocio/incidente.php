@@ -7,10 +7,9 @@ include "../persistencia/repoIncidentes.php";
     private $descripcion;
     private $estado;
     private $tipo;
-    private $nomArchivo;
-    private $extArchivo;
+    private $nomArchivos = [];
 
-    public function  __construct($id, $fecha, $titulo, $descripcion, $estado, $tipo, $nomArchivo, $extArchivo)
+    public function  __construct($id, $fecha, $titulo, $descripcion, $estado, $tipo, $nomArchivos)
     {
         $this->id = $id;
         $this->fecha = $fecha;
@@ -18,8 +17,7 @@ include "../persistencia/repoIncidentes.php";
         $this->descripcion = $descripcion;
         $this->estado = $estado;
         $this->tipo = $tipo;
-        $this->nomArchivo = $nomArchivo;
-        $this->extArchivo = $extArchivo;
+        $this->nomArchivos = $nomArchivos;
     }
     
     public function getID() {
@@ -46,12 +44,8 @@ include "../persistencia/repoIncidentes.php";
         return $this->tipo;
     }
 
-    public function getArchivo() {
-        return $this->nomArchivo;
-    }
-
-    public function getExtension() {
-        return $this->extArchivo;
+    public function getArchivos() {
+        return $this->nomArchivos;
     }
     
     public static function getRepo() {
@@ -59,9 +53,9 @@ include "../persistencia/repoIncidentes.php";
         return $repIncidentes->getIncidents();
     }
 
-    public static function setIncident($fecha, $titulo, $descripcion, $estado, $tipo, $file, $ext) {
+    public static function setIncident($fecha, $titulo, $descripcion, $estado, $tipo, $fileNames) {
         $repIncidentes = new repositorioIncidente();
-        $repIncidentes->setIncidents($fecha, $titulo, $descripcion, $estado, $tipo, $file, $ext);
+        $repIncidentes->setIncidents($fecha, $titulo, $descripcion, $estado, $tipo, $fileNames);
     }
     
 }

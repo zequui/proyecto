@@ -97,7 +97,7 @@
                             <label>Descripcion</label>
                             <textarea id="col__description" name="descripcion"></textarea>
                             <label>Archivo relevante</label>
-                            <input type="file" id="col__file" name="archivo_relevante" multiple>
+                            <input type="file" id="col__file" name="archivos_relevantes[]" multiple>
                     </div>
                 </div>
                 <button type="submit" id="form__submit">Ingresar</button>

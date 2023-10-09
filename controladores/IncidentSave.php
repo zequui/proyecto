@@ -5,6 +5,8 @@ include_once "../negocio/relaciones.php";
 
 session_start();
 if(checkIfEmpty()){
+    $dir='../recursos/';
+
     $namePersona = $_POST['name'];
     $surnamePersona = $_POST['surname'];
     $telefonoPersona = $_POST['phoneNumber'];
@@ -15,36 +17,37 @@ if(checkIfEmpty()){
     $descripcion = $_POST["descripcion"];
     $estado = 0;
     $tipo = $_POST['tipo'];
+  
+    $fileNames = [];
 
-    if(!empty($_FILES['archivo_relevante'])){
-        $dir='../recursos/';
-        $ext=pathinfo($_FILES['archivo_relevante']['name'], PATHINFO_EXTENSION);
-        $name = $_FILES['archivo_relevante']['name'];
+    if(!empty($_FILES)){
+        $nomArchivos = $_FILES['archivos_relevantes']['name'];
+        $nomTempArchivos = $_FILES['archivos_relevantes']['tmp_name'];
         
-        $path = $dir.$name;
+        for($i = 0; $i<=count($nomArchivos); $i++){
+            $ext = pathinfo($nomArchivos[$i], PATHINFO_EXTENSION);
+            $name = 'archivo_incidente'.$i.'_'.date('d-m-Y_H-i-s', time()).'.'.$ext;
+            $pathFile = $dir.$name;
 
-        if(move_uploaded_file($_FILES['archivo_relevante']['tmp_name'], $path)){
-            $file = base64_encode(file_get_contents($path));
+            if(move_uploaded_file($nomTempArchivos[$i], $pathFile)){
+                array_push($fileNames, $name);
+            }
         }
-    }else{
-        $file='';
-        $ext='';
     }
 
     Persona::setPersona($ciPersona, $namePersona, $surnamePersona, $telefonoPersona);
-    incidente::setIncident($fecha, $titulo, $descripcion, $estado, $tipo, $file, $ext);
+    incidente::setIncident($fecha, $titulo, $descripcion, $estado, $tipo, $fileNames);
 
     Persona_Incidente::setPersonaIncidente($ciPersona, 0, $titulo, $descripcion);
 
-    unlink($path);
+    #unlink($path);
     $_SESSION["incidente enviado"]=true;
-    #'archivo_relevante'.date('d-m-Y H-i-s', time()).
+    #.
 }else {
-    $_SESSION["incidente enviado"]=false;
+    $_SESSION["incidente enviado"]=false; 
 }
-
-$_POST = array();
 header("location:../3_registrarIncidente/registrar_incidente.php");
+$_POST = array();
 
 function checkIfEmpty(){
     foreach($_POST as $value){

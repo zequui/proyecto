@@ -35,16 +35,10 @@
         include_once '../controladores/loadFiles.php';
         include_once '../controladores/getPersonaIncidente.php';
 
-        $files = glob('../recursos/*');
-        if(!empty($files))
-            foreach($files as $file){
-                unlink($file);
-            }
-
         $incidents=array_reverse(getNewIncidents());
         foreach($incidents as $incident){
             $denunciante = getPersonaIncidente_Denunciante($incident->getID());
-            
+            $archivos = $incident->getArchivos();
             echo '
             <div class="emergent__incident" id="'.$incident->getID().'">
                 <div class="incident__title">
@@ -67,10 +61,14 @@
                         <label>Tipo</label>
                         <p class="col__p">'.$incident->getTipo().'</p>';
                         
-                        if(!empty($incident->getArchivo())){
-                         echo ' <label>Archivo a descargar</label>
-                         <p class="col__p"><a href="'.loadFile($incident).'" download="archvoRelevante'.$incident->getID().'">Descargar</a></p>';
+                    if(!empty($archivos)){
+                        echo ' <label>Archivos relevantes</label>';
+                        for($i = 0; $i<=count($archivos); $i++){
+                            echo '<div class="col_downloads">
+                            <p class="col__p"><a href="../recursos/'.$archivos[$i][0].'" download="">Descargar '.$i.'</a></p>
+                            </div>';
                         }
+                    }
                        
                     echo '</div>
                     <div class="information__col">

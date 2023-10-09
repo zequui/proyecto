@@ -238,6 +238,12 @@ i{
   transform: rotate(-180Deg);
   transition: .1s;
 }
+
+.col_downloads{
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+}
 /*_______________________________________________________________________________________________________________________________*/
 .information__title{
   width: 30px;
