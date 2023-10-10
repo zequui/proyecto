@@ -21,11 +21,14 @@ class repositorioIncidente {
 
     public function setIncidents($fecha, $titulo, $descripcion, $estado, $tipo, $fileNames) {
         $stmt=$this->PDO->query("INSERT INTO `incidentes` (`id`, `fecha`, `titulo`, `descripcion`, `estado`, `tipo`) VALUES (NULL, '".$fecha."', '".$titulo."', '".$descripcion."', '".$estado."', '".$tipo."');");
-        
-        $idIncidente=$this->PDO->query('SELECT id FROM incidentes ORDER BY id DESC')->fetch()[0];
-        foreach($fileNames as $name){
-            $stmt=$this->PDO->query("INSERT INTO archivosIncidente(id_incidente, nombreArchivo) VALUES ('".$idIncidente."', '".$name."')");
+        if($fileNames)
+        {
+            $idIncidente=$this->PDO->query('SELECT id FROM incidentes ORDER BY id DESC')->fetch()[0];
+            foreach($fileNames as $name){
+                $stmt=$this->PDO->query("INSERT INTO archivosIncidente(id_incidente, nombreArchivo) VALUES ('".$idIncidente."', '".$name."')");
+            }
         }
+
     }
 }
 ?>

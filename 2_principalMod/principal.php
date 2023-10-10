@@ -30,6 +30,7 @@
             <a href="../controladores/exitSession.php" class="subMenu__option"><i class="fa-solid fa-right-from-bracket fa-lg"></i>Cerrar sesion</a>
         </div>
         <h1 class=emergent__title>Incidentes emergentes</h1>
+        <div class="emergent__container">
         <?php
         include_once '../controladores/getIncidents.php';
         include_once '../controladores/loadFiles.php';
@@ -45,14 +46,14 @@
                     <p class="title__name">'.$incident->getTitulo().'</p>
                     <div class="title__container">
                         <button class="container__button"><i class="fa-solid fa-x fa-xl"></i></i></button>
-                        <button class="container__button"><i class="fa-solid fa-check fa-2xl"></i></button>
+                        <button class="container__button"><i class="fa-solid fa-play fa-xl"></i></button>
                         <button class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl"></i></button>
                     </div>
                 </div>
                 <div class="inicident__information incident__information-hidden">
-                    <div class="information__col">
+                    <div class="information__col ">
                         <label>Descripcion</label>
-                        <p class="col__p">'.$incident->getDescripcion().'</p>
+                        <p class="col__p information_description">'.$incident->getDescripcion().'</p>
                     </div>
                     <div class="information__col">
                         <label>Fecha</label>
@@ -63,7 +64,7 @@
                         
                     if(!empty($archivos)){
                         echo ' <label>Archivos relevantes</label>';
-                        for($i = 0; $i<=count($archivos); $i++){
+                        for($i = 0; $i<count($archivos); $i++){
                             echo '<div class="col_downloads">
                             <p class="col__p"><a href="../recursos/'.$archivos[$i][0].'" download="">Descargar '.$i.'</a></p>
                             </div>';
@@ -86,6 +87,8 @@
         ';
         }
         ?>
+        </div>
+        
     </div>
     <br>
     <div class="emergent">
@@ -94,12 +97,14 @@
                 <div class="incident__title">
                     <p class="title__name">'.$incident->getTitulo().'</p>
                         <div id="incident__container">
-                            <button class="container__button"><i class="fa-solid fa-x fa-xl"></i></i></button>
+                        <button class="container__button"><i class="fa-solid fa-rectangle-xmark fa-xl"></i></button>
+                            <button class="container__button"><i class="fa-solid fa-pen-to-square fa-xl"></i></button>
+                            <button class="container__button"><i class="fa-solid fa-plus fa-2xl"></i></button>
                             <button class="container__button"><i class="fa-solid fa-check fa-2xl"></i></button>
                             <button class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl"></i></button>
                         </div>
                 </div>
-                <div class="inicident__information incident__information-hidden">
+                <div class="inicident__information--2 incident__information-hidden">
                     <div class="information__container">
                         <div class="information__col--2">
                             <label>Descripcion</label>
@@ -126,9 +131,15 @@
                             <p class="col__p">'.$denunciante->getTelefono().'</p>
                         </div>
                     </div>
-                        <!--<div class="incident__title">
-                        </div>-->
-                    
+                    <div class="container__activity--title">
+                    <p class="title__name--2">'.$incident->getTitulo().'</p>
+                    <div class="title__container">
+                        <button class="container__button--2"><i class="fa-solid fa-xmark fa-xl"></i></button>
+                        <button class="container__button--2"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
+                        <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
+                    </div>
+                    </div>    
+
                 </div>
             </div>
     </div>

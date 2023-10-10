@@ -24,7 +24,7 @@ if(checkIfEmpty()){
         $nomArchivos = $_FILES['archivos_relevantes']['name'];
         $nomTempArchivos = $_FILES['archivos_relevantes']['tmp_name'];
         
-        for($i = 0; $i<=count($nomArchivos); $i++){
+        for($i = 0; $i<count($nomArchivos); $i++){
             $ext = pathinfo($nomArchivos[$i], PATHINFO_EXTENSION);
             $name = 'archivo_incidente'.$i.'_'.date('d-m-Y_H-i-s', time()).'.'.$ext;
             $pathFile = $dir.$name;
