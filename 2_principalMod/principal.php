@@ -10,10 +10,10 @@
 <body>
     <div id="container">
         <div id="container__navbar">
-            <a href="#inicio" class="navbar__element">Incidentes emergentes</a>
-            <a href="#acerca" class="navbar__element">Incidentes en curso</a>
-            <a href="#servicios" class="navbar__element">Incidentes pasados</a>
-            <a href="#contacto" class="navbar__element">Historial de Estudiantes</a>
+            <a href="#inicio" id="emergentes" class="navbar__element selected">Incidentes emergentes</a>
+            <a href="#acerca" id="enCurso" class="navbar__element">Incidentes en curso</a>
+            <a href="#servicios" id="pasados" class="navbar__element">Incidentes pasados</a>
+            <a href="#contacto" id="historialIncidentes" class="navbar__element">Historial de Estudiantes</a>
         </div>
         <?php
             include_once '../negocio/usuario.php';
@@ -25,7 +25,7 @@
             echo '<p id="container__fullname">'.$usuario->getNombre().' '.$usuario->getApellido().'<i class="fa-solid fa-chevron-down"></i></p>';
         ?>
     </div>
-    <div class="emergent">
+    <div class="emergent" id="incidentesEmergentes">
         <div id="emergent__subMenu" class="subMenu-hidden">
             <a href="../controladores/exitSession.php" class="subMenu__option"><i class="fa-solid fa-right-from-bracket fa-lg"></i>Cerrar sesion</a>
         </div>
@@ -33,7 +33,6 @@
         <div class="emergent__container">
         <?php
         include_once '../controladores/getIncidents.php';
-        include_once '../controladores/loadFiles.php';
         include_once '../controladores/getPersonaIncidente.php';
 
         $incidents=array_reverse(getNewIncidents());
@@ -90,8 +89,9 @@
         </div>
         
     </div>
-    <br>
-    <div class="emergent">
+
+
+    <div class="emergent hidden" id="incidenteEnCurso">
         <h1 class=emergent__title>Incidentes en curso</h1>
         <div class="emergent__incident" id="'.$incident->getID().'">
                 <div class="incident__title">

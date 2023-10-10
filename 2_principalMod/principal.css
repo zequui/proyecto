@@ -1,9 +1,11 @@
  body{
+    position: relative;
     background: #005707;
     background: linear-gradient(7deg, rgba(0,87,7,1) 0%, rgba(62,149,69,1) 44%, rgba(153,255,170,1) 100%);
     height: 100vh;
     font-family: "Segoe UI", Tahoma, sans-serif;
     padding: 5px 20px;
+    overflow: hidden;
   }
   #container{
     position: relative;
@@ -63,7 +65,7 @@
   }
   .emergent{
     z-index: 0;
-    position: relative;
+    position: absolute;
     display: flex;
     flex-direction: column;
     height: 70%;
@@ -72,6 +74,7 @@
     border-radius: 0px 0px 10px 10px;
     text-align: left;
     padding: 30px;
+    transition: 10s;
   }
   .emergent::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
@@ -203,7 +206,8 @@
   padding: 15px 0;
   justify-content: space-between;
   align-items: center;
-  transition: .01s;
+  transition: .1s;
+  height: 100%;
 }
 .incident__information-hidden{
   position: relative;
@@ -225,7 +229,6 @@
   margin-right: 10px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
 }
 label{
@@ -339,4 +342,19 @@ i{
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
                 rgba(0, 0, 0, 0.3) 0px 7px 13px -3px; 
     transition: .1s;
+  }
+  .hidden {
+    transform: translateX(200%);
+    visibility: hidden;
+  }
+  .selected{
+    color: beige;
+    border-radius: 10px 10px 0 0;
+    border: 1px solid rgb(119, 119, 104);
+    padding-bottom: 25px;
+    transition: .1s;
+  }
+  .selected:hover {
+    border-radius: 10px 10px 0 0;
+    
   }

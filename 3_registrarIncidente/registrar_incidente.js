@@ -3,6 +3,7 @@ const bodyElemnts = document.querySelectorAll("body > *");
 const submitBtn = document.querySelector("#form__submit");
 const ciInput = document.querySelector("input[name='ci']");
 
+
 bodyElemnts.forEach((element) => {
   element.addEventListener("click", () => {
     errorMsg != null ? errorMsg.remove() : null;
