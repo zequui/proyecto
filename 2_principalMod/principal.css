@@ -151,6 +151,7 @@
   justify-content: space-between;
   align-items: center;
   border-radius: 10px;
+  transition: .1s;
 }
 .emergent__container{
   display: flex;
@@ -159,12 +160,17 @@
   padding: 30px;
 }
 .incident__title--confirm{
-  transition: .1s;
   border: solid #3e9545;
 }
 .incident__title--cancel{
   border: solid red;
-  transition: .1s;
+  
+}
+.incident__title--confirm > p {
+  color: #3e9545;
+}
+.incident__title--cancel > p {
+  color: red;
 }
 .title__name{
   color: #C4C4C4;
@@ -172,12 +178,6 @@
   font-weight: bold;
   margin: 0;
   margin-left: 20px;
-}
-.title__name--confirm{
-  color: #3e9545;
-}
-.title__name--cancel{
-  color: red;
 }
 .title__container {
   display: flex;
@@ -381,5 +381,8 @@ i{
 
   .incident-active{
     transform: translateX(200vw);
+  }
+  .incident-rejected{
+    transform: translateX(-200vw);
   }
 

@@ -11,7 +11,6 @@ const contenedorIncidentesEmergentes = document.querySelector(
   "#incidentesEmergentes-container"
 );
 
-
 navbarBtns.forEach((opt) => {
   opt.addEventListener("click", (e) => {
     navbarBtns.forEach((btn) => btn.classList.remove("selected"));
@@ -25,7 +24,7 @@ navbarBtns.forEach((opt) => {
     switch (elementId) {
       case "emergentes":
         incidentesEmergentes.classList.remove("hidden");
-        loadEmergentIncidents()
+        loadEmergentIncidents();
         break;
       case "enCurso":
         incidentesEnCurso.classList.remove("hidden");
@@ -63,7 +62,10 @@ function loadEmergentIncidents() {
     contenedor
       .find(".dropdown_btn")
       .on("click", (e) => showIncidentsInformation(e));
-    contenedor.find(".startIncident_btn").on("click", e => startIncidentResolution(e));
+    contenedor
+      .find(".startIncident_btn")
+      .on("click", (e) => startIncidentResolution(e));
+    contenedor.find(".reject-incident").on("click", (e) => rejectIncident(e));
   }, 500);
 }
 
@@ -76,14 +78,43 @@ const showIncidentsInformation = (e) => {
 };
 
 const startIncidentResolution = (e) => {
-    const incidentTitle = e.currentTarget.parentElement.parentElement
-    const inicident = incidentTitle.parentElement
-    if(incidentTitle.classList.contains('incident__title--confirm')){
-        inicident.classList.add('incident-active')
-        console.log(inicident.getAttribute('id'));
-        $('#release').load('../controladores/startIncidentResolution.php', {id_incidente: inicident.getAttribute('id')})
-        setTimeout(() => inicident.remove(), 500)
-    }else{
-        incidentTitle.classList.add('incident__title--confirm')
-    }
-}
+  const incidentTitle = e.currentTarget.parentElement.parentElement;
+  const inicident = incidentTitle.parentElement;
+
+  if (incidentTitle.classList.contains("incident__title--cancel")) {
+    incidentTitle.classList.remove("incident__title--cancel");
+    return;
+  }
+  if (incidentTitle.classList.contains("incident__title--confirm")) {
+    inicident.classList.add("incident-active");
+
+    $("#release").load("../controladores/changeIncidentStatus.php", {
+      id_incidente: inicident.getAttribute("id"),
+      new_estado: 1,
+    });
+    setTimeout(() => inicident.remove(), 500);
+  } else {
+    incidentTitle.classList.add("incident__title--confirm");
+  }
+};
+
+const rejectIncident = (e) => {
+  const incidentTitle = e.currentTarget.parentElement.parentElement;
+  const inicident = incidentTitle.parentElement;
+
+  if (incidentTitle.classList.contains("incident__title--confirm")) {
+    incidentTitle.classList.remove("incident__title--confirm");
+    return;
+  }
+  if (incidentTitle.classList.contains("incident__title--cancel")) {
+    inicident.classList.add("incident-rejected");
+
+    $("#release").load("../controladores/changeIncidentStatus.php", {
+      id_incidente: inicident.getAttribute("id"),
+      new_estado: 4,
+    });
+    setTimeout(() => inicident.remove(), 500);
+  } else {
+    incidentTitle.classList.add("incident__title--cancel");
+  }
+};

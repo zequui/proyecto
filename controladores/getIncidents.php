@@ -26,7 +26,7 @@ if($filtro == 0){
             <div class="incident__title">
                 <p class="title__name">'.$incident->getTitulo().'</p>
                 <div class="title__container">
-                    <button class="container__button"><i class="fa-solid fa-x fa-xl"></i></i></button>
+                    <button class="container__button reject-incident"><i class="fa-solid fa-x fa-xl"></i></i></button>
                     <button class="container__button startIncident_btn"><i class="fa-solid fa-play fa-xl"></i></button>
                     <button class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl"></i></button>
                 </div>
