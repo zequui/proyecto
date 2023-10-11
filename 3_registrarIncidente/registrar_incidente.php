@@ -30,7 +30,7 @@
             unset($_SESSION['incidente enviado']);
         }
         ?>
-        <button id="body__button" onclick="location.href='../1_login/inicio_sesion.php'"><i class="fa-solid fa-right-to-bracket"></i>Acceder</button>
+        <button id="body__button" onclick="location.href='../1_login/inicio_sesion.php'"><i class="fa-solid fa-right-to-bracket"></i><p>Acceder</p></button>
         <div id="container">
 
             <h1 id="container__title">Registrar incidente</h1>
