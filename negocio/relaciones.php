@@ -43,8 +43,7 @@ class Persona_Incidente{
     public static function getRepo(){
         $rep_PersonaIncidente = new repo_PersonaIncidente();
         return $rep_PersonaIncidente->getPersonaIncidente();
-    } 
-
+    }
     public static function setPersonaIncidente($ci, $rol, $titulo, $descripcion){
         $rep_PersonaIncidente = new repo_PersonaIncidente();
         $rep_PersonaIncidente->setPersonaIncidente($ci, $rol, $titulo, $descripcion);

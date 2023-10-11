@@ -30,5 +30,9 @@ class repositorioIncidente {
         }
 
     }
+
+    public function changeIncidentState($idIncidente, $newEstado) {
+        $stmt=$this->PDO->query('UPDATE incidentes SET estado = '.$newEstado.' WHERE id = '.$idIncidente);
+    }
 }
 ?>

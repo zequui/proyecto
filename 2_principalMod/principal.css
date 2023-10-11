@@ -75,7 +75,7 @@
     flex-direction: column;
     height: 80%;
     width: 95vw;
-    overflow-y: scroll;
+    overflow-x: hidden;
     background-color: #1d1d1d;
     border-radius: 0px 0px 10px 10px;
     text-align: left;
@@ -139,6 +139,7 @@
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
+  transition: .1s;
 }
 .incident__title {
   z-index: 10;
@@ -158,10 +159,12 @@
   padding: 30px;
 }
 .incident__title--confirm{
+  transition: .1s;
   border: solid #3e9545;
 }
 .incident__title--cancel{
   border: solid red;
+  transition: .1s;
 }
 .title__name{
   color: #C4C4C4;
@@ -375,3 +378,8 @@ i{
   transition: .1s;
   width: 100%;
   }
+
+  .incident-active{
+    transform: translateX(200vw);
+  }
+
