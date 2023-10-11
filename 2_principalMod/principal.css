@@ -147,11 +147,13 @@
   rgba(0, 0, 0, 0.3) 0px 7px 13px -3px; 
   min-height: 70px;
   background-color: #2e2e2e;
+  border: solid #2e2e2e;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-radius: 10px;
   transition: .1s;
+  
 }
 .emergent__container{
   display: flex;
@@ -161,16 +163,21 @@
 }
 .incident__title--confirm{
   border: solid #3e9545;
+  transition: .1s;
+  
 }
 .incident__title--cancel{
   border: solid red;
+  transition: .1s;
   
 }
 .incident__title--confirm > p {
   color: #3e9545;
+  transition: .1s;
 }
 .incident__title--cancel > p {
   color: red;
+  transition: .1s;
 }
 .title__name{
   color: #C4C4C4;
@@ -178,6 +185,7 @@
   font-weight: bold;
   margin: 0;
   margin-left: 20px;
+  transition: .1s;
 }
 .title__container {
   display: flex;

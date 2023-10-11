@@ -111,7 +111,7 @@ const rejectIncident = (e) => {
 
     $("#release").load("../controladores/changeIncidentStatus.php", {
       id_incidente: inicident.getAttribute("id"),
-      new_estado: 4,
+      new_estado: 3,
     });
     setTimeout(() => inicident.remove(), 500);
   } else {
