@@ -300,6 +300,7 @@ i{
   align-items: center;
   border-radius: 10px;
   transition: .1s;
+  height: 100%;
 }
 .information__container{
   display: flex;
