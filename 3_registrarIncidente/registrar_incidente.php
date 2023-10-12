@@ -34,7 +34,7 @@
         <div id="container">
 
             <h1 id="container__title">Registrar incidente</h1>
-            <p id="container__text"> Por favor complete todos los campos con la informacion correcta</p>
+            <p id="container__text"> Por favor complete todos los campos con la información correcta</p>
 
             <form id="container__form" action="../controladores/IncidentSave.php" method="post" enctype="multipart/form-data">
                 <div id="form__container">   
@@ -55,10 +55,10 @@
                             </div>
                         </div>
             
-                        <label>Telefono</label>
+                        <label>Teléfono</label>
                         <input type="number" name="phoneNumber" minlength="8" maxlength="9" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
         
-                        <label>Cedula</label>
+                        <label>Cdula</label>
                         <input type="number" name="ci" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
         
                         <div class="col__divider">
@@ -66,7 +66,7 @@
                         </div>
         
                         <div class="col__title">
-                            <label>Titulo</label> <p class="title__text">(inserte un titulo adecuado para ser indentificado mas facilmente)</p>
+                            <label>Título</label> <p class="title__text">(inserte un titulo adecuado para ser indentificado mas facilmente)</p>
                         </div>
                         <input type="text" name="titulo" maxlength="35" required>
                         
@@ -91,10 +91,10 @@
                     </div>
                     <div class="container__col">
                             <div class="col__title">
-                            <label>Fecha</label><p class="title__text">(inserte la fecha en la que sucedio el incidente)</p>
+                            <label>Fecha</label><p class="title__text">(inserte la fecha en la que sucedió el incidente)</p>
                             </div>
                             <input type="date" name="fecha" id="col__date" required>
-                            <label>Descripcion</label>
+                            <label>Descripción</label>
                             <textarea id="col__description" name="descripcion"></textarea>
                             <label>Archivo relevante</label>
                             <input type="file" id="col__file" name="archivos_relevantes[]" multiple>
