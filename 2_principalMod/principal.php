@@ -84,7 +84,35 @@
                                 <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
                             </div>
                         </div>
-                        <div class="activity__information--3 incident__information-hidden">    
+                        <div class="activity__information--3 incident__information-hidden">
+                            <div class="information__container">
+                                <div class="information__col--3">
+                                    <label>Descripcion</label>
+                                    <p class="col__p">'.$incident->getDescripcion().'</p>
+                                </div>
+                                <div class="information__col--3">
+                                    <label>Fecha</label>
+                                    <p class="col__p">'.$incident->getFecha().'</p>
+                                    <div></div>
+                                    <label>Tipo</label>
+                                    <p class="col__p">'.$incident->getTipo().'</p>';
+                                    
+                                    <label>Archivo a descargar</label>
+                                    <p class="col__p"><a href="'.loadFile($incident).'" download="archvoRelevante'.$incident->getID().'">Descargar</a></p>';
+                                </div>
+                            </div>
+                            <div class="information__container">
+                                <div class="information__col--2">
+                                    <label>Nombre y Apellido</label>
+                                    <p class="col__p">'.$denunciante->getNombre().' '.$denunciante->getApellido().'</p>
+
+                                    <label>Cedula</label>
+                                    <p class="col__p">'.$denunciante->getCi().'</p>
+                                    
+                                    <label>Telefono</label>
+                                    <p class="col__p">'.$denunciante->getTelefono().'</p>
+                                </div>
+                            </div> 
                         </div>    
                     </div>
                 </div>

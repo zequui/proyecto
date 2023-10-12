@@ -378,13 +378,12 @@ i{
   rgba(0, 0, 0, 0.3) 0px 7px 13px -3px; 
   background-color: #4a4a4a;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   margin-top: 10px;
   padding: 15px 10px;
   align-items: center;
   border-radius: 10px;
   transition: .1s;
-  width: 100%;
   }
 
   .incident-active{
@@ -393,4 +392,15 @@ i{
   .incident-rejected{
     transform: translateX(-200vw);
   }
-
+  .information__col--3{
+    background-color: #1d1d1d;
+    height: 100%;
+    width: 50%;
+    border-radius: 10px;
+    margin: 0 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+  }
