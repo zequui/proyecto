@@ -47,7 +47,7 @@ if($filtro == 0){
                     echo ' <label>Archivos relevantes</label>';
                     for($i = 0; $i<count($archivos); $i++){
                         echo '<div class="col_downloads">
-                        <p class="col__p"><a href="../recursos/'.$archivos[$i][0].'" download="">Descargar '.$i.'</a></p>
+                        <p class="col__p"><a href="../controladores/downloadFile.php?file='.$archivos[$i][0].'">Descargar '.$i.'</a></p>
                         </div>';
                     }
                 }
