@@ -120,7 +120,7 @@
                         <div class="information__title--activity">
                             <p class="title__name">Involucrados</p><hr class="title__hr">
                             </div>
-                            <div class="information__people--title">
+                            <div class="information__activity--title">
                             <p class="title__name--2">'.$incident->getTitulo().'</p>
                             <div class="title__container">
                                 <button class="container__button--2"><i class="fa-solid fa-xmark fa-xl"></i></button>
