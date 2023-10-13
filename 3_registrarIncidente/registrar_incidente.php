@@ -58,7 +58,7 @@
                         <label>Teléfono</label>
                         <input type="number" name="phoneNumber" minlength="8" maxlength="9" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
         
-                        <label>Cdula</label>
+                        <label>Cédula</label>
                         <input type="number" name="ci" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
         
                         <div class="col__divider">

@@ -261,12 +261,13 @@ button {
     body {
     display: flex;
     justify-content: center;
-    overflow-x: scroll;
   }
   #container {
     position: absolute;
-    height: 90%;
-    overflow: scroll;
+    height: 90vh;
+    max-height: 1290px;
+    overflow-y: scroll;
+    transform: scale(.7, .7);
   }
   #form__container {
     flex-direction: column;
