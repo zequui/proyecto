@@ -66,6 +66,7 @@ function loadEmergentIncidents() {
       .find(".startIncident_btn")
       .on("click", (e) => startIncidentResolution(e));
     contenedor.find(".reject-incident").on("click", (e) => rejectIncident(e));
+    contenedor.find(".col__p").on("click", (e) => console.log(e));
   }, 500);
 }
 
@@ -117,4 +118,8 @@ const rejectIncident = (e) => {
   } else {
     incidentTitle.classList.add("incident__title--cancel");
   }
+};
+
+const previewImg = (e) => {
+  console.log(e.currentTarget.getAttribute("href"));
 };
