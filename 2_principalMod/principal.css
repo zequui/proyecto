@@ -414,7 +414,7 @@ i{
     width: 50%;
     border-radius: 10px;
     margin: 0 5px;
-    padding: 10px;
+    padding: 0px 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -476,3 +476,13 @@ i{
     align-items:center;
     margin-top: 15px;
   }
+/*_______________________________________________________________________________________________________________________________*/
+ .emergent__activity--form{
+  display: flex;
+  position: absolute;
+  background-color: #3e9545;
+  height: 70vh;
+  width: 70vw;
+  z-index: 100;
+  bottom: 15vw;
+ }
