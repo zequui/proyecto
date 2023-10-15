@@ -9,6 +9,6 @@ copy($privateFilePath, $publicFilePath);
 if(in_array($fileExt, ['jpg', 'jpeg', 'png', 'gif'])) {
     echo '<img src="'.$publicFilePath.'" class="imgContainer__imgPreview--hidden" id="imgContainer__imgPreview" >';
 } else {
-    echo '<i class="fa-solid fa-file fa-2xl imgContainer__imgPreview--hidden" id="imgContainer__imgPreview" ></i>';
+    echo '<i class="fa-regular fa-file fa-2xl imgContainer__imgPreview--hidden" id="imgContainer__imgPreview" ></i>';
 }
 ?>
