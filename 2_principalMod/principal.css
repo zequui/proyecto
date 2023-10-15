@@ -470,6 +470,8 @@ i{
     justify-content: space-between;
     align-items: center;
     border-radius: 10px;
+    position: relative;
+    z-index: 100;
   }
   .information__title--people{
     display: flex; 
@@ -477,6 +479,8 @@ i{
     width: 100%; 
     align-items:center;
     margin-top: 15px;
+    position: relative;
+    z-index: 100;
   }
 /*_______________________________________________________________________________________________________________________________*/
  .emergent__activity--form{

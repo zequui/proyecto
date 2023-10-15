@@ -11,10 +11,10 @@
     <div id="main__container">
         <div id="container">
             <div id="container__navbar">
-                <a href="#inicio" id="emergentes" class="navbar__element selected">Incidentes emergentes</a>
-                <a href="#acerca" id="enCurso" class="navbar__element">Incidentes en curso</a>
-                <a href="#servicios" id="pasados" class="navbar__element">Incidentes pasados</a>
-                <a href="#contacto" id="historialIncidentes" class="navbar__element">Historial de Estudiantes</a>
+                <a id="emergentes" class="navbar__element selected">Incidentes emergentes</a>
+                <a id="enCurso" class="navbar__element">Incidentes en curso</a>
+                <a id="pasados" class="navbar__element">Incidentes pasados</a>
+                <a id="historialIncidentes" class="navbar__element">Historial de Estudiantes</a>
             </div>
             <?php
                 include_once '../negocio/usuario.php';

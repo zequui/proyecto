@@ -5,8 +5,7 @@ include_once "../negocio/relaciones.php";
 
 session_start();
 if(checkIfEmpty()){
-    $dir='../recursos/';
-
+   
     $namePersona = $_POST['name'];
     $surnamePersona = $_POST['surname'];
     $telefonoPersona = $_POST['phoneNumber'];
@@ -21,6 +20,7 @@ if(checkIfEmpty()){
     $fileNames = [];
 
     if(!empty($_FILES)){
+        $dir='../recursos/private/';
         $nomArchivos = $_FILES['archivos_relevantes']['name'];
         $nomTempArchivos = $_FILES['archivos_relevantes']['tmp_name'];
         

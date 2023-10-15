@@ -48,6 +48,8 @@
 
             if (!$personExist) {
                 $repPersonas->setPersonas($ci, $name, $surname, $phone);
+            } else {
+                $repPersonas->updatePersona($ci, $name, $surname, $phone);
             }
 
         }

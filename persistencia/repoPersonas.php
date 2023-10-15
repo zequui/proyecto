@@ -21,6 +21,10 @@ class repositorioPersonas {
     public function setPersonas($ci, $name, $surname, $phone){
         $stmt=$this->PDO->query("INSERT INTO personas (ci, apellido, nombre, telefono) VALUES ('".$ci."', '".$surname."', '".$name."', '".$phone."');");
     }
+
+    public function updatePersona($ci, $name, $surname, $phone) {
+        $stmt=$this->PDO->query('UPDATE personas SET nombre="'.$name.'", apellido="'.$surname.'", telefono='.$phone.' WHERE ci='.$ci);
+    }
 }
 
 
