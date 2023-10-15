@@ -1,7 +1,7 @@
 <?php
 
 $fileName = basename($_GET['file']);
-$filePath = '../recursos/'.$fileName;
+$filePath = '../recursos/private/'.$fileName;
 
 header("Cache-Control: public");
 header("Content-Description: File Transfer");

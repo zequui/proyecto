@@ -66,7 +66,9 @@ function loadEmergentIncidents() {
       .find(".startIncident_btn")
       .on("click", (e) => startIncidentResolution(e));
     contenedor.find(".reject-incident").on("click", (e) => rejectIncident(e));
-    contenedor.find(".col__p").on("click", (e) => console.log(e));
+    contenedor.find(".download_action").on("mouseover", (e) => previewImg(e));
+    contenedor.find(".download_action").on("mouseout", () => previewImgOut());
+    contenedor.find(".download_action").on("mousemove", (e) => followMouse(e));
   }, 500);
 }
 
@@ -121,5 +123,22 @@ const rejectIncident = (e) => {
 };
 
 const previewImg = (e) => {
-  console.log(e.currentTarget.getAttribute("href"));
+  const fileName = e.currentTarget.getAttribute("fileName");
+
+  $("#body__imgContainer").load("../controladores/displayImages.php", {
+    fileName: fileName,
+  });
+};
+const previewImgOut = () => {
+  $("#body__imgContainer").load("../controladores/hideImages.php");
+};
+
+const followMouse = (e) => {
+  const mouseY = e.clientY;
+  const mouseX = e.clientX;
+
+  const elemnt = "#imgContainer__imgPreview";
+  $(elemnt).css("top", mouseY - 75 + "px");
+  $(elemnt).css("left", mouseX - 200 + "px");
+  $(elemnt).removeClass('imgContainer__imgPreview--hidden')
 };

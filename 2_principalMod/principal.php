@@ -161,6 +161,9 @@
             </div>
         </div>
     </div>
+    <div id="body__imgContainer">
+        
+    </div>
     <p id="release"></p>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="app.js"></script>

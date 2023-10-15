@@ -1,4 +1,5 @@
 /BD
-/recursos/*
+/recursos/private/*
+/recursos/public/*
 /persistencia/conexion.php
 registro de actividad.png

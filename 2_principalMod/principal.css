@@ -476,3 +476,17 @@ i{
     align-items:center;
     margin-top: 15px;
   }
+
+  .imgContainer__imgPreview--hidden{
+    display: none !important;
+  }
+  #imgContainer__imgPreview{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 145px;
+    height: 145px;
+    border: 1px solid gray;
+    padding: 5px;
+  }
