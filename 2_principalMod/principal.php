@@ -164,8 +164,50 @@
     <div id="body__imgContainer">
         
     </div>
-    <!-- <div class="emergent__activity--form">
-    </div> -->
+
+    <div class="emergent__activity--form">
+        <h1 class="emergent__title">Registrar Actividad</h1>
+        <div class="activity__container">
+            <div class="container__col">
+                <div class="col__title">
+                    <label>Título</label> 
+                    <p class="title__text">(inserte un titulo adecuado para ser indentificado mas facilmente)</p>
+                </div>
+                <input type="text" name="titulo" maxlength="35" required>
+                <label>Descripción</label>
+                <textarea class="col__description" name="descripcion"></textarea>
+            </div>
+            <div class="container__col">
+                <div class="col__title">
+                    <label>Fecha</label><p class="title__text">(inserte la fecha en la que sucedió el incidente)</p>
+                </div>
+                <input type="date" name="fecha" class="col__date" required>
+                <label>Tipo de Actividad</label>
+                <div class="lista">
+                    <div class="contenedor">
+                        <input type="radio" name="tipo" value="Toma de testimonios">Toma de testimonios</input>
+                    </div><div class="contenedor">
+                        <input type="radio" name="tipo" value="Reunion de involucrados">Reunion de involucrados</input>
+                    </div><div class="contenedor">
+                        <input type="radio" name="tipo" value="Reunion del CAP">Reunion del CAP</input>
+                    </div><div class="contenedor">
+                        <input type="radio" name="tipo" value="LLamada a padre">LLamada a padres</input>
+                    </div><div class="contenedor">
+                        <input type="radio" name="tipo" value="Medidas preventivas">Medidas preventivas</input>
+                    </div><div class="contenedor">
+                        <input type="radio" name="tipo" value="Otro">Otro</input>
+                    </div>
+                </div>
+                <label>Archivo relevante</label>
+                <input type="file" id="col__file" name="archivos_relevantes[]" multiple>
+            </div>
+        </div>
+        <div class="activity__button">
+            <button type="submit" id="form__submit">Ingresar</button>
+        </div>
+        
+    </div>
+
     <p id="release"></p>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="app.js"></script>
