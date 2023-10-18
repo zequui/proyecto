@@ -1,7 +1,7 @@
 const showBtns = document.querySelectorAll(".dropdown_btn");
 const dropdownBtn = document.querySelector("#container__fullname");
 
-const subMenu = document.querySelector("#emergent__subMenu");
+const subMenu = document.querySelectorAll(".emergent__subMenu");
 
 const navbarBtns = document.querySelectorAll(".navbar__element");
 
@@ -21,6 +21,9 @@ navbarBtns.forEach((opt) => {
     document
       .querySelectorAll(".emergent")
       .forEach((menu) => menu.classList.add("hidden"));
+    
+      subMenuHide();
+
     switch (elementId) {
       case "emergentes":
         incidentesEmergentes.classList.remove("hidden");
@@ -45,7 +48,7 @@ showBtns.forEach((btn) => {
 
 dropdownBtn.addEventListener("click", (e) => {
   const icon = e.currentTarget.children[0];
-  subMenu.classList.toggle("subMenu-hidden");
+  subMenu.forEach((subMenu) => subMenu.classList.toggle("subMenu-hidden"));
   icon.classList.toggle("active");
 });
 
@@ -140,5 +143,10 @@ const followMouse = (e) => {
   const elemnt = "#imgContainer__imgPreview";
   $(elemnt).css("top", mouseY - 75 + "px");
   $(elemnt).css("left", mouseX - 200 + "px");
-  $(elemnt).removeClass('imgContainer__imgPreview--hidden')
+  $(elemnt).removeClass("imgContainer__imgPreview--hidden");
+};
+
+const subMenuHide = () => {
+  subMenu.forEach((subMenu) => subMenu.classList.add("subMenu-hidden"));
+  dropdownBtn.children[0].classList.remove('active')
 };

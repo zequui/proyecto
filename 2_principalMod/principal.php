@@ -27,7 +27,7 @@
             ?>
         </div>
         <div class="emergent" id="incidentesEmergentes">
-            <div id="emergent__subMenu" class="subMenu-hidden">
+            <div class="emergent__subMenu subMenu-hidden">
                 <a href="../controladores/exitSession.php" class="subMenu__option"><i class="fa-solid fa-right-from-bracket fa-lg"></i>Cerrar sesion</a>
             </div>
             <h1 class=emergent__title>Incidentes emergentes</h1>
@@ -36,6 +36,9 @@
             
         </div>
         <div class="emergent hidden" id="incidenteEnCurso">
+            <div class="emergent__subMenu subMenu-hidden">
+                <a href="../controladores/exitSession.php" class="subMenu__option"><i class="fa-solid fa-right-from-bracket fa-lg"></i>Cerrar sesion</a>
+            </div>
             <h1 class=emergent__title>Incidentes en curso</h1>
             <div class="emergent__container">
                 <div class="emergent__incident" id="'.$incident->getID().'">
