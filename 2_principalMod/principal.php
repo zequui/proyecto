@@ -46,6 +46,7 @@
                         <p class="title__name">'.$incident->getTitulo().'</p>
                             <div id="incident__container">
                             <button class="container__button"><i class="fa-solid fa-rectangle-xmark fa-xl"></i></button>
+                            <button class="container__button"><i class="fa-solid fa-user-plus fa-lg"></i></button>
                                 <button class="container__button"><i class="fa-solid fa-pen-to-square fa-xl"></i></button>
                                 <button class="container__button"><i class="fa-solid fa-plus fa-2xl"></i></button>
                                 <button class="container__button"><i class="fa-solid fa-check fa-2xl"></i></button>
@@ -126,7 +127,7 @@
                             <div class="information__activity--title">
                             <p class="title__name--2">'.$incident->getTitulo().'</p>
                             <div class="title__container">
-                                <button class="container__button--2"><i class="fa-solid fa-xmark fa-xl"></i></button>
+                                <button class="container__button--2"><i class="fa-solid fa-xmark fa-xl"></i></button> 
                                 <button class="container__button--2"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
                                 <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
                             </div>      
@@ -164,11 +165,9 @@
             </div>
         </div>
     </div>
-    <div id="body__imgContainer">
-        
+    <div id="body__imgContainer">   
     </div>
-
-    <div class="emergent__activity--form emergent__activity--hidden">
+    <div class="emergent__activity--form ">
         <h1 class="emergent__title">Registrar Actividad</h1>
         <div class="activity__container">
             <div class="container__col">
@@ -208,6 +207,19 @@
                 </div>
                 <label>Archivo relevante</label>
                 <input type="file" id="col__file" name="archivos_relevantes[]" multiple>
+                <div class="col__people">
+                    <label>Agregar involucrado</label>
+                    <div>
+                        <div class="information__activity--title">
+                            <p class="title__name--2">'.$incident->getTitulo().'</p>
+                            <div class="title__container">
+                                <button class="container__button--2"><i class="fa-solid fa-xmark fa-xl"></i></button>
+                                <button class="container__button--2"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
+                                <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="activity__button">
