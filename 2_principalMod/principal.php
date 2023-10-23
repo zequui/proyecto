@@ -167,7 +167,7 @@
     </div>
     <div id="body__imgContainer">   
     </div>
-    <div class="emergent__activity--form ">
+    <div class="emergent__activity--form emergent__activity--hidden">
         <h1 class="emergent__title">Registrar Actividad</h1>
         <div class="activity__container">
             <div class="container__col">
@@ -178,12 +178,12 @@
                 <input type="text" name="titulo" maxlength="35" required>
                 <label>Descripción</label>
                 <textarea class="col__description" name="descripcion"></textarea>
-            </div>
-            <div class="container__col">
                 <div class="col__title">
                     <label>Fecha</label><p class="title__text">(inserte la fecha en la que se realizo la actividad)</p>
                 </div>
                 <input type="date" name="fecha" class="col__date" required>
+            </div>
+            <div class="container__col">
                 <label>Tipo de Actividad</label>
                 <div class="lista">
                     <div class="contenedor">
@@ -208,7 +208,7 @@
                 <label>Archivo relevante</label>
                 <input type="file" id="col__file" name="archivos_relevantes[]" multiple>
                 <div class="col__people">
-                    <label>Agregar involucrado</label>
+                    <label>Agregar involucrado</label> <button class="container__button--2"><i class="fa-solid fa-plus fa-xl"></i></button>
                     <div>
                         <div class="information__activity--title">
                             <p class="title__name--2">'.$incident->getTitulo().'</p>
@@ -216,6 +216,23 @@
                                 <button class="container__button--2"><i class="fa-solid fa-xmark fa-xl"></i></button>
                                 <button class="container__button--2"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
                                 <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
+                            </div>
+                        </div>
+                        <div class="inicident__information">
+                            <div class="information__col--5">
+                                <label>Nombre y Apellido</label>
+                                <p class="col__p">'asdaasd asdasdasdasd</p>
+                            </div>
+                            <div class="information__col--5">
+                            <label>Cedula</label>
+                                <p class="col__p">55543952</p>
+                                
+                                <label>Telefono</label>
+                                <p class="col__p">095435217</p>
+                            </div>
+                            <div class="information__col--5">
+                                <label>Tipo</label>
+                                <p class="col__p"> tipo asdasasdasdasdd</p>
                             </div>
                         </div>
                     </div>
@@ -227,7 +244,48 @@
         </div>
         
     </div>
+    <div class="emergent__activity--form">
+        <h1 class="emergent__title">Registrar Involucrado</h1>
+        <div class="activity__container">
+            <div class="container__col">
+                <label>Nombre</label>
+                <input type="text" name="titulo" maxlength="35" required>
+                <label>Apellido</label>
+                <input type="text" name="titulo" maxlength="35" required>
+            </div>
+            <div class="container__col">
+                <label>Teléfono</label>
+                <input type="number" name="phoneNumber" minlength="8" maxlength="9" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
 
+                <label>Cédula</label>
+                <input type="number" name="ci" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
+            </div>
+        </div>
+        <div class="activity__button">
+        <label>Tipo de involucrado</label>
+                <div class="lista">
+                    <div class="contenedor">
+                        <input type="radio" name="tipo" value="Toma de testimonios">Toma de testimonios</input>
+                    </div>
+                    <div class="contenedor">
+                        <input type="radio" name="tipo" value="Reunion de involucrados">Reunion de involucrados</input>
+                    </div>
+                    <div class="contenedor">
+                        <input type="radio" name="tipo" value="Reunion del CAP">Reunion del CAP</input>
+                    </div>
+                    <div class="contenedor">
+                        <input type="radio" name="tipo" value="LLamada a padre">LLamada a padres</input>
+                    </div>
+                    <div class="contenedor">
+                        <input type="radio" name="tipo" value="Medidas preventivas">Medidas preventivas</input>
+                    </div>
+                    <div class="contenedor">
+                        <input type="radio" name="tipo" value="Otro">Otro</input>
+                    </div>
+                </div>
+            <button type="submit" id="form__submit">Ingresar</button>
+        </div>
+    </div>
     <p id="release"></p>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="app.js"></script>
