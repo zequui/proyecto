@@ -14,7 +14,7 @@
                 <a id="emergentes" class="navbar__element selected">Incidentes emergentes</a>
                 <a id="enCurso" class="navbar__element">Incidentes en curso</a>
                 <a id="resoluciones" class="navbar__element">Resoluciones</a>
-                <a id="resoluciones" class="navbar__element">Registrar Moderadores</a>
+                <a id="moderadores" class="navbar__element">Registrar Moderadores</a>
             </div>
             <?php
                 include_once '../negocio/usuario.php';
@@ -165,8 +165,49 @@
             </div>
         </div>
         <div class="emergent hidden" id="incidenteResoluciones">
-            <p>akdlaslidalkdhlkajdladsd</p>
+            <h1 class=emergent__title>Resoluciones</h1>
         </div>
+        <div class="emergent hidden" id="incidenteModeradores">
+            <h1 class=emergent__title>Registrar Moderadores</h1>
+            <div id="mod__container">
+                <form class="mod__form">
+                    <h1 id="form__title">Registrate</h1>
+                    <p id="form__text"> Crea una cuenta para registrar inicidentes</p>
+                    <div id="form__name">
+                        <div id="name__col">
+                            <label>Nombre</label>
+                            <input type="text" class="mod_input" name="user" required>
+                        </div>
+                        <div id="name__col">
+                            <label>Apellido</label>
+                            <input type="text" class="mod_input" name="user" required>
+                        </div>
+                    </div>
+
+                        <label>Correo electronico o Telefono</label>
+                        <input type="text" class="mod_input" name="email" required>
+
+                        <label>Cedula</label>
+                        <input type="number" class="mod_input" name="number" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
+
+                        <div>
+                            <label>Contraseña</label>
+                            <input type="password" class="mod_input" name="password" required id="password-signin">
+                            <i class="fa-solid fa-eye-slash eye" id="seekingBtn"></i>
+                        </div>
+
+                        <div>
+                            <label>Confirmar contraseña</label>
+                            <input type="password" class="mod_input" required id="passwordCheck-signin">
+                            <i class="fa-solid fa-eye-slash eye" id="seekingBtn"></i>
+                        </div>
+
+                    <p id="password-alert" class="hidden"></p>
+                    <button type="submit" class="mod__button">Ingresar</button>  
+                </form>
+            </div>
+        </div>
+    </div>
     </div>
     <div id="body__imgContainer">   
     </div>

@@ -8,6 +8,7 @@ const navbarBtns = document.querySelectorAll(".navbar__element");
 const incidentesEmergentes = document.querySelector("#incidentesEmergentes");
 const incidentesEnCurso = document.querySelector("#incidenteEnCurso");
 const resoluciones = document.querySelector("#incidenteResoluciones");
+const moderadores = document.querySelector("#incidenteModeradores");
 const contenedorIncidentesEmergentes = document.querySelector(
   "#incidentesEmergentes-container"
 );
@@ -35,6 +36,9 @@ navbarBtns.forEach((opt) => {
         break;
       case "resoluciones":
         resoluciones.classList.remove("hidden");
+        break;
+      case "moderadores":
+        moderadores.classList.remove("hidden");
         break;
       default:
         break;
@@ -150,3 +154,26 @@ const subMenuHide = () => {
   subMenu.forEach((subMenu) => subMenu.classList.add("subMenu-hidden"));
   dropdownBtn.children[0].classList.remove('active')
 };
+
+
+const passwordInputs = Array.from(document.querySelectorAll('.password'))
+const seekingBtns = document.querySelectorAll('#seekingBtn')
+
+console.log(seekingBtns);
+
+function togglePassword(eye, passwordInput) {
+eye.classList.toggle("fa-eye");
+eye.classList.toggle("fa-eye-slash");
+passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+}
+
+seekingBtns.forEach((seekingBtn) => {
+seekingBtn.addEventListener("click", (e) => {
+const actualEye = e.currentTarget;
+const actualPasswordId = actualEye.previousElementSibling.id;
+const passwordInput = passwordInputs.find(
+(input) => input.id === actualPasswordId
+);
+togglePassword(actualEye, passwordInput);
+  });
+});
