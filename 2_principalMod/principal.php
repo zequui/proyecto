@@ -131,6 +131,10 @@
             <button class="form__submit" id="form__person--submit">Ingresar</button>
         </div>
     </div>
+
+    <div class="emergent__activity--form">
+        <h1 class="emergent__title">Enviar Resolucion</h1>
+    </div>
     <p id="release"></p>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="app.js"></script>
