@@ -1,4 +1,5 @@
 <?php
+
 $privateFilePath = '../recursos/private/'.$_REQUEST['fileName'];
 $publicFilePath = '../recursos/public/'.$_REQUEST['fileName'];
 

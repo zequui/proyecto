@@ -10,6 +10,23 @@ const incidentesEnCurso = document.querySelector("#incidenteEnCurso");
 const contenedorIncidentesEmergentes = document.querySelector(
   "#incidentesEmergentes-container"
 );
+const contenedorIncidentesEnCurso = document.querySelector(
+  "#onCourse-container"
+);
+
+const formularioActividad = document.querySelector(".emergent__activity--form");
+const formularioInvolucrado = document.querySelector(".emergent__person--form");
+const formActivityBG = document.querySelector(
+  "#body__container--activity-form"
+);
+const formPersonBG = document.querySelector("#body__container--person-form");
+
+const personaActividadBtn = document.querySelector("#addInvolucradoActividad");
+
+const submitPersonaBtn = document.querySelector("#form__person--submit");
+const submitActividadBtn = document.querySelector("#form__activity--submit");
+
+const AllElmnts = document.querySelectorAll("*");
 
 navbarBtns.forEach((opt) => {
   opt.addEventListener("click", (e) => {
@@ -21,8 +38,8 @@ navbarBtns.forEach((opt) => {
     document
       .querySelectorAll(".emergent")
       .forEach((menu) => menu.classList.add("hidden"));
-    
-      subMenuHide();
+
+    subMenuHide();
 
     switch (elementId) {
       case "emergentes":
@@ -31,6 +48,7 @@ navbarBtns.forEach((opt) => {
         break;
       case "enCurso":
         incidentesEnCurso.classList.remove("hidden");
+        loadIncourseIncidents();
         break;
       case "pasados":
         break;
@@ -40,6 +58,27 @@ navbarBtns.forEach((opt) => {
         break;
     }
   });
+});
+
+formActivityBG.addEventListener("click", () => {
+  formularioActividad.classList.add("emergent__activity--hidden");
+  formularioInvolucrado.classList.add("emergent__activity--hidden");
+  formActivityBG.classList.add("container--form--hidden");
+});
+formPersonBG.addEventListener("click", () => {
+  formularioInvolucrado.classList.add("emergent__activity--hidden");
+  formPersonBG.classList.add("container--form--hidden");
+});
+
+personaActividadBtn.addEventListener("click", (e) =>
+  addInvolucrado(e, "activity")
+);
+
+submitPersonaBtn.addEventListener("click", (e) => submitInvolucrado());
+submitActividadBtn.addEventListener("click", (e) => submitActividad());
+
+AllElmnts.forEach((elemnt) => {
+  elemnt.addEventListener("click", () => resetInputs());
 });
 
 showBtns.forEach((btn) => {
@@ -69,6 +108,24 @@ function loadEmergentIncidents() {
       .find(".startIncident_btn")
       .on("click", (e) => startIncidentResolution(e));
     contenedor.find(".reject-incident").on("click", (e) => rejectIncident(e));
+    contenedor.find(".download_action").on("mouseover", (e) => previewImg(e));
+    contenedor.find(".download_action").on("mouseout", () => previewImgOut());
+    contenedor.find(".download_action").on("mousemove", (e) => followMouse(e));
+  }, 500);
+}
+function loadIncourseIncidents() {
+  var contenedor = $(contenedorIncidentesEnCurso).load(
+    "../controladores/getIncidents.php",
+    { filter: 1 }
+  );
+  setTimeout(() => {
+    contenedor
+      .find(".dropdown_btn")
+      .on("click", (e) => showIncidentsInformation(e));
+    contenedor.find(".addActivity").on("click", (e) => addActivity(e));
+    contenedor
+      .find(".addInvolucradoIncidente")
+      .on("click", (e) => addInvolucrado(e, "incident"));
     contenedor.find(".download_action").on("mouseover", (e) => previewImg(e));
     contenedor.find(".download_action").on("mouseout", () => previewImgOut());
     contenedor.find(".download_action").on("mousemove", (e) => followMouse(e));
@@ -148,5 +205,174 @@ const followMouse = (e) => {
 
 const subMenuHide = () => {
   subMenu.forEach((subMenu) => subMenu.classList.add("subMenu-hidden"));
-  dropdownBtn.children[0].classList.remove('active')
+  dropdownBtn.children[0].classList.remove("active");
+};
+
+const addActivity = (e) => {
+  const id_incidente =
+    e.currentTarget.parentElement.parentElement.parentElement.getAttribute(
+      "id"
+    );
+  formActivityBG.classList.remove("container--form--hidden");
+  formularioActividad.classList.remove("emergent__activity--hidden");
+  formularioActividad.setAttribute("id", id_incidente);
+
+  const ActividadForm = $("#PesonasActividades").load(
+    "../controladores/getAllPersonas.php"
+  );
+  setTimeout(() => {
+    ActividadForm.find(".checkbox").on("click", (e) => selectPerson(e));
+  }, 500);
+};
+
+const addInvolucrado = (e, mod) => {
+  formPersonBG.classList.remove("container--form--hidden");
+  formularioInvolucrado.classList.remove("emergent__activity--hidden");
+
+  let id_incidente;
+  if (mod == "incident")
+    id_incidente =
+      e.currentTarget.parentElement.parentElement.parentElement.getAttribute(
+        "id"
+      );
+
+  if (mod == "activity")
+    id_incidente =
+      e.currentTarget.parentElement.parentElement.parentElement.parentElement.getAttribute(
+        "id"
+      );
+  formularioInvolucrado.setAttribute("id", id_incidente);
+};
+
+function submitInvolucrado() {
+  const id_incidente = formularioInvolucrado.getAttribute("id");
+
+  const name = $(formularioInvolucrado).find("input[name = name]");
+  const surname = $(formularioInvolucrado).find("input[name = surname]");
+  const ci = $(formularioInvolucrado).find("input[name = ci]");
+  const phoneNumber = $(formularioInvolucrado).find(
+    "input[name = phoneNumber]"
+  );
+
+  if (name.val() && surname.val() && checkCI(ci.val()) && phoneNumber.val()) {
+    $("#release").load("../controladores/addPersona.php", {
+      id_incidente: id_incidente,
+      name: name.val(),
+      surname: surname.val(),
+      ci: ci.val(),
+      number: phoneNumber.val(),
+    });
+
+    name.val("");
+    surname.val("");
+    ci.val("");
+    phoneNumber.val("");
+
+    formularioInvolucrado.classList.add("emergent__activity--hidden");
+    formPersonBG.classList.add("container--form--hidden");
+    loadIncourseIncidents();
+  } else {
+    setTimeout(() => {
+      if (!name.val()) name.addClass("uncomplete--input");
+      if (!surname.val()) surname.addClass("uncomplete--input");
+      if (!checkCI(ci.val())) ci.addClass("uncomplete--input");
+      if (!phoneNumber.val()) phoneNumber.addClass("uncomplete--input");
+    }, 50);
+  }
+}
+
+function submitActividad() {
+  const id_incidente = formularioActividad.getAttribute("id");
+
+  const titulo = $(formularioActividad).find("input[name = titulo]");
+  const descripcion = $(formularioActividad).find(
+    "textarea[name = descripcion]"
+  );
+  const fecha = $(formularioActividad).find("input[name = fecha]");
+  const type = $(formularioActividad).find("input[name = tipo]:checked");
+  const archivos_relevantes = document.querySelector(
+    "input[name = archivos_relevantes"
+  );
+  const ci_personas = $("#PesonasActividades").find(
+    ".person--selected > .title__name--2"
+  );
+
+  if (titulo.val() && descripcion.val() && fecha.val() && type.val() !== undefined) {
+    const formData = new FormData();
+    formData.append("id_incidente", id_incidente);
+    formData.append("titulo", titulo.val());
+    formData.append("descripcion", descripcion.val());
+    formData.append("fecha", fecha.val());
+    formData.append("type", type.val());
+    for (var i = 0; i < archivos_relevantes.files.length; i++) {
+      formData.append("archivos_relevantes[]", archivos_relevantes.files[i]);
+    }
+    for (let i = 0; i < ci_personas.length; i++) {
+      formData.append("ci_personas[]", ci_personas[i].getAttribute("ci"));
+    }
+
+    $.ajax({
+      url: "../controladores/saveActivity.php",
+      type: "POST",
+      data: formData,
+      contentType: false,
+      processData: false,
+    });
+
+    titulo.val("");
+    descripcion.val("");
+    fecha.val("");
+    type.prop("checked", false);
+    archivos_relevantes.value = "";
+
+    formularioActividad.classList.add("emergent__activity--hidden");
+    formActivityBG.classList.add("container--form--hidden");
+    loadIncourseIncidents();
+  } else {
+    setTimeout(() => {
+      if (!titulo.val()) titulo.addClass("uncomplete--input");
+      if (!descripcion.val()) descripcion.addClass("uncomplete--input");
+      if (!fecha.val()) fecha.addClass("uncomplete--input");
+      if (type.val() == undefined)
+        $(formularioActividad)
+          .find("input[name = tipo]")
+          .parent()
+          .parent()
+          .addClass("uncomplete--input");
+    }, 50);
+  }
+}
+
+function selectPerson(e) {
+  const icon = e.currentTarget.children[0];
+  icon.classList.toggle("fa-square");
+  icon.classList.toggle("fa-square-check");
+
+  const container = e.currentTarget.parentElement.parentElement;
+  container.classList.toggle("person--selected");
+}
+
+const resetInputs = () => {
+  document
+    .querySelectorAll("input, textarea, .lista")
+    .forEach((input) => input.classList.remove("uncomplete--input"));
+};
+
+const checkCI = (ci) => {
+  if (ci == 0 || ci.length !== 8) return false;
+  const inputValues = ci.split("");
+  const nums = inputValues.map((num) => Number(num));
+  const lastNum = nums.pop();
+  let result =
+    2 * nums[0] +
+    9 * nums[1] +
+    8 * nums[2] +
+    7 * nums[3] +
+    6 * nums[4] +
+    3 * nums[5] +
+    4 * nums[6];
+  result %= 10;
+  result = (10 - result) % 10;
+
+  return result == lastNum ? true : false;
 };

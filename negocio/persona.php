@@ -38,7 +38,6 @@
         }
         public static function setPersona($ci, $name, $surname, $phone){
             $repPersonas = new repositorioPersonas();
-            echo "hola";
             global $personExist;
             foreach ($repPersonas->getPersonas() as $persona) {
                 if($ci == $persona->getCi()){

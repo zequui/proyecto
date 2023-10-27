@@ -45,10 +45,10 @@ class Actividad{
         return $this->nombreArchivos;
     }
 
-    public static function getRepo()
+    public static function getRepo($idIncidente)
     {
         $repoActividades = new repositorioActividad();
-        return $repoActividades->getActividades();
+        return $repoActividades->getActividades($idIncidente);
     }
     public static function setActividad($ID_incidente, $detalle, $fecha, $tipo, $nombre, $fileNames)
     {

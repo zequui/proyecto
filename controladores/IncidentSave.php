@@ -38,7 +38,7 @@ if(checkIfEmpty()){
     Persona::setPersona($ciPersona, $namePersona, $surnamePersona, $telefonoPersona);
     incidente::setIncident($fecha, $titulo, $descripcion, $estado, $tipo, $fileNames);
 
-    Persona_Incidente::setPersonaIncidente($ciPersona, 0, $titulo, $descripcion);
+    Persona_Incidente::setPersonaIncidente($ciPersona, 0);
 
     #unlink($path);
     $_SESSION["incidente enviado"]=true;
