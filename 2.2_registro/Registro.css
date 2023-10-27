@@ -28,7 +28,7 @@ body{
     padding: 26px;
     text-align: left;
 }
-form{
+.mod__form{
     display: flex;
     flex-direction: column;
     max-width: 565px;
