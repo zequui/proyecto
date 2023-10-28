@@ -833,3 +833,9 @@ input[type="number"] {
   border: solid #3e9545;
   background-color: #032b07;
 }
+
+
+.activity--container, .person--container{
+  width: 100%;
+  padding: 0;
+}

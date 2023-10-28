@@ -129,9 +129,12 @@ if($filtro == 0){
                                 <label>Telefono</label>
                                 <p class="col__p">'.$denunciante->getTelefono().'</p>
                             </div>
-                        </div>';
+                        </div>
+                        <div class="activity--container" id="activity--container_'.$incident->getId().'">
+                        ';
                         if(!empty($actividades)){
                         echo '
+                       
                         <div class="information__title--activity">
                             <p class="title__name">Actividades</p><hr class="title__hr">
                         </div>';
@@ -205,13 +208,16 @@ if($filtro == 0){
                                     }
 
                                 echo'
-                            </div>
-                        
-                            ';
+                            </div>';
                         }
                     }
+                    echo '
+                        </div>
+                        <div class="person--container" id="'.$incident->getId().'">
+                        ';
                     if(!empty($involucrados)){
                         echo '
+                        
                         <div class="information__title--activity">
                             <p class="title__name">Involucrados</p><hr class="title__hr">
                         </div>
@@ -248,7 +254,7 @@ if($filtro == 0){
                         }
                     }
                     echo '
-                    
+                    </div>
                     </div>
                 </div>
             </div>

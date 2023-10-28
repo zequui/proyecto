@@ -64,10 +64,12 @@ formActivityBG.addEventListener("click", () => {
   formularioActividad.classList.add("emergent__activity--hidden");
   formularioInvolucrado.classList.add("emergent__activity--hidden");
   formActivityBG.classList.add("container--form--hidden");
+  clearElements()
 });
 formPersonBG.addEventListener("click", () => {
   formularioInvolucrado.classList.add("emergent__activity--hidden");
   formPersonBG.classList.add("container--form--hidden");
+  clearElements()
 });
 
 personaActividadBtn.addEventListener("click", (e) =>
@@ -82,7 +84,7 @@ AllElmnts.forEach((elemnt) => {
 });
 
 showBtns.forEach((btn) => {
-  btn.addEventListener("click", (e) => showIncidentsInformation(e));
+  btn.addEventListener("click", (e) => showExtraInformation(e));
 });
 
 dropdownBtn.addEventListener("click", (e) => {
@@ -103,7 +105,7 @@ function loadEmergentIncidents() {
   setTimeout(() => {
     contenedor
       .find(".dropdown_btn")
-      .on("click", (e) => showIncidentsInformation(e));
+      .on("click", (e) => showExtraInformation(e));
     contenedor
       .find(".startIncident_btn")
       .on("click", (e) => startIncidentResolution(e));
@@ -121,7 +123,7 @@ function loadIncourseIncidents() {
   setTimeout(() => {
     contenedor
       .find(".dropdown_btn")
-      .on("click", (e) => showIncidentsInformation(e));
+      .on("click", (e) => showExtraInformation(e));
     contenedor.find(".addActivity").on("click", (e) => addActivity(e));
     contenedor
       .find(".addInvolucradoIncidente")
@@ -135,11 +137,11 @@ function loadIncourseIncidents() {
   }, 500);
 }
 
-const showIncidentsInformation = (e) => {
-  const incident_information =
+const showExtraInformation = (e) => {
+  const information =
     e.currentTarget.parentElement.parentElement.nextElementSibling;
   const icon = e.currentTarget.children[0];
-  incident_information.classList.toggle("incident__information-hidden");
+  information.classList.toggle("incident__information-hidden");
   icon.classList.toggle("active");
 };
 
@@ -237,11 +239,17 @@ const modActivity = (e) => {
   const descripcion = extraInformation[0].children[1].textContent;
   const fecha = extraInformation[1].children[1].textContent;
   const tipo = extraInformation[1].children[3].textContent;
+
   const id_actividad = activityElement.getAttribute("id");
+  const id_incidente =
+    e.currentTarget.parentElement.parentElement.parentElement.parentElement.parentElement.getAttribute(
+      "id"
+    );
 
   formActivityBG.classList.remove("container--form--hidden");
   formularioActividad.classList.remove("emergent__activity--hidden");
   formularioActividad.setAttribute("id", id_actividad);
+  formularioActividad.setAttribute("id_incidente", id_incidente);
 
   formularioActividad.setAttribute("mod", "modificar");
 
@@ -313,6 +321,8 @@ function modInvolucrado(e) {
 }
 
 function submitInvolucrado() {
+  const id_incidente = formularioInvolucrado.getAttribute("id");
+
   const name = $(formularioInvolucrado).find("input[name = name]");
   const surname = $(formularioInvolucrado).find("input[name = surname]");
   const ci = $(formularioInvolucrado).find("input[name = ci]");
@@ -323,11 +333,10 @@ function submitInvolucrado() {
   if (
     name.val() &&
     surname.val() &&
-    ci.val() &&
+    checkCI(ci.val()) &&
     phoneNumber.val().length == 9
   ) {
     if (formularioInvolucrado.getAttribute("mod") == "modificar") {
-
       const formData = new FormData();
       formData.append("name", name.val());
       formData.append("surname", surname.val());
@@ -341,9 +350,8 @@ function submitInvolucrado() {
         contentType: false,
         processData: false,
       });
-
     } else if (formularioInvolucrado.getAttribute("mod") == "agregar") {
-      const id_incidente = formularioInvolucrado.getAttribute("id");
+      
 
       const formData = new FormData();
       formData.append("id_incidente", id_incidente);
@@ -361,25 +369,26 @@ function submitInvolucrado() {
       });
     }
 
-    name.val("");
-    surname.val("");
-    ci.val("");
-    phoneNumber.val("");
+    clearElements()
 
     formularioInvolucrado.classList.add("emergent__activity--hidden");
     formPersonBG.classList.add("container--form--hidden");
-    loadIncourseIncidents();
+    
+    loadIncourseIncidents()
   } else {
     setTimeout(() => {
       if (!name.val()) name.addClass("uncomplete--input");
       if (!surname.val()) surname.addClass("uncomplete--input");
       if (!checkCI(ci.val())) ci.addClass("uncomplete--input");
-      if (phoneNumber.val().length !== 9) phoneNumber.addClass("uncomplete--input");
+      if (phoneNumber.val().length !== 9)
+        phoneNumber.addClass("uncomplete--input");
     }, 50);
   }
 }
 
 function submitActividad() {
+  let id_incidente;
+
   const titulo = $(formularioActividad).find("input[name = titulo]");
   const descripcion = $(formularioActividad).find(
     "textarea[name = descripcion]"
@@ -401,6 +410,8 @@ function submitActividad() {
   ) {
     if (formularioActividad.getAttribute("mod") == "modificar") {
       const id_actividad = formularioActividad.getAttribute("id");
+      id_incidente = formularioActividad.getAttribute("id_incidente");
+
       const formData = new FormData();
       formData.append("id_actividad", id_actividad);
       formData.append("titulo", titulo.val());
@@ -422,7 +433,7 @@ function submitActividad() {
         processData: false,
       });
     } else if (formularioActividad.getAttribute("mod") == "agregar") {
-      const id_incidente = formularioActividad.getAttribute("id");
+      id_incidente = formularioActividad.getAttribute("id");
       const formData = new FormData();
       formData.append("id_incidente", id_incidente);
       formData.append("titulo", titulo.val());
@@ -445,15 +456,13 @@ function submitActividad() {
       });
     }
 
-    titulo.val("");
-    descripcion.val("");
-    fecha.val("");
-    type.prop("checked", false);
-    archivos_relevantes.value = "";
+
 
     formularioActividad.classList.add("emergent__activity--hidden");
     formActivityBG.classList.add("container--form--hidden");
-    setTimeout(loadIncourseIncidents(), 50);
+
+    clearElements()
+    reloadActivities(id_incidente)
   } else {
     setTimeout(() => {
       if (!titulo.val()) titulo.addClass("uncomplete--input");
@@ -502,3 +511,53 @@ const checkCI = (ci) => {
 
   return result == lastNum ? true : false;
 };
+
+function reloadActivities(id_incidente) {
+  setTimeout(() => {
+    const contenedor = $("#activity--container_" + id_incidente).load(
+      "../controladores/reloadActividadPersonas.php",
+      {
+        id_incidente: id_incidente,
+        mod: 1,
+      }
+    );
+    setTimeout(() => {
+      contenedor
+        .find(".dropdown_btn")
+        .on("click", (e) => showExtraInformation(e));
+      contenedor.find(".download_action").on("mouseover", (e) => previewImg(e));
+      contenedor.find(".download_action").on("mouseout", () => previewImgOut());
+      contenedor.find(".download_action").on("mousemove", (e) => followMouse(e));
+      contenedor.find(".edit_activity").on("click", (e) => modActivity(e));
+      contenedor.find(".edit_person").on("click", (e) => modInvolucrado(e));
+    }, 500);
+  }, 50); 
+}
+
+function clearElements() {
+  const titulo = $(formularioActividad).find("input[name = titulo]");
+  const descripcion = $(formularioActividad).find(
+    "textarea[name = descripcion]"
+  );
+  const fecha = $(formularioActividad).find("input[name = fecha]");
+  const type = $(formularioActividad).find("input[name = tipo]:checked");
+  const archivos_relevantes = document.querySelector(
+    "input[name = archivos_relevantes"
+  );
+  titulo.val("");
+  descripcion.val("");
+  fecha.val("");
+  type.prop("checked", false);
+  archivos_relevantes.value = "";
+  
+  const name = $(formularioInvolucrado).find("input[name = name]");
+  const surname = $(formularioInvolucrado).find("input[name = surname]");
+  const ci = $(formularioInvolucrado).find("input[name = ci]");
+  const phoneNumber = $(formularioInvolucrado).find(
+    "input[name = phoneNumber]"
+  );
+  name.val("");
+  surname.val("");
+  ci.val("");
+  phoneNumber.val("");
+}
