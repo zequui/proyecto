@@ -13,7 +13,7 @@ if($_REQUEST['mod'] == 1){
         $archivosActividad = $actividad->getFileNames();
         $personasInvolucradas = getPersonasActividad($actividad->getId());
         echo '
-        <div class="information__activity--title" id="'.$actividad->getId().'">
+        <div class="information__activity--title" id="activity'.$actividad->getId().'">
             <p class="title__name--2">'.$actividad->getNombre().'</p>
             <div class="title__container">
                 <button class="container__button--2"><i class="fa-solid fa-xmark fa-xl"></i></button>
@@ -53,11 +53,11 @@ if($_REQUEST['mod'] == 1){
                 <div class="information__container--4">';
                 foreach($personasInvolucradas as $persona){
                     echo '
-                    <div class="information__activity--title">
+                    <div class="information__activity--title from_incident-'.$_REQUEST['id_incidente'].'">
                         <p class="title__name--2">'.$persona->getNombre().'</p>
                         <div class="title__container--buttons">
                             <button class="container__button--2"><i class="fa-solid fa-xmark fa-xl"></i></button> 
-                            <button class="container__button--2 edit_person"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
+                            <button class="container__button--2 edit_person "><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
                             <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
                         </div>
                     </div>
@@ -83,6 +83,7 @@ if($_REQUEST['mod'] == 1){
     </div>';
     }
 }elseif($_REQUEST['mod'] == 0){
+    $involucrados = getPersonasIncidente($_REQUEST['id_incidente']);
     echo '   
     <div class="information__title--activity">
         <p class="title__name">Involucrados</p><hr class="title__hr">
@@ -91,32 +92,33 @@ if($_REQUEST['mod'] == 1){
     ';
     foreach($involucrados as $involucrado){
         echo '
-            <div class="involucrado__container">
-                <div class="information__activity--title">
-                    <p class="title__name--2">'.$involucrado->getNombre().'</p>
-                    <div class="title__container--buttons">
-                        <button class="container__button--2"><i class="fa-solid fa-xmark fa-xl"></i></button> 
-                        <button class="container__button--2 edit_person"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
-                        <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
-                    </div>
-                </div>  
-                <div class = "activity__information--5 incident__information-hidden">
-                        <div class="information__container information__container--5">
-                        <div class="information__col--4">
-                            <label>Apellido</label>
-                            <p class="col__p">'.$involucrado->getApellido().'</p>
+        <div class="involucrado__container">
+            <div class="information__activity--title from_incident-'.$_REQUEST['id_incidente'].'">
+                <p class="title__name--2">'.$involucrado->getNombre().'</p>
+                <div class="title__container--buttons">
+                    <button class="container__button--2"><i class="fa-solid fa-xmark fa-xl"></i></button> 
+                    <button class="container__button--2 edit_person"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
+                    <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
+                </div>
+            </div>  
+            <div class="activity__information--5 incident__information-hidden">
+                <div class="information__container information__container--5">
+                    <div class="information__col--4">
+                        <label>Apellido</label>
+                        <p class="col__p">'.$involucrado->getApellido().'</p>
 
-                            <label>Cedula</label>
-                            <p class="col__p">'.$involucrado->getCi().'</p>
-                            
-                            <label>Telefono</label>
-                            <p class="col__p">'.$involucrado->getTelefono().'</p>
-                        </div>
-                    </div>  
-                </div>    
+                        <label>Cedula</label>
+                        <p class="col__p">'.$involucrado->getCi().'</p>
+                        
+                        <label>Telefono</label>
+                        <p class="col__p">'.$involucrado->getTelefono().'</p>
+                    </div>
+                </div>
             </div>
+        </div>
         ';
     }
+    echo '</div>';
 }
 
 ?>

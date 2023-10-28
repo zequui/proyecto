@@ -64,12 +64,12 @@ formActivityBG.addEventListener("click", () => {
   formularioActividad.classList.add("emergent__activity--hidden");
   formularioInvolucrado.classList.add("emergent__activity--hidden");
   formActivityBG.classList.add("container--form--hidden");
-  clearElements()
+  clearElements();
 });
 formPersonBG.addEventListener("click", () => {
   formularioInvolucrado.classList.add("emergent__activity--hidden");
   formPersonBG.classList.add("container--form--hidden");
-  clearElements()
+  clearElements();
 });
 
 personaActividadBtn.addEventListener("click", (e) =>
@@ -157,7 +157,7 @@ const startIncidentResolution = (e) => {
     inicident.classList.add("incident-active");
 
     $("#release").load("../controladores/changeIncidentStatus.php", {
-      id_incidente: inicident.getAttribute("id"),
+      id_incidente: inicident.getAttribute("id").replace("incident_", ""),
       new_estado: 1,
     });
     setTimeout(() => inicident.remove(), 500);
@@ -178,7 +178,7 @@ const rejectIncident = (e) => {
     inicident.classList.add("incident-rejected");
 
     $("#release").load("../controladores/changeIncidentStatus.php", {
-      id_incidente: inicident.getAttribute("id"),
+      id_incidente: inicident.getAttribute("id").replace("incident_", ""),
       new_estado: 3,
     });
     setTimeout(() => inicident.remove(), 500);
@@ -214,14 +214,13 @@ const subMenuHide = () => {
 };
 
 const addActivity = (e) => {
-  const id_incidente =
-    e.currentTarget.parentElement.parentElement.parentElement.getAttribute(
-      "id"
-    );
+  const id_incidente = e.currentTarget.parentElement.parentElement.parentElement
+    .getAttribute("id")
+    .replace("incident_", "");
   formActivityBG.classList.remove("container--form--hidden");
   formularioActividad.classList.remove("emergent__activity--hidden");
   formularioActividad.setAttribute("id", id_incidente);
-  formularioActividad.setAttribute("mod", "agregar");
+  formularioActividad.setAttribute("tipoRegistro", "agregar");
 
   const ActividadForm = $("#PesonasActividades").load(
     "../controladores/getAllPersonas.php"
@@ -240,18 +239,18 @@ const modActivity = (e) => {
   const fecha = extraInformation[1].children[1].textContent;
   const tipo = extraInformation[1].children[3].textContent;
 
-  const id_actividad = activityElement.getAttribute("id");
+  const id_actividad = activityElement.getAttribute("id").replace("activity_", "");
   const id_incidente =
-    e.currentTarget.parentElement.parentElement.parentElement.parentElement.parentElement.getAttribute(
-      "id"
-    );
+    e.currentTarget.parentElement.parentElement.parentElement.parentElement.parentElement
+      .getAttribute("id")
+      .replace("incident_", "");
 
   formActivityBG.classList.remove("container--form--hidden");
   formularioActividad.classList.remove("emergent__activity--hidden");
   formularioActividad.setAttribute("id", id_actividad);
   formularioActividad.setAttribute("id_incidente", id_incidente);
 
-  formularioActividad.setAttribute("mod", "modificar");
+  formularioActividad.setAttribute("tipoRegistro", "modificar");
 
   $(formularioActividad).find("input[name = titulo]").val(title);
   $(formularioActividad).find("textarea[name = descripcion]").val(descripcion);
@@ -268,7 +267,7 @@ const modActivity = (e) => {
   }, 500);
 };
 
-const addInvolucrado = (e, mod) => {
+const addInvolucrado = (e, origen) => {
   formPersonBG.classList.remove("container--form--hidden");
   formularioInvolucrado.classList.remove("emergent__activity--hidden");
 
@@ -278,19 +277,19 @@ const addInvolucrado = (e, mod) => {
     .removeClass("unchanable--input");
 
   let id_incidente;
-  if (mod == "incident")
+  if (origen == "incident")
     id_incidente =
       e.currentTarget.parentElement.parentElement.parentElement.getAttribute(
         "id"
-      );
+      ).replace("incident_", "");
 
-  if (mod == "activity")
+  if (origen == "activity")
     id_incidente =
       e.currentTarget.parentElement.parentElement.parentElement.parentElement.getAttribute(
         "id"
-      );
-  formularioInvolucrado.setAttribute("id", id_incidente);
-  formularioInvolucrado.setAttribute("mod", "agregar");
+      ).replace("incident_", "");
+  formularioInvolucrado.setAttribute("id_incidente", id_incidente);
+  formularioInvolucrado.setAttribute("tipoRegistro", "agregar");
 };
 
 function modInvolucrado(e) {
@@ -317,11 +316,12 @@ function modInvolucrado(e) {
 
   $(formularioInvolucrado).find("input[name = phoneNumber]").val(phoneNumber);
 
-  formularioInvolucrado.setAttribute("mod", "modificar");
+  formularioInvolucrado.setAttribute("tipoRegistro", "modificar");
+  formularioInvolucrado.setAttribute('id_incidente', e.currentTarget.parentElement.parentElement.classList[1].replace("from_incident-", ""))
 }
 
 function submitInvolucrado() {
-  const id_incidente = formularioInvolucrado.getAttribute("id");
+  const id_incidente = formularioInvolucrado.getAttribute("id_incidente");
 
   const name = $(formularioInvolucrado).find("input[name = name]");
   const surname = $(formularioInvolucrado).find("input[name = surname]");
@@ -330,13 +330,15 @@ function submitInvolucrado() {
     "input[name = phoneNumber]"
   );
 
+  const Denunciante = document.querySelector('#incident_'+id_incidente).children[1].children[0].children[2]
+
   if (
     name.val() &&
     surname.val() &&
     checkCI(ci.val()) &&
     phoneNumber.val().length == 9
   ) {
-    if (formularioInvolucrado.getAttribute("mod") == "modificar") {
+    if (formularioInvolucrado.getAttribute("tipoRegistro") == "modificar") {
       const formData = new FormData();
       formData.append("name", name.val());
       formData.append("surname", surname.val());
@@ -350,9 +352,14 @@ function submitInvolucrado() {
         contentType: false,
         processData: false,
       });
-    } else if (formularioInvolucrado.getAttribute("mod") == "agregar") {
-      
 
+      if(ci.val() == Denunciante.children[3].textContent){
+        Denunciante.children[1].textContent = name.val()+' '+surname.val()
+        Denunciante.children[5].textContent = phoneNumber.val()
+      }
+    } else if (
+      formularioInvolucrado.getAttribute("tipoRegistro") == "agregar"
+    ) {
       const formData = new FormData();
       formData.append("id_incidente", id_incidente);
       formData.append("name", name.val());
@@ -369,12 +376,12 @@ function submitInvolucrado() {
       });
     }
 
-    clearElements()
+    clearElements();
 
     formularioInvolucrado.classList.add("emergent__activity--hidden");
     formPersonBG.classList.add("container--form--hidden");
-    
-    loadIncourseIncidents()
+
+    reloadPersonas(id_incidente);
   } else {
     setTimeout(() => {
       if (!name.val()) name.addClass("uncomplete--input");
@@ -408,9 +415,13 @@ function submitActividad() {
     fecha.val() &&
     type.val() !== undefined
   ) {
-    if (formularioActividad.getAttribute("mod") == "modificar") {
-      const id_actividad = formularioActividad.getAttribute("id");
-      id_incidente = formularioActividad.getAttribute("id_incidente");
+    if (formularioActividad.getAttribute("tipoRegistro") == "modificar") {
+      const id_actividad = formularioActividad
+        .getAttribute("id")
+        .replace("activity_", "");
+      id_incidente = formularioActividad
+        .getAttribute("id_incidente")
+        .replace("incident_", "");
 
       const formData = new FormData();
       formData.append("id_actividad", id_actividad);
@@ -432,7 +443,7 @@ function submitActividad() {
         contentType: false,
         processData: false,
       });
-    } else if (formularioActividad.getAttribute("mod") == "agregar") {
+    } else if (formularioActividad.getAttribute("tipoRegistro") == "agregar") {
       id_incidente = formularioActividad.getAttribute("id");
       const formData = new FormData();
       formData.append("id_incidente", id_incidente);
@@ -456,13 +467,11 @@ function submitActividad() {
       });
     }
 
-
-
     formularioActividad.classList.add("emergent__activity--hidden");
     formActivityBG.classList.add("container--form--hidden");
 
-    clearElements()
-    reloadActivities(id_incidente)
+    clearElements();
+    reloadActivities(id_incidente);
   } else {
     setTimeout(() => {
       if (!titulo.val()) titulo.addClass("uncomplete--input");
@@ -527,11 +536,32 @@ function reloadActivities(id_incidente) {
         .on("click", (e) => showExtraInformation(e));
       contenedor.find(".download_action").on("mouseover", (e) => previewImg(e));
       contenedor.find(".download_action").on("mouseout", () => previewImgOut());
-      contenedor.find(".download_action").on("mousemove", (e) => followMouse(e));
+      contenedor
+        .find(".download_action")
+        .on("mousemove", (e) => followMouse(e));
       contenedor.find(".edit_activity").on("click", (e) => modActivity(e));
       contenedor.find(".edit_person").on("click", (e) => modInvolucrado(e));
     }, 500);
-  }, 50); 
+  }, 50);
+}
+
+function reloadPersonas(id_incidente) {
+  setTimeout(() => {
+    const contenedor = $("#person--container_" + id_incidente).load(
+      "../controladores/reloadActividadPersonas.php",
+      {
+        id_incidente: id_incidente,
+        mod: 0,
+      }
+    );
+    setTimeout(() => {
+      contenedor
+        .find(".dropdown_btn")
+        .on("click", (e) => showExtraInformation(e));
+      contenedor.find(".edit_person").on("click", (e) => modInvolucrado(e));
+      reloadActivities(id_incidente);
+    }, 500);
+  }, 50);
 }
 
 function clearElements() {
@@ -549,7 +579,7 @@ function clearElements() {
   fecha.val("");
   type.prop("checked", false);
   archivos_relevantes.value = "";
-  
+
   const name = $(formularioInvolucrado).find("input[name = name]");
   const surname = $(formularioInvolucrado).find("input[name = surname]");
   const ci = $(formularioInvolucrado).find("input[name = ci]");

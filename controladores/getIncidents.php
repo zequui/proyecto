@@ -24,7 +24,7 @@ if($filtro == 0){
         $denunciante = getPersonaIncidente_Denunciante($incident->getID());
         $archivos = $incident->getArchivos();
         echo '
-        <div class="emergent__incident" id="'.$incident->getID().'">
+        <div class="emergent__incident" id="incident_'.$incident->getID().'">
             <div class="incident__title">
                 <p class="title__name">'.$incident->getTitulo().'</p>
                 <div class="title__container">
@@ -82,7 +82,7 @@ if($filtro == 0){
         $actividades = Actividad::getRepo($incident->getID());
         
         echo '
-                <div class="emergent__incident" id="'.$incident->getID().'">
+                <div class="emergent__incident" id="incident_'.$incident->getID().'">
                     <div class="incident__title">
                         <p class="title__name">'.$incident->getTitulo().'</p>
                             <div id="incident__container">
@@ -142,7 +142,7 @@ if($filtro == 0){
                             $archivosActividad = $actividad->getFileNames();
                             $personasInvolucradas = getPersonasActividad($actividad->getId());
                             echo '
-                            <div class="information__activity--title" id="'.$actividad->getId().'">
+                            <div class="information__activity--title" id="activity_'.$actividad->getId().'">
                             <p class="title__name--2">'.$actividad->getNombre().'</p>
                             <div class="title__container">
                                 <button class="container__button--2"><i class="fa-solid fa-xmark fa-xl"></i></button>
@@ -180,11 +180,11 @@ if($filtro == 0){
 
                                         foreach($personasInvolucradas as $persona){
                                             echo '
-                                            <div class="information__activity--title">
+                                            <div class="information__activity--title from_incident-'.$incident->getId().'">
                                                 <p class="title__name--2">'.$persona->getNombre().'</p>
                                                 <div class="title__container--buttons">
                                                     <button class="container__button--2"><i class="fa-solid fa-xmark fa-xl"></i></button> 
-                                                    <button class="container__button--2 edit_person"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
+                                                    <button class="container__button--2 edit_person "><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
                                                     <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
                                                 </div>
                                             </div>
@@ -213,25 +213,23 @@ if($filtro == 0){
                     }
                     echo '
                         </div>
-                        <div class="person--container" id="'.$incident->getId().'">
+                        <div class="person--container" id="person--container_'.$incident->getId().'">
                         ';
                     if(!empty($involucrados)){
                         echo '
-                        
                         <div class="information__title--activity">
                             <p class="title__name">Involucrados</p><hr class="title__hr">
                         </div>
                         <div class="person-container">
-                        
                         ';
                         foreach($involucrados as $involucrado){
                             echo '
-                                <div class="involucrado__container">
-                                    <div class="information__activity--title">
+                                <div class="involucrado__container ">
+                                    <div class="information__activity--title from_incident-'.$incident->getId().'">
                                         <p class="title__name--2">'.$involucrado->getNombre().'</p>
                                         <div class="title__container--buttons">
                                             <button class="container__button--2"><i class="fa-solid fa-xmark fa-xl"></i></button> 
-                                            <button class="container__button--2 edit_person"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
+                                            <button class="container__button--2 edit_person from_incidente-'.$incident->getID().'"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
                                             <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
                                         </div>
                                     </div>  
