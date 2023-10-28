@@ -88,7 +88,7 @@ if($filtro == 0){
                             <div id="incident__container">
                                 <button class="container__button"><i class="fa-solid fa-rectangle-xmark fa-xl"></i></button>
                                 <button class="container__button addInvolucradoIncidente"><i class="fa-solid fa-user-plus fa-lg"></i></button>
-                                <button class="container__button"><i class="fa-solid fa-pen-to-square fa-xl"></i></button>
+                                <button class="container__button edit_incident"><i class="fa-solid fa-pen-to-square fa-xl"></i></button>
                                 <button class="container__button addActivity"><i class="fa-solid fa-plus fa-2xl"></i></button>
                                 <button class="container__button"><i class="fa-solid fa-check fa-2xl"></i></button>
                                 <button class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl"></i></button>
@@ -143,7 +143,7 @@ if($filtro == 0){
                             <p class="title__name--2">'.$actividad->getNombre().'</p>
                             <div class="title__container">
                                 <button class="container__button--2"><i class="fa-solid fa-xmark fa-xl"></i></button>
-                                <button class="container__button--2"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
+                                <button class="container__button--2 edit_activity"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
                                 <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
                             </div>
                         </div>
@@ -155,10 +155,9 @@ if($filtro == 0){
                                 </div>
                                 <div class="information__col--3">
                                     <label>Fecha</label>
-                                    <p class="col__p">'.$incident->getFecha().'</p>
-                                    <div></div>
+                                    <p class="col__p">'.$actividad->getFecha().'</p>
                                     <label>Tipo</label>
-                                    <p class="col__p">'.$incident->getTipo().'</p>';
+                                    <p class="col__p">'.$actividad->getTipo().'</p>';
                                     if(!empty($archivosActividad)){
                                         echo ' <label>Archivos a descargar</label>
                                         <div class="col_downloads">';
@@ -182,7 +181,7 @@ if($filtro == 0){
                                                 <p class="title__name--2">'.$persona->getNombre().'</p>
                                                 <div class="title__container--buttons">
                                                     <button class="container__button--2"><i class="fa-solid fa-xmark fa-xl"></i></button> 
-                                                    <button class="container__button--2"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
+                                                    <button class="container__button--2 edit_person"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
                                                     <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
                                                 </div>
                                             </div>
@@ -226,7 +225,7 @@ if($filtro == 0){
                                         <p class="title__name--2">'.$involucrado->getNombre().'</p>
                                         <div class="title__container--buttons">
                                             <button class="container__button--2"><i class="fa-solid fa-xmark fa-xl"></i></button> 
-                                            <button class="container__button--2"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
+                                            <button class="container__button--2 edit_person"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
                                             <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
                                         </div>
                                     </div>  

@@ -129,6 +129,9 @@ function loadIncourseIncidents() {
     contenedor.find(".download_action").on("mouseover", (e) => previewImg(e));
     contenedor.find(".download_action").on("mouseout", () => previewImgOut());
     contenedor.find(".download_action").on("mousemove", (e) => followMouse(e));
+    contenedor.find(".edit_incident").on("click");
+    contenedor.find(".edit_activity").on("click", (e) => modActivity(e));
+    contenedor.find(".edit_person").on("click", (e) => modInvolucrado(e));
   }, 500);
 }
 
@@ -216,6 +219,38 @@ const addActivity = (e) => {
   formActivityBG.classList.remove("container--form--hidden");
   formularioActividad.classList.remove("emergent__activity--hidden");
   formularioActividad.setAttribute("id", id_incidente);
+  formularioActividad.setAttribute("mod", "agregar");
+
+  const ActividadForm = $("#PesonasActividades").load(
+    "../controladores/getAllPersonas.php"
+  );
+  setTimeout(() => {
+    ActividadForm.find(".checkbox").on("click", (e) => selectPerson(e));
+  }, 500);
+};
+
+const modActivity = (e) => {
+  const activityElement = e.currentTarget.parentElement.parentElement;
+  const extraInformation =
+    activityElement.nextElementSibling.children[0].children;
+  const title = activityElement.children[0].textContent;
+  const descripcion = extraInformation[0].children[1].textContent;
+  const fecha = extraInformation[1].children[1].textContent;
+  const tipo = extraInformation[1].children[3].textContent;
+  const id_actividad = activityElement.getAttribute("id");
+
+  formActivityBG.classList.remove("container--form--hidden");
+  formularioActividad.classList.remove("emergent__activity--hidden");
+  formularioActividad.setAttribute("id", id_actividad);
+
+  formularioActividad.setAttribute("mod", "modificar");
+
+  $(formularioActividad).find("input[name = titulo]").val(title);
+  $(formularioActividad).find("textarea[name = descripcion]").val(descripcion);
+  $(formularioActividad).find("input[name = fecha]").val(fecha);
+  $(formularioActividad)
+    .find("input[name = tipo][value = '" + tipo + "']")
+    .prop("checked", true);
 
   const ActividadForm = $("#PesonasActividades").load(
     "../controladores/getAllPersonas.php"
@@ -228,6 +263,11 @@ const addActivity = (e) => {
 const addInvolucrado = (e, mod) => {
   formPersonBG.classList.remove("container--form--hidden");
   formularioInvolucrado.classList.remove("emergent__activity--hidden");
+
+  $(formularioInvolucrado).find("input[name = ci]").prop("readonly", false);
+  $(formularioInvolucrado)
+    .find("input[name = ci]")
+    .removeClass("unchanable--input");
 
   let id_incidente;
   if (mod == "incident")
@@ -242,11 +282,37 @@ const addInvolucrado = (e, mod) => {
         "id"
       );
   formularioInvolucrado.setAttribute("id", id_incidente);
+  formularioInvolucrado.setAttribute("mod", "agregar");
 };
 
-function submitInvolucrado() {
-  const id_incidente = formularioInvolucrado.getAttribute("id");
+function modInvolucrado(e) {
+  const personContainer = e.currentTarget.parentElement.parentElement;
+  const extraInformation =
+    personContainer.nextElementSibling.children[0].children[0].children;
 
+  const name = personContainer.children[0].textContent;
+  const surname = extraInformation[1].textContent;
+  const ci = extraInformation[3].textContent;
+  const phoneNumber = extraInformation[5].textContent;
+
+  formPersonBG.classList.remove("container--form--hidden");
+  formularioInvolucrado.classList.remove("emergent__activity--hidden");
+
+  $(formularioInvolucrado).find("input[name = name]").val(name);
+  $(formularioInvolucrado).find("input[name = surname]").val(surname);
+
+  $(formularioInvolucrado).find("input[name = ci]").val(ci);
+  $(formularioInvolucrado).find("input[name = ci]").prop("readonly", true);
+  $(formularioInvolucrado)
+    .find("input[name = ci]")
+    .addClass("unchanable--input");
+
+  $(formularioInvolucrado).find("input[name = phoneNumber]").val(phoneNumber);
+
+  formularioInvolucrado.setAttribute("mod", "modificar");
+}
+
+function submitInvolucrado() {
   const name = $(formularioInvolucrado).find("input[name = name]");
   const surname = $(formularioInvolucrado).find("input[name = surname]");
   const ci = $(formularioInvolucrado).find("input[name = ci]");
@@ -254,14 +320,46 @@ function submitInvolucrado() {
     "input[name = phoneNumber]"
   );
 
-  if (name.val() && surname.val() && checkCI(ci.val()) && phoneNumber.val()) {
-    $("#release").load("../controladores/addPersona.php", {
-      id_incidente: id_incidente,
-      name: name.val(),
-      surname: surname.val(),
-      ci: ci.val(),
-      number: phoneNumber.val(),
-    });
+  if (
+    name.val() &&
+    surname.val() &&
+    ci.val() &&
+    phoneNumber.val().length == 9
+  ) {
+    if (formularioInvolucrado.getAttribute("mod") == "modificar") {
+
+      const formData = new FormData();
+      formData.append("name", name.val());
+      formData.append("surname", surname.val());
+      formData.append("ci", ci.val());
+      formData.append("phoneNumber", phoneNumber.val());
+
+      $.ajax({
+        url: "../controladores/modPersona.php",
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+      });
+
+    } else if (formularioInvolucrado.getAttribute("mod") == "agregar") {
+      const id_incidente = formularioInvolucrado.getAttribute("id");
+
+      const formData = new FormData();
+      formData.append("id_incidente", id_incidente);
+      formData.append("name", name.val());
+      formData.append("surname", surname.val());
+      formData.append("ci", ci.val());
+      formData.append("phoneNumber", phoneNumber.val());
+
+      $.ajax({
+        url: "../controladores/addPersona.php",
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+      });
+    }
 
     name.val("");
     surname.val("");
@@ -276,14 +374,12 @@ function submitInvolucrado() {
       if (!name.val()) name.addClass("uncomplete--input");
       if (!surname.val()) surname.addClass("uncomplete--input");
       if (!checkCI(ci.val())) ci.addClass("uncomplete--input");
-      if (!phoneNumber.val()) phoneNumber.addClass("uncomplete--input");
+      if (phoneNumber.val().length !== 9) phoneNumber.addClass("uncomplete--input");
     }, 50);
   }
 }
 
 function submitActividad() {
-  const id_incidente = formularioActividad.getAttribute("id");
-
   const titulo = $(formularioActividad).find("input[name = titulo]");
   const descripcion = $(formularioActividad).find(
     "textarea[name = descripcion]"
@@ -297,27 +393,57 @@ function submitActividad() {
     ".person--selected > .title__name--2"
   );
 
-  if (titulo.val() && descripcion.val() && fecha.val() && type.val() !== undefined) {
-    const formData = new FormData();
-    formData.append("id_incidente", id_incidente);
-    formData.append("titulo", titulo.val());
-    formData.append("descripcion", descripcion.val());
-    formData.append("fecha", fecha.val());
-    formData.append("type", type.val());
-    for (var i = 0; i < archivos_relevantes.files.length; i++) {
-      formData.append("archivos_relevantes[]", archivos_relevantes.files[i]);
-    }
-    for (let i = 0; i < ci_personas.length; i++) {
-      formData.append("ci_personas[]", ci_personas[i].getAttribute("ci"));
-    }
+  if (
+    titulo.val() &&
+    descripcion.val() &&
+    fecha.val() &&
+    type.val() !== undefined
+  ) {
+    if (formularioActividad.getAttribute("mod") == "modificar") {
+      const id_actividad = formularioActividad.getAttribute("id");
+      const formData = new FormData();
+      formData.append("id_actividad", id_actividad);
+      formData.append("titulo", titulo.val());
+      formData.append("descripcion", descripcion.val());
+      formData.append("fecha", fecha.val());
+      formData.append("type", type.val());
+      for (var i = 0; i < archivos_relevantes.files.length; i++) {
+        formData.append("archivos_relevantes[]", archivos_relevantes.files[i]);
+      }
+      for (let i = 0; i < ci_personas.length; i++) {
+        formData.append("ci_personas[]", ci_personas[i].getAttribute("ci"));
+      }
 
-    $.ajax({
-      url: "../controladores/saveActivity.php",
-      type: "POST",
-      data: formData,
-      contentType: false,
-      processData: false,
-    });
+      $.ajax({
+        url: "../controladores/modActividad.php",
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+      });
+    } else if (formularioActividad.getAttribute("mod") == "agregar") {
+      const id_incidente = formularioActividad.getAttribute("id");
+      const formData = new FormData();
+      formData.append("id_incidente", id_incidente);
+      formData.append("titulo", titulo.val());
+      formData.append("descripcion", descripcion.val());
+      formData.append("fecha", fecha.val());
+      formData.append("type", type.val());
+      for (var i = 0; i < archivos_relevantes.files.length; i++) {
+        formData.append("archivos_relevantes[]", archivos_relevantes.files[i]);
+      }
+      for (let i = 0; i < ci_personas.length; i++) {
+        formData.append("ci_personas[]", ci_personas[i].getAttribute("ci"));
+      }
+
+      $.ajax({
+        url: "../controladores/saveActivity.php",
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+      });
+    }
 
     titulo.val("");
     descripcion.val("");
@@ -327,7 +453,7 @@ function submitActividad() {
 
     formularioActividad.classList.add("emergent__activity--hidden");
     formActivityBG.classList.add("container--form--hidden");
-    loadIncourseIncidents();
+    setTimeout(loadIncourseIncidents(), 50);
   } else {
     setTimeout(() => {
       if (!titulo.val()) titulo.addClass("uncomplete--input");

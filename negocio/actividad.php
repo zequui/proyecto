@@ -55,6 +55,10 @@ class Actividad{
         $repoActividades = new repositorioActividad();
         $repoActividades->setActividad($ID_incidente, $detalle, $fecha, $tipo, $nombre, $fileNames);
     }
+    public static function modActividad($ID_actividad, $detalle, $fecha, $tipo, $nombre, $fileNames){
+        $repoActividades = new repositorioActividad();
+        $repoActividades->modActividad($ID_actividad, $detalle, $fecha, $tipo, $nombre, $fileNames);
+    }
 
 }
 ?>

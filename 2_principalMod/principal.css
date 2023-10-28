@@ -828,3 +828,8 @@ input[type="number"] {
 .uncomplete--input {
   border: red solid;
 }
+
+.unchanable--input {
+  border: solid #3e9545;
+  background-color: #032b07;
+}

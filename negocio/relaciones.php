@@ -93,7 +93,18 @@ class Persona_Actividad{
     }
     public static function setPersonaActividad($ci, $rol, $idActividad = false){
         $rep_PersonaActividad = new repo_PersonaActividad();
-        $rep_PersonaActividad->setPersonaActividad($ci, $rol, $idActividad);
+        echo 'id actividad: '.$idActividad;
+        global $perActExist;
+        foreach ($rep_PersonaActividad->getPersonaActividad($idActividad) as $personaActividad) {
+            if($personaActividad->getCi() == $ci && $personaActividad->getId() == $idActividad){
+                $perActExist = true;
+            } 
+        }
+
+        if (!$perActExist) {
+            $rep_PersonaActividad->setPersonaActividad($ci, $rol, $idActividad);
+        }
+
     }
 }
 ?>

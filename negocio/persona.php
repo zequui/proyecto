@@ -47,10 +47,12 @@
 
             if (!$personExist) {
                 $repPersonas->setPersonas($ci, $name, $surname, $phone);
-            } else {
-                $repPersonas->updatePersona($ci, $name, $surname, $phone);
             }
 
+        }
+        public static function updatePersona($ci, $name, $surname, $phone){
+            $repPersonas = new repositorioPersonas();
+            $repPersonas->updatePersona($ci, $name, $surname, $phone);
         }
     }
 

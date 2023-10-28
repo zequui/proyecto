@@ -13,7 +13,7 @@ function getPersonaIncidente_Denunciante($id){
 function getPersonasIncidente($id){
     $involucrados = [];
     foreach(Persona_Incidente::getRepo($id) as $PersonaIncidente){
-        if($PersonaIncidente->getRol() != 0) array_push($involucrados, $PersonaIncidente->getPersona());
+        array_push($involucrados, $PersonaIncidente->getPersona());
     }
     return $involucrados;
 }

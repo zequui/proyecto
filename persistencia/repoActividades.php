@@ -26,7 +26,15 @@ class repositorioActividad {
                 $stmt=$this->PDO->query("INSERT INTO archivosActividad(id_actividad, nombreArchivo) VALUES ('".$idActividad."', '".$name."')");
             }
         }
-
+    }
+    public function modActividad($idActividad, $detalle, $fecha, $tipo, $nombre, $fileNames){
+        $stmt=$this->PDO->query("UPDATE `actividades`  SET `detalle` = '".$detalle."', `fecha`='".$fecha."', `tipo`='".$tipo."', `nombre`='".$nombre."' WHERE id = ".$idActividad);
+        if($fileNames)
+        {
+            foreach($fileNames as $name){
+                $stmt=$this->PDO->query("INSERT INTO archivosActividad(id_actividad, nombreArchivo) VALUES ('".$idActividad."', '".$name."')");
+            }
+        }
     }
 }
 ?>

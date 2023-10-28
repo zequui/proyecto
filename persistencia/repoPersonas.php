@@ -13,7 +13,7 @@ class repositorioPersonas {
         $stmt=$this->PDO->query("SELECT * FROM personas");
         
         while($row=$stmt->fetch()) {
-            array_push($usuarios, new persona($row["ci"],$row["nombre"],$row["apellido"], '0'.$row["telefono"]));
+            array_push($usuarios, new persona($row["ci"],$row["nombre"],$row["apellido"], $row["telefono"]));
         }
         return $usuarios;
     }
@@ -23,7 +23,7 @@ class repositorioPersonas {
     }
 
     public function updatePersona($ci, $name, $surname, $phone) {
-        $stmt=$this->PDO->query('UPDATE personas SET nombre="'.$name.'", apellido="'.$surname.'", telefono='.$phone.' WHERE ci='.$ci);
+        $stmt=$this->PDO->query('UPDATE personas SET nombre="'.$name.'", apellido="'.$surname.'", telefono="'.$phone.'" WHERE ci='.$ci);
     }
 }
 
