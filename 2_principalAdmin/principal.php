@@ -40,128 +40,7 @@
                 <a href="../controladores/exitSession.php" class="subMenu__option"><i class="fa-solid fa-right-from-bracket fa-lg"></i>Cerrar sesion</a>
             </div>
             <h1 class=emergent__title>Incidentes en curso</h1>
-            <div class="emergent__container">
-                <div class="emergent__incident" id="'.$incident->getID().'">
-                    <div class="incident__title">
-                        <p class="title__name">'.$incident->getTitulo().'</p>
-                            <div id="incident__container">
-                            <button class="container__button"><i class="fa-solid fa-rectangle-xmark fa-xl"></i></button>
-                            <button class="container__button"><i class="fa-solid fa-user-plus fa-lg"></i></button>
-                                <button class="container__button"><i class="fa-solid fa-pen-to-square fa-xl"></i></button>
-                                <button class="container__button"><i class="fa-solid fa-plus fa-2xl"></i></button>
-                                <button class="container__button"><i class="fa-solid fa-check fa-2xl"></i></button>
-                                <button class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl"></i></button>
-                            </div>
-                    </div>
-                    <div class="inicident__information--2 incident__information-hidden">
-                        <div class="information__container">
-                            <div class="information__col--2">
-                                <label>Descripcion</label>
-                                <p class="col__p">'.$incident->getDescripcion().'</p>
-                            </div>
-                            <div class="information__col--2">
-                                <label>Fecha</label>
-                                <p class="col__p">'.$incident->getFecha().'</p>
-                                <div></div>
-                                <label>Tipo</label>
-                                <p class="col__p">'.$incident->getTipo().'</p>';
-                                
-                                <label>Archivo a descargar</label>
-                                <p class="col__p"><a href="'.loadFile($incident).'" download="archvoRelevante'.$incident->getID().'">Descargar</a></p>';
-                            </div>
-                            <div class="information__col--2">
-                                <label>Nombre y Apellido</label>
-                                <p class="col__p">'.$denunciante->getNombre().' '.$denunciante->getApellido().'</p>
-
-                                <label>Cedula</label>
-                                <p class="col__p">'.$denunciante->getCi().'</p>
-                                
-                                <label>Telefono</label>
-                                <p class="col__p">'.$denunciante->getTelefono().'</p>
-                            </div>
-                        </div>
-                        <div class="information__title--activity">
-                            <p class="title__name">Actividades</p><hr class="title__hr">
-                        </div>
-                        <div class="information__activity--title">
-                            <p class="title__name--2">'.$incident->getTitulo().'</p>
-                            <div class="title__container">
-                                <button class="container__button--2"><i class="fa-solid fa-xmark fa-xl"></i></button>
-                                <button class="container__button--2"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
-                                <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
-                            </div>
-                        </div>
-                        <div class="activity__information--3 incident__information-hidden">
-                            <div class="information__container--2">
-                                <div class="information__col--3">
-                                    <label>Descripcion</label>
-                                    <p class="col__p">'.$incident->getDescripcion().'</p>
-                                </div>
-                                <div class="information__col--3">
-                                    <label>Fecha</label>
-                                    <p class="col__p">'.$incident->getFecha().'</p>
-                                    <div></div>
-                                    <label>Tipo</label>
-                                    <p class="col__p">'.$incident->getTipo().'</p>';
-                                    
-                                    <label>Archivo a descargar</label>
-                                    <p class="col__p"><a href="'.loadFile($incident).'" download="archvoRelevante'.$incident->getID().'">Descargar</a></p>';
-                                </div>
-                            </div>
-                            <div class="information__container--3">
-                                <div class="information__col--4">
-                                    <label>Nombre y Apellido</label>
-                                    <p class="col__p">'.$denunciante->getNombre().' '.$denunciante->getApellido().'</p>
-
-                                    <label>Cedula</label>
-                                    <p class="col__p">'.$denunciante->getCi().'</p>
-                                    
-                                    <label>Telefono</label>
-                                    <p class="col__p">'.$denunciante->getTelefono().'</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="information__title--activity">
-                            <p class="title__name">Involucrados</p><hr class="title__hr">
-                            </div>
-                            <div class="information__activity--title">
-                            <p class="title__name--2">'.$incident->getTitulo().'</p>
-                            <div class="title__container">
-                                <button class="container__button--2"><i class="fa-solid fa-xmark fa-xl"></i></button> 
-                                <button class="container__button--2"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
-                                <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
-                            </div>      
-                        </div>     
-                        <div class="activity__information--3 incident__information-hidden">
-                            <div class="information__container">
-                                <div class="information__col--3">
-                                    <label>Descripcion</label>
-                                    <p class="col__p">'.$incident->getDescripcion().'</p>
-                                </div>
-                                <div class="information__col--3">
-                                    <label>Fecha</label>
-                                    <p class="col__p">'.$incident->getFecha().'</p>
-                                    <div></div>
-                                    <label>Tipo</label>
-                                    <p class="col__p">'.$incident->getTipo().'</p>';
-                                    
-                                    <label>Archivo a descargar</label>
-                                    <p class="col__p"><a href="'.loadFile($incident).'" download="archvoRelevante'.$incident->getID().'">Descargar</a></p>';
-                                </div>
-                                <div class="information__col--3">
-                                    <label>Nombre y Apellido</label>
-                                    <p class="col__p">'.$denunciante->getNombre().' '.$denunciante->getApellido().'</p>
-
-                                    <label>Cedula</label>
-                                    <p class="col__p">'.$denunciante->getCi().'</p>
-                                    
-                                    <label>Telefono</label>
-                                    <p class="col__p">'.$denunciante->getTelefono().'</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="emergent__container" id="onCourse-container">
             </div>
         </div>
         <div class="emergent hidden" id="incidenteResoluciones">
@@ -208,9 +87,16 @@
             </div>
         </div>
     </div>
-    </div>
+    
     <div id="body__imgContainer">   
     </div>
+
+    <div id="body__container--activity-form" class="container--form--hidden">
+    </div>
+    <div id="body__container--person-form" class="container--form--hidden">
+    </div>
+
+
     <div class="emergent__activity--form emergent__activity--hidden">
         <h1 class="emergent__title">Registrar Actividad</h1>
         <div class="activity__container">
@@ -219,13 +105,13 @@
                     <label>Título</label> 
                     <p class="title__text">(inserte un título facil de identificar)</p>
                 </div>
-                <input type="text" name="titulo" maxlength="35" required>
+                <input type="text" name="titulo" maxlength="35">
                 <label>Descripción</label>
                 <textarea class="col__description" name="descripcion"></textarea>
                 <div class="col__title">
                     <label>Fecha</label><p class="title__text">(inserte la fecha en la que se realizo la actividad)</p>
                 </div>
-                <input type="date" name="fecha" class="col__date" required>
+                <input type="date" name="fecha" class="col__date">
             </div>
             <div class="container__col">
                 <label>Tipo de Actividad</label>
@@ -250,84 +136,68 @@
                     </div>
                 </div>
                 <label>Archivo relevante</label>
-                <input type="file" id="col__file" name="archivos_relevantes[]" multiple>
+                <input type="file" id="col__file" name="archivos_relevantes" multiple>
                 <div class="col__people">
-                    <label>Agregar involucrado</label> <button class="container__button--2"><i class="fa-solid fa-plus fa-xl"></i></button>
-                    <div>
-                        <div class="information__activity--title">
-                            <p class="title__name--2">'.$incident->getTitulo().'</p>
-                            <div class="title__container">
-                                <button class="container__button--2"><i class="fa-solid fa-xmark fa-xl"></i></button>
-                                <button class="container__button--2"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
-                                <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
-                            </div>
-                        </div>
-                        <div class="inicident__information">
-                            <div class="information__col--5">
-                                <label>Nombre y Apellido</label>
-                                <p class="col__p">'asdaasd asdasdasdasd</p>
-                            </div>
-                            <div class="information__col--5">
-                            <label>Cedula</label>
-                                <p class="col__p">55543952</p>
-                                
-                                <label>Telefono</label>
-                                <p class="col__p">095435217</p>
-                            </div>
-                            <div class="information__col--5">
-                                <label>Tipo</label>
-                                <p class="col__p"> tipo asdasasdasdasdd</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="activity__button">
-            <button type="submit" id="form__submit">Ingresar</button>
-        </div>
-        
-    </div>
-    <div class="emergent__activity--form emergent__activity--hidden">
-        <h1 class="emergent__title">Registrar Involucrado</h1>
-        <div class="activity__container">
-            <div class="container__col">
-                <label>Nombre</label>
-                <input type="text" name="titulo" maxlength="35" required>
-                <label>Apellido</label>
-                <input type="text" name="titulo" maxlength="35" required>
-            </div>
-            <div class="container__col">
-                <label>Teléfono</label>
-                <input type="number" name="phoneNumber" minlength="8" maxlength="9" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
+                    <label>Agregar involucrado</label> <button class="container__button--2" id="addInvolucradoActividad"><i class="fa-solid fa-plus fa-xl"></i></button>
+                    <div id="PesonasActividades">
 
-                <label>Cédula</label>
-                <input type="number" name="ci" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="activity__button">
-        <label>Tipo de involucrado</label>
-                <div class="lista">
-                    <div class="contenedor">
-                        <input type="radio" name="tipo" value="Toma de testimonios">Toma de testimonios</input>
-                    </div>
-                    <div class="contenedor">
-                        <input type="radio" name="tipo" value="Reunion de involucrados">Reunion de involucrados</input>
-                    </div>
-                    <div class="contenedor">
-                        <input type="radio" name="tipo" value="Reunion del CAP">Reunion del CAP</input>
-                    </div>
-                    <div class="contenedor">
-                        <input type="radio" name="tipo" value="LLamada a padre">LLamada a padres</input>
-                    </div>
-                    <div class="contenedor">
-                        <input type="radio" name="tipo" value="Medidas preventivas">Medidas preventivas</input>
-                    </div>
-                    <div class="contenedor">
-                        <input type="radio" name="tipo" value="Otro">Otro</input>
-                    </div>
+            <button type="submit" class="form__submit" id="form__activity--submit">Ingresar</button>
+        </div>    
+    </div>
+
+    <div class="emergent__person--form emergent__activity--hidden">
+        <h1 class="emergent__title">Registrar Involucrado</h1>
+            <div class="container__col--2">
+                <div class="col__input">
+                    <label>Nombre</label>
+                    <input type="text" name="name" maxlength="25" required>
                 </div>
-            <button type="submit" id="form__submit">Ingresar</button>
+                <div class="col__input">
+                    <label>Apellido</label>
+                    <input type="text" name="surname" maxlength="25" required>
+                </div>
+                <div class="col__input">
+                    <label>Teléfono</label>
+                    <input type="number" name="phoneNumber" minlength="8" maxlength="9" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
+                </div>
+                <div class="col__input">
+                    <label>Cédula</label>
+                    <input type="number" name="ci" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
+                </div>
+            </div>
+        <div class="activity__button">
+            <button class="form__submit" id="form__person--submit">Ingresar</button>
+        </div>
+    </div>
+
+    <div class="emergent__activity--form emergent__activity--hidden">
+        <div class="container__col">
+            <h1 class="emergent__title">Enviar Resolucion</h1>
+            <label>Descripción</label>
+            <textarea class="col__description" name="descripcion"></textarea>
+            <label>Tipo de resolucion</label>
+            <div class="lista">
+                <div class="contenedor">
+                    <input type="radio" name="tipo" value="Suspencion">Suspencion</input>
+                </div>
+                <div class="contenedor">
+                    <input type="radio" name="tipo" value="Trabajo comunitario">Trabajo comunitario</input>
+                </div>
+                <div class="contenedor">
+                    <input type="radio" name="tipo" value="cambio de institucion">cambio de institucion</input>
+                </div>
+                <div class="contenedor">
+                    <input type="radio" name="tipo" value="otros">otros</input>
+                </div>
+            </div>
+        </div>
+        <div class="activity__button">
+            <button type="submit" class="form__submit" id="form__activity--submit">Ingresar</button>
         </div>
     </div>
     <p id="release"></p>
