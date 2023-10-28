@@ -132,7 +132,7 @@
         </div>
     </div>
 
-    <div class="emergent__activity--form">
+    <div class="emergent__activity--form emergent__activity--hidden">
         <div class="container__col">
             <h1 class="emergent__title">Enviar Resolucion</h1>
             <label>Descripción</label>

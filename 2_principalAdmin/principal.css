@@ -905,3 +905,16 @@ input{
   color: #EAEAEA;
   font-size: 17px;
 }
+/*_________________________________________________________________________________________________________________________________*/
+.contenedor__type{
+padding: 5px;
+border-radius: 5px 5px 5px 5px;
+background-color: #1B1B1B;
+border: 0;
+height: 33px;
+width: 500px;
+color: #EAEAEA;
+font-size: 17px;
+margin-bottom: 5px;
+margin-top: 15px;
+}
