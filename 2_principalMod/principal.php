@@ -132,8 +132,30 @@
         </div>
     </div>
 
-    <div class="emergent__activity--form" style="display:none">
-        <h1 class="emergent__title">Enviar Resolucion</h1>
+    <div class="emergent__activity--form emergent__activity--hidden">
+        <div class="container__col">
+            <h1 class="emergent__title">Enviar Resolucion</h1>
+            <label>Descripción</label>
+            <textarea class="col__description" name="descripcion"></textarea>
+            <label>Tipo de resolucion</label>
+            <div class="lista">
+                <div class="contenedor">
+                    <input type="radio" name="tipo" value="Suspencion">Suspencion</input>
+                </div>
+                <div class="contenedor">
+                    <input type="radio" name="tipo" value="Trabajo comunitario">Trabajo comunitario</input>
+                </div>
+                <div class="contenedor">
+                    <input type="radio" name="tipo" value="cambio de institucion">cambio de institucion</input>
+                </div>
+                <div class="contenedor">
+                    <input type="radio" name="tipo" value="otros">otros</input>
+                </div>
+            </div>
+        </div>
+        <div class="activity__button">
+            <button type="submit" class="form__submit" id="form__activity--submit">Ingresar</button>
+        </div>
     </div>
     <p id="release"></p>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
