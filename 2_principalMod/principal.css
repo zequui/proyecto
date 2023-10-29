@@ -727,7 +727,7 @@ input[type="number"] {
   padding: 5px;
 }
 
-.emergent__activity--form {
+#emergent__activity--form {
   animation: pop-up 1s;
 }
 
@@ -822,6 +822,7 @@ input[type="number"] {
   flex-direction: column;
   padding: 10px;
   margin: 0 10px;
+  min-height: 230px;
 }
 
 .col_downloads {

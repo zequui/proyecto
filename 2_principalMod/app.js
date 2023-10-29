@@ -233,7 +233,7 @@ const addActivity = (e) => {
     .replace("incident_", "");
   formActivityBG.classList.remove("container--form--hidden");
   formularioActividad.classList.remove("emergent__activity--hidden");
-  formularioActividad.setAttribute("id", id_incidente);
+  formularioActividad.setAttribute("id_incidente", id_incidente);
   formularioActividad.setAttribute("tipoRegistro", "agregar");
 
   const ActividadForm = $("#PesonasActividades").load(
@@ -263,7 +263,7 @@ const modActivity = (e) => {
 
   formActivityBG.classList.remove("container--form--hidden");
   formularioActividad.classList.remove("emergent__activity--hidden");
-  formularioActividad.setAttribute("id", id_actividad);
+  formularioActividad.setAttribute("id_actividad", id_actividad);
   formularioActividad.setAttribute("id_incidente", id_incidente);
 
   formularioActividad.setAttribute("tipoRegistro", "modificar");
@@ -439,8 +439,7 @@ function submitActividad() {
   ) {
     if (formularioActividad.getAttribute("tipoRegistro") == "modificar") {
       const id_actividad = formularioActividad
-        .getAttribute("id")
-        .replace("activity_", "");
+        .getAttribute("id_actividad")
       id_incidente = formularioActividad
         .getAttribute("id_incidente")
         .replace("incident_", "");
@@ -466,7 +465,7 @@ function submitActividad() {
         processData: false,
       });
     } else if (formularioActividad.getAttribute("tipoRegistro") == "agregar") {
-      id_incidente = formularioActividad.getAttribute("id");
+      id_incidente = formularioActividad.getAttribute("id_incidente");
       const formData = new FormData();
       formData.append("id_incidente", id_incidente);
       formData.append("titulo", titulo.val());
