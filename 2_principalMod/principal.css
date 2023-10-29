@@ -860,3 +860,32 @@ input[type="number"] {
 .unlink-person{
   border: solid red;
 }
+/*_________________________________________________________________________________________________________________________________*/
+#lista {
+  overflow-y: scroll;
+  height: 113px;
+  width: 508px;
+  margin-top: 5px;
+}
+#lista::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-color: #5b5b5b;
+  border-radius: 10px;
+  margin-left: -30px;
+}
+
+#lista::-webkit-scrollbar {
+  width: 12px;
+  background-color: #2e2e2e;
+}
+
+#lista::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+  background-image: linear-gradient(
+    7deg,
+    rgb(0, 87, 7) 0%,
+    rgba(0, 87, 7) 44%,
+    rgba(0, 87, 7) 100%
+  );
+}
