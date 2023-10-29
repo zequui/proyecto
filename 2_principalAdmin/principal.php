@@ -371,18 +371,28 @@
             <button type="submit" class="form__submit" id="form__activity--submit">Ingresar</button>
         </div>
     </div>
-    <div class="emergent__activity--form">
+    <div class="emergent__activity--form emergent__activity--hidden">
         <div class="container__col">
-            <h1 class="emergent__title">Enviar Resolucion</h1>
+            <h1 class="emergent__title">Resolucion</h1>
             <label>Descripción</label>
             <textarea class="col__description" name="descripcion"></textarea>
             <label>Tipo de resolucion</label>
             <div class="contenedor__type">Suspencion</div>
         </div>
+        <div class="activity__button--2">
+            <button type="submit" class="form__submit form__submit--2" id="form__activity--submit">Aceptar</button>
+            <button type="submit" class="form__submit form__submit--2" id="form__activity--submit">Modificar</button>
+            <button type="submit" class="form__submit form__submit--2" id="form__activity--submit">Reevaluar</button>
+        </div>
+    </div>
+    <div class="emergent__activity--form emergent__activity--hidden">
+        <div class="container__col">
+            <h1 class="emergent__title">Reevaluacion</h1>
+            <label>Descripción</label>
+            <textarea class="col__description" name="descripcion"></textarea>
+        </div>
         <div class="activity__button">
-            <button type="submit" class="form__submit" id="form__activity--submit">Aceptar</button>
-            <button type="submit" class="form__submit" id="form__activity--submit">Modificar</button>
-            <button type="submit" class="form__submit" id="form__activity--submit">Reevaluar</button>
+            <button class="form__submit" id="form__person--submit">Ingresar</button>
         </div>
     </div>
     <p id="release"></p>
