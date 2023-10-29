@@ -134,6 +134,9 @@ function loadIncourseIncidents() {
     contenedor.find(".edit_incident").on("click");
     contenedor.find(".edit_activity").on("click", (e) => modActivity(e));
     contenedor.find(".edit_person").on("click", (e) => modInvolucrado(e));
+    contenedor
+      .find(".unlink_personActivity")
+      .on("click", (e) => unLinkPersonaActividad(e));
   }, 500);
 }
 
@@ -239,7 +242,9 @@ const modActivity = (e) => {
   const fecha = extraInformation[1].children[1].textContent;
   const tipo = extraInformation[1].children[3].textContent;
 
-  const id_actividad = activityElement.getAttribute("id").replace("activity_", "");
+  const id_actividad = activityElement
+    .getAttribute("id")
+    .replace("activity_", "");
   const id_incidente =
     e.currentTarget.parentElement.parentElement.parentElement.parentElement.parentElement
       .getAttribute("id")
@@ -278,16 +283,15 @@ const addInvolucrado = (e, origen) => {
 
   let id_incidente;
   if (origen == "incident")
-    id_incidente =
-      e.currentTarget.parentElement.parentElement.parentElement.getAttribute(
-        "id"
-      ).replace("incident_", "");
+    id_incidente = e.currentTarget.parentElement.parentElement.parentElement
+      .getAttribute("id")
+      .replace("incident_", "");
 
   if (origen == "activity")
     id_incidente =
-      e.currentTarget.parentElement.parentElement.parentElement.parentElement.getAttribute(
-        "id"
-      ).replace("incident_", "");
+      e.currentTarget.parentElement.parentElement.parentElement.parentElement
+        .getAttribute("id")
+        .replace("incident_", "");
   formularioInvolucrado.setAttribute("id_incidente", id_incidente);
   formularioInvolucrado.setAttribute("tipoRegistro", "agregar");
 };
@@ -317,7 +321,13 @@ function modInvolucrado(e) {
   $(formularioInvolucrado).find("input[name = phoneNumber]").val(phoneNumber);
 
   formularioInvolucrado.setAttribute("tipoRegistro", "modificar");
-  formularioInvolucrado.setAttribute('id_incidente', e.currentTarget.parentElement.parentElement.classList[1].replace("from_incident-", ""))
+  formularioInvolucrado.setAttribute(
+    "id_incidente",
+    e.currentTarget.parentElement.parentElement.classList[1].replace(
+      "from_incident-",
+      ""
+    )
+  );
 }
 
 function submitInvolucrado() {
@@ -330,7 +340,8 @@ function submitInvolucrado() {
     "input[name = phoneNumber]"
   );
 
-  const Denunciante = document.querySelector('#incident_'+id_incidente).children[1].children[0].children[2]
+  const Denunciante = document.querySelector("#incident_" + id_incidente)
+    .children[1].children[0].children[2];
 
   if (
     name.val() &&
@@ -353,9 +364,9 @@ function submitInvolucrado() {
         processData: false,
       });
 
-      if(ci.val() == Denunciante.children[3].textContent){
-        Denunciante.children[1].textContent = name.val()+' '+surname.val()
-        Denunciante.children[5].textContent = phoneNumber.val()
+      if (ci.val() == Denunciante.children[3].textContent) {
+        Denunciante.children[1].textContent = name.val() + " " + surname.val();
+        Denunciante.children[5].textContent = phoneNumber.val();
       }
     } else if (
       formularioInvolucrado.getAttribute("tipoRegistro") == "agregar"
@@ -540,6 +551,9 @@ function reloadActivities(id_incidente) {
         .find(".download_action")
         .on("mousemove", (e) => followMouse(e));
       contenedor.find(".edit_activity").on("click", (e) => modActivity(e));
+      contenedor
+        .find(".unlink_personActivity")
+        .on("click", (e) => unLinkPersonaActividad(e));
       contenedor.find(".edit_person").on("click", (e) => modInvolucrado(e));
     }, 500);
   }, 50);
@@ -590,4 +604,36 @@ function clearElements() {
   surname.val("");
   ci.val("");
   phoneNumber.val("");
+}
+
+function unLinkPersonaActividad(e) {
+  const personHeader = e.currentTarget.parentElement.parentElement;
+  const personCi =
+    personHeader.nextElementSibling.children[0].children[0].children[3]
+      .textContent;
+
+  const activity_id =
+    personHeader.parentElement.parentElement.previousElementSibling
+      .getAttribute("id")
+      .replace("activity_", "");
+
+  if (personHeader.classList.contains("unlink-person")) {
+    personHeader.nextElementSibling.remove();
+    personHeader.remove();
+
+    const formData = new FormData();
+    formData.append('ci', personCi)
+    formData.append('id_actividad', activity_id)
+
+    $.ajax({
+      url: "../controladores/unlinkPersonaActividad.php",
+      type: "POST",
+      data: formData,
+      contentType: false,
+      processData: false
+    });
+  }
+  personHeader.classList.add("unlink-person");
+
+  setTimeout(() => personHeader.classList.remove("unlink-person"), 5000);
 }

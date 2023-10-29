@@ -106,5 +106,10 @@ class Persona_Actividad{
         }
 
     }
+
+    public static function unLinkPersonaActividad($ci, $idActividad){
+        $rep_PersonaActividad = new repo_PersonaActividad();
+        $rep_PersonaActividad->unLinkPersonaActividad($ci, $idActividad);
+    }
 }
 ?>

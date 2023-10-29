@@ -51,6 +51,10 @@ class repo_PersonaActividad{
             $stmt=$this->PDO->query("INSERT INTO tiene (ci, id, rol) VALUES ('".$ci."', '".$id."', '".$rol."');");
         }
     }
+
+    public function unlinkPersonaActividad($ci, $idActividad){
+        $stmt=$this->PDO->query("DELETE FROM tiene WHERE ci = ".$ci." AND id = ".$idActividad);
+    }
 }
 ?>
 
