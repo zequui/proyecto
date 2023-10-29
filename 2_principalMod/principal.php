@@ -52,9 +52,11 @@
     </div>
     <div id="body__container--person-form" class="container--form--hidden">
     </div>
+    <div id="body__container--incident-form" class="container--form--hidden">
+    </div>
 
 
-    <div class="emergent__activity--form emergent__activity--hidden">
+    <div id="emergent__activity--form" class="emergent__activity--hidden">
         <h1 class="emergent__title">Registrar Actividad</h1>
         <div class="activity__container">
             <div class="container__col">
@@ -107,7 +109,7 @@
         </div>    
     </div>
 
-    <div class="emergent__person--form emergent__activity--hidden">
+    <div id="emergent__person--form" class="emergent__activity--hidden">
         <h1 class="emergent__title">Registrar Involucrado</h1>
             <div class="container__col--2">
                 <div class="col__input">
@@ -132,7 +134,7 @@
         </div>
     </div>
 
-    <div class="emergent__activity--form emergent__activity--hidden">
+    <div class="emergent__activity--form emergent__activity--hidden" style="display: none;">
         <div class="container__col">
             <h1 class="emergent__title">Enviar Resolucion</h1>
             <label>Descripción</label>
@@ -154,11 +156,11 @@
             </div>
         </div>
         <div class="activity__button">
-            <button type="submit" class="form__submit" id="form__activity--submit">Ingresar</button>
+            <button type="submit" class="form__submit" id="">Ingresar</button>
         </div>
     </div>
 
-    <div class="emergent__activity--form">
+    <div id="emergent__incident--form" class=" emergent__activity--hidden">
         <h1 class="emergent__title">Editar Incidente</h1>
         <div class="activity__container">
             <div class="container__col">
@@ -190,7 +192,7 @@
                 </div>
                 <input type="date" name="fecha" id="col__date" required>
                 <label>Archivo relevante</label>
-                <input type="file" id="col__file" name="archivos_relevantes[]" multiple>
+                <input type="file" id="col__file" name="archivos_relevantes" multiple>
             </div>
             <div class="container__col">
                 <label>Descripción</label>
@@ -198,7 +200,7 @@
             </div>
         </div>
         <div class="activity__button">
-            <button type="submit" class="form__submit" id="form__activity--submit">Ingresar</button>
+            <button type="submit" class="form__submit" id="form__incident--submit">Ingresar</button>
         </div>
     </div>
     <p id="release"></p>

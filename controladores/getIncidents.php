@@ -103,7 +103,6 @@ if($filtro == 0){
                             <div class="information__col--2">
                                 <label>Fecha</label>
                                 <p class="col__p">'.$incident->getFecha().'</p>
-                                <div></div>
                                 <label>Tipo</label>
                                 <p class="col__p">'.$incident->getTipo().'</p>
                                 ';

@@ -499,7 +499,7 @@ i {
   z-index: 100;
 }
 /*_______________________________________________________________________________________________________________________________*/
-.emergent__activity--form {
+#emergent__activity--form, #emergent__incident--form {
   display: flex;
   position: absolute;
   flex-direction: column;
@@ -512,7 +512,7 @@ i {
   border: solid #ddd;
   transition: 0.1s;
 }
-.emergent__person--form {
+#emergent__person--form {
   display: flex;
   position: absolute;
   top: 50%;
@@ -744,7 +744,8 @@ input[type="number"] {
 }
 
 #body__container--activity-form,
-#body__container--person-form {
+#body__container--person-form,
+#body__container--incident-form {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -753,12 +754,13 @@ input[type="number"] {
   opacity: 0.1;
   transition: 0.1s;
 }
-#body__container--activity-form {
+#body__container--activity-form, #body__container--incident-form {
   z-index: 200;
 }
 #body__container--person-form {
   z-index: 270;
 }
+
 .container--form--hidden {
   visibility: hidden;
 }
@@ -815,10 +817,10 @@ input[type="number"] {
   transition: 0.1s;
 }
 .information__container--4 {
-  justify-content: center;
-  align-items: start;
+  justify-content: start;
+  align-items: center;
   flex-direction: column;
-  width: 30%;
+  padding: 10px;
   margin: 0 10px;
 }
 
@@ -865,7 +867,7 @@ input[type="number"] {
 }
 
 .information__activity--title--2{
-  margin: 5px;
+  margin-top: 10px;
 }
 /*_________________________________________________________________________________________________________________________________*/
 #lista {

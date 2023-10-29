@@ -34,5 +34,15 @@ class repositorioIncidente {
     public function changeIncidentState($idIncidente, $newEstado) {
         $stmt=$this->PDO->query('UPDATE incidentes SET estado = '.$newEstado.' WHERE id = '.$idIncidente);
     }
+
+    public function modIncidente($id_incidente, $titulo, $descripcion, $fecha, $tipo, $fileNames){
+        $stmt=$this->PDO->query("UPDATE `incidentes`  SET `titulo` = '".$titulo."', `fecha`='".$fecha."', `tipo`='".$tipo."', `descripcion`='".$descripcion."' WHERE id = ".$id_incidente);
+        if($fileNames)
+        {
+            foreach($fileNames as $name){
+                $stmt=$this->PDO->query("INSERT INTO archivosActividad(id_actividad, nombreArchivo) VALUES ('".$id_incidente."', '".$name."')");
+            }
+        }
+    }
 }
 ?>

@@ -62,5 +62,10 @@ include "../persistencia/repoIncidentes.php";
         $repIncidentes = new repositorioIncidente();
         $repIncidentes->changeIncidentState($idIncidente, $newEstado);
     }
+
+    public static function modIncident($id_incidente, $titulo, $descripcion, $fecha, $tipo, $fileNames){
+        $repIncidentes = new repositorioIncidente();
+        $repIncidentes->modIncidente($id_incidente, $titulo, $descripcion, $fecha, $tipo, $fileNames);
+    }
 }
 ?>
