@@ -157,6 +157,50 @@
             <button type="submit" class="form__submit" id="form__activity--submit">Ingresar</button>
         </div>
     </div>
+
+    <div class="emergent__activity--form">
+        <h1 class="emergent__title">Editar Incidente</h1>
+        <div class="activity__container">
+            <div class="container__col">
+                <div class="col__title">
+                    <label>Título</label> <p class="title__text">(inserte un titulo adecuado para ser indentificado mas facilmente)</p>
+                </div>
+                <input type="text" name="titulo" maxlength="35" required>
+                
+                <label>Tipo de incidente</label>
+                <div id="lista">
+                    <div class="contenedor">
+                        <input type="radio" name="tipo" value="Hurto">Hurto</input>
+                    </div><div class="contenedor">
+                        <input type="radio" name="tipo" value="Acoso">Acoso</input>
+                    </div><div class="contenedor">
+                        <input type="radio" name="tipo" value="Violencia">Violencia</input>
+                    </div><div class="contenedor">
+                        <input type="radio" name="tipo" value="Conducta inadecuada">Conducta inadecuada</input>
+                    </div><div class="contenedor">
+                        <input type="radio" name="tipo" value="Tenencia de sustancias ilicitas">Tenencia de sustancias ilicitas</input>
+                    </div><div class="contenedor">
+                        <input type="radio" name="tipo" value="Tenencia de objeto dañino">Tenencia de objeto dañino</input>
+                    </div><div class="contenedor">
+                        <input type="radio" name="tipo" value="Vandalismo">Vandalismo</input>
+                    </div>
+                </div>
+                <div class="col__title">
+                    <label>Fecha</label><p class="title__text">(inserte la fecha en la que sucedió el incidente)</p>
+                </div>
+                <input type="date" name="fecha" id="col__date" required>
+                <label>Archivo relevante</label>
+                <input type="file" id="col__file" name="archivos_relevantes[]" multiple>
+            </div>
+            <div class="container__col">
+                <label>Descripción</label>
+                <textarea class="col__description" name="descripcion"></textarea>
+            </div>
+        </div>
+        <div class="activity__button">
+            <button type="submit" class="form__submit" id="form__activity--submit">Ingresar</button>
+        </div>
+    </div>
     <p id="release"></p>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="app.js"></script>
