@@ -342,7 +342,7 @@ i {
   max-height: 1px;
   margin-left: 5px;
 }
-.information__activity--title {
+.information__activity--title, .information__activity--title--2 {
   position: relative;
   z-index: 100;
   box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
@@ -409,7 +409,7 @@ i {
   flex-direction: row;
   justify-content: space-between;
   padding: 15px 10px;
-  align-items: center;
+  align-items: start;
   width: 100%;
   border-radius: 10px;
   transition: 0.1s;
@@ -796,9 +796,11 @@ input[type="number"] {
   transition: 0.1s;
 }
 .information__container--4 {
-  justify-content: start;
+  justify-content: center;
   align-items: start;
   flex-direction: column;
+  width: 30%;
+  margin: 0 10px;
 }
 
 .col_downloads {
@@ -841,4 +843,8 @@ input[type="number"] {
 
 .unlink-person{
   border: solid red;
+}
+
+.information__activity--title--2{
+  margin: 5px;
 }
