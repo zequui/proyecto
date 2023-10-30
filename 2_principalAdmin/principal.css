@@ -854,30 +854,44 @@ input[type="number"] {
   background-color: #032b07;
 }
 /*_________________________________________________________________________________________________________________________________*/
+.emergent__title--2{
+  color: #eaeaea;
+  text-align: left;
+  height: 11px;
+  margin-bottom: 20px;
+  margin-left: 30px;
+}
 form{
   display: flex;
   flex-direction: column;
   max-width: 565px;
+}
+.emergent__div{
+  display: flex;
+  flex-direction: row;
+  padding: 20px;
+  justify-content: space-around;
 }
 #mod__container{
   display: flex;
   background-color: #2E2E2E;
   place-items: center;
   justify-content: center;
-  margin: auto;
   text-align: center;
   box-sizing: border-box;
   border: 1px solid #2E2E2E;
-  height: 625px;
   width: 565px;
   border-radius: 10px 10px 10px 10px;
   padding: 26px;
   text-align: left;
+  margin: 0px 10px;
 }
 #form__title{
   color: #EAEAEA;
   text-align: center;
+  font: 8px;
   height: 11px;
+  margin-top: 0px;
 }
 #form__text{
   font-family: "Segoe UI", Tahoma, sans-serif;
@@ -924,6 +938,11 @@ input{
   width: 510px;
   color: #EAEAEA;
   font-size: 17px;
+}
+.mod__container{
+  display: flex;
+  flex-direction: column;
+  width: 50%;
 }
 /*_________________________________________________________________________________________________________________________________*/
 .contenedor__type{
