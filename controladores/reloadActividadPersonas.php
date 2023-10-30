@@ -13,7 +13,7 @@ if($_REQUEST['mod'] == 1){
         $archivosActividad = $actividad->getFileNames();
         $personasInvolucradas = getPersonasActividad($actividad->getId());
         echo '
-        <div class="information__activity--title" id="activity'.$actividad->getId().'">
+        <div class="information__activity--title" id="activity_'.$actividad->getId().'">
             <p class="title__name--2">'.$actividad->getNombre().'</p>
             <div class="title__container">
                 <button class="container__button--2"><i class="fa-solid fa-xmark fa-xl"></i></button>

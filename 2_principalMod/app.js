@@ -295,14 +295,11 @@ const addInvolucrado = (e, origen) => {
   let id_incidente;
   if (origen == "incident")
     id_incidente = e.currentTarget.parentElement.parentElement.parentElement
-      .getAttribute("id")
-      .replace("incident_", "");
+      .getAttribute("id").replace('incident_', '')
 
   if (origen == "activity")
-    id_incidente =
-      e.currentTarget.parentElement.parentElement.parentElement.parentElement
-        .getAttribute("id")
-        .replace("incident_", "");
+    id_incidente = e.currentTarget.parentElement.parentElement.parentElement.parentElement .getAttribute("id_incidente")
+  
   formularioInvolucrado.setAttribute("id_incidente", id_incidente);
   formularioInvolucrado.setAttribute("tipoRegistro", "agregar");
 };
