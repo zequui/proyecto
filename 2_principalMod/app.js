@@ -29,7 +29,7 @@ const personaActividadBtn = document.querySelector("#addInvolucradoActividad");
 
 const submitPersonaBtn = document.querySelector("#form__person--submit");
 const submitActividadBtn = document.querySelector("#form__activity--submit");
-const submitIncidenteBtn = document.querySelector('#form__incident--submit')
+const submitIncidenteBtn = document.querySelector("#form__incident--submit");
 
 const AllElmnts = document.querySelectorAll("*");
 
@@ -88,7 +88,7 @@ personaActividadBtn.addEventListener("click", (e) =>
 
 submitPersonaBtn.addEventListener("click", (e) => submitInvolucrado());
 submitActividadBtn.addEventListener("click", (e) => submitActividad());
-submitIncidenteBtn.addEventListener('click', e => submitIncidente())
+submitIncidenteBtn.addEventListener("click", (e) => submitIncidente());
 
 AllElmnts.forEach((elemnt) => {
   elemnt.addEventListener("click", () => resetInputs());
@@ -438,8 +438,7 @@ function submitActividad() {
     type.val() !== undefined
   ) {
     if (formularioActividad.getAttribute("tipoRegistro") == "modificar") {
-      const id_actividad = formularioActividad
-        .getAttribute("id_actividad")
+      const id_actividad = formularioActividad.getAttribute("id_actividad");
       id_incidente = formularioActividad
         .getAttribute("id_incidente")
         .replace("incident_", "");
@@ -450,8 +449,11 @@ function submitActividad() {
       formData.append("descripcion", descripcion.val());
       formData.append("fecha", fecha.val());
       formData.append("type", type.val());
-      for (var i = 0; i < archivos_relevantes.prop('files').length; i++) {
-        formData.append("archivos_relevantes[]", archivos_relevantes.prop('files')[i]);
+      for (var i = 0; i < archivos_relevantes.prop("files").length; i++) {
+        formData.append(
+          "archivos_relevantes[]",
+          archivos_relevantes.prop("files")[i]
+        );
       }
       for (let i = 0; i < ci_personas.length; i++) {
         formData.append("ci_personas[]", ci_personas[i].getAttribute("ci"));
@@ -472,8 +474,11 @@ function submitActividad() {
       formData.append("descripcion", descripcion.val());
       formData.append("fecha", fecha.val());
       formData.append("type", type.val());
-      for (var i = 0; i < archivos_relevantes.prop('files').length; i++) {
-        formData.append("archivos_relevantes[]", archivos_relevantes.prop('files')[i]);
+      for (var i = 0; i < archivos_relevantes.prop("files").length; i++) {
+        formData.append(
+          "archivos_relevantes[]",
+          archivos_relevantes.prop("files")[i]
+        );
       }
       for (let i = 0; i < ci_personas.length; i++) {
         formData.append("ci_personas[]", ci_personas[i].getAttribute("ci"));
@@ -685,7 +690,7 @@ function editIncident(e) {
 }
 
 function submitIncidente() {
-  const id_incidente = formularioIncidente.getAttribute('id_incidente')
+  const id_incidente = formularioIncidente.getAttribute("id_incidente");
   const titulo = $(formularioIncidente).find("input[name = titulo]");
   const descripcion = $(formularioIncidente).find(
     "textarea[name = descripcion]"
@@ -701,31 +706,38 @@ function submitIncidente() {
     descripcion.val() &&
     fecha.val() &&
     type.val() !== undefined
-  ){
+  ) {
     const formData = new FormData();
-  formData.append("id_incidente", id_incidente);
-  formData.append("titulo", titulo.val());
-  formData.append("descripcion", descripcion.val());
-  formData.append("fecha", fecha.val());
-  formData.append("type", type.val());
-  for (var i = 0; i < archivos_relevantes.prop('files').length; i++) {
-    formData.append("archivos_relevantes[]", archivos_relevantes.prop('files')[i]);
-  }
+    formData.append("id_incidente", id_incidente);
+    formData.append("titulo", titulo.val());
+    formData.append("descripcion", descripcion.val());
+    formData.append("fecha", fecha.val());
+    formData.append("type", type.val());
+    for (var i = 0; i < archivos_relevantes.prop("files").length; i++) {
+      formData.append(
+        "archivos_relevantes[]",
+        archivos_relevantes.prop("files")[i]
+      );
+    }
 
-  $.ajax({
-    url: "../controladores/modIncidente.php",
-    type: "POST",
-    data: formData,
-    contentType: false,
-    processData: false,
-  });
+    $.ajax({
+      url: "../controladores/modIncidente.php",
+      type: "POST",
+      data: formData,
+      contentType: false,
+      processData: false,
+    });
+    formularioIncidente.classList.add("emergent__activity--hidden");
+    formIncidentBG.classList.add("container--form--hidden");
 
-  clearElements()
-
-  formularioIncidente.classList.add("emergent__activity--hidden");
-  formIncidentBG.classList.add("container--form--hidden");
-
-  loadIncourseIncidents()
+    reloadIncident(
+      id_incidente,
+      titulo.val(),
+      descripcion.val(),
+      fecha.val(),
+      type.val()
+    );
+    clearElements();
   } else {
     setTimeout(() => {
       if (!titulo.val()) titulo.addClass("uncomplete--input");
@@ -739,6 +751,14 @@ function submitIncidente() {
           .addClass("uncomplete--input");
     }, 50);
   }
+}
 
-  
+function reloadIncident(id_incidente, titulo, descripcion, fecha, tipo) {
+  const incidente = document.querySelector("#incident_" + id_incidente);
+
+  incidente.children[0].children[0].textContent = titulo;
+  incidente.children[1].children[0].children[0].children[1].textContent =
+    descripcion;
+  incidente.children[1].children[0].children[1].children[1].textContent = fecha;
+  incidente.children[1].children[0].children[1].children[3].textContent = tipo;
 }

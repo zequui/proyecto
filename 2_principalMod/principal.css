@@ -374,7 +374,7 @@ i {
   margin-bottom: 20px;
   background-color: #2e2e2e;
   border: solid #2e2e2e;
-  transition: .1s;
+  transition: .15s;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -820,9 +820,9 @@ input[type="number"] {
   justify-content: start;
   align-items: center;
   flex-direction: column;
-  padding: 10px;
+  padding: 0 10px 10px 10px;
   margin: 0 10px;
-  min-height: 230px;
+  min-height: 250px;
 }
 
 .col_downloads {
