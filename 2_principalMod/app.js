@@ -17,6 +17,10 @@ const contenedorIncidentesEnCurso = document.querySelector(
 const formularioActividad = document.querySelector("#emergent__activity--form");
 const formularioInvolucrado = document.querySelector("#emergent__person--form");
 const formularioIncidente = document.querySelector("#emergent__incident--form");
+const formularioChoosePersona = document.querySelector(
+  "#emergent__choose-person--form"
+);
+
 const formActivityBG = document.querySelector(
   "#body__container--activity-form"
 );
@@ -24,12 +28,19 @@ const formPersonBG = document.querySelector("#body__container--person-form");
 const formIncidentBG = document.querySelector(
   "#body__container--incident-form"
 );
+const formChoosePersonBG = document.querySelector(
+  "#body__container--choose-person"
+);
+
+const ciSearch = document.querySelector("#CI_search");
 
 const personaActividadBtn = document.querySelector("#addInvolucradoActividad");
 
+const addNewPersonaBtn = document.querySelector('#addInvolucrado')
 const submitPersonaBtn = document.querySelector("#form__person--submit");
 const submitActividadBtn = document.querySelector("#form__activity--submit");
 const submitIncidenteBtn = document.querySelector("#form__incident--submit");
+const submitChoosePersonBtn = document.querySelector('#form__choose-person--submit')
 
 const AllElmnts = document.querySelectorAll("*");
 
@@ -65,6 +76,8 @@ navbarBtns.forEach((opt) => {
   });
 });
 
+addNewPersonaBtn.addEventListener('click', e => addInvolucrado(e, 'incident'))
+
 formActivityBG.addEventListener("click", () => {
   formularioActividad.classList.add("emergent__activity--hidden");
   formularioInvolucrado.classList.add("emergent__activity--hidden");
@@ -81,14 +94,20 @@ formIncidentBG.addEventListener("click", () => {
   formIncidentBG.classList.add("container--form--hidden");
   clearElements();
 });
+formChoosePersonBG.addEventListener("click", () => {
+  formularioChoosePersona.classList.add("emergent__activity--hidden");
+  formChoosePersonBG.classList.add("container--form--hidden");
+  clearElements();
+});
 
 personaActividadBtn.addEventListener("click", (e) =>
   addInvolucrado(e, "activity")
 );
 
-submitPersonaBtn.addEventListener("click", (e) => submitInvolucrado());
-submitActividadBtn.addEventListener("click", (e) => submitActividad());
-submitIncidenteBtn.addEventListener("click", (e) => submitIncidente());
+submitPersonaBtn.addEventListener("click", () => submitInvolucrado());
+submitActividadBtn.addEventListener("click", () => submitActividad());
+submitIncidenteBtn.addEventListener("click", () => submitIncidente());
+submitChoosePersonBtn.addEventListener('click', () => submitChoosePersona())
 
 AllElmnts.forEach((elemnt) => {
   elemnt.addEventListener("click", () => resetInputs());
@@ -138,7 +157,7 @@ function loadIncourseIncidents() {
     contenedor.find(".addActivity").on("click", (e) => addActivity(e));
     contenedor
       .find(".addInvolucradoIncidente")
-      .on("click", (e) => addInvolucrado(e, "incident"));
+      .on("click", (e) => choosePersona(e));
     contenedor.find(".download_action").on("mouseover", (e) => previewImg(e));
     contenedor.find(".download_action").on("mouseout", () => previewImgOut());
     contenedor.find(".download_action").on("mousemove", (e) => followMouse(e));
@@ -148,6 +167,9 @@ function loadIncourseIncidents() {
     contenedor
       .find(".unlink_personActivity")
       .on("click", (e) => unLinkPersonaActividad(e));
+    contenedor.find(".unlink_personIncident").on("click", (e) => {
+      unlinkPersonaIncidente(e);
+    });
   }, 500);
 }
 
@@ -294,12 +316,14 @@ const addInvolucrado = (e, origen) => {
 
   let id_incidente;
   if (origen == "incident")
-    id_incidente = e.currentTarget.parentElement.parentElement.parentElement
-      .getAttribute("id").replace('incident_', '')
+    id_incidente = formularioChoosePersona.getAttribute('id_incidente')
 
   if (origen == "activity")
-    id_incidente = e.currentTarget.parentElement.parentElement.parentElement.parentElement .getAttribute("id_incidente")
-  
+    id_incidente =
+      e.currentTarget.parentElement.parentElement.parentElement.parentElement.getAttribute(
+        "id_incidente"
+      );
+
   formularioInvolucrado.setAttribute("id_incidente", id_incidente);
   formularioInvolucrado.setAttribute("tipoRegistro", "agregar");
 };
@@ -349,7 +373,7 @@ function submitInvolucrado() {
   );
 
   const Denunciante = document.querySelector("#incident_" + id_incidente)
-    .children[1].children[0].children[2];
+  .children[1].children[0].children[2];
 
   if (
     name.val() &&
@@ -380,14 +404,14 @@ function submitInvolucrado() {
       formularioInvolucrado.getAttribute("tipoRegistro") == "agregar"
     ) {
       const formData = new FormData();
-      formData.append("id_incidente", id_incidente);
+      formData.append('mod', 0)
       formData.append("name", name.val());
       formData.append("surname", surname.val());
       formData.append("ci", ci.val());
       formData.append("phoneNumber", phoneNumber.val());
 
       $.ajax({
-        url: "../controladores/addPersona.php",
+        url: "../controladores/addPersonasIncidente.php",
         type: "POST",
         data: formData,
         contentType: false,
@@ -401,6 +425,8 @@ function submitInvolucrado() {
     formPersonBG.classList.add("container--form--hidden");
 
     reloadPersonas(id_incidente);
+    reloadListaPersonas()
+
   } else {
     setTimeout(() => {
       if (!name.val()) name.addClass("uncomplete--input");
@@ -585,48 +611,18 @@ function reloadPersonas(id_incidente) {
         .find(".dropdown_btn")
         .on("click", (e) => showExtraInformation(e));
       contenedor.find(".edit_person").on("click", (e) => modInvolucrado(e));
+      contenedor
+        .find(".unlink_personIncident")
+        .on("click", (e) => unlinkPersonaIncidente(e));
       reloadActivities(id_incidente);
     }, 500);
   }, 50);
 }
 
 function clearElements() {
-  let titulo = $(formularioActividad).find("input[name = titulo]");
-  let descripcion = $(formularioActividad).find("textarea[name = descripcion]");
-  let fecha = $(formularioActividad).find("input[name = fecha]");
-  let type = $(formularioActividad).find("input[name = tipo]:checked");
-  let archivos_relevantes = $(formularioActividad).find(
-    "input[name = archivos_relevantes]"
-  );
-  titulo.val("");
-  descripcion.val("");
-  fecha.val("");
-  type.prop("checked", false);
-  archivos_relevantes.val("");
-
-  const name = $(formularioInvolucrado).find("input[name = name]");
-  const surname = $(formularioInvolucrado).find("input[name = surname]");
-  const ci = $(formularioInvolucrado).find("input[name = ci]");
-  const phoneNumber = $(formularioInvolucrado).find(
-    "input[name = phoneNumber]"
-  );
-  name.val("");
-  surname.val("");
-  ci.val("");
-  phoneNumber.val("");
-
-  titulo = $(formularioIncidente).find("input[name = titulo]");
-  descripcion = $(formularioIncidente).find("textarea[name = descripcion]");
-  fecha = $(formularioIncidente).find("input[name = fecha]");
-  type = $(formularioIncidente).find("input[name = tipo]:checked");
-  archivos_relevantes = $(formularioIncidente).find(
-    "input[name = archivos_relevantes]"
-  );
-  titulo.val("");
-  descripcion.val("");
-  fecha.val("");
-  type.prop("checked", false);
-  archivos_relevantes.val("");
+  document.querySelectorAll("input").forEach((input) => {
+    input.value = "";
+  });
 }
 
 function unLinkPersonaActividad(e) {
@@ -635,11 +631,7 @@ function unLinkPersonaActividad(e) {
     personHeader.nextElementSibling.children[0].children[0].children[3]
       .textContent;
 
-  const activity_id =
-    personHeader.parentElement.parentElement.previousElementSibling
-      .getAttribute("id")
-      .replace("activity_", "");
-
+  const activity_id = personHeader.classList[1].replace("from_activity-", "");
   if (personHeader.classList.contains("unlink-person")) {
     personHeader.nextElementSibling.remove();
     personHeader.remove();
@@ -656,6 +648,35 @@ function unLinkPersonaActividad(e) {
       processData: false,
     });
   }
+  personHeader.classList.add("unlink-person");
+
+  setTimeout(() => personHeader.classList.remove("unlink-person"), 5000);
+}
+
+function unlinkPersonaIncidente(e) {
+  const personHeader = e.currentTarget.parentElement.parentElement;
+  const personCi =
+    personHeader.nextElementSibling.children[0].children[0].children[3]
+      .textContent;
+
+  const id_incidente = personHeader.classList[1].replace("from_incident-", "");
+
+  if (personHeader.classList.contains("unlink-person")) {
+    personHeader.parentElement.remove();
+
+    const formData = new FormData();
+    formData.append("ci", personCi);
+    formData.append("id_incidente", id_incidente);
+
+    $.ajax({
+      url: "../controladores/unlinkPersonaIncidente.php",
+      type: "POST",
+      data: formData,
+      contentType: false,
+      processData: false,
+    });
+  }
+
   personHeader.classList.add("unlink-person");
 
   setTimeout(() => personHeader.classList.remove("unlink-person"), 5000);
@@ -758,4 +779,71 @@ function reloadIncident(id_incidente, titulo, descripcion, fecha, tipo) {
     descripcion;
   incidente.children[1].children[0].children[1].children[1].textContent = fecha;
   incidente.children[1].children[0].children[1].children[3].textContent = tipo;
+}
+
+ciSearch.addEventListener("keydown", (e) => {
+  const keyCode = e.keyCode;
+
+  if ((keyCode >= 65 && keyCode <= 90) || (keyCode >= 97 && keyCode <= 122)) {
+    e.preventDefault();
+  }
+});
+ciSearch.addEventListener("keyup", () => {
+  const likeCi = ciSearch.value;
+  const container = $("#person--form__result--container").load(
+    "../controladores/findPerson.php",
+    { ci: likeCi }
+  );
+  setTimeout(()=>{
+    container.find(".checkbox").on("click", (e) => selectPerson(e))
+  },50)
+});
+function choosePersona(e) {
+  id_incidente = e.currentTarget.parentElement.parentElement.parentElement
+    .getAttribute("id")
+    .replace("incident_", "");
+
+  formularioChoosePersona.setAttribute('id_incidente', id_incidente)
+  reloadListaPersonas()
+  formularioChoosePersona.classList.remove("emergent__activity--hidden");
+  formChoosePersonBG.classList.remove("container--form--hidden");
+
+  
+}
+
+function submitChoosePersona(){
+  const ci_personas = $("#person--form__result--container").find(
+    ".person--selected > .title__name--2"
+  );
+
+  if(ci_personas){
+    const formData = new FormData()
+    formData.append('id_incidente', formularioChoosePersona.getAttribute('id_incidente'))
+    formData.append('mod', 1)
+    for (let i = 0; i < ci_personas.length; i++) {
+      formData.append("ci_personas[]", ci_personas[i].getAttribute("ci"));
+    }
+
+    $.ajax({
+      url: "../controladores/addPersonasIncidente.php",
+      type: "POST",
+      data: formData,
+      contentType: false,
+      processData: false,
+    });
+
+    formularioChoosePersona.classList.add("emergent__activity--hidden");
+    formChoosePersonBG.classList.add("container--form--hidden");
+    reloadPersonas(id_incidente)
+    resetInputs()
+  }
+}
+
+const reloadListaPersonas = () => {
+  const container = $("#person--form__result--container").load(
+    "../controladores/getAllPersonas.php"
+  );
+  setTimeout(()=>{
+    container.find(".checkbox").on("click", (e) => selectPerson(e))
+  },50)
 }

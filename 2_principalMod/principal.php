@@ -54,7 +54,7 @@
     </div>
     <div id="body__container--incident-form" class="container--form--hidden">
     </div>
-
+    <div id="body__container--choose-person" class="container--form--hidden"></div>
 
     <div id="emergent__activity--form" class="emergent__activity--hidden">
         <h1 class="emergent__title">Registrar Actividad</h1>
@@ -109,6 +109,18 @@
         </div>    
     </div>
 
+    <div id="emergent__choose-person--form" class="emergent__activity--hidden">
+        <div class="title__container--2">
+        <h1 class="emergent__title">Ingresa CI</h1> <button class="container__button--2" id="addInvolucrado"><i class="fa-solid fa-plus fa-xl"></i></button>
+        </div>
+        <input type="text" name="ci" id="CI_search">
+        <div id="person--form__result--container">
+            
+        </div>
+        <div class="activity__button">
+            <button class="form__submit" id="form__choose-person--submit">Ingresar</button>
+        </div>
+    </div>
     <div id="emergent__person--form" class="emergent__activity--hidden">
         <h1 class="emergent__title">Registrar Involucrado</h1>
             <div class="container__col--2">

@@ -19,11 +19,14 @@ class repo_PersonaIncidente{
 
     public function setPersonaIncidente($ci, $rol, $idIncidente){
         if($idIncidente){
-            $stmt=$this->PDO->query("INSERT INTO involucra (ci, id, rol) VALUES ('".$ci."', '".$idIncidente."', '".$rol."');");
+            $stmt=$this->PDO->query("INSERT IGNORE INTO involucra (ci, id, rol) VALUES ('".$ci."', '".$idIncidente."', '".$rol."');");
         } else {
             $id = $this->PDO->query('SELECT id FROM incidentes ORDER BY id DESC LIMIT 1')->fetch()[0];
             $stmt=$this->PDO->query("INSERT INTO involucra (ci, id, rol) VALUES ('".$ci."', '".$id."', '".$rol."');");
         }
+    }
+    public function unlinkPersonaIncidente($ci, $idIncidente){
+        $stmt=$this->PDO->query("DELETE FROM involucra WHERE ci = ".$ci." AND id = ".$idIncidente);
     }
 }
 
@@ -45,7 +48,7 @@ class repo_PersonaActividad{
 
     public function setPersonaActividad($ci, $rol, $idActividad){
         if($idActividad){
-            $stmt=$this->PDO->query("INSERT INTO tiene (ci, id, rol) VALUES ('".$ci."', '".$idActividad."', '".$rol."');");
+            $stmt=$this->PDO->query("INSERT IGNORE INTO tiene (ci, id, rol) VALUES ('".$ci."', '".$idActividad."', '".$rol."');");
         } else {
             $id = $this->PDO->query('SELECT id FROM actividades ORDER BY id DESC LIMIT 1')->fetch()[0];
             $stmt=$this->PDO->query("INSERT INTO tiene (ci, id, rol) VALUES ('".$ci."', '".$id."', '".$rol."');");

@@ -25,6 +25,16 @@ class repositorioPersonas {
     public function updatePersona($ci, $name, $surname, $phone) {
         $stmt=$this->PDO->query('UPDATE personas SET nombre="'.$name.'", apellido="'.$surname.'", telefono="'.$phone.'" WHERE ci='.$ci);
     }
+
+    public function searchPersonas($likeCI){
+        $coincidencias = [];
+        $stmt=$this->PDO->query('SELECT * FROM personas WHERE ci LIKE "'.$likeCI.'%"');
+
+        while($row = $stmt->fetch()){
+            array_push($coincidencias, new persona($row["ci"],$row["nombre"],$row["apellido"], $row["telefono"]));
+        };
+        return $coincidencias;
+    }
 }
 
 

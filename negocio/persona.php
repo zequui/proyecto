@@ -54,6 +54,11 @@
             $repPersonas = new repositorioPersonas();
             $repPersonas->updatePersona($ci, $name, $surname, $phone);
         }
+
+        public static function findPersona($ci){
+            $repPersonas = new repositorioPersonas();
+            return $repPersonas->searchPersonas($ci);
+        }
     }
 
 ?>

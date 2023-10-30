@@ -179,7 +179,7 @@ if($filtro == 0){
 
                                         foreach($personasInvolucradas as $persona){
                                             echo '
-                                            <div class="information__activity--title--2 from_incident-'.$incident->getId().'">
+                                            <div class="information__activity--title--2 from_activity-'.$actividad->getId().'">
                                                 <p class="title__name--2">'.$persona->getNombre().'</p>
                                                 <div class="title__container--buttons">
                                                     <button class="container__button--2 unlink_personActivity"><i class="fa-solid fa-xmark fa-xl"></i></button> 
@@ -227,7 +227,7 @@ if($filtro == 0){
                                     <div class="information__activity--title from_incident-'.$incident->getId().'">
                                         <p class="title__name--2">'.$involucrado->getNombre().'</p>
                                         <div class="title__container--buttons">
-                                            <button class="container__button--2 "><i class="fa-solid fa-xmark fa-xl"></i></button> 
+                                            <button class="container__button--2 unlink_personIncident"><i class="fa-solid fa-xmark fa-xl"></i></button> 
                                             <button class="container__button--2 edit_person from_incidente-'.$incident->getID().'"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
                                             <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
                                         </div>

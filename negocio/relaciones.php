@@ -59,8 +59,14 @@ class Persona_Incidente{
             if (!$perIncidentExist) {
                 $rep_PersonaIncidente->setPersonaIncidente($ci, $rol, $idIncidente);
             }
+        } else {
+            $rep_PersonaIncidente->setPersonaIncidente($ci, $rol, $idIncidente);
         }
      
+    }
+    public static function unLinkPersonaIncidente($ci, $idincidente){
+        $rep_PersonaIncidente = new repo_PersonaIncidente();
+        $rep_PersonaIncidente->unlinkPersonaIncidente($ci, $idincidente);
     }
 }
 
@@ -106,16 +112,22 @@ class Persona_Actividad{
     }
     public static function setPersonaActividad($ci, $rol, $idActividad = false){
         $rep_PersonaActividad = new repo_PersonaActividad();
-        global $perActExist;
-        foreach ($rep_PersonaActividad->getPersonaActividad($idActividad) as $personaActividad) {
-            if($personaActividad->getCi() == $ci && $personaActividad->getId() == $idActividad){
-                $perActExist = true;
-            } 
-        }
 
-        if (!$perActExist) {
+        if($idActividad){
+            global $perActExist;
+            foreach ($rep_PersonaActividad->getPersonaActividad($idActividad) as $personaActividad) {
+                if($personaActividad->getCi() == $ci && $personaActividad->getId() == $idActividad){
+                    $perActExist = true;
+                } 
+            }
+            if (!$perActExist) {
+                $rep_PersonaActividad->setPersonaActividad($ci, $rol, $idActividad);
+            }
+        } else {
             $rep_PersonaActividad->setPersonaActividad($ci, $rol, $idActividad);
-        }
+        }   
+
+
 
     }
 
