@@ -534,14 +534,17 @@ i {
   z-index: 200;
 }
 #person--form__result--container{
-  min-height: 150px;
+  min-height: 70px;
   border: 1px solid #001f10;
   margin: 5px;
   border-radius: 5px;
-  padding: 5px 10px 5px 5px;
-  max-height: 500px;
+  padding: 5px 20px;
   overflow-y: scroll;
-  min-width: 410px;
+  overflow-x: hidden;
+  max-height: 400px;
+}
+#CI_search{
+  margin: 10px 0;
 }
 .activity__container {
   display: flex;
@@ -884,7 +887,7 @@ input[type="number"] {
   padding: 0;
 }
 
-.unlink-person {
+.unlink-person, .erase_activity {
   border: solid red;
 }
 
@@ -924,4 +927,21 @@ input[type="number"] {
 .title__container--2{
   justify-content: space-between;
   align-items: baseline;
+}
+
+.refuse-del{
+  position: relative;
+  border: solid yellowgreen;
+  z-index: 100;
+  animation: refuse-animation .5s;
+  transition: .1s;
+}
+
+@keyframes refuse-animation {
+  20%{
+    transform: translateX(-10px);
+  }
+  50%{
+    transform: translateX(10px);
+  }
 }

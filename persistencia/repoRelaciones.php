@@ -16,6 +16,14 @@ class repo_PersonaIncidente{
         }
         return $involucramientos;
     }
+    public function getDenunciantes(){
+        $denunciantes = [];
+        $stmt=$this->PDO->query('SELECT * FROM involucra WHERE rol = 0');
+        while($row = $stmt->fetch()){
+            array_push($denunciantes, new Persona_Incidente($row["ci"],$row["id"],$row["rol"]));
+        }
+        return $denunciantes;
+    }
 
     public function setPersonaIncidente($ci, $rol, $idIncidente){
         if($idIncidente){

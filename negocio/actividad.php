@@ -60,5 +60,10 @@ class Actividad{
         $repoActividades->modActividad($ID_actividad, $detalle, $fecha, $tipo, $nombre, $fileNames);
     }
 
+    public static function eraseActividad($ID_actividad){
+        $repoActividades = new repositorioActividad();
+        $repoActividades->eraseActividad($ID_actividad);
+    }
+
 }
 ?>

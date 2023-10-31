@@ -36,13 +36,17 @@ const ciSearch = document.querySelector("#CI_search");
 
 const personaActividadBtn = document.querySelector("#addInvolucradoActividad");
 
-const addNewPersonaBtn = document.querySelector('#addInvolucrado')
+const addNewPersonaBtn = document.querySelector("#addInvolucrado");
 const submitPersonaBtn = document.querySelector("#form__person--submit");
 const submitActividadBtn = document.querySelector("#form__activity--submit");
 const submitIncidenteBtn = document.querySelector("#form__incident--submit");
-const submitChoosePersonBtn = document.querySelector('#form__choose-person--submit')
+const submitChoosePersonBtn = document.querySelector(
+  "#form__choose-person--submit"
+);
 
 const AllElmnts = document.querySelectorAll("*");
+
+const inputs = document.querySelectorAll("input");
 
 navbarBtns.forEach((opt) => {
   opt.addEventListener("click", (e) => {
@@ -76,7 +80,9 @@ navbarBtns.forEach((opt) => {
   });
 });
 
-addNewPersonaBtn.addEventListener('click', e => addInvolucrado(e, 'incident'))
+addNewPersonaBtn.addEventListener("click", (e) =>
+  addInvolucrado(e, "incident")
+);
 
 formActivityBG.addEventListener("click", () => {
   formularioActividad.classList.add("emergent__activity--hidden");
@@ -107,7 +113,7 @@ personaActividadBtn.addEventListener("click", (e) =>
 submitPersonaBtn.addEventListener("click", () => submitInvolucrado());
 submitActividadBtn.addEventListener("click", () => submitActividad());
 submitIncidenteBtn.addEventListener("click", () => submitIncidente());
-submitChoosePersonBtn.addEventListener('click', () => submitChoosePersona())
+submitChoosePersonBtn.addEventListener("click", () => submitChoosePersona());
 
 AllElmnts.forEach((elemnt) => {
   elemnt.addEventListener("click", () => resetInputs());
@@ -170,6 +176,9 @@ function loadIncourseIncidents() {
     contenedor.find(".unlink_personIncident").on("click", (e) => {
       unlinkPersonaIncidente(e);
     });
+    contenedor
+      .find(".erase_activity--btn")
+      .on("click", (e) => eraseActivity(e));
   }, 500);
 }
 
@@ -259,7 +268,8 @@ const addActivity = (e) => {
   formularioActividad.setAttribute("tipoRegistro", "agregar");
 
   const ActividadForm = $("#PesonasActividades").load(
-    "../controladores/getAllPersonas.php"
+    "../controladores/getRelatedPersonas.php",
+    { id_incidente: id_incidente }
   );
   setTimeout(() => {
     ActividadForm.find(".checkbox").on("click", (e) => selectPerson(e));
@@ -298,7 +308,8 @@ const modActivity = (e) => {
     .prop("checked", true);
 
   const ActividadForm = $("#PesonasActividades").load(
-    "../controladores/getAllPersonas.php"
+    "../controladores/getRelatedPersonas.php",
+    { id_incidente: id_incidente }
   );
   setTimeout(() => {
     ActividadForm.find(".checkbox").on("click", (e) => selectPerson(e));
@@ -316,7 +327,7 @@ const addInvolucrado = (e, origen) => {
 
   let id_incidente;
   if (origen == "incident")
-    id_incidente = formularioChoosePersona.getAttribute('id_incidente')
+    id_incidente = formularioChoosePersona.getAttribute("id_incidente");
 
   if (origen == "activity")
     id_incidente =
@@ -373,7 +384,7 @@ function submitInvolucrado() {
   );
 
   const Denunciante = document.querySelector("#incident_" + id_incidente)
-  .children[1].children[0].children[2];
+    .children[1].children[0].children[2];
 
   if (
     name.val() &&
@@ -404,7 +415,7 @@ function submitInvolucrado() {
       formularioInvolucrado.getAttribute("tipoRegistro") == "agregar"
     ) {
       const formData = new FormData();
-      formData.append('mod', 0)
+      formData.append("mod", 0);
       formData.append("name", name.val());
       formData.append("surname", surname.val());
       formData.append("ci", ci.val());
@@ -425,8 +436,7 @@ function submitInvolucrado() {
     formPersonBG.classList.add("container--form--hidden");
 
     reloadPersonas(id_incidente);
-    reloadListaPersonas()
-
+    reloadListaPersonas();
   } else {
     setTimeout(() => {
       if (!name.val()) name.addClass("uncomplete--input");
@@ -593,6 +603,9 @@ function reloadActivities(id_incidente) {
         .find(".unlink_personActivity")
         .on("click", (e) => unLinkPersonaActividad(e));
       contenedor.find(".edit_person").on("click", (e) => modInvolucrado(e));
+      contenedor
+        .find(".erase_activity--btn")
+        .on("click", (e) => eraseActivity(e));
     }, 500);
   }, 50);
 }
@@ -621,8 +634,11 @@ function reloadPersonas(id_incidente) {
 
 function clearElements() {
   document.querySelectorAll("input").forEach((input) => {
-    input.value = "";
+    input.type == "radio" ? (input.checked = false) : (input.value = "");
   });
+  document
+    .querySelectorAll("textarea")
+    .forEach((txtarea) => (txtarea.value = ""));
 }
 
 function unLinkPersonaActividad(e) {
@@ -661,25 +677,38 @@ function unlinkPersonaIncidente(e) {
 
   const id_incidente = personHeader.classList[1].replace("from_incident-", "");
 
+  const Denunciante = document.querySelector("#incident_" + id_incidente)
+    .children[1].children[0].children[2];
+
   if (personHeader.classList.contains("unlink-person")) {
-    personHeader.parentElement.remove();
+    if (Denunciante.children[3].textContent == personCi) {
+      personHeader.classList.add("refuse-del");
+      setTimeout(() => {
+        personHeader.classList.remove("refuse-del");
+        personHeader.classList.remove("unlink-person");
+      }, 1000);
+    } else {
+      personHeader.parentElement.remove();
 
-    const formData = new FormData();
-    formData.append("ci", personCi);
-    formData.append("id_incidente", id_incidente);
+      const formData = new FormData();
+      formData.append("ci", personCi);
+      formData.append("id_incidente", id_incidente);
 
-    $.ajax({
-      url: "../controladores/unlinkPersonaIncidente.php",
-      type: "POST",
-      data: formData,
-      contentType: false,
-      processData: false,
-    });
+      $.ajax({
+        url: "../controladores/unlinkPersonaIncidente.php",
+        type: "POST",
+        data: formData,
+        contentType: false,
+        processData: false,
+      });
+    }
   }
 
   personHeader.classList.add("unlink-person");
 
-  setTimeout(() => personHeader.classList.remove("unlink-person"), 5000);
+  setTimeout(() => {
+    personHeader.classList.remove("unlink-person");
+  }, 5000);
 }
 
 function editIncident(e) {
@@ -779,6 +808,14 @@ function reloadIncident(id_incidente, titulo, descripcion, fecha, tipo) {
     descripcion;
   incidente.children[1].children[0].children[1].children[1].textContent = fecha;
   incidente.children[1].children[0].children[1].children[3].textContent = tipo;
+
+  setTimeout(() => {
+    $(incidente)
+    .find(".col_downloads")
+    .load("../controladores/reloadDownloads.php", {
+      id_incidente: id_incidente,
+    });
+  }, 50);
 }
 
 ciSearch.addEventListener("keydown", (e) => {
@@ -794,32 +831,33 @@ ciSearch.addEventListener("keyup", () => {
     "../controladores/findPerson.php",
     { ci: likeCi }
   );
-  setTimeout(()=>{
-    container.find(".checkbox").on("click", (e) => selectPerson(e))
-  },50)
+  setTimeout(() => {
+    container.find(".checkbox").on("click", (e) => selectPerson(e));
+  }, 50);
 });
 function choosePersona(e) {
   id_incidente = e.currentTarget.parentElement.parentElement.parentElement
     .getAttribute("id")
     .replace("incident_", "");
 
-  formularioChoosePersona.setAttribute('id_incidente', id_incidente)
-  reloadListaPersonas()
+  formularioChoosePersona.setAttribute("id_incidente", id_incidente);
+  reloadListaPersonas();
   formularioChoosePersona.classList.remove("emergent__activity--hidden");
   formChoosePersonBG.classList.remove("container--form--hidden");
-
-  
 }
 
-function submitChoosePersona(){
+function submitChoosePersona() {
   const ci_personas = $("#person--form__result--container").find(
     ".person--selected > .title__name--2"
   );
 
-  if(ci_personas){
-    const formData = new FormData()
-    formData.append('id_incidente', formularioChoosePersona.getAttribute('id_incidente'))
-    formData.append('mod', 1)
+  if (ci_personas) {
+    const formData = new FormData();
+    formData.append(
+      "id_incidente",
+      formularioChoosePersona.getAttribute("id_incidente")
+    );
+    formData.append("mod", 1);
     for (let i = 0; i < ci_personas.length; i++) {
       formData.append("ci_personas[]", ci_personas[i].getAttribute("ci"));
     }
@@ -834,8 +872,8 @@ function submitChoosePersona(){
 
     formularioChoosePersona.classList.add("emergent__activity--hidden");
     formChoosePersonBG.classList.add("container--form--hidden");
-    reloadPersonas(id_incidente)
-    resetInputs()
+    reloadPersonas(id_incidente);
+    resetInputs();
   }
 }
 
@@ -843,7 +881,44 @@ const reloadListaPersonas = () => {
   const container = $("#person--form__result--container").load(
     "../controladores/getAllPersonas.php"
   );
-  setTimeout(()=>{
-    container.find(".checkbox").on("click", (e) => selectPerson(e))
-  },50)
+  setTimeout(() => {
+    container.find(".checkbox").on("click", (e) => selectPerson(e));
+  }, 50);
+};
+
+inputs.forEach((input) => {
+  input.addEventListener("keydown", (e) => {
+    const keyCode = e.key;
+    if (keyCode == "<" || keyCode == ">") e.preventDefault();
+  });
+});
+
+function eraseActivity(e) {
+  const activityElement = e.currentTarget.parentElement.parentElement;
+  const id_actividad = e.currentTarget.parentElement.parentElement
+    .getAttribute("id")
+    .replace("activity_", "");
+  const id_incidente = e.currentTarget.parentElement.parentElement.parentElement
+    .getAttribute("id")
+    .replace("activity--container_", "");
+
+  if (activityElement.classList.contains("erase_activity")) {
+    const formData = new FormData();
+    formData.append("id_actividad", id_actividad);
+    formData.append("id_incidente", id_incidente);
+
+    $.ajax({
+      url: "../controladores/eraseActivity.php",
+      type: "POST",
+      data: formData,
+      contentType: false,
+      processData: false,
+    });
+  }
+
+  reloadActivities(id_incidente)
+  activityElement.classList.add("erase_activity");
+  setTimeout(() => {
+    activityElement.classList.remove("erase_activity");
+  }, 5000);
 }

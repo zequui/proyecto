@@ -4,7 +4,7 @@ include_once "../negocio/persona.php";
 include_once "../negocio/relaciones.php";
 
 session_start();
-if(checkIfEmpty()){
+if(checkIfEmpty() && checkCI($_POST['ci'])){
    
     $namePersona = $_POST['name'];
     $surnamePersona = $_POST['surname'];
@@ -55,4 +55,24 @@ function checkIfEmpty(){
     }
     return true;
 }
+
+function checkCI($ci) {
+    if ($ci == 0 || count($ci) !== 8) return false;
+    $inputValues = explode('', $ci);
+    $nums = array_map('intval', $inputValues);
+    $lastNum = array_pop($nums);
+    $result =
+      2 * $nums[0] +
+      9 * $nums[1] +
+      8 * $nums[2] +
+      7 * $nums[3] +
+      6 * $nums[4] +
+      3 * $nums[5] +
+      4 * $nums[6];
+    $result %= 10;
+    $result = (10 - $result) % 10;
+  
+    if($result == $lastNum) return true ;
+    return false;
+  };
 ?>

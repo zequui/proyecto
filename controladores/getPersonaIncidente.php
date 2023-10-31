@@ -1,5 +1,5 @@
 <?php
-include '../negocio/relaciones.php';
+include_once '../negocio/relaciones.php';
 
 function getPersonaIncidente_Denunciante($id){
     $involucrados = Persona_Incidente::getRepo($id);

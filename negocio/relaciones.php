@@ -64,6 +64,11 @@ class Persona_Incidente{
         }
      
     }
+
+    public static function getDenunciantes(){
+        $rep_PersonaIncidente = new repo_PersonaIncidente();
+        return $rep_PersonaIncidente->getDenunciantes();
+    }
     public static function unLinkPersonaIncidente($ci, $idincidente){
         $rep_PersonaIncidente = new repo_PersonaIncidente();
         $rep_PersonaIncidente->unlinkPersonaIncidente($ci, $idincidente);
@@ -126,9 +131,6 @@ class Persona_Actividad{
         } else {
             $rep_PersonaActividad->setPersonaActividad($ci, $rol, $idActividad);
         }   
-
-
-
     }
 
     public static function unLinkPersonaActividad($ci, $idActividad){

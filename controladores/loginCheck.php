@@ -21,7 +21,7 @@ if(isset($_POST["email"]) && $_POST["contraseña"]) {
     }
 
     if($_SESSION["usuario logeado"]->getIsAdmin()){
-        
+        header('location: ../2_principalAdmin/principal.php');
     } else {
         header("location: ../2_principalMod/principal.php");
     }

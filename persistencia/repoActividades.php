@@ -36,5 +36,10 @@ class repositorioActividad {
             }
         }
     }
+    public function eraseActividad($idActividad){
+        $stmt = $this->PDO->query('DELETE FROM tiene WHERE id = '.$idActividad);
+        $stmt = $this->PDO->query('DELETE FROM archivosActividad WHERE id_actividad = '.$idActividad);
+        $stmt = $this->PDO->query('DELETE FROM actividades WHERE id = '.$idActividad);
+    }
 }
 ?>

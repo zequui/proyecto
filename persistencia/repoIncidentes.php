@@ -40,7 +40,7 @@ class repositorioIncidente {
         if($fileNames)
         {
             foreach($fileNames as $name){
-                $stmt=$this->PDO->query("INSERT INTO archivosActividad(id_actividad, nombreArchivo) VALUES ('".$id_incidente."', '".$name."')");
+                $stmt=$this->PDO->query("INSERT INTO archivosIncidente(id_incidente, nombreArchivo) VALUES ('".$id_incidente."', '".$name."')");
             }
         }
     }
