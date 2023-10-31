@@ -513,6 +513,19 @@ i {
   border: solid #ddd;
   transition: 0.1s;
 }
+.emergent__resolution--form {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  background-color: #2e2e2e;
+  z-index: 250;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  border: solid #ddd;
+  transition: 0.1s;
+}
 .emergent__person--form {
   display: flex;
   position: absolute;

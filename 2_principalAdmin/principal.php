@@ -52,7 +52,7 @@
                     <div class="incident__title">
                         <p class="title__name">Grafitearon mi moto</p>
                             <div id="incident__container">
-                            <button class="container__button"><i class="fa-solid fa-inbox fa-xl"></i></button>
+                                <button class="container__button"><i class="fa-solid fa-inbox fa-xl"></i></button>
                                 <button class="container__button"><i class="fa-solid fa-check fa-2xl"></i></button>
                                 <button class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl active"></i></button>
                             </div>
@@ -400,16 +400,6 @@
             <button type="submit" class="form__submit form__submit--2" id="form__activity--submit">Aceptar</button>
             <button type="submit" class="form__submit form__submit--2" id="form__activity--submit">Modificar</button>
             <button type="submit" class="form__submit form__submit--2" id="form__activity--submit">Reevaluar</button>
-        </div>
-    </div>
-    <div class="emergent__activity--form emergent__activity--hidden">
-        <div class="container__col">
-            <h1 class="emergent__title">Reevaluacion</h1>
-            <label>Descripción</label>
-            <textarea class="col__description" name="descripcion"></textarea>
-        </div>
-        <div class="activity__button">
-            <button class="form__submit" id="form__person--submit">Ingresar</button>
         </div>
     </div>
     <p id="release"></p>
