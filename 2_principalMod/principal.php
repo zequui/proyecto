@@ -14,7 +14,7 @@
                 <a id="emergentes" class="navbar__element selected">Incidentes emergentes</a>
                 <a id="enCurso" class="navbar__element">Incidentes en curso</a>
                 <a id="pasados" class="navbar__element">Incidentes pasados</a>
-                <a id="historialIncidentes" class="navbar__element">Historial de Estudiantes</a>
+                <a id="Resoluciones" class="navbar__element">Resultado de resoluciones</a>
             </div>
             <?php
                 include_once '../negocio/usuario.php';
@@ -43,6 +43,171 @@
             <div class="emergent__container" id="onCourse-container">
             </div>
         </div>
+        <div class="emergent hidden" id="ResolucionesAdm">
+          <h1 class=emergent__title>Resultado resoluciones</h1>
+          <div class="emergent__container" id="onCourse-container">
+                <div class="emergent__incident" id="31">
+                    <div class="incident__title">
+                        <p class="title__name">Grafitearon mi moto</p>
+                            <div id="incident__container">
+                            <button class="container__button"><i class="fa-solid fa-inbox fa-xl"></i></button>
+                                <button class="container__button"><i class="fa-solid fa-check fa-2xl"></i></button>
+                                <button class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl active"></i></button>
+                            </div>
+                    </div>
+                    <div class="inicident__information--2">
+                        <div class="information__container">
+                            <div class="information__col--2">
+                                <label>Descripcion</label>
+                                <p class="col__p">vfsvfsddvfsvfdsvfdvfdvfd vfedfefvfwfs fdvfvfd fvwvfvfw vfevfdv vfevfdv vfdevfdv vefvefvefv fvevefvfe vfevevfe vfevfevfe vfevfev evefefefvfrefrefer</p>
+                            </div>
+                            <div class="information__col--2">
+                                <label>Fecha</label>
+                                <p class="col__p">2023-09-30</p>
+                                <label>Tipo</label>
+                                <p class="col__p">Vandalismo</p>
+                                <label>Archivo a descargar</label>
+                                <div class="col_downloads">
+                                    <p class="col__p"><a class="download_action" href="../controladores/downloadFile.php?file=archivo_incidente0_12-10-2023_15-58-32.png" filename="archivo_incidente0_12-10-2023_15-58-32.png">Descargar 0</a></p>
+                                    <p class="col__p"><a class="download_action" href="../controladores/downloadFile.php?file=archivo_incidente1_12-10-2023_15-58-32.png" filename="archivo_incidente1_12-10-2023_15-58-32.png">Descargar 1</a></p>
+                                    <p class="col__p"><a class="download_action" href="../controladores/downloadFile.php?file=archivo_incidente2_12-10-2023_15-58-32.png" filename="archivo_incidente2_12-10-2023_15-58-32.png">Descargar 2</a></p>
+                                </div>
+                            </div>
+                            <div class="information__col--2">
+                                <label>Nombre y Apellido</label>
+                                <p class="col__p">ezequiel rivero</p>
+
+                                <label>Cedula</label>
+                                <p class="col__p">55543952</p>
+                                
+                                <label>Telefono</label>
+                                <p class="col__p">342342423</p>
+                            </div>
+                        </div>
+                        <div class="information__title--activity">
+                            <p class="title__name">Actividades</p><hr class="title__hr">
+                        </div>
+                        <div class="information__activity--title" id="1">
+                            <p class="title__name--2">asdadsd</p>
+                            <div class="title__container">
+                                <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl active"></i></button>
+                            </div>
+                        </div>
+                        <div class="activity__information--3">
+                            <div class="information__container--2">
+                                <div class="information__col--3">
+                                    <label>Descripcion</label>
+                                    <p class="col__p">asdasdasd</p>
+                                </div>
+                                <div class="information__col--3">
+                                    <label>Fecha</label>
+                                    <p class="col__p">2023-10-12</p>
+                                    <label>Tipo</label>
+                                    <p class="col__p">Reunion de involucrados</p>
+                                </div>
+                            </div>
+                            <div class="information__container--4">
+                                <div class="information__activity--title">
+                                    <p class="title__name--2">Rodrigo</p>
+                                    <div class="title__container--buttons">
+                                        <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
+                                    </div>
+                                </div>
+                                <div class="activity__information--5 incident__information-hidden">
+                                    <div class="information__container information__container--5">
+                                        <div class="information__col--4">
+                                            <label>Apellido</label>
+                                            <p class="col__p">Saez</p>
+
+                                            <label>Cedula</label>
+                                            <p class="col__p">55449857</p>
+                                            
+                                            <label>Telefono</label>
+                                            <p class="col__p">92050575</p>
+                                        </div>
+                                    </div>  
+                                </div>  
+                            </div>
+                        </div> 
+                        <div class="information__title--activity">
+                            <p class="title__name">Involucrados</p><hr class="title__hr">
+                        </div>
+                        <div class="person-container">
+                            <div class="involucrado__container">
+                                <div class="information__activity--title">
+                                    <p class="title__name--2">ezequi</p>
+                                    <div class="title__container--buttons">
+                                        <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
+                                    </div>
+                                </div>  
+                                <div class="activity__information--5 incident__information-hidden">
+                                    <div class="information__container information__container--5">
+                                        <div class="information__col--4">
+                                            <label>Apellido</label>
+                                            <p class="col__p">zxx<z< p="">
+
+                                            <label>Cedula</label>
+                                            </z<></p><p class="col__p">55214412</p>
+                                            
+                                            <label>Telefono</label>
+                                            <p class="col__p">342342342</p>
+                                        </div>
+                                    </div>  
+                                </div>    
+                            </div>
+                            <div class="involucrado__container">
+                                <div class="information__activity--title">
+                                    <p class="title__name--2">ezequiel</p>
+                                    <div class="title__container--buttons">
+                                        <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl active"></i></button>
+                                    </div>
+                                </div>  
+                                <div class="activity__information--5">
+                                    <div class="information__container information__container--5">
+                                        <div class="information__col--4">
+                                            <label>Apellido</label>
+                                            <p class="col__p">rivero</p>
+
+                                            <label>Cedula</label>
+                                            <p class="col__p">55543952</p>
+                                            
+                                            <label>Telefono</label>
+                                            <p class="col__p">342342423</p>
+                                        </div>
+                                    </div>  
+                                </div>    
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="activity__information--3 incident__information-hidden">
+                <div class="information__container">
+                    <div class="information__col--3">
+                        <label>Descripcion</label>
+                        <p class="col__p">'.$incident-&gt;getDescripcion().'</p>
+                    </div>
+                    <div class="information__col--3">
+                        <label>Fecha</label>
+                        <p class="col__p">'.$incident-&gt;getFecha().'</p>
+                        <label>Tipo</label>
+                        <p class="col__p">'.$incident-&gt;getTipo().'</p>
+                        <label>Archivo a descargar</label>
+                        <p class="col__p"><a href="'.loadFile($incident).'" download="archvoRelevante'.$incident->getID().'">Descargar</a></p>
+                    </div>
+                    <div class="information__col--3">
+                        <label>Nombre y Apellido</label>
+                        <p class="col__p">'.$denunciante-&gt;getNombre().' '.$denunciante-&gt;getApellido().'</p>
+
+                        <label>Cedula</label>
+                        <p class="col__p">'.$denunciante-&gt;getCi().'</p>
+                        
+                        <label>Telefono</label>
+                        <p class="col__p">'.$denunciante-&gt;getTelefono().'</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="body__imgContainer">   
@@ -54,8 +219,8 @@
     </div>
     <div id="body__container--incident-form" class="container--form--hidden">
     </div>
-    <div id="body__container--choose-person" class="container--form--hidden"></div>
-
+    <div id="body__container--choose-person" class="container--form--hidden">
+    </div>
     <div id="emergent__activity--form" class="emergent__activity--hidden">
         <h1 class="emergent__title">Registrar Actividad</h1>
         <div class="activity__container">
@@ -108,7 +273,6 @@
             <button type="submit" class="form__submit" id="form__activity--submit">Ingresar</button>
         </div>    
     </div>
-
     <div id="emergent__choose-person--form" class="emergent__activity--hidden">
         <div class="title__container--2">
         <h1 class="emergent__title">Ingresa CI</h1> <button class="container__button--2" id="addInvolucrado"><i class="fa-solid fa-plus fa-xl"></i></button>
@@ -145,8 +309,7 @@
             <button class="form__submit" id="form__person--submit">Ingresar</button>
         </div>
     </div>
-
-    <div class="emergent__activity--form emergent__activity--hidden" style="display: none;">
+    <div class="emergent__resolution--form emergent__activity--hidden" style="display: none;">
         <div class="container__col">
             <h1 class="emergent__title">Enviar Resolucion</h1>
             <label>Descripción</label>
@@ -171,7 +334,29 @@
             <button type="submit" class="form__submit" id="">Ingresar</button>
         </div>
     </div>
-
+    <div class="emergent__activity--form emergent__activity--hidden"  style="display: none;">
+        <div class="container__col">
+            <h1 class="emergent__title">Resolucion</h1>
+            <label>Descripción</label>
+            <textarea class="col__description" name="descripcion"></textarea>
+            <label>Tipo de resolucion</label>
+            <div class="contenedor__type">Suspencion</div>
+        </div>
+        <div class="activity__button--2">
+            <button type="submit" class="form__submit form__submit--2" id="form__activity--submit">Aceptar</button>
+            <button type="submit" class="form__submit form__submit--2" id="form__activity--submit">Modificar</button>
+        </div>
+    </div>
+    <div class="emergent__activity--form emergent__activity--hidden"  style="display: none;">
+        <div class="container__col">
+            <h1 class="emergent__title">Reevaluacion</h1>
+            <label>Descripción</label>
+            <textarea class="col__description" name="descripcion"></textarea>
+        </div>
+        <div class="activity__button">
+            <button class="form__submit" id="form__person--submit">Ingresar</button>
+        </div>
+    </div>
     <div id="emergent__incident--form" class=" emergent__activity--hidden">
         <h1 class="emergent__title">Editar Incidente</h1>
         <div class="activity__container">

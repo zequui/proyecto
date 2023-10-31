@@ -7,6 +7,7 @@ const navbarBtns = document.querySelectorAll(".navbar__element");
 
 const incidentesEmergentes = document.querySelector("#incidentesEmergentes");
 const incidentesEnCurso = document.querySelector("#incidenteEnCurso");
+const Resoluciones = document.querySelector("#ResolucionesAdm");
 const contenedorIncidentesEmergentes = document.querySelector(
   "#incidentesEmergentes-container"
 );
@@ -72,7 +73,8 @@ navbarBtns.forEach((opt) => {
         break;
       case "pasados":
         break;
-      case "historialIncidentes":
+      case "Resoluciones":
+        Resoluciones.classList.remove("hidden");
         break;
       default:
         break;
