@@ -23,6 +23,11 @@ class repositorioUsuario {
         }
         return $usuarios;
     }
+    public function setModerador($name, $surname, $ci, $phone, $email, $password){
+        $stmt = $this->PDO->query('INSERT INTO usuarios (ci, nombre, apellido, correo, contraseña, telefono) VALUES ("'.$ci.'","'.$name.'","'.$surname.'","'.$email.'","'.$password.'","'.$phone.'") VALUES');
+        $stmt = $this->PDO->query('INSERT INTO moderadores ci VALUES ("'.$ci.'")');
+    }
+
 }
 
 

@@ -221,6 +221,7 @@
     </div>
     <div id="body__container--choose-person" class="container--form--hidden">
     </div>
+
     <div id="emergent__activity--form" class="emergent__activity--hidden">
         <h1 class="emergent__title">Registrar Actividad</h1>
         <div class="activity__container">
@@ -263,7 +264,7 @@
                 <input type="file" id="col__file" name="archivos_relevantes" multiple>
                 <div class="col__people">
                     <label>Agregar involucrado</label> <button class="container__button--2" id="addInvolucradoActividad"><i class="fa-solid fa-plus fa-xl"></i></button>
-                    <div id="PesonasActividades">
+                    <div id="PersonasActividades">
 
                     </div>
                 </div>
@@ -309,7 +310,7 @@
             <button class="form__submit" id="form__person--submit">Ingresar</button>
         </div>
     </div>
-    <div class="emergent__resolution--form emergent__activity--hidden" style="display: none;">
+    <div id="emergent__resolution--form" class="emergent__activity--hidden">
         <div class="container__col">
             <h1 class="emergent__title">Enviar Resolucion</h1>
             <label>Descripción</label>
@@ -317,7 +318,7 @@
             <label>Tipo de resolucion</label>
             <div class="lista">
                 <div class="contenedor">
-                    <input type="radio" name="tipo" value="Suspencion">Suspencion</input>
+                    <input type="radio" name="tipo" value="Suspension">Suspensión</input>
                 </div>
                 <div class="contenedor">
                     <input type="radio" name="tipo" value="Trabajo comunitario">Trabajo comunitario</input>
@@ -331,10 +332,10 @@
             </div>
         </div>
         <div class="activity__button">
-            <button type="submit" class="form__submit" id="">Ingresar</button>
+            <button type="submit" class="form__submit" id="form__resolution--submit">Ingresar</button>
         </div>
     </div>
-    <div class="emergent__activity--form emergent__activity--hidden"  style="display: none;">
+    <div class="emergent__activity--form emergent__activity--hidden" style="display: none;">
         <div class="container__col">
             <h1 class="emergent__title">Resolucion</h1>
             <label>Descripción</label>
@@ -347,6 +348,7 @@
             <button type="submit" class="form__submit form__submit--2" id="form__activity--submit">Modificar</button>
         </div>
     </div>
+
     <div class="emergent__activity--form emergent__activity--hidden"  style="display: none;">
         <div class="container__col">
             <h1 class="emergent__title">Reevaluacion</h1>

@@ -67,6 +67,32 @@ class repo_PersonaActividad{
         $stmt=$this->PDO->query("DELETE FROM tiene WHERE ci = ".$ci." AND id = ".$idActividad);
     }
 }
+
+class repo_Resoluciones{
+    private $PDO;
+
+    public function __construct() {
+        $newConnection = new conexion;
+        $this->PDO = $newConnection->getConnection();
+    }
+
+    public function getAllResoluciones(){
+        $resoluciones = [];
+        $stmt = $this->PDO->query('SELECT * FROM resuelve');
+        while($row = $stmt->fetch()){
+            array_push($resoluciones, new Resuelve($row['ci'], $row['id'], $row['resolucion'], $row['tipo'], $row['fecha_resolucion']));
+        }
+    }
+
+    public function getResolution($id_incidente){
+        $result = $this->PDO->query('SELECT * FROM resuelve WHERE id = '.$id_incidente)->fetch();
+        return new Resuelve($result['ci'], $result['id'], $result['resolucion'], $result['tipo'], $result['fecha_resolucion']);
+    }
+
+    public function setResolution($ci, $id, $resolucion, $tipo, $fecha){
+        $stmt = $this->PDO->query('INSERT INTO resuelve (ci, id, fecha_resolucion, resolucion, tipo) VALUES ("'.$ci.'", "'.$id.'", "'.$fecha.'", "'.$resolucion.'", "'.$tipo.'")');
+    }
+}
 ?>
 
  

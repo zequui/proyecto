@@ -138,4 +138,54 @@ class Persona_Actividad{
         $rep_PersonaActividad->unLinkPersonaActividad($ci, $idActividad);
     }
 }
+
+class Resuelve{
+    private $ci_moderador;
+    private $id_incidente;
+    private $resolucion;
+    private $tipo;
+    private $fecha;
+
+    public function __construct($ci_moderador, $id_incidente, $resolucion, $tipo, $fecha) {
+        $this->ci_moderador = $ci_moderador;
+        $this->id_incidente = $id_incidente;
+        $this->resolucion = $resolucion;
+        $this->tipo = $tipo;
+        $this->fecha = $fecha;
+    }
+
+    public function getCiModerador() {
+        return $this->ci_moderador;
+    }
+
+    public function getIdIncidente() {
+        return $this->id_incidente;
+    }
+
+    public function getDescripcion() {
+        return $this->resolucion;
+    }
+
+    public function getTipo() {
+        return $this->tipo;
+    }
+
+    public function getFecha() {
+        return $this->fecha;
+    }
+
+    public static function getAllResoluciones(){
+        $rep_resolucion = new repo_Resoluciones();
+        return $rep_resolucion->getAllResoluciones();
+    }
+    public static function getResolucion($id_incidente){
+        $rep_resolucion = new repo_Resoluciones();
+        return $rep_resolucion->getResolution($id_incidente);
+    }
+
+    public static function setResolucion($ci, $id, $resolucion, $tipo, $fecha){
+        $rep_resolucion = new repo_Resoluciones();
+        $rep_resolucion->setResolution($ci, $id, $resolucion, $tipo, $fecha);
+    }
+}
 ?>
