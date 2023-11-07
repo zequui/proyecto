@@ -57,8 +57,8 @@ function checkIfEmpty(){
 }
 
 function checkCI($ci) {
-    if ($ci == 0 || count($ci) !== 8) return false;
-    $inputValues = explode('', $ci);
+    if ($ci == 0 || strlen($ci) !== 8) return false;
+    $inputValues = str_split($ci, 1);
     $nums = array_map('intval', $inputValues);
     $lastNum = array_pop($nums);
     $result =

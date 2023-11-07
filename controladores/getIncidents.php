@@ -86,11 +86,11 @@ if($filtro == 0){
                     <div class="incident__title">
                         <p class="title__name">'.$incident->getTitulo().'</p>
                             <div id="incident__container">
-                                <button class="container__button"><i class="fa-solid fa-rectangle-xmark fa-xl"></i></button>
+                                <button class="container__button desestimar_btn"><i class="fa-solid fa-rectangle-xmark fa-xl"></i></button>
                                 <button class="container__button addInvolucradoIncidente"><i class="fa-solid fa-user-plus fa-lg"></i></button>
                                 <button class="container__button edit_incident"><i class="fa-solid fa-pen-to-square fa-xl"></i></button>
                                 <button class="container__button addActivity"><i class="fa-solid fa-plus fa-2xl"></i></button>
-                                <button class="container__button"><i class="fa-solid fa-check fa-2xl"></i></button>
+                                <button class="container__button submitResolution_btn"><i class="fa-solid fa-check fa-2xl"></i></button>
                                 <button class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl"></i></button>
                             </div>
                     </div>

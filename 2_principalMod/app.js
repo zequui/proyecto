@@ -21,6 +21,9 @@ const formularioIncidente = document.querySelector("#emergent__incident--form");
 const formularioChoosePersona = document.querySelector(
   "#emergent__choose-person--form"
 );
+const formularioResolucion = document.querySelector(
+  "#emergent__resolution--form"
+);
 
 const formActivityBG = document.querySelector(
   "#body__container--activity-form"
@@ -44,6 +47,7 @@ const submitIncidenteBtn = document.querySelector("#form__incident--submit");
 const submitChoosePersonBtn = document.querySelector(
   "#form__choose-person--submit"
 );
+const submitResolutionBtn = document.querySelector("#form__resolution--submit");
 
 const AllElmnts = document.querySelectorAll("*");
 
@@ -89,6 +93,7 @@ addNewPersonaBtn.addEventListener("click", (e) =>
 formActivityBG.addEventListener("click", () => {
   formularioActividad.classList.add("emergent__activity--hidden");
   formularioInvolucrado.classList.add("emergent__activity--hidden");
+  formularioResolucion.classList.add("emergent__activity--hidden");
   formActivityBG.classList.add("container--form--hidden");
   clearElements();
 });
@@ -116,6 +121,7 @@ submitPersonaBtn.addEventListener("click", () => submitInvolucrado());
 submitActividadBtn.addEventListener("click", () => submitActividad());
 submitIncidenteBtn.addEventListener("click", () => submitIncidente());
 submitChoosePersonBtn.addEventListener("click", () => submitChoosePersona());
+submitResolutionBtn.addEventListener("click", () => submitResolucion());
 
 AllElmnts.forEach((elemnt) => {
   elemnt.addEventListener("click", () => resetInputs());
@@ -181,6 +187,12 @@ function loadIncourseIncidents() {
     contenedor
       .find(".erase_activity--btn")
       .on("click", (e) => eraseActivity(e));
+    contenedor
+      .find(".desestimar_btn")
+      .on("click", (e) => desestimarIncidente(e));
+    contenedor
+      .find(".submitResolution_btn")
+      .on("click", (e) => startResolution(e));
   }, 500);
 }
 
@@ -269,7 +281,7 @@ const addActivity = (e) => {
   formularioActividad.setAttribute("id_incidente", id_incidente);
   formularioActividad.setAttribute("tipoRegistro", "agregar");
 
-  const ActividadForm = $("#PesonasActividades").load(
+  const ActividadForm = $("#PersonasActividades").load(
     "../controladores/getRelatedPersonas.php",
     { id_incidente: id_incidente }
   );
@@ -685,7 +697,9 @@ function unlinkPersonaIncidente(e) {
   if (personHeader.classList.contains("unlink-person")) {
     if (Denunciante.children[3].textContent == personCi) {
       personHeader.classList.add("refuse-del");
+      Denunciante.classList.add("refuse-del");
       setTimeout(() => {
+        Denunciante.classList.remove("refuse-del");
         personHeader.classList.remove("refuse-del");
         personHeader.classList.remove("unlink-person");
       }, 1000);
@@ -710,7 +724,7 @@ function unlinkPersonaIncidente(e) {
 
   setTimeout(() => {
     personHeader.classList.remove("unlink-person");
-  }, 5000);
+  }, 2500);
 }
 
 function editIncident(e) {
@@ -812,11 +826,14 @@ function reloadIncident(id_incidente, titulo, descripcion, fecha, tipo) {
   incidente.children[1].children[0].children[1].children[3].textContent = tipo;
 
   setTimeout(() => {
-    $(incidente)
-    .find(".col_downloads")
-    .load("../controladores/reloadDownloads.php", {
-      id_incidente: id_incidente,
-    });
+    const container = $(incidente)
+      .find(".col_downloads")
+      .load("../controladores/reloadDownloads.php", {
+        id_incidente: id_incidente,
+      });
+    contenedor.find(".download_action").on("mouseover", (e) => previewImg(e));
+    contenedor.find(".download_action").on("mouseout", () => previewImgOut());
+    contenedor.find(".download_action").on("mousemove", (e) => followMouse(e));
   }, 50);
 }
 
@@ -918,9 +935,94 @@ function eraseActivity(e) {
     });
   }
 
-  reloadActivities(id_incidente)
+  reloadActivities(id_incidente);
   activityElement.classList.add("erase_activity");
   setTimeout(() => {
     activityElement.classList.remove("erase_activity");
-  }, 5000);
+  }, 2500);
 }
+
+function desestimarIncidente(e) {
+  const incident_element =
+    e.currentTarget.parentElement.parentElement.parentElement;
+  const id_incidente = incident_element
+    .getAttribute("id")
+    .replace("incident_", "");
+
+  if (
+    incident_element.children[0].classList.contains("incident__title--cancel")
+  ) {
+    incident_element.classList.add("incident-rejected");
+    setTimeout(() => {
+      incident_element.remove();
+    }, 500);
+    $.ajax({
+      url: "../controladores/changeIncidentStatus.php",
+      data: {
+        id_incidente: id_incidente,
+        new_estado: 5,
+      },
+    });
+  }
+
+  incident_element.children[0].classList.add("incident__title--cancel");
+  setTimeout(() => {
+    incident_element.children[0].classList.remove("incident__title--cancel");
+  }, 2000);
+}
+
+function startResolution(e) {
+  const incident_element =
+    e.currentTarget.parentElement.parentElement.parentElement;
+  const id_incidente = incident_element
+    .getAttribute("id")
+    .replace("incident_", "");
+
+  formActivityBG.classList.remove("container--form--hidden");
+  formularioResolucion.classList.remove("emergent__activity--hidden");
+
+  formularioResolucion.setAttribute("id_incidente", id_incidente);
+}
+function submitResolucion() {
+
+  const descripcion = $(formularioResolucion).find(
+    "textarea[name = descripcion]"
+  );
+  const tipo = $(formularioResolucion).find("input[name = tipo]:checked");
+  const id_incidente = formularioResolucion.getAttribute("id_incidente");
+  const incident_element = document.querySelector("#incident_" + id_incidente);
+
+  if (descripcion.val() && tipo.val()) {
+    setTimeout(() => {
+      incident_element.classList.add("incident-active");
+    }, 500);
+    setTimeout(() => {
+      incident_element.remove();
+    }, 1000);
+
+    $.ajax({
+      url: "../controladores/sendResolution.php",
+      data: {
+        id_incidente: id_incidente,
+        descripcion: descripcion.val(),
+        tipo: tipo.val()
+      }
+    });
+
+    formActivityBG.classList.add("container--form--hidden");
+    formularioResolucion.classList.add("emergent__activity--hidden");
+    clearElements()
+  } else {
+    setTimeout(() => {
+      descripcion.val() ? null : descripcion.addClass("uncomplete--input");
+      tipo.val()
+        ? null
+        : $(formularioResolucion)
+            .find("input[name = tipo]")
+            .parent()
+            .parent()
+            .addClass("uncomplete--input");
+    }, 50);
+  }
+}
+

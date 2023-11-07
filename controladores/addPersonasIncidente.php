@@ -23,7 +23,7 @@ if($formData['mod'] == 0){
 
 function checkCI($ci) {
     if ($ci == 0 || count($ci) !== 8) return false;
-    $inputValues = explode('', $ci);
+    $inputValues = str_split($ci, 1);
     $nums = array_map('intval', $inputValues);
     $lastNum = array_pop($nums);
     $result =

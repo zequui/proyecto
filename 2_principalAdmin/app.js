@@ -13,6 +13,12 @@ const contenedorIncidentesEmergentes = document.querySelector(
   "#incidentesEmergentes-container"
 );
 
+const passwordInputs = Array.from(document.querySelectorAll(".password"));
+const seekingBtns = document.querySelectorAll("#seekingBtn");
+
+const formularioModerador = document.querySelector(".mod__form");
+const moderadorSubmitBtn = document.querySelector(".mod__form > .mod__button");
+
 navbarBtns.forEach((opt) => {
   opt.addEventListener("click", (e) => {
     navbarBtns.forEach((btn) => btn.classList.remove("selected"));
@@ -23,8 +29,8 @@ navbarBtns.forEach((opt) => {
     document
       .querySelectorAll(".emergent")
       .forEach((menu) => menu.classList.add("hidden"));
-    
-      subMenuHide();
+
+    subMenuHide();
 
     switch (elementId) {
       case "emergentes":
@@ -39,6 +45,7 @@ navbarBtns.forEach((opt) => {
         break;
       case "moderadores":
         moderadores.classList.remove("hidden");
+        loadModeradores();
         break;
       default:
         break;
@@ -59,6 +66,7 @@ dropdownBtn.addEventListener("click", (e) => {
 window.onload = loadEmergentIncidents();
 
 function loadEmergentIncidents() {
+  console.log(contenedorIncidentesEmergentes);
   var contenedor = $(contenedorIncidentesEmergentes).load(
     "../controladores/getIncidents.php",
     {
@@ -152,28 +160,75 @@ const followMouse = (e) => {
 
 const subMenuHide = () => {
   subMenu.forEach((subMenu) => subMenu.classList.add("subMenu-hidden"));
-  dropdownBtn.children[0].classList.remove('active')
+  dropdownBtn.children[0].classList.remove("active");
 };
 
-
-const passwordInputs = Array.from(document.querySelectorAll('.password'))
-const seekingBtns = document.querySelectorAll('#seekingBtn')
-
-console.log(seekingBtns);
-
 function togglePassword(eye, passwordInput) {
-eye.classList.toggle("fa-eye");
-eye.classList.toggle("fa-eye-slash");
-passwordInput.type = passwordInput.type === "password" ? "text" : "password";
+  eye.classList.toggle("fa-eye");
+  eye.classList.toggle("fa-eye-slash");
+  passwordInput.type = passwordInput.type === "password" ? "text" : "password";
 }
 
 seekingBtns.forEach((seekingBtn) => {
-seekingBtn.addEventListener("click", (e) => {
-const actualEye = e.currentTarget;
-const actualPasswordId = actualEye.previousElementSibling.id;
-const passwordInput = passwordInputs.find(
-(input) => input.id === actualPasswordId
-);
-togglePassword(actualEye, passwordInput);
-  });
+  seekingBtn.addEventListener("click", (e) => {
+    const actualEye = e.currentTarget;
+    const actualPasswordId = actualEye.previousElementSibling.id;
+    const passwordInput = passwordInputs.find(
+      (input) => input.id === actualPasswordId
+    );
+    togglePassword(actualEye, passwordInput);
+  });
 });
+
+function loadModeradores() {
+  const container = $(".container").load("../controladores/getModeradores.php");
+  setTimeout(() => {
+    container
+      .find(".dropdown_btn")
+      .on("click", (e) => showIncidentsInformation(e));
+  }, 500);
+}
+
+
+moderadorSubmitBtn.addEventListener('click', e => {
+  e.preventDefault()
+  const inputs = $(formularioModerador).find('input')
+  
+  const name = inputs[0].value
+  const surname = inputs[1].value
+  const email = inputs[2].value
+  const ci = inputs[3].value
+  const password = inputs[4].value
+
+  if(name && surname && email && ci && password){
+    if (passwordInputs[0].value !== passwordInputs[1].value) {
+      alert('las contraseñas no coinciden')
+    } else if (passwordInputs[0].value.length < 5) {
+      alert('La contraseña debe tener mas de 5 caracteres')
+      /*alertPassword.classList.remove("hidden");
+      alertPassword.innerHTML = "La contraseña debe tener mas de 5 caracteres"; */
+    } else {
+      const formData = new FormData()
+      formData.append('ci', ci)
+      formData.append('name', name)
+      formData.append('surname', surname)
+      formData.append('email', email)
+      formData.append('password', password)
+      $.ajax({
+          url: "../controladores/modPersona.php",
+          type: "POST",
+          data: formData,
+          contentType: false,
+          processData: false,
+        });
+
+    ci = '', name = '', surname = '', email = '', password = ''
+    const container = $(".container").load("../controladores/getModeradores.php");
+    setTimeout(() => {
+    container
+      .find(".dropdown_btn")
+      .on("click", (e) => showIncidentsInformation(e));
+  }, 500);
+    }
+  }  
+})

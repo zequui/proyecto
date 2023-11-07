@@ -236,13 +236,13 @@
 
                         <div>
                             <label>Contraseña</label>
-                            <input type="password" class="mod_input" name="password" required id="password-signin">
+                            <input type="password" class="mod_input password" name="password" required id="password-signin">
                             <i class="fa-solid fa-eye-slash eye" id="seekingBtn"></i>
                         </div>
 
                         <div>
                             <label>Confirmar contraseña</label>
-                            <input type="password" class="mod_input" required id="passwordCheck-signin">
+                            <input type="password" class="mod_input password" required id="passwordCheck-signin">
                             <i class="fa-solid fa-eye-slash eye" id="seekingBtn"></i>
                         </div>
                         <p id="password-alert" class="hidden"></p>
@@ -250,32 +250,10 @@
                     </form>
                 </div>
                 <div class="mod__container">
-                <h2 id="form__title">Lista moderadores</h2><hr class="title__hr">
-                    <div class="information__activity--title">
-                        <p class="title__name--2">ezequiel</p>
-                        <div class="title__container--buttons">
-                            <button class="container__button--2 "><i class="fa-solid fa-xmark fa-xl"></i></button> 
-                            <button class="container__button--2"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
-                            <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl active"></i></button>
-                        </div>
-                    </div>  
-                    <div class="activity__information--5">
-                        <div class="information__container information__container--5">
-                            <div class="information__col--4">
-                                <label>Apellido</label>
-                                <p class="col__p">rivero</p>
-                                
-                                <label>cedula</label>
-                                <p class="col__p">55543952</p>
-                            </div>
-                            <div class="information__col--4">
-                                <label>Correo</label>
-                                <p class="col__p">Ezequielriv20@gmail.com</p>
-                                <label>Contraseña</label>
-                                <p class="col__p">Admin</p>
-                            </div>
-                        </div>  
-                    </div>    
+                    <h2 id="form__title">Lista moderadores</h2><hr class="title__hr">
+                    <div class="container">
+
+                    </div>
                 </div> 
             </div>
         </div>
