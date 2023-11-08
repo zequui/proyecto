@@ -434,7 +434,7 @@ i {
   border-radius: 10px;
   transition: 0.1s;
 }
-.incident-active {
+.delete-mod, .incident-active {
   transform: translateX(200vw);
 }
 .incident-rejected {
@@ -858,7 +858,7 @@ input[type="number"] {
   transform: none;
 }
 
-.uncomplete--input {
+.unlink-mod, .uncomplete--input {
   border: red solid;
 }
 
@@ -998,6 +998,6 @@ margin-top: 15px;
   background-color: #032b07;
 }
 
-.uncomplete--input {
-  border: red solid;
+.mod--container{
+  transition: .1s;
 }

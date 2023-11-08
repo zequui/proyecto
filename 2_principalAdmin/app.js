@@ -40,6 +40,7 @@ navbarBtns.forEach((opt) => {
         break;
       case "enCurso":
         incidentesEnCurso.classList.remove("hidden");
+        loadIncourseIncidents();
         break;
       case "resoluciones":
         resoluciones.classList.remove("hidden");
@@ -66,27 +67,60 @@ dropdownBtn.addEventListener("click", (e) => {
 
 window.onload = loadEmergentIncidents();
 
-function loadEmergentIncidents() {
-  console.log(contenedorIncidentesEmergentes);
-  var contenedor = $(contenedorIncidentesEmergentes).load(
-    "../controladores/getIncidents.php",
-    {
-      filter: 0,
-    }
-  );
-  setTimeout(() => {
-    contenedor
-      .find(".dropdown_btn")
-      .on("click", (e) => showIncidentsInformation(e));
-    contenedor
-      .find(".startIncident_btn")
-      .on("click", (e) => startIncidentResolution(e));
-    contenedor.find(".reject-incident").on("click", (e) => rejectIncident(e));
-    contenedor.find(".download_action").on("mouseover", (e) => previewImg(e));
-    contenedor.find(".download_action").on("mouseout", () => previewImgOut());
-    contenedor.find(".download_action").on("mousemove", (e) => followMouse(e));
-  }, 500);
+async function loadEmergentIncidents() {
+  const response = await $.get("../controladores/getIncidents.php", {
+    filter: 0,
+  });
+  const contenedor = $(contenedorIncidentesEmergentes).html(response);
+  console.log(contenedor);
+
+  contenedor.find(".dropdown_btn").on("click", (e) => showExtraInformation(e));
+  contenedor
+    .find(".startIncident_btn")
+    .on("click", (e) => startIncidentResolution(e));
+  contenedor.find(".reject-incident").on("click", (e) => rejectIncident(e));
+  contenedor.find(".download_action").on("mouseover", (e) => previewImg(e));
+  contenedor.find(".download_action").on("mouseout", () => previewImgOut());
+  contenedor.find(".download_action").on("mousemove", (e) => followMouse(e));
 }
+
+async function loadIncourseIncidents() {
+  const response = await $.get("../controladores/getIncidents.php", {
+    filter: 1,
+  });
+  const contenedor = $("#onCourse-container").html(response);
+
+  contenedor.find(".dropdown_btn").on("click", (e) => showExtraInformation(e));
+  contenedor.find(".addActivity").on("click", (e) => addActivity(e));
+  contenedor
+    .find(".addInvolucradoIncidente")
+    .on("click", (e) => choosePersona(e));
+  contenedor.find(".download_action").on("mouseover", (e) => previewImg(e));
+  contenedor.find(".download_action").on("mouseout", () => previewImgOut());
+  contenedor.find(".download_action").on("mousemove", (e) => followMouse(e));
+  contenedor.find(".edit_incident").on("click", (e) => editIncident(e));
+  contenedor.find(".edit_activity").on("click", (e) => modActivity(e));
+  contenedor.find(".edit_person").on("click", (e) => modInvolucrado(e));
+  contenedor
+    .find(".unlink_personActivity")
+    .on("click", (e) => unLinkPersonaActividad(e));
+  contenedor.find(".unlink_personIncident").on("click", (e) => {
+    unlinkPersonaIncidente(e);
+  });
+  contenedor.find(".erase_activity--btn").on("click", (e) => eraseActivity(e));
+  contenedor.find(".desestimar_btn").on("click", (e) => desestimarIncidente(e));
+  contenedor
+    .find(".submitResolution_btn")
+    .on("click", (e) => startResolution(e));
+}
+
+const showExtraInformation = (e) => {
+  const information =
+    e.currentTarget.parentElement.parentElement.nextElementSibling;
+  const icon = e.currentTarget.children[0];
+  information.classList.toggle("incident__information-hidden");
+  icon.classList.toggle("active");
+};
 
 const showIncidentsInformation = (e) => {
   const incident_information =
@@ -189,6 +223,7 @@ async function loadModeradores() {
     .find(".dropdown_btn")
     .on("click", (e) => showIncidentsInformation(e));
   container.find(".editMod_btn").on("click", (e) => editModerador(e));
+  container.find(".deleteMod_btn").on("click", (e) => deleteModerador(e));
 }
 
 moderadorSubmitBtn.addEventListener("click", (e) => {
@@ -320,3 +355,27 @@ const checkCI = (ci) => {
 
   return result == lastNum ? true : false;
 };
+
+function deleteModerador(e) {
+  const moderador_element =
+    e.currentTarget.parentElement.parentElement.parentElement;
+  const header = moderador_element.children[0];
+  const ci_moderador = moderador_element.getAttribute("ci_moderador");
+
+  if (header.classList.contains("unlink-mod")) {
+/*     $.ajax({
+      url: "../controladores/deleteMod.php",
+      type: "POST",
+      data: { ci: ci_moderador },
+    }); */
+
+    moderador_element.classList.add("delete-mod");
+    setTimeout(() => {
+      moderador_element.remove();
+    }, 500);
+  }
+  header.classList.add("unlink-mod");
+  setTimeout(() => {
+    header.classList.remove("unlink-mod");
+  }, 2500);
+}

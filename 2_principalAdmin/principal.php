@@ -47,7 +47,7 @@
                 <a href="../controladores/exitSession.php" class="subMenu__option"><i class="fa-solid fa-right-from-bracket fa-lg"></i>Cerrar sesion</a>
             </div>
             <h1 class="emergent__title">Resoluciones</h1>
-            <div class="emergent__container" id="onCourse-container">
+            <div class="emergent__container" id="">
                 <div class="emergent__incident" id="31">
                     <div class="incident__title">
                         <p class="title__name">Grafitearon mi moto</p>

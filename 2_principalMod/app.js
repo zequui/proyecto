@@ -666,6 +666,8 @@ function unLinkPersonaActividad(e) {
       contentType: false,
       processData: false,
     });
+  }else{
+    
   }
   personHeader.classList.add("unlink-person");
 
