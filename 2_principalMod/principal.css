@@ -143,7 +143,6 @@ body {
   color: #eaeaea;
   text-align: left;
   height: 11px;
-  margin-bottom: 40px;
   margin-left: 30px;
 }
 .emergent__incident {
@@ -164,6 +163,7 @@ body {
   align-items: center;
   border-radius: 10px;
   transition: 0.1s;
+  margin-top: 30px;
 }
 .emergent__container {
   display: flex;
