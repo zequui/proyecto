@@ -46,9 +46,13 @@ include "../persistencia/repoUsuarios.php";
             $repUsarios = new repositorioUsuario();
             return $repUsarios->getUsers();
         }
-        public static function setMod($name, $surname, $ci, $phone, $email, $password){
+        public static function setMod($name, $surname, $ci, $email, $password){
             $repUsarios = new repositorioUsuario();
-            $repUsarios->setModerador($name, $surname, $ci, $phone, $email, $password);
+            $repUsarios->setModerador($name, $surname, $ci, $email, $password);
+        }
+        public static function updateModerador($name, $surname, $ci, $email, $password){
+            $repUsarios = new repositorioUsuario();
+            $repUsarios->updateModerador($name, $surname, $ci, $email, $password);
         }
     }
 ?>

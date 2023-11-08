@@ -47,7 +47,7 @@
                 <a href="../controladores/exitSession.php" class="subMenu__option"><i class="fa-solid fa-right-from-bracket fa-lg"></i>Cerrar sesion</a>
             </div>
             <h1 class="emergent__title">Resoluciones</h1>
-            <div class="emergent__container" id="onCourse-container">
+            <div class="emergent__container" id="">
                 <div class="emergent__incident" id="31">
                     <div class="incident__title">
                         <p class="title__name">Grafitearon mi moto</p>
@@ -220,11 +220,11 @@
                         <div id="form__name">
                             <div id="name__col">
                                 <label>Nombre</label>
-                                <input type="text" class="mod_input" name="user" required>
+                                <input type="text" class="mod_input" name="name" required>
                             </div>
                             <div id="name__col">
                                 <label>Apellido</label>
-                                <input type="text" class="mod_input" name="user" required>
+                                <input type="text" class="mod_input" name="surname" required>
                             </div>
                         </div>
 
@@ -232,7 +232,7 @@
                         <input type="text" class="mod_input" name="email" required>
 
                         <label>Cedula</label>
-                        <input type="number" class="mod_input" name="number" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
+                        <input type="number" class="mod_input" name="ci" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
 
                         <div>
                             <label>Contraseña</label>

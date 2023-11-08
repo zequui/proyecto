@@ -434,7 +434,7 @@ i {
   border-radius: 10px;
   transition: 0.1s;
 }
-.incident-active {
+.delete-mod, .incident-active {
   transform: translateX(200vw);
 }
 .incident-rejected {
@@ -858,7 +858,7 @@ input[type="number"] {
   transform: none;
 }
 
-.uncomplete--input {
+.unlink-mod, .uncomplete--input {
   border: red solid;
 }
 
@@ -929,7 +929,7 @@ input{
   padding: 5px;
   border-radius: 5px 5px 5px 5px;
   background-color: #1B1B1B;
-  border: 0;
+  border: solid #1B1B1B;
   height: 33px;
   width: 500px;
   color: #EAEAEA;
@@ -991,4 +991,13 @@ margin-top: 15px;
 
 .fa-eye-slash{
   margin-left: -36px;
+}
+
+.unchanable--input {
+  border: solid #3e9545;
+  background-color: #032b07;
+}
+
+.mod--container{
+  transition: .1s;
 }
