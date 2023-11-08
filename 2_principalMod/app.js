@@ -139,61 +139,51 @@ dropdownBtn.addEventListener("click", (e) => {
 
 window.onload = loadEmergentIncidents();
 
-function loadEmergentIncidents() {
-  var contenedor = $(contenedorIncidentesEmergentes).load(
-    "../controladores/getIncidents.php",
-    {
-      filter: 0,
-    }
-  );
-  setTimeout(() => {
-    contenedor
-      .find(".dropdown_btn")
-      .on("click", (e) => showExtraInformation(e));
-    contenedor
-      .find(".startIncident_btn")
-      .on("click", (e) => startIncidentResolution(e));
-    contenedor.find(".reject-incident").on("click", (e) => rejectIncident(e));
-    contenedor.find(".download_action").on("mouseover", (e) => previewImg(e));
-    contenedor.find(".download_action").on("mouseout", () => previewImgOut());
-    contenedor.find(".download_action").on("mousemove", (e) => followMouse(e));
-  }, 500);
+async function loadEmergentIncidents() {
+  const response = await $.get("../controladores/getIncidents.php", {
+    filter: 0,
+  });
+  const contenedor = $(contenedorIncidentesEmergentes).html(response);
+  console.log(contenedor);
+
+  contenedor.find(".dropdown_btn").on("click", (e) => showExtraInformation(e));
+  contenedor
+    .find(".startIncident_btn")
+    .on("click", (e) => startIncidentResolution(e));
+  contenedor.find(".reject-incident").on("click", (e) => rejectIncident(e));
+  contenedor.find(".download_action").on("mouseover", (e) => previewImg(e));
+  contenedor.find(".download_action").on("mouseout", () => previewImgOut());
+  contenedor.find(".download_action").on("mousemove", (e) => followMouse(e));
 }
-function loadIncourseIncidents() {
-  var contenedor = $(contenedorIncidentesEnCurso).load(
-    "../controladores/getIncidents.php",
-    { filter: 1 }
-  );
-  setTimeout(() => {
-    contenedor
-      .find(".dropdown_btn")
-      .on("click", (e) => showExtraInformation(e));
-    contenedor.find(".addActivity").on("click", (e) => addActivity(e));
-    contenedor
-      .find(".addInvolucradoIncidente")
-      .on("click", (e) => choosePersona(e));
-    contenedor.find(".download_action").on("mouseover", (e) => previewImg(e));
-    contenedor.find(".download_action").on("mouseout", () => previewImgOut());
-    contenedor.find(".download_action").on("mousemove", (e) => followMouse(e));
-    contenedor.find(".edit_incident").on("click", (e) => editIncident(e));
-    contenedor.find(".edit_activity").on("click", (e) => modActivity(e));
-    contenedor.find(".edit_person").on("click", (e) => modInvolucrado(e));
-    contenedor
-      .find(".unlink_personActivity")
-      .on("click", (e) => unLinkPersonaActividad(e));
-    contenedor.find(".unlink_personIncident").on("click", (e) => {
-      unlinkPersonaIncidente(e);
-    });
-    contenedor
-      .find(".erase_activity--btn")
-      .on("click", (e) => eraseActivity(e));
-    contenedor
-      .find(".desestimar_btn")
-      .on("click", (e) => desestimarIncidente(e));
-    contenedor
-      .find(".submitResolution_btn")
-      .on("click", (e) => startResolution(e));
-  }, 500);
+
+async function loadIncourseIncidents() {
+  const response = await $.get("../controladores/getIncidents.php", {
+    filter: 1,
+  });
+  const contenedor = $(contenedorIncidentesEnCurso).html(response);
+
+  contenedor.find(".dropdown_btn").on("click", (e) => showExtraInformation(e));
+  contenedor.find(".addActivity").on("click", (e) => addActivity(e));
+  contenedor
+    .find(".addInvolucradoIncidente")
+    .on("click", (e) => choosePersona(e));
+  contenedor.find(".download_action").on("mouseover", (e) => previewImg(e));
+  contenedor.find(".download_action").on("mouseout", () => previewImgOut());
+  contenedor.find(".download_action").on("mousemove", (e) => followMouse(e));
+  contenedor.find(".edit_incident").on("click", (e) => editIncident(e));
+  contenedor.find(".edit_activity").on("click", (e) => modActivity(e));
+  contenedor.find(".edit_person").on("click", (e) => modInvolucrado(e));
+  contenedor
+    .find(".unlink_personActivity")
+    .on("click", (e) => unLinkPersonaActividad(e));
+  contenedor.find(".unlink_personIncident").on("click", (e) => {
+    unlinkPersonaIncidente(e);
+  });
+  contenedor.find(".erase_activity--btn").on("click", (e) => eraseActivity(e));
+  contenedor.find(".desestimar_btn").on("click", (e) => desestimarIncidente(e));
+  contenedor
+    .find(".submitResolution_btn")
+    .on("click", (e) => startResolution(e));
 }
 
 const showExtraInformation = (e) => {
@@ -281,13 +271,14 @@ const addActivity = (e) => {
   formularioActividad.setAttribute("id_incidente", id_incidente);
   formularioActividad.setAttribute("tipoRegistro", "agregar");
 
-  const ActividadForm = $("#PersonasActividades").load(
-    "../controladores/getRelatedPersonas.php",
-    { id_incidente: id_incidente }
-  );
-  setTimeout(() => {
+  (async function () {
+    const respone = await $.get("../controladores/getRelatedPersonas.php", {
+      id_incidente: id_incidente,
+    });
+    const ActividadForm = $("#PersonasActividades").html(respone);
+
     ActividadForm.find(".checkbox").on("click", (e) => selectPerson(e));
-  }, 500);
+  })();
 };
 
 const modActivity = (e) => {
@@ -321,13 +312,14 @@ const modActivity = (e) => {
     .find("input[name = tipo][value = '" + tipo + "']")
     .prop("checked", true);
 
-  const ActividadForm = $("#PesonasActividades").load(
-    "../controladores/getRelatedPersonas.php",
-    { id_incidente: id_incidente }
-  );
-  setTimeout(() => {
+  (async function () {
+    const respone = await $.get("../controladores/getRelatedPersonas.php", {
+      id_incidente: id_incidente,
+    });
+    const ActividadForm = $("#PersonasActividades").html(respone);
+
     ActividadForm.find(".checkbox").on("click", (e) => selectPerson(e));
-  }, 500);
+  })();
 };
 
 const addInvolucrado = (e, origen) => {
@@ -378,12 +370,11 @@ function modInvolucrado(e) {
   $(formularioInvolucrado).find("input[name = phoneNumber]").val(phoneNumber);
 
   formularioInvolucrado.setAttribute("tipoRegistro", "modificar");
+
   formularioInvolucrado.setAttribute(
     "id_incidente",
-    e.currentTarget.parentElement.parentElement.classList[1].replace(
-      "from_incident-",
-      ""
-    )
+    personContainer.getAttribute('id_incidente')
+    
   );
 }
 
@@ -396,10 +387,10 @@ function submitInvolucrado() {
   const phoneNumber = $(formularioInvolucrado).find(
     "input[name = phoneNumber]"
   );
-
   const Denunciante = document.querySelector("#incident_" + id_incidente)
     .children[1].children[0].children[2];
 
+    
   if (
     name.val() &&
     surname.val() &&
@@ -474,7 +465,7 @@ function submitActividad() {
   const archivos_relevantes = $(formularioActividad).find(
     "input[name = archivos_relevantes]"
   );
-  const ci_personas = $("#PesonasActividades").find(
+  const ci_personas = $("#PersonasActividades").find(
     ".person--selected > .title__name--2"
   );
 
@@ -595,54 +586,52 @@ const checkCI = (ci) => {
 };
 
 function reloadActivities(id_incidente) {
-  setTimeout(() => {
-    const contenedor = $("#activity--container_" + id_incidente).load(
+  setTimeout(async () => {
+    const response = await $.get(
       "../controladores/reloadActividadPersonas.php",
       {
         id_incidente: id_incidente,
         mod: 1,
       }
     );
-    setTimeout(() => {
-      contenedor
-        .find(".dropdown_btn")
-        .on("click", (e) => showExtraInformation(e));
-      contenedor.find(".download_action").on("mouseover", (e) => previewImg(e));
-      contenedor.find(".download_action").on("mouseout", () => previewImgOut());
-      contenedor
-        .find(".download_action")
-        .on("mousemove", (e) => followMouse(e));
-      contenedor.find(".edit_activity").on("click", (e) => modActivity(e));
-      contenedor
-        .find(".unlink_personActivity")
-        .on("click", (e) => unLinkPersonaActividad(e));
-      contenedor.find(".edit_person").on("click", (e) => modInvolucrado(e));
-      contenedor
-        .find(".erase_activity--btn")
-        .on("click", (e) => eraseActivity(e));
-    }, 500);
+    const contenedor = $("#activity--container_" + id_incidente).html(response);
+
+    contenedor
+      .find(".dropdown_btn")
+      .on("click", (e) => showExtraInformation(e));
+    contenedor.find(".download_action").on("mouseover", (e) => previewImg(e));
+    contenedor.find(".download_action").on("mouseout", () => previewImgOut());
+    contenedor.find(".download_action").on("mousemove", (e) => followMouse(e));
+    contenedor.find(".edit_activity").on("click", (e) => modActivity(e));
+    contenedor
+      .find(".unlink_personActivity")
+      .on("click", (e) => unLinkPersonaActividad(e));
+    contenedor.find(".edit_person").on("click", (e) => modInvolucrado(e));
+    contenedor
+      .find(".erase_activity--btn")
+      .on("click", (e) => eraseActivity(e));
   }, 50);
 }
 
 function reloadPersonas(id_incidente) {
-  setTimeout(() => {
-    const contenedor = $("#person--container_" + id_incidente).load(
+  setTimeout(async () => {
+    const response = await $.get(
       "../controladores/reloadActividadPersonas.php",
       {
         id_incidente: id_incidente,
         mod: 0,
       }
     );
-    setTimeout(() => {
-      contenedor
-        .find(".dropdown_btn")
-        .on("click", (e) => showExtraInformation(e));
-      contenedor.find(".edit_person").on("click", (e) => modInvolucrado(e));
-      contenedor
-        .find(".unlink_personIncident")
-        .on("click", (e) => unlinkPersonaIncidente(e));
-      reloadActivities(id_incidente);
-    }, 500);
+    const contenedor = $("#person--container_" + id_incidente).html(response);
+
+    contenedor
+      .find(".dropdown_btn")
+      .on("click", (e) => showExtraInformation(e));
+    contenedor.find(".edit_person").on("click", (e) => modInvolucrado(e));
+    contenedor
+      .find(".unlink_personIncident")
+      .on("click", (e) => unlinkPersonaIncidente(e));
+    reloadActivities(id_incidente);
   }, 50);
 }
 
@@ -661,7 +650,7 @@ function unLinkPersonaActividad(e) {
     personHeader.nextElementSibling.children[0].children[0].children[3]
       .textContent;
 
-  const activity_id = personHeader.classList[1].replace("from_activity-", "");
+  const activity_id = personHeader.classList[2].replace("from_activity-", "");
   if (personHeader.classList.contains("unlink-person")) {
     personHeader.nextElementSibling.remove();
     personHeader.remove();
@@ -825,12 +814,11 @@ function reloadIncident(id_incidente, titulo, descripcion, fecha, tipo) {
   incidente.children[1].children[0].children[1].children[1].textContent = fecha;
   incidente.children[1].children[0].children[1].children[3].textContent = tipo;
 
-  setTimeout(() => {
-    const container = $(incidente)
-      .find(".col_downloads")
-      .load("../controladores/reloadDownloads.php", {
-        id_incidente: id_incidente,
-      });
+  setTimeout(async () => {
+    const respone = await $.get("../controladores/reloadDownloads.php", {
+      id_incidente: id_incidente,
+    });
+    const container = $(incidente).find(".col_downloads").html(response);
     contenedor.find(".download_action").on("mouseover", (e) => previewImg(e));
     contenedor.find(".download_action").on("mouseout", () => previewImgOut());
     contenedor.find(".download_action").on("mousemove", (e) => followMouse(e));
@@ -896,13 +884,10 @@ function submitChoosePersona() {
   }
 }
 
-const reloadListaPersonas = () => {
-  const container = $("#person--form__result--container").load(
-    "../controladores/getAllPersonas.php"
-  );
-  setTimeout(() => {
-    container.find(".checkbox").on("click", (e) => selectPerson(e));
-  }, 50);
+const reloadListaPersonas = async () => {
+  const respone = await $.get("../controladores/getAllPersonas.php");
+  const container = $("#person--form__result--container").html(respone);
+  container.find(".checkbox").on("click", (e) => selectPerson(e));
 };
 
 inputs.forEach((input) => {
@@ -984,7 +969,6 @@ function startResolution(e) {
   formularioResolucion.setAttribute("id_incidente", id_incidente);
 }
 function submitResolucion() {
-
   const descripcion = $(formularioResolucion).find(
     "textarea[name = descripcion]"
   );
@@ -1005,13 +989,13 @@ function submitResolucion() {
       data: {
         id_incidente: id_incidente,
         descripcion: descripcion.val(),
-        tipo: tipo.val()
-      }
+        tipo: tipo.val(),
+      },
     });
 
     formActivityBG.classList.add("container--form--hidden");
     formularioResolucion.classList.add("emergent__activity--hidden");
-    clearElements()
+    clearElements();
   } else {
     setTimeout(() => {
       descripcion.val() ? null : descripcion.addClass("uncomplete--input");
@@ -1025,4 +1009,3 @@ function submitResolucion() {
     }, 50);
   }
 }
-

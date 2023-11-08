@@ -929,7 +929,7 @@ input{
   padding: 5px;
   border-radius: 5px 5px 5px 5px;
   background-color: #1B1B1B;
-  border: 0;
+  border: solid #1B1B1B;
   height: 33px;
   width: 500px;
   color: #EAEAEA;
@@ -991,4 +991,13 @@ margin-top: 15px;
 
 .fa-eye-slash{
   margin-left: -36px;
+}
+
+.unchanable--input {
+  border: solid #3e9545;
+  background-color: #032b07;
+}
+
+.uncomplete--input {
+  border: red solid;
 }
