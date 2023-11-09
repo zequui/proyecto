@@ -57,10 +57,11 @@
             
                         <label>Teléfono</label>
                         <input type="number" name="phoneNumber" minlength="8" maxlength="9" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
-        
-                        <label>Cédula</label>
-                        <input type="number" name="ci" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
-        
+    
+                        <div class="col__title">
+                            <label>Cédula</label> <p class="title__text">(sin puntos ni guiones)</p>
+                            <input type="number" name="ci" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
+                        </div>
                         <div class="col__divider">
                             <hr class="divider__hr--2"><h2>incidente</h2><hr class="divider__hr--2">
                         </div>
