@@ -60,8 +60,9 @@
     
                         <div class="col__title">
                             <label>Cédula</label> <p class="title__text">(sin puntos ni guiones)</p>
-                            <input type="number" name="ci" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
                         </div>
+                        <input type="number" name="ci" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
+
                         <div class="col__divider">
                             <hr class="divider__hr--2"><h2>incidente</h2><hr class="divider__hr--2">
                         </div>

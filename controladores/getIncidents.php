@@ -28,9 +28,9 @@ if($filtro == 0){
             <div class="incident__title">
                 <p class="title__name">'.$incident->getTitulo().'</p>
                 <div class="title__container">
-                    <button class="container__button reject-incident"><i class="fa-solid fa-x fa-xl"></i></i></button>
-                    <button class="container__button startIncident_btn"><i class="fa-solid fa-play fa-xl"></i></button>
-                    <button class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl"></i></button>
+                    <button title="Rechazar incidente" class="container__button reject-incident"><i class="fa-solid fa-x fa-xl"></i></i></button>
+                    <button title="iniciar revición del incidente" class="container__button startIncident_btn"><i class="fa-solid fa-play fa-xl"></i></button>
+                    <button title="deplegar información del incidente" class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl"></i></button>
                 </div>
             </div>
             <div class="inicident__information incident__information-hidden">
@@ -86,12 +86,12 @@ if($filtro == 0){
                     <div class="incident__title">
                         <p class="title__name">'.$incident->getTitulo().'</p>
                             <div id="incident__container">
-                                <button class="container__button desestimar_btn"><i class="fa-solid fa-rectangle-xmark fa-xl"></i></button>
-                                <button class="container__button addInvolucradoIncidente"><i class="fa-solid fa-user-plus fa-lg"></i></button>
-                                <button class="container__button edit_incident"><i class="fa-solid fa-pen-to-square fa-xl"></i></button>
-                                <button class="container__button addActivity"><i class="fa-solid fa-plus fa-2xl"></i></button>
-                                <button class="container__button submitResolution_btn"><i class="fa-solid fa-check fa-2xl"></i></button>
-                                <button class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl"></i></button>
+                                <button title="desetimar incidente" class="container__button desestimar_btn"><i class="fa-solid fa-rectangle-xmark fa-xl"></i></button>
+                                <button title="agregar involucrado" class="container__button addInvolucradoIncidente"><i class="fa-solid fa-user-plus fa-lg"></i></button>
+                                <button title="editar incidente" class="container__button edit_incident"><i class="fa-solid fa-pen-to-square fa-xl"></i></button>
+                                <button title="agregar actividad" class="container__button addActivity"><i class="fa-solid fa-plus fa-2xl"></i></button>
+                                <button title="enviar resolucion" class="container__button submitResolution_btn"><i class="fa-solid fa-check fa-2xl"></i></button>
+                                <button title="desplegar incidente" class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl"></i></button>
                             </div>
                     </div>
                     <div class="inicident__information--2 incident__information-hidden">
