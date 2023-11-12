@@ -31,6 +31,11 @@ class repositorioUsuario {
         $stmt = $this->PDO->query('UPDATE usuarios SET nombre = "'.$name.'", apellido = "'.$surname.'", correo = "'.$email.'", contraseña = "'.$password.'" WHERE ci = "'.$ci.'"');
     }
 
+    public function deleteModerador($ci){
+        $stmt = $this->PDO->query('DELETE FROM moderadores WHERE ci = '.$ci);
+        $stmt = $this->PDO->query('DELETE FROM usuarios WHERE ci = '.$ci);
+    }
+
 }
 
 

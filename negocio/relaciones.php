@@ -187,5 +187,9 @@ class Resuelve{
         $rep_resolucion = new repo_Resoluciones();
         $rep_resolucion->setResolution($ci, $id, $resolucion, $tipo, $fecha);
     }
+    public static function updateResolucion($id, $resolucion, $tipo){
+        $rep_resolucion = new repo_Resoluciones();
+        $rep_resolucion->updateResolution($id, $resolucion, $tipo);
+    }
 }
 ?>

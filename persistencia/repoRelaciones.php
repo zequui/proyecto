@@ -92,6 +92,10 @@ class repo_Resoluciones{
     public function setResolution($ci, $id, $resolucion, $tipo, $fecha){
         $stmt = $this->PDO->query('INSERT INTO resuelve (ci, id, fecha_resolucion, resolucion, tipo) VALUES ("'.$ci.'", "'.$id.'", "'.$fecha.'", "'.$resolucion.'", "'.$tipo.'")');
     }
+
+    public function updateResolution($id, $resolucion, $tipo){
+        $stmt = $this->PDO->query('UPDATE resuelve SET resolucion = "'.$resolucion.'", tipo = "'.$tipo.'" WHERE id = '.$id);
+    }
 }
 ?>
 

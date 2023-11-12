@@ -54,5 +54,9 @@ include "../persistencia/repoUsuarios.php";
             $repUsarios = new repositorioUsuario();
             $repUsarios->updateModerador($name, $surname, $ci, $email, $password);
         }
+        public static function deleteMod($ci){
+            $repUsarios = new repositorioUsuario();
+            $repUsarios->deleteModerador($ci);
+        }
     }
 ?>

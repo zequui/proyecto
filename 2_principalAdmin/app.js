@@ -20,6 +20,15 @@ const formularioModerador = document.querySelector(".mod__form");
 const moderadorSubmitBtn = document.querySelector(".mod__form > .mod__button");
 const ciInput = $(formularioModerador).find("input[name = ci]");
 
+const resolucionForm = document.querySelector("#emergent__resolution--form");
+const resolucionFormBG = document.querySelector(
+  "#resolution__container--backgroud"
+);
+
+const acceptResolutionBtn = document.querySelector("#form__resolution-accept");
+const modifyResolutionBtn = document.querySelector("#form__resolution-modify");
+const reviseResolutionBtn = document.querySelector("#form__resolution-revise");
+
 navbarBtns.forEach((opt) => {
   opt.addEventListener("click", (e) => {
     navbarBtns.forEach((btn) => btn.classList.remove("selected"));
@@ -44,6 +53,7 @@ navbarBtns.forEach((opt) => {
         break;
       case "resoluciones":
         resoluciones.classList.remove("hidden");
+        loadResoluciones();
         break;
       case "moderadores":
         moderadores.classList.remove("hidden");
@@ -64,6 +74,12 @@ dropdownBtn.addEventListener("click", (e) => {
   subMenu.forEach((subMenu) => subMenu.classList.toggle("subMenu-hidden"));
   icon.classList.toggle("active");
 });
+
+acceptResolutionBtn.addEventListener("click", () => acceptResolution());
+modifyResolutionBtn.addEventListener("click", () => modifyResolution());
+reviseResolutionBtn.addEventListener("click", () => reviseResolution());
+
+resolucionFormBG.addEventListener("click", () => hideResoluciones());
 
 window.onload = loadEmergentIncidents();
 
@@ -87,6 +103,7 @@ async function loadEmergentIncidents() {
 async function loadIncourseIncidents() {
   const response = await $.get("../controladores/getIncidents.php", {
     filter: 1,
+    admin_opt: true,
   });
   const contenedor = $("#onCourse-container").html(response);
 
@@ -112,6 +129,18 @@ async function loadIncourseIncidents() {
   contenedor
     .find(".submitResolution_btn")
     .on("click", (e) => startResolution(e));
+}
+
+async function loadResoluciones() {
+  const response = await $.get("../controladores/getIncidents.php", {
+    filter: 2,
+  });
+  const container = $("#resolution-container").html(response);
+
+  container.find(".dropdown_btn").on("click", (e) => showExtraInformation(e));
+  container
+    .find(".displayResolution_btn")
+    .on("click", (e) => displayResolution(e));
 }
 
 const showExtraInformation = (e) => {
@@ -363,11 +392,11 @@ function deleteModerador(e) {
   const ci_moderador = moderador_element.getAttribute("ci_moderador");
 
   if (header.classList.contains("unlink-mod")) {
-/*     $.ajax({
+    $.ajax({
       url: "../controladores/deleteMod.php",
       type: "POST",
       data: { ci: ci_moderador },
-    }); */
+    });
 
     moderador_element.classList.add("delete-mod");
     setTimeout(() => {
@@ -378,4 +407,125 @@ function deleteModerador(e) {
   setTimeout(() => {
     header.classList.remove("unlink-mod");
   }, 2500);
+}
+
+function displayResolution(e) {
+  const incident_element =
+    e.currentTarget.parentElement.parentElement.parentElement;
+  const id_incidente = incident_element
+    .getAttribute("id")
+    .replace("incident_", "");
+
+  resolucionFormBG.classList.remove("container--form--hidden");
+  resolucionForm.classList.remove("emergent__activity--hidden");
+
+  resolucionForm.setAttribute("id_incidente", id_incidente);
+
+  $(resolucionForm)
+    .find("#resolution-description")
+    .load("../controladores/getResolution.php", {
+      id_incidente: id_incidente,
+      mod: "descripcion",
+    });
+
+  $(resolucionForm).find("#resolution-type").removeClass("lista");
+  $(resolucionForm)
+    .find("#resolution-type")
+    .load("../controladores/getResolution.php", {
+      id_incidente: id_incidente,
+      mod: "tipo",
+    });
+}
+
+function acceptResolution() {
+  const id_incidente = resolucionForm.getAttribute("id_incidente");
+  const incident_element = document.querySelector("#incident_" + id_incidente);
+  $.ajax({
+    url: "../controladores/changeIncidentStatus.php",
+    type: "REQUEST",
+    data: { id_incidente: id_incidente, new_estado: 5 },
+  });
+
+  hideResoluciones();
+  setTimeout(() => {
+    incident_element.classList.add("incident-active");
+    setTimeout(() => {
+      incident_element.remove();
+    }, 500);
+  }, 500);
+}
+
+function modifyResolution() {
+  const id_incidente = resolucionForm.getAttribute("id_incidente");
+  const incident_element = document.querySelector("#incident_" + id_incidente);
+
+  const descripcion_element = $(resolucionForm).find("#resolution-description");
+  const tipoResolucion = $(resolucionForm).find("#resolution-type");
+
+  if (modifyResolutionBtn.classList.contains("lightup")) {
+    $.ajax({
+      url: "../controladores/updateResolution.php",
+      type: "POST",
+      data: {
+        id_incidente: id_incidente,
+        descripcion: descripcion_element.text().trim(),
+        tipo: tipoResolucion.find("input[name=tipo]:checked").val(),
+      },
+    });
+    hideResoluciones();
+    return;
+  }
+  acceptResolutionBtn.setAttribute("disabled", true);
+  reviseResolutionBtn.setAttribute("disabled", true);
+
+  modifyResolutionBtn.classList.add("lightup");
+  modifyResolutionBtn.innerHTML = "Enviar";
+
+  if (!tipoResolucion.hasClass("lista")) {
+    const tipoResolucionContent = tipoResolucion.text().trim();
+
+    tipoResolucion.replaceWith(`
+    <div class="lista contenedor__type" id="resolution-type">
+    <div class="contenedor">
+        <input type="radio" name="tipo" value="Suspension">Suspencion</input>
+    </div>
+    <div class="contenedor">
+        <input type="radio" name="tipo" value="Trabajo comunitario">Trabajo comunitario</input>
+    </div>
+    <div class="contenedor">
+        <input type="radio" name="tipo" value="cambio de institucion">cambio de institucion</input>
+    </div>
+    <div class="contenedor">
+        <input type="radio" name="tipo" value="otros">otros</input>
+    </div>
+  </div>
+    `);
+    $(resolucionForm)
+      .find("input[value = '" + tipoResolucionContent + "']")
+      .prop("checked", true);
+  }
+  descripcion_element.attr("contentEditable", "true");
+  lightupElement(descripcion_element);
+}
+function reviseResolution() {}
+
+function hideResoluciones() {
+  resolucionFormBG.classList.add("container--form--hidden");
+  resolucionForm.classList.add("emergent__activity--hidden");
+  resolucionForm.setAttribute("id_incidente", "");
+
+  acceptResolutionBtn.removeAttribute("disabled");
+
+  modifyResolutionBtn.removeAttribute("disabled");
+  modifyResolutionBtn.innerHTML = "Modificar";
+
+  reviseResolutionBtn.removeAttribute("disabled");
+  modifyResolutionBtn.classList.remove("lightup");
+}
+
+function lightupElement(elemnt) {
+  elemnt.addClass("lightup");
+  setTimeout(() => {
+    elemnt.removeClass("lightup");
+  }, 1000);
 }
