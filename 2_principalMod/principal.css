@@ -979,3 +979,8 @@ input[type="number"] {
     rgba(0, 87, 7) 100%
   );
 }
+.emergent__input{
+  background-color: #646464;
+  margin: 25px;
+  margin-bottom: -10px;
+}

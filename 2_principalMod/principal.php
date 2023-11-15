@@ -208,6 +208,170 @@
                 </div>
             </div>
         </div>
+        <div class="emergent hidden" id="incidentesPasados">
+        <h1 class=emergent__title>Resultado resoluciones</h1>
+        <input type="text" class="emergent__input">
+          <div class="emergent__container" id="onCourse-container">
+                <div class="emergent__incident" id="31">
+                    <div class="incident__title">
+                        <p class="title__name">Grafitearon mi moto</p>
+                            <div id="incident__container">
+                                <button class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl active"></i></button>
+                            </div>
+                    </div>
+                    <div class="inicident__information--2">
+                        <div class="information__container">
+                            <div class="information__col--2">
+                                <label>Descripcion</label>
+                                <p class="col__p">vfsvfsddvfsvfdsvfdvfdvfd vfedfefvfwfs fdvfvfd fvwvfvfw vfevfdv vfevfdv vfdevfdv vefvefvefv fvevefvfe vfevevfe vfevfevfe vfevfev evefefefvfrefrefer</p>
+                            </div>
+                            <div class="information__col--2">
+                                <label>Fecha</label>
+                                <p class="col__p">2023-09-30</p>
+                                <label>Tipo</label>
+                                <p class="col__p">Vandalismo</p>
+                                <label>Archivo a descargar</label>
+                                <div class="col_downloads">
+                                    <p class="col__p"><a class="download_action" href="../controladores/downloadFile.php?file=archivo_incidente0_12-10-2023_15-58-32.png" filename="archivo_incidente0_12-10-2023_15-58-32.png">Descargar 0</a></p>
+                                    <p class="col__p"><a class="download_action" href="../controladores/downloadFile.php?file=archivo_incidente1_12-10-2023_15-58-32.png" filename="archivo_incidente1_12-10-2023_15-58-32.png">Descargar 1</a></p>
+                                    <p class="col__p"><a class="download_action" href="../controladores/downloadFile.php?file=archivo_incidente2_12-10-2023_15-58-32.png" filename="archivo_incidente2_12-10-2023_15-58-32.png">Descargar 2</a></p>
+                                </div>
+                            </div>
+                            <div class="information__col--2">
+                                <label>Nombre y Apellido</label>
+                                <p class="col__p">ezequiel rivero</p>
+
+                                <label>Cedula</label>
+                                <p class="col__p">55543952</p>
+                                
+                                <label>Telefono</label>
+                                <p class="col__p">342342423</p>
+                            </div>
+                        </div>
+                        <div class="information__title--activity">
+                            <p class="title__name">Actividades</p><hr class="title__hr">
+                        </div>
+                        <div class="information__activity--title" id="1">
+                            <p class="title__name--2">asdadsd</p>
+                            <div class="title__container">
+                                <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl active"></i></button>
+                            </div>
+                        </div>
+                        <div class="activity__information--3">
+                            <div class="information__container--2">
+                                <div class="information__col--3">
+                                    <label>Descripcion</label>
+                                    <p class="col__p">asdasdasd</p>
+                                </div>
+                                <div class="information__col--3">
+                                    <label>Fecha</label>
+                                    <p class="col__p">2023-10-12</p>
+                                    <label>Tipo</label>
+                                    <p class="col__p">Reunion de involucrados</p>
+                                </div>
+                            </div>
+                            <div class="information__container--4">
+                                <div class="information__activity--title">
+                                    <p class="title__name--2">Rodrigo</p>
+                                    <div class="title__container--buttons">
+                                        <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
+                                    </div>
+                                </div>
+                                <div class="activity__information--5 incident__information-hidden">
+                                    <div class="information__container information__container--5">
+                                        <div class="information__col--4">
+                                            <label>Apellido</label>
+                                            <p class="col__p">Saez</p>
+
+                                            <label>Cedula</label>
+                                            <p class="col__p">55449857</p>
+                                            
+                                            <label>Telefono</label>
+                                            <p class="col__p">92050575</p>
+                                        </div>
+                                    </div>  
+                                </div>  
+                            </div>
+                        </div> 
+                        <div class="information__title--activity">
+                            <p class="title__name">Involucrados</p><hr class="title__hr">
+                        </div>
+                        <div class="person-container">
+                            <div class="involucrado__container">
+                                <div class="information__activity--title">
+                                    <p class="title__name--2">ezequi</p>
+                                    <div class="title__container--buttons">
+                                        <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
+                                    </div>
+                                </div>  
+                                <div class="activity__information--5 incident__information-hidden">
+                                    <div class="information__container information__container--5">
+                                        <div class="information__col--4">
+                                            <label>Apellido</label>
+                                            <p class="col__p">zxx<z< p="">
+
+                                            <label>Cedula</label>
+                                            </z<></p><p class="col__p">55214412</p>
+                                            
+                                            <label>Telefono</label>
+                                            <p class="col__p">342342342</p>
+                                        </div>
+                                    </div>  
+                                </div>    
+                            </div>
+                            <div class="involucrado__container">
+                                <div class="information__activity--title">
+                                    <p class="title__name--2">ezequiel</p>
+                                    <div class="title__container--buttons">
+                                        <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl active"></i></button>
+                                    </div>
+                                </div>  
+                                <div class="activity__information--5">
+                                    <div class="information__container information__container--5">
+                                        <div class="information__col--4">
+                                            <label>Apellido</label>
+                                            <p class="col__p">rivero</p>
+
+                                            <label>Cedula</label>
+                                            <p class="col__p">55543952</p>
+                                            
+                                            <label>Telefono</label>
+                                            <p class="col__p">342342423</p>
+                                        </div>
+                                    </div>  
+                                </div>    
+                            </div>    
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="activity__information--3 incident__information-hidden">
+                <div class="information__container">
+                    <div class="information__col--3">
+                        <label>Descripcion</label>
+                        <p class="col__p">'.$incident-&gt;getDescripcion().'</p>
+                    </div>
+                    <div class="information__col--3">
+                        <label>Fecha</label>
+                        <p class="col__p">'.$incident-&gt;getFecha().'</p>
+                        <label>Tipo</label>
+                        <p class="col__p">'.$incident-&gt;getTipo().'</p>
+                        <label>Archivo a descargar</label>
+                        <p class="col__p"><a href="'.loadFile($incident).'" download="archvoRelevante'.$incident->getID().'">Descargar</a></p>
+                    </div>
+                    <div class="information__col--3">
+                        <label>Nombre y Apellido</label>
+                        <p class="col__p">'.$denunciante-&gt;getNombre().' '.$denunciante-&gt;getApellido().'</p>
+
+                        <label>Cedula</label>
+                        <p class="col__p">'.$denunciante-&gt;getCi().'</p>
+                        
+                        <label>Telefono</label>
+                        <p class="col__p">'.$denunciante-&gt;getTelefono().'</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div id="body__imgContainer">   
