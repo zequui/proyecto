@@ -237,6 +237,15 @@
         </div>
     </div>
 
+    <div class="emergent__activity--form container--form--hidden" id="form__reevaluar">
+        <div class="container__col">
+            <h1 class="emergent__title">Reevaluar</h1>
+            <label>Mensaje</label>
+            <textarea name="reevaluar" class="col__description"></textarea>
+        </div>
+        <button class="form__submit" id="form__reval--submit">Enviar</button>
+    </div>
+
 
     <div id="emergent__resolution--form" class="emergent__activity--form emergent__activity--hidden" id_incidente = "'.$incident->getId().'">
             <div class="container__col">
@@ -256,5 +265,6 @@
     <p id="release"></p>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="app.js"></script>
+    
 </body>
 </html>

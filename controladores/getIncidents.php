@@ -277,7 +277,6 @@ if($filtro == 0){
             <p class="title__name">'.$incident->getTitulo().'</p>
                 <div id="incident__container">
                     <button class="container__button displayResolution_btn"><i class="fa-solid fa-inbox fa-xl"></i></button>
-                    <button class="container__button"><i class="fa-solid fa-check fa-2xl"></i></button>
                     <button class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl active"></i></button>
                 </div>
         </div>
@@ -329,9 +328,7 @@ if($filtro == 0){
                 <div class="information__activity--title" id="activity_'.$actividad->getId().'">
                 <p class="title__name--2">'.$actividad->getNombre().'</p>
                 <div class="title__container">
-                    <button class="container__button--2 erase_activity--btn"><i class="fa-solid fa-xmark fa-xl"></i></button>
-                    <button class="container__button--2 edit_activity"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
-                    <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
+                <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
                 </div>
             </div>
             <div class="activity__information--3 incident__information-hidden">
@@ -367,9 +364,7 @@ if($filtro == 0){
                                 <div class="information__activity--title--2" id_incidente="'.$incident->getId().'" id_actividad="'.$actividad->getId().'">
                                     <p class="title__name--2">'.$persona->getNombre().'</p>
                                     <div class="title__container--buttons">
-                                        <button class="container__button--2 unlink_personActivity"><i class="fa-solid fa-xmark fa-xl"></i></button> 
-                                        <button class="container__button--2 edit_person "><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
-                                        <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
+                                    <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
                                     </div>
                                 </div>
                                 <div class = "activity__information--5 incident__information-hidden">
@@ -408,9 +403,7 @@ if($filtro == 0){
                         <div class="information__activity--title" id_incidente="'.$incident->getId().'">
                             <p class="title__name--2">'.$involucrado->getNombre().'</p>
                             <div class="title__container--buttons">
-                                <button class="container__button--2 unlink_personIncident" title="boton"><i class="fa-solid fa-xmark fa-xl"></i></button> 
-                                <button class="container__button--2 edit_person from_incidente-'.$incident->getID().'"><i class="fa-solid fa-pen-to-square fa-lg"></i></button>
-                                <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
+                            <button class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
                             </div>
                         </div>  
                         <div class = "activity__information--5 incident__information-hidden">

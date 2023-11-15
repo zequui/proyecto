@@ -6,5 +6,5 @@ $newDescription = $_POST['descripcion'];
 $newType = $_POST['tipo'];
 
 Resuelve::updateResolucion($id_incidente, $newDescription, $newType);
-
+incidente::updateEstado($id_incidente, 5);
 ?>
