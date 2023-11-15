@@ -1014,3 +1014,8 @@ margin-top: 15px;
   border: solid yellowgreen;;
   transition: .1s;
 }
+
+#form__reevaluar{
+  justify-content: center;
+  align-items: center;
+}

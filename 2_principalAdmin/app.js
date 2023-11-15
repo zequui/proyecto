@@ -19,6 +19,10 @@ const seekingBtns = document.querySelectorAll("#seekingBtn");
 const formularioModerador = document.querySelector(".mod__form");
 const moderadorSubmitBtn = document.querySelector(".mod__form > .mod__button");
 const ciInput = $(formularioModerador).find("input[name = ci]");
+const inputs = document.querySelectorAll("input, textarea, div");
+
+const formReevaluar = document.querySelector("#form__reevaluar");
+const formReevaluarBtn = document.querySelector("#form__reval--submit");
 
 const resolucionForm = document.querySelector("#emergent__resolution--form");
 const resolucionFormBG = document.querySelector(
@@ -77,9 +81,11 @@ dropdownBtn.addEventListener("click", (e) => {
 
 acceptResolutionBtn.addEventListener("click", () => acceptResolution());
 modifyResolutionBtn.addEventListener("click", () => modifyResolution());
-reviseResolutionBtn.addEventListener("click", () => reviseResolution());
+reviseResolutionBtn.addEventListener("click", (e) => reviseResolution(e));
 
 resolucionFormBG.addEventListener("click", () => hideResoluciones());
+
+formReevaluarBtn.addEventListener("click", (e) => submitReevaluar(e));
 
 window.onload = loadEmergentIncidents();
 
@@ -88,7 +94,6 @@ async function loadEmergentIncidents() {
     filter: 0,
   });
   const contenedor = $(contenedorIncidentesEmergentes).html(response);
-  console.log(contenedor);
 
   contenedor.find(".dropdown_btn").on("click", (e) => showExtraInformation(e));
   contenedor
@@ -127,8 +132,8 @@ async function loadIncourseIncidents() {
   contenedor.find(".erase_activity--btn").on("click", (e) => eraseActivity(e));
   contenedor.find(".desestimar_btn").on("click", (e) => desestimarIncidente(e));
   contenedor
-    .find(".submitResolution_btn")
-    .on("click", (e) => startResolution(e));
+    .find(".instantResolution_btn")
+    .on("click", (e) => instantResolution(e));
 }
 
 async function loadResoluciones() {
@@ -361,7 +366,7 @@ function editModerador(e) {
 document.querySelectorAll("*").forEach((elemnt) => {
   elemnt.addEventListener("click", () => {
     document
-      .querySelectorAll("input")
+      .querySelectorAll(".uncomplete--input")
       .forEach((input) => input.classList.remove("uncomplete--input"));
   });
 });
@@ -463,17 +468,29 @@ function modifyResolution() {
   const tipoResolucion = $(resolucionForm).find("#resolution-type");
 
   if (modifyResolutionBtn.classList.contains("lightup")) {
-    $.ajax({
-      url: "../controladores/updateResolution.php",
-      type: "POST",
-      data: {
-        id_incidente: id_incidente,
-        descripcion: descripcion_element.text().trim(),
-        tipo: tipoResolucion.find("input[name=tipo]:checked").val(),
-      },
-    });
-    hideResoluciones();
-    return;
+    if (descripcion_element.text()) {
+      $.ajax({
+        url: "../controladores/updateResolution.php",
+        type: "POST",
+        data: {
+          id_incidente: id_incidente,
+          descripcion: descripcion_element.text().trim(),
+          tipo: tipoResolucion.find("input[name=tipo]:checked").val(),
+        },
+      });
+      hideResoluciones();
+      setTimeout(() => {
+        incident_element.classList.add("incident-active");
+        setTimeout(() => {
+          incident_element.remove();
+        }, 500);
+      }, 500);
+      return
+    } else {
+      setTimeout(() => {
+        descripcion_element.addClass("uncomplete--input ");
+      }, 50);
+    }
   }
   acceptResolutionBtn.setAttribute("disabled", true);
   reviseResolutionBtn.setAttribute("disabled", true);
@@ -507,12 +524,22 @@ function modifyResolution() {
   descripcion_element.attr("contentEditable", "true");
   lightupElement(descripcion_element);
 }
-function reviseResolution() {}
+function reviseResolution(e) {
+  const id_incidente =
+    e.currentTarget.parentElement.parentElement.getAttribute("id_incidente");
+
+  resolucionForm.classList.add("emergent__activity--hidden");
+  formReevaluar.classList.remove("container--form--hidden");
+  formReevaluar.setAttribute("id_incidente", id_incidente);
+}
 
 function hideResoluciones() {
+  formReevaluar.classList.add("container--form--hidden");
   resolucionFormBG.classList.add("container--form--hidden");
   resolucionForm.classList.add("emergent__activity--hidden");
   resolucionForm.setAttribute("id_incidente", "");
+  formReevaluar.setAttribute("id_incidente", "");
+  $(resolucionForm).find("#resolution-description").prop('contentEditable', false)
 
   acceptResolutionBtn.removeAttribute("disabled");
 
@@ -521,7 +548,37 @@ function hideResoluciones() {
 
   reviseResolutionBtn.removeAttribute("disabled");
   modifyResolutionBtn.classList.remove("lightup");
+
+  resetInput();
 }
+
+function submitReevaluar(e) {
+  const id_incidente = formReevaluar.getAttribute("id_incidente");
+  const incident_element = document.querySelector("#incident_" + id_incidente);
+  const descripcion = $(formReevaluar).find("textarea").val();
+
+  $.ajax({
+    url: "../controladores/addMessageReval.php",
+    type: "POST",
+    data: {
+      id_incidente: id_incidente,
+      mensaje: descripcion,
+    },
+  });
+  hideResoluciones();
+
+  setTimeout(() => {
+    incident_element.classList.add("incident-active");
+    setTimeout(() => {
+      incident_element.remove();
+    }, 500);
+  }, 500);
+}
+
+const resetInput = () => {
+  document.querySelectorAll("input").forEach((inpt) => (inpt.value = ""));
+  document.querySelectorAll("textarea").forEach((ta) => (ta.value = ""));
+};
 
 function lightupElement(elemnt) {
   elemnt.addClass("lightup");
@@ -529,3 +586,10 @@ function lightupElement(elemnt) {
     elemnt.removeClass("lightup");
   }, 1000);
 }
+
+inputs.forEach((input) => {
+  input.addEventListener("keydown", (e) => {
+    const keyCode = e.key;
+    if (keyCode == "<" || keyCode == ">") e.preventDefault();
+  });
+});

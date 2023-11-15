@@ -96,6 +96,13 @@ class repo_Resoluciones{
     public function updateResolution($id, $resolucion, $tipo){
         $stmt = $this->PDO->query('UPDATE resuelve SET resolucion = "'.$resolucion.'", tipo = "'.$tipo.'" WHERE id = '.$id);
     }
+    public function addMessage($id, $msg){
+        $stmt = $this->PDO->query('UPDATE resuelve SET mensaje = "'.$msg.'" WHERE id = '.$id);
+    }
+    public function getMessage($id_incidente){
+        $response = $this->PDO->query('SELECT mensaje FROM resuelve WHERE id='.$id_incidente)->fetch()[0];
+        if($response) return $response;
+    }
 }
 ?>
 
