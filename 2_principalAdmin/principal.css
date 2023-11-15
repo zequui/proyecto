@@ -164,6 +164,7 @@ body {
   align-items: center;
   border-radius: 10px;
   transition: 0.1s;
+  margin-top: 30px;
 }
 .emergent__container {
   display: flex;

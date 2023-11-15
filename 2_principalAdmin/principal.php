@@ -176,7 +176,7 @@
                 <label>Archivo relevante</label>
                 <input type="file" id="col__file" name="archivos_relevantes" multiple>
                 <div class="col__people">
-                    <label>Agregar involucrado</label> <button class="container__button--2" id="addInvolucradoActividad"><i class="fa-solid fa-plus fa-xl"></i></button>
+                    <label>Agregar involucrado</label> <button title="Agregar involucrado" class="container__button--2" id="addInvolucradoActividad"><i class="fa-solid fa-plus fa-xl"></i></button>
                     <div id="PesonasActividades">
 
                     </div>
