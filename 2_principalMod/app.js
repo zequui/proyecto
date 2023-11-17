@@ -39,7 +39,6 @@ const formChoosePersonBG = document.querySelector(
 const ciSearch = document.querySelector("#CI_search");
 
 const personaActividadBtn = document.querySelector("#addInvolucradoActividad");
-
 const addNewPersonaBtn = document.querySelector("#addInvolucrado");
 const submitPersonaBtn = document.querySelector("#form__person--submit");
 const submitActividadBtn = document.querySelector("#form__activity--submit");
@@ -47,8 +46,8 @@ const submitIncidenteBtn = document.querySelector("#form__incident--submit");
 const submitChoosePersonBtn = document.querySelector(
   "#form__choose-person--submit"
 );
-const submitResolutionBtn = document.querySelector("#form__resolution--submit");
 
+const submitResolutionBtn = document.querySelector("#form__resolution--submit");
 const AllElmnts = document.querySelectorAll("*");
 
 const inputs = document.querySelectorAll("input");
@@ -86,10 +85,6 @@ navbarBtns.forEach((opt) => {
   });
 });
 
-addNewPersonaBtn.addEventListener("click", (e) =>
-  addInvolucrado(e, "incident")
-);
-
 formActivityBG.addEventListener("click", () => {
   formularioActividad.classList.add("emergent__activity--hidden");
   formularioInvolucrado.classList.add("emergent__activity--hidden");
@@ -113,19 +108,25 @@ formChoosePersonBG.addEventListener("click", () => {
   clearElements();
 });
 
+AllElmnts.forEach((elemnt) => {
+  elemnt.addEventListener("click", () => {
+    resetInputs();
+  });
+});
+
+  addNewPersonaBtn.addEventListener("click", (e) =>
+    addInvolucrado(e, "incident")
+  );
+
 personaActividadBtn.addEventListener("click", (e) =>
   addInvolucrado(e, "activity")
 );
 
-submitPersonaBtn.addEventListener("click", () => submitInvolucrado());
-submitActividadBtn.addEventListener("click", () => submitActividad());
-submitIncidenteBtn.addEventListener("click", () => submitIncidente());
-submitChoosePersonBtn.addEventListener("click", () => submitChoosePersona());
-submitResolutionBtn.addEventListener("click", () => submitResolucion());
-
-AllElmnts.forEach((elemnt) => {
-  elemnt.addEventListener("click", () => resetInputs());
-});
+$(submitPersonaBtn).on("click", () => submitInvolucrado());
+$(submitActividadBtn).on("click", () => submitActividad());
+$(submitIncidenteBtn).on("click", () => submitIncidente());
+$(submitChoosePersonBtn).on("click", () => submitChoosePersona());
+$(submitResolutionBtn).on("click", () => submitResolucion());
 
 showBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => showExtraInformation(e));
@@ -144,7 +145,6 @@ async function loadEmergentIncidents() {
     filter: 0,
   });
   const contenedor = $(contenedorIncidentesEmergentes).html(response);
-  console.log(contenedor);
 
   contenedor.find(".dropdown_btn").on("click", (e) => showExtraInformation(e));
   contenedor
@@ -247,7 +247,7 @@ const previewImgOut = () => {
   $("#body__imgContainer").load("../controladores/hideImages.php");
 };
 
-const followMouse = (e) => {
+function followMouse(e) {
   const mouseY = e.clientY;
   const mouseX = e.clientX;
 
@@ -255,7 +255,7 @@ const followMouse = (e) => {
   $(elemnt).css("top", mouseY - 75 + "px");
   $(elemnt).css("left", mouseX - 200 + "px");
   $(elemnt).removeClass("imgContainer__imgPreview--hidden");
-};
+}
 
 const subMenuHide = () => {
   subMenu.forEach((subMenu) => subMenu.classList.add("subMenu-hidden"));
@@ -373,8 +373,7 @@ function modInvolucrado(e) {
 
   formularioInvolucrado.setAttribute(
     "id_incidente",
-    personContainer.getAttribute('id_incidente')
-    
+    personContainer.getAttribute("id_incidente")
   );
 }
 
@@ -390,7 +389,6 @@ function submitInvolucrado() {
   const Denunciante = document.querySelector("#incident_" + id_incidente)
     .children[1].children[0].children[2];
 
-    
   if (
     name.val() &&
     surname.val() &&
@@ -614,24 +612,26 @@ function reloadActivities(id_incidente) {
 }
 
 function reloadPersonas(id_incidente) {
-  setTimeout(async () => {
-    const response = await $.get(
-      "../controladores/reloadActividadPersonas.php",
-      {
-        id_incidente: id_incidente,
-        mod: 0,
-      }
-    );
-    const contenedor = $("#person--container_" + id_incidente).html(response);
-
-    contenedor
-      .find(".dropdown_btn")
-      .on("click", (e) => showExtraInformation(e));
-    contenedor.find(".edit_person").on("click", (e) => modInvolucrado(e));
-    contenedor
-      .find(".unlink_personIncident")
-      .on("click", (e) => unlinkPersonaIncidente(e));
-    reloadActivities(id_incidente);
+  setTimeout(() => {
+    async () => {
+      const response = await $.get(
+        "../controladores/reloadActividadPersonas.php",
+        {
+          id_incidente: id_incidente,
+          mod: 0,
+        }
+      );
+      const contenedor = $("#person--container_" + id_incidente).html(response);
+  
+      contenedor
+        .find(".dropdown_btn")
+        .on("click", (e) => showExtraInformation(e));
+      contenedor.find(".edit_person").on("click", (e) => modInvolucrado(e));
+      contenedor
+        .find(".unlink_personIncident")
+        .on("click", (e) => unlinkPersonaIncidente(e));
+      reloadActivities(id_incidente);
+    }
   }, 50);
 }
 
@@ -650,7 +650,7 @@ function unLinkPersonaActividad(e) {
     personHeader.nextElementSibling.children[0].children[0].children[3]
       .textContent;
 
-  const activity_id = personHeader.classList[2].replace("from_activity-", "");
+  const activity_id = personHeader.getAttribute('id_actividad');
   if (personHeader.classList.contains("unlink-person")) {
     personHeader.nextElementSibling.remove();
     personHeader.remove();
@@ -666,8 +666,7 @@ function unLinkPersonaActividad(e) {
       contentType: false,
       processData: false,
     });
-  }else{
-    
+  } else {
   }
   personHeader.classList.add("unlink-person");
 
@@ -680,7 +679,7 @@ function unlinkPersonaIncidente(e) {
     personHeader.nextElementSibling.children[0].children[0].children[3]
       .textContent;
 
-  const id_incidente = personHeader.classList[1].replace("from_incident-", "");
+  const id_incidente = personHeader.getAttribute("id_incidente");
 
   const Denunciante = document.querySelector("#incident_" + id_incidente)
     .children[1].children[0].children[2];
@@ -816,14 +815,18 @@ function reloadIncident(id_incidente, titulo, descripcion, fecha, tipo) {
   incidente.children[1].children[0].children[1].children[1].textContent = fecha;
   incidente.children[1].children[0].children[1].children[3].textContent = tipo;
 
-  setTimeout(async () => {
-    const respone = await $.get("../controladores/reloadDownloads.php", {
-      id_incidente: id_incidente,
-    });
-    const container = $(incidente).find(".col_downloads").html(response);
-    contenedor.find(".download_action").on("mouseover", (e) => previewImg(e));
-    contenedor.find(".download_action").on("mouseout", () => previewImgOut());
-    contenedor.find(".download_action").on("mousemove", (e) => followMouse(e));
+  setTimeout(() => {
+    async () => {
+      const respone = await $.get("../controladores/reloadDownloads.php", {
+        id_incidente: id_incidente,
+      });
+      const container = $(incidente).find(".col_downloads").html(response);
+      contenedor.find(".download_action").on("mouseover", (e) => previewImg(e));
+      contenedor.find(".download_action").on("mouseout", () => previewImgOut());
+      contenedor
+        .find(".download_action")
+        .on("mousemove", (e) => followMouse(e));
+    };
   }, 50);
 }
 
@@ -845,7 +848,7 @@ ciSearch.addEventListener("keyup", () => {
   }, 50);
 });
 function choosePersona(e) {
-  id_incidente = e.currentTarget.parentElement.parentElement.parentElement
+  const id_incidente = e.currentTarget.parentElement.parentElement.parentElement
     .getAttribute("id")
     .replace("incident_", "");
 
@@ -856,6 +859,7 @@ function choosePersona(e) {
 }
 
 function submitChoosePersona() {
+  const id_incidente = formularioChoosePersona.getAttribute("id_incidente");
   const ci_personas = $("#person--form__result--container").find(
     ".person--selected > .title__name--2"
   );
@@ -1011,3 +1015,29 @@ function submitResolucion() {
     }, 50);
   }
 }
+
+export {
+  addActivity,
+  choosePersona,
+  previewImg,
+  previewImgOut,
+  followMouse,
+  editIncident,
+  modActivity,
+  modInvolucrado,
+  unLinkPersonaActividad,
+  unlinkPersonaIncidente,
+  eraseActivity,
+  desestimarIncidente,
+  startResolution,
+  submitInvolucrado,
+  submitActividad,
+  submitIncidente,
+  submitChoosePersona,
+  submitResolucion,
+  resetInputs,
+  rejectIncident,
+  startIncidentResolution,
+  reloadListaPersonas,
+  clearElements,
+};

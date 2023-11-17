@@ -1,4 +1,29 @@
-const showBtns = document.querySelectorAll(".dropdown_btn");
+import {
+  addActivity,
+  choosePersona,
+  previewImg,
+  previewImgOut,
+  followMouse,
+  editIncident,
+  modActivity,
+  modInvolucrado,
+  unLinkPersonaActividad,
+  unlinkPersonaIncidente,
+  eraseActivity,
+  desestimarIncidente,
+  startResolution,
+  submitInvolucrado,
+  submitActividad,
+  submitIncidente,
+  submitChoosePersona,
+  submitResolucion,
+  resetInputs,
+  rejectIncident,
+  startIncidentResolution,
+  reloadListaPersonas,
+  clearElements,
+} from "../2_principalMod/app.js";
+
 const dropdownBtn = document.querySelector("#container__fullname");
 
 const subMenu = document.querySelectorAll(".emergent__subMenu");
@@ -69,15 +94,11 @@ navbarBtns.forEach((opt) => {
   });
 });
 
-showBtns.forEach((btn) => {
-  btn.addEventListener("click", (e) => showIncidentsInformation(e));
-});
-
-dropdownBtn.addEventListener("click", (e) => {
-  const icon = e.currentTarget.children[0];
-  subMenu.forEach((subMenu) => subMenu.classList.toggle("subMenu-hidden"));
-  icon.classList.toggle("active");
-});
+$("#form__person--submit").on("click", () => submitInvolucrado());
+$("#form__activity--submit").on("click", () => submitActividad());
+$("#form__incident--submit").on("click", () => submitIncidente());
+$("#form__incident--submit").on("click", () => submitChoosePersona());
+$("#form__choose-person--submit").on("click", () => submitResolucion());
 
 acceptResolutionBtn.addEventListener("click", () => acceptResolution());
 modifyResolutionBtn.addEventListener("click", () => modifyResolution());
@@ -162,69 +183,6 @@ const showIncidentsInformation = (e) => {
   const icon = e.currentTarget.children[0];
   incident_information.classList.toggle("incident__information-hidden");
   icon.classList.toggle("active");
-};
-
-const startIncidentResolution = (e) => {
-  const incidentTitle = e.currentTarget.parentElement.parentElement;
-  const inicident = incidentTitle.parentElement;
-
-  if (incidentTitle.classList.contains("incident__title--cancel")) {
-    incidentTitle.classList.remove("incident__title--cancel");
-    return;
-  }
-  if (incidentTitle.classList.contains("incident__title--confirm")) {
-    inicident.classList.add("incident-active");
-
-    $("#release").load("../controladores/changeIncidentStatus.php", {
-      id_incidente: inicident.getAttribute("id"),
-      new_estado: 1,
-    });
-    setTimeout(() => inicident.remove(), 500);
-  } else {
-    incidentTitle.classList.add("incident__title--confirm");
-  }
-};
-
-const rejectIncident = (e) => {
-  const incidentTitle = e.currentTarget.parentElement.parentElement;
-  const inicident = incidentTitle.parentElement;
-
-  if (incidentTitle.classList.contains("incident__title--confirm")) {
-    incidentTitle.classList.remove("incident__title--confirm");
-    return;
-  }
-  if (incidentTitle.classList.contains("incident__title--cancel")) {
-    inicident.classList.add("incident-rejected");
-
-    $("#release").load("../controladores/changeIncidentStatus.php", {
-      id_incidente: inicident.getAttribute("id"),
-      new_estado: 3,
-    });
-    setTimeout(() => inicident.remove(), 500);
-  } else {
-    incidentTitle.classList.add("incident__title--cancel");
-  }
-};
-
-const previewImg = (e) => {
-  const fileName = e.currentTarget.getAttribute("fileName");
-
-  $("#body__imgContainer").load("../controladores/displayImages.php", {
-    fileName: fileName,
-  });
-};
-const previewImgOut = () => {
-  $("#body__imgContainer").load("../controladores/hideImages.php");
-};
-
-const followMouse = (e) => {
-  const mouseY = e.clientY;
-  const mouseX = e.clientX;
-
-  const elemnt = "#imgContainer__imgPreview";
-  $(elemnt).css("top", mouseY - 75 + "px");
-  $(elemnt).css("left", mouseX - 200 + "px");
-  $(elemnt).removeClass("imgContainer__imgPreview--hidden");
 };
 
 const subMenuHide = () => {
@@ -485,7 +443,7 @@ function modifyResolution() {
           incident_element.remove();
         }, 500);
       }, 500);
-      return
+      return;
     } else {
       setTimeout(() => {
         descripcion_element.addClass("uncomplete--input ");
@@ -539,7 +497,9 @@ function hideResoluciones() {
   resolucionForm.classList.add("emergent__activity--hidden");
   resolucionForm.setAttribute("id_incidente", "");
   formReevaluar.setAttribute("id_incidente", "");
-  $(resolucionForm).find("#resolution-description").prop('contentEditable', false)
+  $(resolucionForm)
+    .find("#resolution-description")
+    .prop("contentEditable", false);
 
   acceptResolutionBtn.removeAttribute("disabled");
 

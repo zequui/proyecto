@@ -356,7 +356,7 @@
             <textarea class="col__description" name="descripcion"></textarea>
         </div>
         <div class="activity__button">
-            <button class="form__submit" id="form__person--submit">Ingresar</button>
+            <button class="form__submit" id="">Ingresar</button>
         </div>
     </div>
     <div id="emergent__incident--form" class=" emergent__activity--hidden">
@@ -404,6 +404,6 @@
     </div>
     <p id="release"></p>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="app.js"></script>
+    <script src="app.js" type="module"></script>
 </body>
 </html>

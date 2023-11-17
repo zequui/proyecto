@@ -4,6 +4,7 @@
     <script src="https://kit.fontawesome.com/6b0ad3d290.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../2_principalMod/principal.css">
     <link rel="stylesheet" href="principal.css">
     <title>principal</title>
 </head>
@@ -132,10 +133,74 @@
     </div>
     <div id="body__container--person-form" class="container--form--hidden">
     </div>
+    <div id="body__container--incident-form" class="container--form--hidden">
+    </div>
+    <div id="body__container--choose-person" class="container--form--hidden">
+    </div>
     <div id = "resolution__container--backgroud" class="container--form--hidden">
     </div>
 
     <div class="emergent__activity--form emergent__activity--hidden">
+        <div class="container__col">
+            <h1 class="emergent__title">Enviar Resolucion</h1>
+            <label>Descripción</label>
+            <textarea class="col__description" name="descripcion"></textarea>
+            <label>Tipo de resolucion</label>
+            <div class="lista">
+                <div class="contenedor">
+                    <input type="radio" name="tipo" value="Suspencion">Suspencion</input>
+                </div>
+                <div class="contenedor">
+                    <input type="radio" name="tipo" value="Trabajo comunitario">Trabajo comunitario</input>
+                </div>
+                <div class="contenedor">
+                    <input type="radio" name="tipo" value="cambio de institucion">cambio de institucion</input>
+                </div>
+                <div class="contenedor">
+                    <input type="radio" name="tipo" value="otros">otros</input>
+                </div>
+            </div>
+        </div>
+        <div class="activity__button">
+            <button type="submit" class="form__submit" id="">Ingresar</button>
+        </div>
+    </div>
+
+    <div class="emergent__activity--form container--form--hidden" id="form__reevaluar">
+        <div class="container__col">
+            <h1 class="emergent__title">Reevaluar</h1>
+            <label>Mensaje</label>
+            <textarea name="reevaluar" class="col__description"></textarea>
+        </div>
+        <button class="form__submit" id="form__reval--submit">Enviar</button>
+    </div>
+
+
+    <div id="emergent__resolution--form" class="emergent__activity--form emergent__activity--hidden" id_incidente = "'.$incident->getId().'">
+            <div class="container__col">
+                <h1 class="emergent__title">Resolucion</h1>
+                <label>Descripción</label>
+                <div class="col__description" id="resolution-description"></div>
+                <label>Tipo de resolucion</label>
+                <div class="contenedor__type" id="resolution-type"></div>
+            </div>
+            <div class="activity__button--2">
+                <button type="submit" class="form__submit form__submit--2" id="form__resolution-accept">Aceptar</button>
+                <button type="submit" class="form__submit form__submit--2" id="form__resolution-modify">Modificar</button>
+                <button type="submit" class="form__submit form__submit--2" id="form__resolution-revise">Reevaluar</button>
+            </div>
+        </div>
+
+        <div id="body__container--activity-form" class="container--form--hidden">
+    </div>
+    <div id="body__container--person-form" class="container--form--hidden">
+    </div>
+    <div id="body__container--incident-form" class="container--form--hidden">
+    </div>
+    <div id="body__container--choose-person" class="container--form--hidden">
+    </div>
+
+    <div id="emergent__activity--form" class="emergent__activity--hidden">
         <h1 class="emergent__title">Registrar Actividad</h1>
         <div class="activity__container">
             <div class="container__col">
@@ -177,7 +242,7 @@
                 <input type="file" id="col__file" name="archivos_relevantes" multiple>
                 <div class="col__people">
                     <label>Agregar involucrado</label> <button class="container__button--2" id="addInvolucradoActividad"><i class="fa-solid fa-plus fa-xl"></i></button>
-                    <div id="PesonasActividades">
+                    <div id="PersonasActividades">
 
                     </div>
                 </div>
@@ -187,7 +252,19 @@
             <button type="submit" class="form__submit" id="form__activity--submit">Ingresar</button>
         </div>    
     </div>
-    <div class="emergent__person--form emergent__activity--hidden">
+    <div id="emergent__choose-person--form" class="emergent__activity--hidden">
+        <div class="title__container--2">
+        <h1 class="emergent__title">Ingresa CI</h1> <button class="container__button--2" id="addInvolucrado"><i class="fa-solid fa-plus fa-xl"></i></button>
+        </div>
+        <input type="text" name="ci" id="CI_search">
+        <div id="person--form__result--container">
+            
+        </div>
+        <div class="activity__button">
+            <button class="form__submit" id="form__choose-person--submit">Ingresar</button>
+        </div>
+    </div>
+    <div id="emergent__person--form" class="emergent__activity--hidden">
         <h1 class="emergent__title">Registrar Involucrado</h1>
             <div class="container__col--2">
                 <div class="col__input">
@@ -211,7 +288,7 @@
             <button class="form__submit" id="form__person--submit">Ingresar</button>
         </div>
     </div>
-    <div class="emergent__activity--form emergent__activity--hidden">
+    <div id="emergent__resolution--form" class="emergent__activity--hidden">
         <div class="container__col">
             <h1 class="emergent__title">Enviar Resolucion</h1>
             <label>Descripción</label>
@@ -219,7 +296,7 @@
             <label>Tipo de resolucion</label>
             <div class="lista">
                 <div class="contenedor">
-                    <input type="radio" name="tipo" value="Suspencion">Suspencion</input>
+                    <input type="radio" name="tipo" value="Suspension">Suspensión</input>
                 </div>
                 <div class="contenedor">
                     <input type="radio" name="tipo" value="Trabajo comunitario">Trabajo comunitario</input>
@@ -233,38 +310,80 @@
             </div>
         </div>
         <div class="activity__button">
-            <button type="submit" class="form__submit" id="form__activity--submit">Ingresar</button>
+            <button type="submit" class="form__submit" id="form__resolution--submit">Ingresar</button>
         </div>
     </div>
-
-    <div class="emergent__activity--form container--form--hidden" id="form__reevaluar">
+    <div class="emergent__activity--form emergent__activity--hidden" style="display: none;">
         <div class="container__col">
-            <h1 class="emergent__title">Reevaluar</h1>
-            <label>Mensaje</label>
-            <textarea name="reevaluar" class="col__description"></textarea>
+            <h1 class="emergent__title">Resolucion</h1>
+            <label>Descripción</label>
+            <textarea class="col__description" name="descripcion"></textarea>
+            <label>Tipo de resolucion</label>
+            <div class="contenedor__type">Suspencion</div>
         </div>
-        <button class="form__submit" id="form__reval--submit">Enviar</button>
+        <div class="activity__button--2">
+            <button type="submit" class="form__submit form__submit--2" id="">Aceptar</button>
+            <button type="submit" class="form__submit form__submit--2" id="">Modificar</button>
+        </div>
     </div>
 
-
-    <div id="emergent__resolution--form" class="emergent__activity--form emergent__activity--hidden" id_incidente = "'.$incident->getId().'">
+    <div class="emergent__activity--form emergent__activity--hidden"  style="display: none;">
+        <div class="container__col">
+            <h1 class="emergent__title">Reevaluacion</h1>
+            <label>Descripción</label>
+            <textarea class="col__description" name="descripcion"></textarea>
+        </div>
+        <div class="activity__button">
+            <button class="form__submit" id="form__person--submit">Ingresar</button>
+        </div>
+    </div>
+    <div id="emergent__incident--form" class=" emergent__activity--hidden">
+        <h1 class="emergent__title">Editar Incidente</h1>
+        <div class="activity__container">
             <div class="container__col">
-                <h1 class="emergent__title">Resolucion</h1>
-                <label>Descripción</label>
-                <div class="col__description" id="resolution-description"></div>
-                <label>Tipo de resolucion</label>
-                <div class="contenedor__type" id="resolution-type"></div>
+                <div class="col__title">
+                    <label>Título</label> <p class="title__text">(inserte un titulo adecuado para ser indentificado mas facilmente)</p>
+                </div>
+                <input type="text" name="titulo" maxlength="35" required>
+                
+                <label>Tipo de incidente</label>
+                <div id="lista">
+                    <div class="contenedor">
+                        <input type="radio" name="tipo" value="Hurto">Hurto</input>
+                    </div><div class="contenedor">
+                        <input type="radio" name="tipo" value="Acoso">Acoso</input>
+                    </div><div class="contenedor">
+                        <input type="radio" name="tipo" value="Violencia">Violencia</input>
+                    </div><div class="contenedor">
+                        <input type="radio" name="tipo" value="Conducta inadecuada">Conducta inadecuada</input>
+                    </div><div class="contenedor">
+                        <input type="radio" name="tipo" value="Tenencia de sustancias ilicitas">Tenencia de sustancias ilicitas</input>
+                    </div><div class="contenedor">
+                        <input type="radio" name="tipo" value="Tenencia de objeto dañino">Tenencia de objeto dañino</input>
+                    </div><div class="contenedor">
+                        <input type="radio" name="tipo" value="Vandalismo">Vandalismo</input>
+                    </div>
+                </div>
+                <div class="col__title">
+                    <label>Fecha</label><p class="title__text">(inserte la fecha en la que sucedió el incidente)</p>
+                </div>
+                <input type="date" name="fecha" id="col__date" required>
+                <label>Archivo relevante</label>
+                <input type="file" id="col__file" name="archivos_relevantes" multiple>
             </div>
-            <div class="activity__button--2">
-                <button type="submit" class="form__submit form__submit--2" id="form__resolution-accept">Aceptar</button>
-                <button type="submit" class="form__submit form__submit--2" id="form__resolution-modify">Modificar</button>
-                <button type="submit" class="form__submit form__submit--2" id="form__resolution-revise">Reevaluar</button>
+            <div class="container__col">
+                <label>Descripción</label>
+                <textarea class="col__description" name="descripcion"></textarea>
             </div>
         </div>
+        <div class="activity__button">
+            <button type="submit" class="form__submit" id="form__incident--submit">Ingresar</button>
+        </div>
+    </div>
 
     <p id="release"></p>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="app.js"></script>
+    <script src="app.js" defer type="module"></script>
     
 </body>
 </html>

@@ -866,8 +866,16 @@ input[type="number"] {
   transform: none;
 }
 
-.unlink-mod, .uncomplete--input {
+.unlink-mod, .uncomplete--input, .unlink-person, .erase_activity{
   border: red solid;
+}
+
+.refuse-del{
+  position: relative;
+  border: solid yellowgreen;
+  z-index: 100;
+  animation: refuse-animation .5s;
+  transition: .1s;
 }
 
 .unchanable--input {
