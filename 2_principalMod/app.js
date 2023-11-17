@@ -116,9 +116,9 @@ AllElmnts.forEach((elemnt) => {
   });
 });
 
-  addNewPersonaBtn.addEventListener("click", (e) =>
-    addInvolucrado(e, "incident")
-  );
+addNewPersonaBtn.addEventListener("click", (e) =>
+  addInvolucrado(e, "incident")
+);
 
 personaActividadBtn.addEventListener("click", (e) =>
   addInvolucrado(e, "activity")
@@ -614,27 +614,25 @@ function reloadActivities(id_incidente) {
 }
 
 function reloadPersonas(id_incidente) {
-  setTimeout(() => {
-    async () => {
-      const response = await $.get(
-        "../controladores/reloadActividadPersonas.php",
-        {
-          id_incidente: id_incidente,
-          mod: 0,
-        }
-      );
-      const contenedor = $("#person--container_" + id_incidente).html(response);
-  
-      contenedor
-        .find(".dropdown_btn")
-        .on("click", (e) => showExtraInformation(e));
-      contenedor.find(".edit_person").on("click", (e) => modInvolucrado(e));
-      contenedor
-        .find(".unlink_personIncident")
-        .on("click", (e) => unlinkPersonaIncidente(e));
-      reloadActivities(id_incidente);
-    }
-  }, 50);
+  setTimeout(async () => {
+    const response = await $.get(
+      "../controladores/reloadActividadPersonas.php",
+      {
+        id_incidente: id_incidente,
+        mod: 0,
+      }
+    );
+    const contenedor = $("#person--container_" + id_incidente).html(response);
+
+    contenedor
+      .find(".dropdown_btn")
+      .on("click", (e) => showExtraInformation(e));
+    contenedor.find(".edit_person").on("click", (e) => modInvolucrado(e));
+    contenedor
+      .find(".unlink_personIncident")
+      .on("click", (e) => unlinkPersonaIncidente(e));
+    reloadActivities(id_incidente);
+  }, 500);
 }
 
 function clearElements() {
@@ -652,7 +650,7 @@ function unLinkPersonaActividad(e) {
     personHeader.nextElementSibling.children[0].children[0].children[3]
       .textContent;
 
-  const activity_id = personHeader.getAttribute('id_actividad');
+  const activity_id = personHeader.getAttribute("id_actividad");
   if (personHeader.classList.contains("unlink-person")) {
     personHeader.nextElementSibling.remove();
     personHeader.remove();
@@ -926,9 +924,11 @@ function eraseActivity(e) {
       contentType: false,
       processData: false,
     });
-  }
 
-  reloadActivities(id_incidente);
+    activityElement.remove();
+
+    return;
+  }
   activityElement.classList.add("erase_activity");
   setTimeout(() => {
     activityElement.classList.remove("erase_activity");

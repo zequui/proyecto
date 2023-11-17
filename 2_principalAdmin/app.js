@@ -268,7 +268,7 @@ moderadorSubmitBtn.addEventListener("click", (e) => {
       inputs.each((i, input) => (input.value = ""));
       setTimeout(() => {
         loadModeradores();
-      }, 50);
+      }, 500);
     }
   } else {
     setTimeout(() => {
