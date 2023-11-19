@@ -176,7 +176,7 @@
     </div>
 
 
-    <div id="emergent__resolution--form" class="emergent__activity--form emergent__activity--hidden" id_incidente = "'.$incident->getId().'">
+    <div id="emergent__resolution--result" class="emergent__activity--form emergent__activity--hidden" id_incidente = "'.$incident->getId().'">
             <div class="container__col">
                 <h1 class="emergent__title">Resolucion</h1>
                 <label>Descripción</label>
@@ -290,7 +290,7 @@
     </div>
     <div id="emergent__resolution--form" class="emergent__activity--hidden">
         <div class="container__col">
-            <h1 class="emergent__title">Enviar Resolucion</h1>
+            <h1 class="emergent__title">Subir Resolucion</h1>
             <label>Descripción</label>
             <textarea class="col__description" name="descripcion"></textarea>
             <label>Tipo de resolucion</label>
@@ -310,7 +310,7 @@
             </div>
         </div>
         <div class="activity__button">
-            <button type="submit" class="form__submit" id="form__resolution--submit">Ingresar</button>
+            <button type="submit" class="form__submit" id="form__instantResolution--submit">Ingresar</button>
         </div>
     </div>
     <div class="emergent__activity--form emergent__activity--hidden" style="display: none;">

@@ -128,7 +128,7 @@ $(submitPersonaBtn).on("click", () => submitInvolucrado());
 $(submitActividadBtn).on("click", () => submitActividad());
 $(submitIncidenteBtn).on("click", () => submitIncidente());
 $(submitChoosePersonBtn).on("click", () => submitChoosePersona());
-$(submitResolutionBtn).on("click", () => submitResolucion());
+$(submitResolutionBtn).on("click", () => submitResolucion(false));
 
 showBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => showExtraInformation(e));
@@ -976,7 +976,7 @@ function startResolution(e) {
 
   formularioResolucion.setAttribute("id_incidente", id_incidente);
 }
-function submitResolucion() {
+function submitResolucion(instant) {
   const descripcion = $(formularioResolucion).find(
     "textarea[name = descripcion]"
   );
@@ -998,6 +998,7 @@ function submitResolucion() {
         id_incidente: id_incidente,
         descripcion: descripcion.val(),
         tipo: tipo.val(),
+        instant: instant,
       },
     });
 

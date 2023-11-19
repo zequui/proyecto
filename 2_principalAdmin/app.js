@@ -11,17 +11,14 @@ import {
   unlinkPersonaIncidente,
   eraseActivity,
   desestimarIncidente,
-  startResolution,
   submitInvolucrado,
   submitActividad,
   submitIncidente,
   submitChoosePersona,
   submitResolucion,
-  resetInputs,
+  startResolution,
   rejectIncident,
   startIncidentResolution,
-  reloadListaPersonas,
-  clearElements,
 } from "../2_principalMod/app.js";
 
 const dropdownBtn = document.querySelector("#container__fullname");
@@ -49,7 +46,7 @@ const inputs = document.querySelectorAll("input, textarea, div");
 const formReevaluar = document.querySelector("#form__reevaluar");
 const formReevaluarBtn = document.querySelector("#form__reval--submit");
 
-const resolucionForm = document.querySelector("#emergent__resolution--form");
+const resolucionForm = document.querySelector("#emergent__resolution--result");
 const resolucionFormBG = document.querySelector(
   "#resolution__container--backgroud"
 );
@@ -57,6 +54,7 @@ const resolucionFormBG = document.querySelector(
 const acceptResolutionBtn = document.querySelector("#form__resolution-accept");
 const modifyResolutionBtn = document.querySelector("#form__resolution-modify");
 const reviseResolutionBtn = document.querySelector("#form__resolution-revise");
+const submitResolutionBtn = document.querySelector("#form__instantResolution--submit");
 
 navbarBtns.forEach((opt) => {
   opt.addEventListener("click", (e) => {
@@ -108,6 +106,8 @@ resolucionFormBG.addEventListener("click", () => hideResoluciones());
 
 formReevaluarBtn.addEventListener("click", (e) => submitReevaluar(e));
 
+submitResolutionBtn.addEventListener('click', () => submitResolucion(true))
+
 window.onload = loadEmergentIncidents();
 
 async function loadEmergentIncidents() {
@@ -154,7 +154,7 @@ async function loadIncourseIncidents() {
   contenedor.find(".desestimar_btn").on("click", (e) => desestimarIncidente(e));
   contenedor
     .find(".instantResolution_btn")
-    .on("click", (e) => instantResolution(e));
+    .on("click", (e) => startResolution(e));
 }
 
 async function loadResoluciones() {
@@ -252,9 +252,6 @@ moderadorSubmitBtn.addEventListener("click", (e) => {
           processData: false,
         });
 
-        formularioModerador.setAttribute("mod", "");
-        ciInput.removeClass("unchanable--input");
-        ciInput.prop("readonly", true);
       } else {
         $.ajax({
           url: "../controladores/setModerador.php",
@@ -265,10 +262,8 @@ moderadorSubmitBtn.addEventListener("click", (e) => {
         });
       }
 
-      inputs.each((i, input) => (input.value = ""));
-      setTimeout(() => {
-        loadModeradores();
-      }, 500);
+      resetModForm(inputs)
+      
     }
   } else {
     setTimeout(() => {
@@ -304,6 +299,7 @@ function editModerador(e) {
   formularioModerador.setAttribute("mod", "modificar");
 
   const inputs = $(formularioModerador).find("input");
+  $(formularioModerador).find('#form__title').html('modificar moderador')
 
   inputs[0].value = modElement.children[0].children[0].textContent;
   inputs[1].value =
@@ -321,13 +317,6 @@ function editModerador(e) {
   ciInput.prop("readonly", true);
 }
 
-document.querySelectorAll("*").forEach((elemnt) => {
-  elemnt.addEventListener("click", () => {
-    document
-      .querySelectorAll(".uncomplete--input")
-      .forEach((input) => input.classList.remove("uncomplete--input"));
-  });
-});
 
 const checkCI = (ci) => {
   if (ci == 0 || ci.length !== 8) return false;
@@ -553,3 +542,16 @@ inputs.forEach((input) => {
     if (keyCode == "<" || keyCode == ">") e.preventDefault();
   });
 });
+
+function resetModForm(inputs){
+  $(formularioModerador).find('#form__title').html('registrar moderador')
+  inputs.each((i, input) => (input.value = ""));
+  setTimeout(() => {
+    loadModeradores();
+  }, 500);
+
+  formularioModerador.setAttribute("mod", "");
+  ciInput.removeClass("unchanable--input");
+  ciInput.prop("readonly", true);
+}
+

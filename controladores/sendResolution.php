@@ -8,8 +8,15 @@ session_start();
 $id_incidente = $_REQUEST['id_incidente'];
 $descripcion = $_REQUEST['descripcion'];
 $tipo = $_REQUEST['tipo'];
-$ci_moderador = $_SESSION['usuario logeado']->getCi();
+$ci_usuario = $_SESSION['usuario logeado']->getCi();
+$instant = $_REQUEST['instant'];
 
-Resuelve::setResolucion($ci_moderador, $id_incidente, $descripcion, $tipo, date('Y-m-d'));
-incidente::updateEstado($id_incidente, 2);
+Resuelve::setResolucion($ci_usuario, $id_incidente, $descripcion, $tipo, date('Y-m-d'));
+
+if(!$instant){
+    incidente::updateEstado($id_incidente, 2);
+}else{
+    incidente::updateEstado($id_incidente, 5);
+}
+
 ?>
