@@ -97,12 +97,13 @@ input {
   padding: 5px;
   border-radius: 5px;
   background-color: #1b1b1b;
-  border: 0;
+  border: solid #1b1b1b;
   height: 33px;
   width: 500px;
   color: #eaeaea;
   font-size: 17px;
   margin-bottom: 5px;
+  transition: .1s;
 }
 #container__name {
   display: flex;
@@ -282,4 +283,8 @@ button {
   #body__button > p {
     display: none;
   }
+}
+
+.unvalid--input{
+  border: solid red;
 }

@@ -3,7 +3,6 @@ const bodyElemnts = document.querySelectorAll("body > *");
 const submitBtn = document.querySelector("#form__submit");
 const ciInput = document.querySelector("input[name='ci']");
 
-
 bodyElemnts.forEach((element) => {
   element.addEventListener("click", () => {
     errorMsg != null ? errorMsg.remove() : null;
@@ -11,9 +10,16 @@ bodyElemnts.forEach((element) => {
 });
 
 submitBtn.addEventListener("click", (e) => {
-  if (!checkCI(ciInput.value) || ciInput.value.length != 8) {
+  if (!checkCI(ciInput.value)) {
+    setTimeout(() => ciInput.classList.add("unvalid--input"), 50);
     e.preventDefault();
   }
+});
+
+document.querySelectorAll("*").forEach((elemnt) => {
+  elemnt.addEventListener("click", () =>
+    ciInput.classList.remove("unvalid--input")
+  );
 });
 
 const checkCI = (ci) => {
