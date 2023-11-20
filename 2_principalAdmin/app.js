@@ -529,19 +529,3 @@ function resetModForm(inputs){
   ciInput.prop("readonly", true);
 }
 
-function hideResoluciones() {
-  resolucionFormBG.classList.add("container--form--hidden");
-  resolucionForm.classList.add("emergent__activity--hidden");
-  resolucionForm.setAttribute("id_incidente", "");
-  formReevaluar.setAttribute("id_incidente", "");
-
-  acceptResolutionBtn.removeAttribute("disabled");
-
-  modifyResolutionBtn.removeAttribute("disabled");
-  modifyResolutionBtn.innerHTML = "Modificar";
-
-  reviseResolutionBtn.removeAttribute("disabled");
-  modifyResolutionBtn.classList.remove("lightup");
-
-  resetInput();
-}

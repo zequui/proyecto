@@ -182,7 +182,7 @@ async function loadIncourseIncidents() {
   contenedor.find(".download_action").on("mousemove", (e) => followMouse(e));
   contenedor.find(".edit_incident").on("click", (e) => editIncident(e));
   contenedor.find(".edit_activity").on("click", (e) => modActivity(e));
-  contenedor.find(".edit_person").on("click", (e) => modInvolucrado(e));
+  contenedor.find(".edit_person").on("click", (e) => modInvolucrado(e, true));
   contenedor
     .find(".unlink_personActivity")
     .on("click", (e) => unLinkPersonaActividad(e));
@@ -300,6 +300,7 @@ const addActivity = (e) => {
     const ActividadForm = $("#PersonasActividades").html(respone);
 
     ActividadForm.find(".checkbox").on("click", (e) => selectPerson(e));
+    ActividadForm.find('.edit_person').on('click', e => modInvolucrado(e, false))
   })();
 };
 
@@ -367,15 +368,33 @@ const addInvolucrado = (e, origen) => {
   formularioInvolucrado.setAttribute("tipoRegistro", "agregar");
 };
 
-function modInvolucrado(e) {
-  const personContainer = e.currentTarget.parentElement.parentElement;
-  const extraInformation =
+function modInvolucrado(e, mod) {
+
+  let personContainer
+  let extraInformation
+
+  let name
+  let surname
+  let ci
+  let phoneNumber
+
+  if(mod){
+    personContainer = e.currentTarget.parentElement.parentElement;
+    extraInformation =
     personContainer.nextElementSibling.children[0].children[0].children;
 
-  const name = personContainer.children[0].textContent;
-  const surname = extraInformation[1].textContent;
-  const ci = extraInformation[3].textContent;
-  const phoneNumber = extraInformation[5].textContent;
+    name = personContainer.children[0].textContent;
+    surname = extraInformation[1].textContent;
+    ci = extraInformation[3].textContent;
+    phoneNumber = extraInformation[5].textContent;
+  } else {
+    personContainer = e.currentTarget.parentElement.parentElement
+    const personData = personContainer.textContent.trim().split(' ')
+    ci = personData[0]
+    name = personData[1]
+    surname = personData[2]
+    phoneNumber = personContainer.children[0].getAttribute('phonenumber')
+  }
 
   formPersonBG.classList.remove("container--form--hidden");
   formularioInvolucrado.classList.remove("emergent__activity--hidden");
@@ -626,7 +645,7 @@ function reloadActivities(id_incidente) {
     contenedor
       .find(".unlink_personActivity")
       .on("click", (e) => unLinkPersonaActividad(e));
-    contenedor.find(".edit_person").on("click", (e) => modInvolucrado(e));
+    contenedor.find(".edit_person").on("click", (e) => modInvolucrado(e, true));
     contenedor
       .find(".erase_activity--btn")
       .on("click", (e) => eraseActivity(e));
@@ -647,7 +666,7 @@ function reloadPersonas(id_incidente) {
     contenedor
       .find(".dropdown_btn")
       .on("click", (e) => showExtraInformation(e));
-    contenedor.find(".edit_person").on("click", (e) => modInvolucrado(e));
+    contenedor.find(".edit_person").on("click", (e) => modInvolucrado(e, true));
     contenedor
       .find(".unlink_personIncident")
       .on("click", (e) => unlinkPersonaIncidente(e));
@@ -914,6 +933,7 @@ const reloadListaPersonas = async () => {
   const respone = await $.get("../controladores/getAllPersonas.php");
   const container = $("#person--form__result--container").html(respone);
   container.find(".checkbox").on("click", (e) => selectPerson(e));
+  container.find('.edit_person').on('click', e => modInvolucrado(e, false))
 };
 
 inputs.forEach((input) => {

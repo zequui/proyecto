@@ -781,8 +781,13 @@ input[type="number"] {
   height: 100%;
   background-color: rgb(94, 255, 0);
 
+  left: 0;
+  top: 0;
+  
   opacity: 0.1;
   transition: 0.1s;
+  z-index: 100;
+
 }
 #body__container--activity-form,
 #body__container--incident-form,
