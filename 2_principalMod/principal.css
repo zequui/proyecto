@@ -991,6 +991,7 @@ input[type="number"] {
   background-color: #646464;
   margin: 25px;
   margin-bottom: -10px;
+  min-height: 33px;
 }
 
 #emergent__resolution--result {
@@ -1018,4 +1019,5 @@ input[type="number"] {
   font-size: 17px;
   margin-bottom: 5px;
   margin-top: 15px;
-  }
+    min-height: 33px;
+}
