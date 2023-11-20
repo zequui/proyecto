@@ -196,7 +196,8 @@ body {
   margin-left: 20px;
   transition: 0.1s;
 }
-.title__container, .title__container--2 {
+.title__container,
+.title__container--2 {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -537,7 +538,7 @@ i {
   z-index: 200;
   min-width: 400px;
 }
-#person--form__result--container{
+#person--form__result--container {
   min-height: 70px;
   border: 1px solid #001f10;
   margin: 5px;
@@ -548,7 +549,7 @@ i {
   overflow-x: hidden;
   max-height: 400px;
 }
-#CI_search{
+#CI_search {
   margin: 10px 0;
 }
 #person--form__result--container::-webkit-scrollbar-track {
@@ -773,7 +774,8 @@ input[type="number"] {
 #body__container--activity-form,
 #body__container--person-form,
 #body__container--incident-form,
-#body__container--choose-person {
+#body__container--choose-person,
+#resolution__container--backgroud {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -893,7 +895,8 @@ input[type="number"] {
   padding: 0;
 }
 
-.unlink-person, .erase_activity {
+.unlink-person,
+.erase_activity {
   border: solid red;
 }
 
@@ -930,29 +933,29 @@ input[type="number"] {
   );
 }
 
-.title__container--2{
+.title__container--2 {
   justify-content: space-between;
   align-items: baseline;
 }
 
-.refuse-del{
+.refuse-del {
   position: relative;
   border: solid yellowgreen;
   z-index: 100;
-  animation: refuse-animation .5s;
-  transition: .1s;
+  animation: refuse-animation 0.5s;
+  transition: 0.1s;
 }
 
 @keyframes refuse-animation {
-  20%{
+  20% {
     transform: translateX(-10px);
   }
-  50%{
+  50% {
     transform: translateX(10px);
   }
 }
 
-#PersonasActividades{
+#PersonasActividades {
   max-height: 200px;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -979,9 +982,36 @@ input[type="number"] {
     rgba(0, 87, 7) 100%
   );
 }
-.emergent__input{
+.emergent__input {
   background-color: #646464;
   margin: 25px;
   margin-bottom: -10px;
-  min-height: 33px;
+}
+
+#emergent__resolution--result {
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  background-color: #2e2e2e;
+  z-index: 250;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 10px;
+  border: solid #ddd;
+  transition: 0.1s;
+}
+
+.contenedor__type{
+  padding: 5px;
+  border-radius: 5px 5px 5px 5px;
+  background-color: #1B1B1B;
+  border: 0;
+  height: 33px;
+  width: 500px;
+  color: #EAEAEA;
+  font-size: 17px;
+  margin-bottom: 5px;
+  margin-top: 15px;
+    min-height: 33px;
 }

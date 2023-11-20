@@ -18,7 +18,7 @@ import {
   submitResolucion,
   startResolution,
   rejectIncident,
-  startIncidentResolution,
+  startIncidentResolution
 } from "../2_principalMod/app.js";
 
 const dropdownBtn = document.querySelector("#container__fullname");
@@ -129,7 +129,7 @@ async function loadEmergentIncidents() {
 async function loadIncourseIncidents() {
   const response = await $.get("../controladores/getIncidents.php", {
     filter: 1,
-    admin_opt: true,
+    admin_opt: true
   });
   const contenedor = $("#onCourse-container").html(response);
 
@@ -361,33 +361,7 @@ function deleteModerador(e) {
   }, 2500);
 }
 
-function displayResolution(e) {
-  const incident_element =
-    e.currentTarget.parentElement.parentElement.parentElement;
-  const id_incidente = incident_element
-    .getAttribute("id")
-    .replace("incident_", "");
 
-  resolucionFormBG.classList.remove("container--form--hidden");
-  resolucionForm.classList.remove("emergent__activity--hidden");
-
-  resolucionForm.setAttribute("id_incidente", id_incidente);
-
-  $(resolucionForm)
-    .find("#resolution-description")
-    .load("../controladores/getResolution.php", {
-      id_incidente: id_incidente,
-      mod: "descripcion",
-    });
-
-  $(resolucionForm).find("#resolution-type").removeClass("lista");
-  $(resolucionForm)
-    .find("#resolution-type")
-    .load("../controladores/getResolution.php", {
-      id_incidente: id_incidente,
-      mod: "tipo",
-    });
-}
 
 function acceptResolution() {
   const id_incidente = resolucionForm.getAttribute("id_incidente");
@@ -555,3 +529,19 @@ function resetModForm(inputs){
   ciInput.prop("readonly", true);
 }
 
+function hideResoluciones() {
+  resolucionFormBG.classList.add("container--form--hidden");
+  resolucionForm.classList.add("emergent__activity--hidden");
+  resolucionForm.setAttribute("id_incidente", "");
+  formReevaluar.setAttribute("id_incidente", "");
+
+  acceptResolutionBtn.removeAttribute("disabled");
+
+  modifyResolutionBtn.removeAttribute("disabled");
+  modifyResolutionBtn.innerHTML = "Modificar";
+
+  reviseResolutionBtn.removeAttribute("disabled");
+  modifyResolutionBtn.classList.remove("lightup");
+
+  resetInput();
+}

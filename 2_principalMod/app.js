@@ -15,7 +15,7 @@ const contenedorIncidentesEmergentes = document.querySelector(
 const contenedorIncidentesEnCurso = document.querySelector(
   "#onCourse-container"
 );
-
+const contenedorIncidentesResueltos = document.querySelector('#incidentResolved--container')
 const formularioActividad = document.querySelector("#emergent__activity--form");
 const formularioInvolucrado = document.querySelector("#emergent__person--form");
 const formularioIncidente = document.querySelector("#emergent__incident--form");
@@ -53,6 +53,11 @@ const AllElmnts = document.querySelectorAll("*");
 
 const inputs = document.querySelectorAll("input");
 
+const resolucionForm = document.querySelector("#emergent__resolution--result");
+const resolucionFormBG = document.querySelector(
+  "#resolution__container--backgroud"
+);
+
 navbarBtns.forEach((opt) => {
   opt.addEventListener("click", (e) => {
     navbarBtns.forEach((btn) => btn.classList.remove("selected"));
@@ -77,6 +82,7 @@ navbarBtns.forEach((opt) => {
         break;
       case "pasados":
         incidentesPasados.classList.remove("hidden");
+        loadResolvedIncidents()
         break;
       case "Resoluciones":
         Resoluciones.classList.remove("hidden");
@@ -140,6 +146,8 @@ dropdownBtn.addEventListener("click", (e) => {
   icon.classList.toggle("active");
 });
 
+resolucionFormBG.addEventListener("click", () => hideResoluciones());
+
 window.onload = loadEmergentIncidents();
 
 async function loadEmergentIncidents() {
@@ -186,6 +194,18 @@ async function loadIncourseIncidents() {
   contenedor
     .find(".submitResolution_btn")
     .on("click", (e) => startResolution(e));
+}
+
+async function loadResolvedIncidents(){
+const response = await $.get("../controladores/getIncidents.php", {filter: 5})
+
+
+const container = $(contenedorIncidentesResueltos).html(response)
+console.log(container);
+container.find(".dropdown_btn").on("click", (e) => showExtraInformation(e));
+container
+  .find(".displayResolution_btn")
+  .on("click", (e) => displayResolution(e));
 }
 
 const showExtraInformation = (e) => {
@@ -1019,6 +1039,46 @@ function submitResolucion(instant) {
   }
 }
 
+function displayResolution(e) {
+  const incident_element =
+    e.currentTarget.parentElement.parentElement.parentElement;
+  const id_incidente = incident_element
+    .getAttribute("id")
+    .replace("incident_", "");
+
+  resolucionFormBG.classList.remove("container--form--hidden");
+  resolucionForm.classList.remove("emergent__activity--hidden");
+
+  resolucionForm.setAttribute("id_incidente", id_incidente);
+
+  $(resolucionForm)
+    .find("#resolution-description")
+    .load("../controladores/getResolution.php", {
+      id_incidente: id_incidente,
+      mod: "descripcion",
+    });
+
+  $(resolucionForm).find("#resolution-type").removeClass("lista");
+  $(resolucionForm)
+    .find("#resolution-type")
+    .load("../controladores/getResolution.php", {
+      id_incidente: id_incidente,
+      mod: "tipo",
+    });
+}
+
+function hideResoluciones() {
+  resolucionFormBG.classList.add("container--form--hidden");
+  resolucionForm.classList.add("emergent__activity--hidden");
+  resolucionForm.setAttribute("id_incidente", "");
+  resetInput();
+}
+
+const resetInput = () => {
+  document.querySelectorAll("input").forEach((inpt) => (inpt.value = ""));
+  document.querySelectorAll("textarea").forEach((ta) => (ta.value = ""));
+};
+
 export {
   addActivity,
   choosePersona,
@@ -1043,4 +1103,5 @@ export {
   startIncidentResolution,
   reloadListaPersonas,
   clearElements,
+  displayResolution
 };

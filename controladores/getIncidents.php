@@ -92,7 +92,7 @@ if($filtro == 0){
                                 <button title="Agregar actividad" class="container__button addActivity"><i class="fa-solid fa-plus fa-2xl"></i></button>';
                                 if(isset($_REQUEST['admin_opt'])){
                                     echo    '<button class="container__button instantResolution_btn"><i class="fa-solid fa-check-double fa-2xl"></i></button>';
-                                }else{
+                                } else {
                         echo    '<button title="Enviar resolucion" class="container__button submitResolution_btn"><i class="fa-solid fa-check fa-2xl"></i></button>';
                                 }
         
@@ -431,11 +431,217 @@ if($filtro == 0){
 
 
     }
+} elseif($filtro == 5) {
+    foreach($filteredIncidents as $incident){
+        $denunciante = getPersonaIncidente_Denunciante($incident->getID());
+        $involucrados = getPersonasIncidente($incident->getId());
+
+        $archivosIncidente = $incident->getArchivos();
+        
+        $actividades = Actividad::getRepo($incident->getID());
+    
+        echo '
+    <div class="emergent__incident" id="incident_'.$incident->getID().'">
+        <div class="incident__title">
+            <p class="title__name">'.$incident->getTitulo().'</p>
+                <div id="incident__container">
+                    <button title="Desplegar resolución" class="container__button displayResolution_btn"><i class="fa-solid fa-inbox fa-xl"></i></button>
+                    <button title="Desplegar incidente" class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl active"></i></button>
+                </div>
+        </div>
+        <div class="inicident__information--2 incident__information-hidden">
+            <div class="information__container">
+                <div class="information__col--2">
+                    <label>Descripcion</label>
+                    <p class="col__p">'.$incident->getDescripcion().'</p>
+                </div>
+                <div class="information__col--2">
+                    <label>Fecha</label>
+                    <p class="col__p">'.$incident->getFecha().'</p>
+                    <label>Tipo</label>
+                    <p class="col__p">'.$incident->getTipo().'</p>
+                    ';
+                    if(!empty($archivosIncidente)){
+                        echo '<label>Archivo a descargar</label>
+                        <div class="col_downloads">';
+                        for($i = 0; $i<count($archivosIncidente); $i++){
+                            echo '
+                            <p class="col__p"><a class="download_action" href="../controladores/downloadFile.php?file='.$archivosIncidente[$i][0].'" fileName="'.$archivosIncidente[$i][0].'">Descargar '.$i.'</a></p>
+                            ';
+                        }
+                        echo '</div>';
+                    }
+                echo '
+                </div>
+                <div class="information__col--2">
+                    <label>Nombre y Apellido</label>
+                    <p class="col__p">'.$denunciante->getNombre().' '.$denunciante->getApellido().'</p>
+
+                    <label>Cedula</label>
+                    <p class="col__p">'.$denunciante->getCi().'</p>
+                    
+                    <label>Telefono</label>
+                    <p class="col__p">'.$denunciante->getTelefono().'</p>
+                </div>
+        </div>';
+        if(!empty($actividades)){
+            echo '
+           
+            <div class="information__title--activity">
+                <p class="title__name">Actividades</p><hr class="title__hr">
+            </div>';
+            foreach($actividades as $actividad){
+                $archivosActividad = $actividad->getFileNames();
+                $personasInvolucradas = getPersonasActividad($actividad->getId());
+                echo '
+                <div class="information__activity--title" id="activity_'.$actividad->getId().'">
+                <p class="title__name--2">'.$actividad->getNombre().'</p>
+                <div class="title__container">
+                <button title="Desplegar actividad" class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
+                </div>
+            </div>
+            <div class="activity__information--3 incident__information-hidden">
+                <div class="information__container--2">
+                    <div class="information__col--3">
+                        <label>Descripcion</label>
+                        <p class="col__p">'.$actividad->getDetalle().'</p>
+                    </div>
+                    <div class="information__col--3">
+                        <label>Fecha</label>
+                        <p class="col__p">'.$actividad->getFecha().'</p>
+                        <label>Tipo</label>
+                        <p class="col__p">'.$actividad->getTipo().'</p>';
+                        if(!empty($archivosActividad)){
+                            echo ' <label>Archivos a descargar</label>
+                            <div class="col_downloads">';
+                            for($i = 0; $i<count($archivosActividad); $i++){
+                                echo '
+                                <p class="col__p"><a class="download_action" href="../controladores/downloadFile.php?file='.$archivosActividad[$i][0].'" fileName="'.$archivosActividad[$i][0].'">Descargar '.$i.'</a></p>
+                                ';
+                            }
+                            echo '</div>';
+                        }
+                    echo '
+                    </div>
+                    </div>
+                    ';
+                        if(!empty($personasInvolucradas)){
+                            echo'<div class="information__container--4">';
+
+                            foreach($personasInvolucradas as $persona){
+                                echo '
+                                <div class="information__activity--title--2" id_incidente="'.$incident->getId().'" id_actividad="'.$actividad->getId().'">
+                                    <p class="title__name--2">'.$persona->getNombre().'</p>
+                                    <div class="title__container--buttons">
+                                    <button title="Desplegar actividad class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
+                                    </div>
+                                </div>
+                                <div class = "activity__information--5 incident__information-hidden">
+                                    <div class="information__container information__container--5">
+                                    <div class="information__col--4">
+                                        <label>Apellido</label>
+                                        <p class="col__p">'.$persona->getApellido().'</p>
+
+                                        <label>Cedula</label>
+                                        <p class="col__p">'.$persona->getCi().'</p>
+                                        
+                                        <label>Telefono</label>
+                                        <p class="col__p">'.$persona->getTelefono().'</p>
+                                    </div>
+                                </div>  
+                            </div>  ';
+                            }
+
+                            echo '</div>';
+                        }
+
+                    echo'
+                </div>';
+            }
+        }
+        if(!empty($involucrados)){
+            echo '
+            <div class="information__title--activity">
+                <p class="title__name">Involucrados</p><hr class="title__hr">
+            </div>
+            <div class="person-container">
+            ';
+            foreach($involucrados as $involucrado){
+                echo '
+                    <div class="involucrado__container ">
+                        <div class="information__activity--title" id_incidente="'.$incident->getId().'">
+                            <p class="title__name--2">'.$involucrado->getNombre().'</p>
+                            <div class="title__container--buttons">
+                            <button title="Desplegar involucrado" class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
+                            </div>
+                        </div>  
+                        <div class = "activity__information--5 incident__information-hidden">
+                                <div class="information__container information__container--5">
+                                <div class="information__col--4">
+                                    <label>Apellido</label>
+                                    <p class="col__p">'.$involucrado->getApellido().'</p>
+
+                                    <label>Cedula</label>
+                                    <p class="col__p">'.$involucrado->getCi().'</p>
+                                    
+                                    <label>Telefono</label>
+                                    <p class="col__p">'.$involucrado->getTelefono().'</p>
+                                </div>
+                            </div>  
+                        </div>    
+                    </div>
+                ';
+            }
+        }
+    echo '</div>
+    </div>
+    
+    ';
+}
 }
 
 /*
 
-<div class="information__title--activity">
+                <div class="emergent__incident" id="31">
+                    <div class="incident__title">
+                        <p class="title__name">Grafitearon mi moto</p>
+                            <div id="incident__container">
+                            <button class="container__button"><i class="fa-solid fa-inbox fa-xl"></i></button>
+                                <button class="container__button"><i class="fa-solid fa-check fa-2xl"></i></button>
+                                <button class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl active"></i></button>
+                            </div>
+                    </div>
+                    
+                    <div class="inicident__information--2">
+                        <div class="information__container">
+                            <div class="information__col--2">
+                                <label>Descripcion</label>
+                                <p class="col__p">vfsvfsddvfsvfdsvfdvfdvfd vfedfefvfwfs fdvfvfd fvwvfvfw vfevfdv vfevfdv vfdevfdv vefvefvefv fvevefvfe vfevevfe vfevfevfe vfevfev evefefefvfrefrefer</p>
+                            </div>
+                            <div class="information__col--2">
+                                <label>Fecha</label>
+                                <p class="col__p">2023-09-30</p>
+                                <label>Tipo</label>
+                                <p class="col__p">Vandalismo</p>
+                                <label>Archivo a descargar</label>
+                                <div class="col_downloads">
+                                    <p class="col__p"><a class="download_action" href="../controladores/downloadFile.php?file=archivo_incidente0_12-10-2023_15-58-32.png" filename="archivo_incidente0_12-10-2023_15-58-32.png">Descargar 0</a></p>
+                                    <p class="col__p"><a class="download_action" href="../controladores/downloadFile.php?file=archivo_incidente1_12-10-2023_15-58-32.png" filename="archivo_incidente1_12-10-2023_15-58-32.png">Descargar 1</a></p>
+                                    <p class="col__p"><a class="download_action" href="../controladores/downloadFile.php?file=archivo_incidente2_12-10-2023_15-58-32.png" filename="archivo_incidente2_12-10-2023_15-58-32.png">Descargar 2</a></p>
+                                </div>
+                            </div>
+                            <div class="information__col--2">
+                                <label>Nombre y Apellido</label>
+                                <p class="col__p">ezequiel rivero</p>
+
+                                <label>Cedula</label>
+                                <p class="col__p">55543952</p>
+                                
+                                <label>Telefono</label>
+                                <p class="col__p">342342423</p>
+                            </div>
+                        </div>
+                        <div class="information__title--activity">
                             <p class="title__name">Actividades</p><hr class="title__hr">
                         </div>
                         <div class="information__activity--title" id="1">
@@ -530,6 +736,7 @@ if($filtro == 0){
                             </div>    
                         </div>
                     </div>
+                </div>
 
 
  */
