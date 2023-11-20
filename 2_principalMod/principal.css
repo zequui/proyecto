@@ -983,4 +983,5 @@ input[type="number"] {
   background-color: #646464;
   margin: 25px;
   margin-bottom: -10px;
+  min-height: 33px;
 }
