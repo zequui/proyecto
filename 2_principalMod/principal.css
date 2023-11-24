@@ -505,8 +505,10 @@ i {
 }
 /*_______________________________________________________________________________________________________________________________*/
 #emergent__activity--form,
+#emergent__mssg--reevaluar,
 #emergent__incident--form,
-#emergent__resolution--form {
+#emergent__resolution--form,
+#emergent__resolution--resultModify {
   display: flex;
   position: absolute;
   flex-direction: column;
@@ -1020,4 +1022,11 @@ input[type="number"] {
   margin-bottom: 5px;
   margin-top: 15px;
     min-height: 33px;
+}
+
+.activity__button--2{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: -30px;
 }

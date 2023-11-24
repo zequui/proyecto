@@ -196,5 +196,10 @@ class Resuelve{
         $rep_resolucion = new repo_Resoluciones();
         $rep_resolucion->addMessage($id_incidente, $msg);
     }
+
+    public static function getMessage($id_incidente){
+        $rep_resolucion = new repo_Resoluciones();
+        return $rep_resolucion->getMessage($id_incidente);
+    }
 }
 ?>

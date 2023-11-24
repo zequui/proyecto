@@ -597,7 +597,60 @@ if($filtro == 0){
     </div>
     
     ';
-}
+    }
+}elseif($filtro == 3){
+    foreach($filteredIncidents as $incident){
+        $denunciante = getPersonaIncidente_Denunciante($incident->getID());
+        $archivos = $incident->getArchivos();
+        echo '
+        <div class="emergent__incident" id="incident_'.$incident->getID().'">
+            <div class="incident__title">
+                <p class="title__name">'.$incident->getTitulo().'</p>
+                <div class="title__container">
+                    <button title="Ver mensaje" class="container__button display-msj"><i class="fa-solid fa-inbox fa-xl"></i></button>
+                    <button title="Modificar resolucion" class="container__button displayResolution_btn"><i class="fa-solid fa-play fa-xl"></i></button>
+                    <button title="Deplegar información del incidente" class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl"></i></button>
+                </div>
+            </div>
+            <div class="inicident__information incident__information-hidden">
+                <div class="information__col ">
+                    <label>Descripcion</label>
+                    <p class="col__p information_description">'.$incident->getDescripcion().'</p>
+                </div>
+                <div class="information__col">
+                    <label>Fecha</label>
+                    <p class="col__p">'.$incident->getFecha().'</p>
+                    <div></div>
+                    <label>Tipo</label>
+                    <p class="col__p">'.$incident->getTipo().'</p>';
+                    
+                if(!empty($archivos)){
+                    echo ' <label>Archivos relevantes</label>
+                    <div class="col_downloads">';
+                    for($i = 0; $i<count($archivos); $i++){
+                        echo '
+                        <p class="col__p"><a class="download_action" href="../controladores/downloadFile.php?file='.$archivos[$i][0].'" fileName="'.$archivos[$i][0].'">Descargar '.$i.'</a></p>
+                        ';
+                    }
+                    echo '</div>';
+                }
+                
+                echo '
+                </div>
+                <div class="information__col">
+                    <label>Nombre y Apellido</label>
+                    <p class="col__p">'.$denunciante->getNombre().' '.$denunciante->getApellido().'</p>
+    
+                    <label>Cedula</label>
+                    <p class="col__p">'.$denunciante->getCi().'</p>
+                    
+                    <label>Telefono</label>
+                    <p class="col__p">'.$denunciante->getTelefono().'</p>
+                </div>
+            </div>
+        </div>
+    ';
+    }
 }
 
 /*

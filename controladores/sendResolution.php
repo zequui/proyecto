@@ -1,4 +1,7 @@
 <?php
+
+use function PHPSTORM_META\type;
+
 include_once '../negocio/usuario.php';
 include_once '../negocio/relaciones.php';
 include_once '../negocio/incidente.php';
@@ -13,10 +16,13 @@ $instant = $_REQUEST['instant'];
 
 Resuelve::setResolucion($ci_usuario, $id_incidente, $descripcion, $tipo, date('Y-m-d'));
 
-if(!$instant){
-    incidente::updateEstado($id_incidente, 2);
-}else{
+
+if($instant){
+    echo 'hola1';
     incidente::updateEstado($id_incidente, 5);
+}else{
+    echo 'hola';
+    incidente::updateEstado($id_incidente, 2);
 }
 
 ?>

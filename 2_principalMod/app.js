@@ -18,6 +18,10 @@ const contenedorIncidentesEnCurso = document.querySelector(
 const contenedorIncidentesResueltos = document.querySelector(
   "#incidentResolved--container"
 );
+
+const contenedorResultadosIncidentes = document.querySelector(
+  "#incidentResults-container"
+);
 const formularioActividad = document.querySelector("#emergent__activity--form");
 const formularioInvolucrado = document.querySelector("#emergent__person--form");
 const formularioIncidente = document.querySelector("#emergent__incident--form");
@@ -60,6 +64,18 @@ const resolucionFormBG = document.querySelector(
   "#resolution__container--backgroud"
 );
 
+const mensajeReevaluarElemnt = document.querySelector(
+  "#emergent__mssg--reevaluar"
+);
+
+const formModificarResolucion = document.querySelector(
+  "#emergent__resolution--resultModify"
+);
+
+const submitModResolutionBtn = document.querySelector(
+  "#form__resolution-accept"
+);
+
 navbarBtns.forEach((opt) => {
   opt.addEventListener("click", (e) => {
     navbarBtns.forEach((btn) => btn.classList.remove("selected"));
@@ -88,6 +104,7 @@ navbarBtns.forEach((opt) => {
         break;
       case "Resoluciones":
         Resoluciones.classList.remove("hidden");
+        loadIncidetsResults();
         break;
       default:
         break;
@@ -136,7 +153,7 @@ $(submitPersonaBtn).on("click", () => submitInvolucrado());
 $(submitActividadBtn).on("click", () => submitActividad());
 $(submitIncidenteBtn).on("click", () => submitIncidente());
 $(submitChoosePersonBtn).on("click", () => submitChoosePersona());
-$(submitResolutionBtn).on("click", () => submitResolucion(false));
+$(submitResolutionBtn).on("click", () => submitResolucion());
 
 showBtns.forEach((btn) => {
   btn.addEventListener("click", (e) => showExtraInformation(e));
@@ -149,6 +166,8 @@ dropdownBtn.addEventListener("click", (e) => {
 });
 
 resolucionFormBG.addEventListener("click", () => hideResoluciones());
+
+submitModResolutionBtn.addEventListener("click", (e) => submitModResolution(e));
 
 window.onload = loadEmergentIncidents();
 
@@ -209,6 +228,27 @@ async function loadResolvedIncidents() {
   container
     .find(".displayResolution_btn")
     .on("click", (e) => displayResolution(e));
+  container.find(".reject-incident").on("click", (e) => rejectIncident(e));
+  container.find(".download_action").on("mouseover", (e) => previewImg(e));
+  container.find(".download_action").on("mouseout", () => previewImgOut());
+  container.find(".download_action").on("mousemove", (e) => followMouse(e));
+}
+
+async function loadIncidetsResults() {
+  const respose = await $.get("../controladores/getIncidents.php", {
+    filter: 3,
+  });
+
+  const container = $(contenedorResultadosIncidentes).html(respose);
+  container.find(".dropdown_btn").on("click", (e) => showExtraInformation(e));
+  container.find(".display-msj").on("click", (e) => displayMssg(e));
+  container
+    .find(".displayResolution_btn")
+    .on("click", (e) => modifyResolution(e));
+  container.find(".reject-incident").on("click", (e) => rejectIncident(e));
+  container.find(".download_action").on("mouseover", (e) => previewImg(e));
+  container.find(".download_action").on("mouseout", () => previewImgOut());
+  container.find(".download_action").on("mousemove", (e) => followMouse(e));
 }
 
 const showExtraInformation = (e) => {
@@ -405,7 +445,7 @@ function modInvolucrado(e, mod) {
     phoneNumber = personContainer.children[0].getAttribute("phonenumber");
     formularioInvolucrado.setAttribute(
       "id_incidente",
-      formularioChoosePersona.getAttribute('id_incidente')
+      formularioChoosePersona.getAttribute("id_incidente")
     );
   }
 
@@ -1100,13 +1140,94 @@ function hideResoluciones() {
   resolucionFormBG.classList.add("container--form--hidden");
   resolucionForm.classList.add("emergent__activity--hidden");
   resolucionForm.setAttribute("id_incidente", "");
+  mensajeReevaluarElemnt.classList.add("emergent__activity--hidden");
+  formModificarResolucion.classList.add("emergent__activity--hidden");
   resetInput();
 }
 
 const resetInput = () => {
-  document.querySelectorAll("input").forEach((inpt) => (inpt.value = ""));
-  document.querySelectorAll("textarea").forEach((ta) => (ta.value = ""));
+  document
+    .querySelectorAll("input, textarea")
+    .forEach((inpt) => (inpt.value = ""));
 };
+
+function displayMssg(e) {
+  const id_incidente = e.currentTarget.parentElement.parentElement.parentElement
+    .getAttribute("id")
+    .replace("incident_", "");
+  $(mensajeReevaluarElemnt)
+    .find(".col__description")
+    .load("../controladores/getMessageReval.php", { id_incidente });
+  mensajeReevaluarElemnt.classList.remove("emergent__activity--hidden");
+  resolucionFormBG.classList.remove("container--form--hidden");
+}
+
+function modifyResolution(e) {
+  const id_incidente = e.currentTarget.parentElement.parentElement.parentElement
+    .getAttribute("id")
+    .replace("incident_", "");
+
+  formModificarResolucion.setAttribute("id_incidente", id_incidente);
+
+  $(formModificarResolucion)
+    .find("#resolution-description")
+    .load("../controladores/getResolution.php", {
+      id_incidente: id_incidente,
+      mod: "descripcion",
+    });
+
+  $.get("../controladores/getResolution.php", {
+    id_incidente: id_incidente,
+    mod: "tipo",
+  }).done((response) => {
+    $(formModificarResolucion)
+      .find("input[value = '" + response.trim() + "']")
+      .prop("checked", true);
+  });
+
+  $(formModificarResolucion)
+    .find("#resolution-description")
+    .attr("contentEditable", "true");
+  formModificarResolucion.classList.remove("emergent__activity--hidden");
+  resolucionFormBG.classList.remove("container--form--hidden");
+}
+
+function submitModResolution(e) {
+  const id_incidente =
+    e.currentTarget.parentElement.parentElement.getAttribute("id_incidente");
+
+  const incident_element = document.querySelector("#incident_" + id_incidente);
+  const newDescripcion = $(formModificarResolucion).find(
+    "#resolution-description"
+  );
+  const newTipo = $(formModificarResolucion).find("input[name = tipo]:checked");
+
+  if (newDescripcion.text() && newTipo.val()) {
+    $.ajax({
+      url: "../controladores/updateResolution.php",
+      type: "POST",
+      data: {
+        id_incidente: id_incidente,
+        descripcion: newDescripcion.text().trim(),
+        tipo: newTipo.val(),
+        estado: 2,
+      },
+    });
+    hideResoluciones();
+    setTimeout(() => {
+      incident_element.classList.add("incident-active");
+      setTimeout(() => {
+        incident_element.remove();
+      }, 500);
+    }, 500);
+    return;
+  } else {
+    setTimeout(() => {
+      if (newDescripcion.text) newDescripcion.addClass("uncomplete--input ");
+      if (newTipo.val()) $(".lista").addClass("uncomplete--input ");
+    }, 50);
+  }
+}
 
 export {
   addActivity,

@@ -44,8 +44,8 @@
             </div>
         </div>
         <div class="emergent hidden" id="ResolucionesAdm">
-          <h1 class=emergent__title>Resultado resoluciones</h1>
-          <div class="emergent__container" id="onCourse-container">             
+          <h1 class=emergent__title>Resoluciones rechazadas</h1>
+          <div class="emergent__container" id="incidentResults-container">             
 
 
             </div>
@@ -77,11 +77,11 @@
             </div>
         </div>
         <div class="emergent hidden" id="incidentesPasados">
-        <h1 class=emergent__title>Resultado resoluciones</h1>
+        <h1 class=emergent__title>Incidentes resueltos</h1>
         <input type="text" class="emergent__input">
         <div class="emergent__container" id="incidentResolved--container">
             
-            </div>
+        </div>
     </div>
 
     <div id="body__imgContainer">   
@@ -244,7 +244,7 @@
                     <label>Título</label> <p class="title__text">(inserte un titulo adecuado para ser indentificado mas facilmente)</p>
                 </div>
                 <input type="text" name="titulo" maxlength="35" required>
-                
+
                 <label>Tipo de incidente</label>
                 <div id="lista">
                     <div class="contenedor">
@@ -281,13 +281,46 @@
     </div>
 
     <div id="emergent__resolution--result" class="emergent__activity--form emergent__activity--hidden" id_incidente = "'.$incident->getId().'">
+        <div class="container__col">
+            <h1 class="emergent__title">Resolucion</h1>
+            <label>Descripción</label>
+            <div class="col__description" id="resolution-description"></div>
+            <label>Tipo de resolucion</label>
+            <div class="contenedor__type" id="resolution-type"></div>
+        </div>sistemas
+    </div>
+
+        <div class="emergent__activity--form emergent__activity--hidden" id="emergent__mssg--reevaluar">
+        <div class="container__col">
+            <h1 class="emergent__title">Reevaluar</h1>
+            <label>Mensaje</label>
+            <div class="col__description"></div>
+        </div>
+    </div>
+
+    <div id="emergent__resolution--resultModify" class="emergent__activity--form emergent__activity--hidden" id_incidente = "">
             <div class="container__col">
                 <h1 class="emergent__title">Resolucion</h1>
                 <label>Descripción</label>
                 <div class="col__description" id="resolution-description"></div>
                 <label>Tipo de resolucion</label>
-                <div class="contenedor__type" id="resolution-type"></div>
+                <div class="lista">
+                    <div class="contenedor">
+                        <input type="radio" name="tipo" value="Suspension">Suspensión</input>
+                    </div>
+                    <div class="contenedor">
+                        <input type="radio" name="tipo" value="Trabajo comunitario">Trabajo comunitario</input>
+                    </div>
+                    <div class="contenedor">
+                        <input type="radio" name="tipo" value="cambio de institucion">cambio de institucion</input>
+                    </div>
+                    <div class="contenedor">
+                        <input type="radio" name="tipo" value="otros">otros</input>
+                    </div>
+                </div>
             </div>
+            <div class="activity__button--2">
+                <button type="submit" class="form__submit form__submit--2" id="form__resolution-accept">Aceptar</button>
         </div>
 
     <p id="release"></p>

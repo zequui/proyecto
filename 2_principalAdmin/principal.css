@@ -1027,3 +1027,10 @@ margin-top: 15px;
   justify-content: center;
   align-items: center;
 }
+
+.activity__button--2{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 10px;
+}

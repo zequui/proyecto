@@ -18,7 +18,8 @@ import {
   submitResolucion,
   startResolution,
   rejectIncident,
-  startIncidentResolution
+  startIncidentResolution,
+  displayResolution,
 } from "../2_principalMod/app.js";
 
 const dropdownBtn = document.querySelector("#container__fullname");
@@ -54,7 +55,11 @@ const resolucionFormBG = document.querySelector(
 const acceptResolutionBtn = document.querySelector("#form__resolution-accept");
 const modifyResolutionBtn = document.querySelector("#form__resolution-modify");
 const reviseResolutionBtn = document.querySelector("#form__resolution-revise");
-const submitResolutionBtn = document.querySelector("#form__instantResolution--submit");
+const submitResolutionBtn = document.querySelector(
+  "#form__instantResolution--submit"
+);
+
+
 
 navbarBtns.forEach((opt) => {
   opt.addEventListener("click", (e) => {
@@ -106,7 +111,9 @@ resolucionFormBG.addEventListener("click", () => hideResoluciones());
 
 formReevaluarBtn.addEventListener("click", (e) => submitReevaluar(e));
 
-submitResolutionBtn.addEventListener('click', () => submitResolucion(true))
+submitResolutionBtn.addEventListener("click", () => submitResolucion(true));
+
+
 
 window.onload = loadEmergentIncidents();
 
@@ -129,7 +136,7 @@ async function loadEmergentIncidents() {
 async function loadIncourseIncidents() {
   const response = await $.get("../controladores/getIncidents.php", {
     filter: 1,
-    admin_opt: true
+    admin_opt: true,
   });
   const contenedor = $("#onCourse-container").html(response);
 
@@ -250,7 +257,9 @@ moderadorSubmitBtn.addEventListener("click", (e) => {
           data: formData,
           contentType: false,
           processData: false,
-        });
+        }).always((response) => {
+          if(response.match(/Integrity constraint violation: 1062 Duplicate entry/gm)) alert('Ese correo ya esta en uso')
+        })
 
       } else {
         $.ajax({
@@ -261,9 +270,8 @@ moderadorSubmitBtn.addEventListener("click", (e) => {
           processData: false,
         });
       }
-
-      resetModForm(inputs)
       
+      resetModForm(inputs);
     }
   } else {
     setTimeout(() => {
@@ -299,7 +307,7 @@ function editModerador(e) {
   formularioModerador.setAttribute("mod", "modificar");
 
   const inputs = $(formularioModerador).find("input");
-  $(formularioModerador).find('#form__title').html('modificar moderador')
+  $(formularioModerador).find("#form__title").html("modificar moderador");
 
   inputs[0].value = modElement.children[0].children[0].textContent;
   inputs[1].value =
@@ -316,7 +324,6 @@ function editModerador(e) {
   ciInput.addClass("unchanable--input");
   ciInput.prop("readonly", true);
 }
-
 
 const checkCI = (ci) => {
   if (ci == 0 || ci.length !== 8) return false;
@@ -361,8 +368,6 @@ function deleteModerador(e) {
   }, 2500);
 }
 
-
-
 function acceptResolution() {
   const id_incidente = resolucionForm.getAttribute("id_incidente");
   const incident_element = document.querySelector("#incident_" + id_incidente);
@@ -397,6 +402,7 @@ function modifyResolution() {
           id_incidente: id_incidente,
           descripcion: descripcion_element.text().trim(),
           tipo: tipoResolucion.find("input[name=tipo]:checked").val(),
+          estado: 5
         },
       });
       hideResoluciones();
@@ -409,7 +415,7 @@ function modifyResolution() {
       return;
     } else {
       setTimeout(() => {
-        descripcion_element.addClass("uncomplete--input ");
+        descripcion_element.addClass("uncomplete--input");
       }, 50);
     }
   }
@@ -517,8 +523,8 @@ inputs.forEach((input) => {
   });
 });
 
-function resetModForm(inputs){
-  $(formularioModerador).find('#form__title').html('registrar moderador')
+function resetModForm(inputs) {
+  $(formularioModerador).find("#form__title").html("registrar moderador");
   inputs.each((i, input) => (input.value = ""));
   setTimeout(() => {
     loadModeradores();

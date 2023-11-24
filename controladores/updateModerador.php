@@ -8,5 +8,10 @@ $surname = $_POST['surname'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-Usuario::updateModerador($name, $surname, $ci, $email, $password);
+try{
+    Usuario::updateModerador($name, $surname, $ci, $email, $password);
+}catch(Exception $e){
+    echo $e;
+}
+
 ?>
