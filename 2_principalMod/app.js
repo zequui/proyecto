@@ -1181,6 +1181,7 @@ function modifyResolution(e) {
     id_incidente: id_incidente,
     mod: "tipo",
   }).done((response) => {
+    response
     $(formModificarResolucion)
       .find("input[value = '" + response.trim() + "']")
       .prop("checked", true);
