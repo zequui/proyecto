@@ -1041,3 +1041,10 @@ input[type="number"] {
   max-height: 48px;
   margin: 0;
 }
+
+.highlight{
+  background-color: #ebff82;
+  color: rgb(24, 24, 24);
+  border-radius: 10%;
+  transition: .1s;
+}

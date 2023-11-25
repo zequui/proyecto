@@ -7,7 +7,7 @@ include_once '../controladores/getPersonasActividad.php';
 $resultado = incidente::findIncidente($_REQUEST['data'], $_REQUEST['filter']);
 
 if(empty($resultado)){
-    echo '<p class="title__name">No se ningun incidente</p>';
+    echo '<p class="title__name">No se encontró ningun incidente</p>';
 }else{
     foreach($resultado as $incident){
         $denunciante = getPersonaIncidente_Denunciante($incident->getID());
@@ -20,23 +20,30 @@ if(empty($resultado)){
         echo '
     <div class="emergent__incident" id="incident_'.$incident->getID().'">
         <div class="incident__title">
-            <p class="title__name">'.$incident->getTitulo().'</p>
+            <p class="title__name titulo_incidente">'.$incident->getTitulo().'</p>
                 <div id="incident__container">
                     <button title="Desplegar resolución" class="container__button displayResolution_btn"><i class="fa-solid fa-inbox fa-xl"></i></button>
                     <button title="Desplegar incidente" class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl active"></i></button>
                 </div>
         </div>
-        <div class="inicident__information--2 incident__information-hidden">
+        ';
+        if($_REQUEST['filter'] == 'titulo'){
+            echo'<div class="inicident__information--2 incident__information-hidden">';
+        }else{
+            echo'<div class="inicident__information--2">';
+        }
+          
+        echo '
             <div class="information__container">
                 <div class="information__col--2">
                     <label>Descripcion</label>
-                    <p class="col__p">'.$incident->getDescripcion().'</p>
+                    <p class="col__p descripcion">'.$incident->getDescripcion().'</p>
                 </div>
                 <div class="information__col--2">
                     <label>Fecha</label>
-                    <p class="col__p">'.$incident->getFecha().'</p>
+                    <p class="col__p fecha">'.$incident->getFecha().'</p>
                     <label>Tipo</label>
-                    <p class="col__p">'.$incident->getTipo().'</p>
+                    <p class="col__p tipo">'.$incident->getTipo().'</p>
                     ';
                     if(!empty($archivosIncidente)){
                         echo '<label>Archivo a descargar</label>

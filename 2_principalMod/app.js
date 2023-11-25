@@ -912,9 +912,7 @@ function reloadIncident(id_incidente, titulo, descripcion, fecha, tipo) {
       const container = $(incidente).find(".col_downloads").html(response);
       container.find(".download_action").on("mouseover", (e) => previewImg(e));
       container.find(".download_action").on("mouseout", () => previewImgOut());
-      container
-        .find(".download_action")
-        .on("mousemove", (e) => followMouse(e));
+      container.find(".download_action").on("mousemove", (e) => followMouse(e));
     };
   }, 50);
 }
@@ -1181,7 +1179,7 @@ function modifyResolution(e) {
     id_incidente: id_incidente,
     mod: "tipo",
   }).done((response) => {
-    response
+    response;
     $(formModificarResolucion)
       .find("input[value = '" + response.trim() + "']")
       .prop("checked", true);
@@ -1231,14 +1229,30 @@ function submitModResolution(e) {
   }
 }
 
-inputIncident.addEventListener("keyup", async(e) => {
+inputIncident.addEventListener("keyup", async (e) => {
   const input = inputIncident.value;
+  const filter = $("#dropdown__opt").val();
 
   const response = await $.get("../controladores/findIncident.php", {
     data: input,
-    filter: $('#dropdown__opt').val()
-  })
+    filter: filter,
+  });
   const container = $(contenedorIncidentesResueltos).html(response);
+
+  switch (filter) {
+    case "titulo":
+      findCoincidences(document.querySelectorAll('.titulo_incidente'), input)
+      break;
+    case "descripcion":
+      findCoincidences(document.querySelectorAll('.descripcion'), input)
+      break;
+    case "fecha":
+      findCoincidences(document.querySelectorAll('.fecha'), input)
+      break;
+
+    default:
+      break;
+  }
   container.find(".dropdown_btn").on("click", (e) => showExtraInformation(e));
   container
     .find(".displayResolution_btn")
@@ -1248,6 +1262,21 @@ inputIncident.addEventListener("keyup", async(e) => {
   container.find(".download_action").on("mouseout", () => previewImgOut());
   container.find(".download_action").on("mousemove", (e) => followMouse(e));
 });
+
+const findCoincidences = (Elements, input) => {
+  const regex = new RegExp(input, 'ig')
+  Elements.forEach((p) => {
+    const matches = p.innerText.match(regex);
+    if (matches) {
+        p.innerHTML = p.innerText.replace(
+          regex,
+          '<b class="highlight">' + matches[0] + "</b>"
+        );
+        
+      
+    }
+  });
+};
 
 export {
   addActivity,
