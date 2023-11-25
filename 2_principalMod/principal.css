@@ -1030,3 +1030,14 @@ input[type="number"] {
   justify-content: center;
   margin-bottom: -30px;
 }
+
+.container__inputSearch{
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  margin: 20px 20px 0 20px;
+}
+
+#incident__locate--input, #dropdown__opt{
+  max-height: 48px;
+  margin: 0;
+}

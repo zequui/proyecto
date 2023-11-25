@@ -76,6 +76,8 @@ const submitModResolutionBtn = document.querySelector(
   "#form__resolution-accept"
 );
 
+const inputIncident = document.querySelector("#incident__locate--input");
+
 navbarBtns.forEach((opt) => {
   opt.addEventListener("click", (e) => {
     navbarBtns.forEach((btn) => btn.classList.remove("selected"));
@@ -223,7 +225,6 @@ async function loadResolvedIncidents() {
   });
 
   const container = $(contenedorIncidentesResueltos).html(response);
-  console.log(container);
   container.find(".dropdown_btn").on("click", (e) => showExtraInformation(e));
   container
     .find(".displayResolution_btn")
@@ -905,13 +906,13 @@ function reloadIncident(id_incidente, titulo, descripcion, fecha, tipo) {
 
   setTimeout(() => {
     async () => {
-      const respone = await $.get("../controladores/reloadDownloads.php", {
+      const response = await $.get("../controladores/reloadDownloads.php", {
         id_incidente: id_incidente,
       });
       const container = $(incidente).find(".col_downloads").html(response);
-      contenedor.find(".download_action").on("mouseover", (e) => previewImg(e));
-      contenedor.find(".download_action").on("mouseout", () => previewImgOut());
-      contenedor
+      container.find(".download_action").on("mouseover", (e) => previewImg(e));
+      container.find(".download_action").on("mouseout", () => previewImgOut());
+      container
         .find(".download_action")
         .on("mousemove", (e) => followMouse(e));
     };
@@ -1228,6 +1229,24 @@ function submitModResolution(e) {
     }, 50);
   }
 }
+
+inputIncident.addEventListener("keyup", async(e) => {
+  const input = inputIncident.value;
+
+  const response = await $.get("../controladores/findIncident.php", {
+    data: input,
+    filter: $('#dropdown__opt').val()
+  })
+  const container = $(contenedorIncidentesResueltos).html(response);
+  container.find(".dropdown_btn").on("click", (e) => showExtraInformation(e));
+  container
+    .find(".displayResolution_btn")
+    .on("click", (e) => displayResolution(e));
+  container.find(".reject-incident").on("click", (e) => rejectIncident(e));
+  container.find(".download_action").on("mouseover", (e) => previewImg(e));
+  container.find(".download_action").on("mouseout", () => previewImgOut());
+  container.find(".download_action").on("mousemove", (e) => followMouse(e));
+});
 
 export {
   addActivity,

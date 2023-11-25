@@ -44,5 +44,16 @@ class repositorioIncidente {
             }
         }
     }
+
+    public function searchIncidentes($data, $filter){
+        $coincidencias = [];
+        $stmt=$this->PDO->query('SELECT * FROM incidentes WHERE '.$filter.' LIKE "%'.$data.'%" AND estado = 5');
+
+        while($row=$stmt->fetch()) {
+            $nombreArchivos = $this->PDO->query('SELECT nombreArchivo FROM archivosIncidente WHERE id_incidente = '.$row['id'])->fetchAll();
+            array_push($coincidencias, new incidente($row["id"],$row["fecha"],$row["titulo"],$row["descripcion"],$row["estado"],$row["tipo"], $nombreArchivos));
+        }
+        return $coincidencias;
+    }
 }
 ?>

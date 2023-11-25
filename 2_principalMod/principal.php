@@ -78,7 +78,14 @@
         </div>
         <div class="emergent hidden" id="incidentesPasados">
         <h1 class=emergent__title>Incidentes resueltos</h1>
-        <input type="text" class="emergent__input">
+        <div class="container__inputSearch">
+            <input type="text" class="emergent__input" id="incident__locate--input" placeholder="Escribe aqui para buscar entre los incidentes resueltos">
+            <select name="incident_data" id="dropdown__opt">
+                <option value="titulo">Titulo</option>
+                <option value="descripcion">Descripción</option>
+                <option value="fecha">Fecha</option>
+            </select>
+        </div>
         <div class="emergent__container" id="incidentResolved--container">
             
         </div>
@@ -287,7 +294,7 @@
             <div class="col__description" id="resolution-description"></div>
             <label>Tipo de resolucion</label>
             <div class="contenedor__type" id="resolution-type"></div>
-        </div>sistemas
+        </div>
     </div>
 
         <div class="emergent__activity--form emergent__activity--hidden" id="emergent__mssg--reevaluar">

@@ -67,5 +67,9 @@ include "../persistencia/repoIncidentes.php";
         $repIncidentes = new repositorioIncidente();
         $repIncidentes->modIncidente($id_incidente, $titulo, $descripcion, $fecha, $tipo, $fileNames);
     }
+    public static function findIncidente($data, $filter){
+        $repIncidentes = new repositorioIncidente();
+        return $repIncidentes->searchIncidentes($data, $filter);
+    }
 }
 ?>

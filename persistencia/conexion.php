@@ -13,7 +13,7 @@ class conexion {
     } 
 
     public function getConnection() {
-        $dsn ='mysql:host=192.168.1.51:'.$this->puerto.';dbname='.$this->baseDeDatos.';charset=UTF8';
+        $dsn ='mysql:host=LucasPC:'.$this->puerto.';dbname='.$this->baseDeDatos.';charset=UTF8';
         try{
             $pdo = new PDO($dsn, $this->user, $this->password);
             if($pdo) {
