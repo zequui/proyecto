@@ -60,7 +60,6 @@ const submitResolutionBtn = document.querySelector(
 );
 
 
-
 navbarBtns.forEach((opt) => {
   opt.addEventListener("click", (e) => {
     navbarBtns.forEach((btn) => btn.classList.remove("selected"));
@@ -373,7 +372,6 @@ function acceptResolution() {
   const incident_element = document.querySelector("#incident_" + id_incidente);
   $.ajax({
     url: "../controladores/changeIncidentStatus.php",
-    type: "REQUEST",
     data: { id_incidente: id_incidente, new_estado: 5 },
   });
 

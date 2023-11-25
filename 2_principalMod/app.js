@@ -233,6 +233,41 @@ async function loadResolvedIncidents() {
   container.find(".download_action").on("mouseover", (e) => previewImg(e));
   container.find(".download_action").on("mouseout", () => previewImgOut());
   container.find(".download_action").on("mousemove", (e) => followMouse(e));
+
+  inputIncident.addEventListener("keyup", async (e) => {
+    const input = inputIncident.value;
+    const filter = $("#dropdown__opt").val();
+  
+    const response = await $.get("../controladores/findIncident.php", {
+      data: input,
+      filter: filter,
+    });
+    const container = $(contenedorIncidentesResueltos).html(response);
+  
+    switch (filter) {
+      case "titulo":
+        findCoincidences(document.querySelectorAll('.titulo_incidente'), input)
+        break;
+      case "descripcion":
+        findCoincidences(document.querySelectorAll('.descripcion'), input)
+        break;
+      case "fecha":
+        findCoincidences(document.querySelectorAll('.fecha'), input)
+        break;
+  
+      default:
+        break;
+    }
+    container.find(".dropdown_btn").on("click", (e) => showExtraInformation(e));
+    container
+      .find(".displayResolution_btn")
+      .on("click", (e) => displayResolution(e));
+    container.find(".reject-incident").on("click", (e) => rejectIncident(e));
+    container.find(".download_action").on("mouseover", (e) => previewImg(e));
+    container.find(".download_action").on("mouseout", () => previewImgOut());
+    container.find(".download_action").on("mousemove", (e) => followMouse(e));
+  });
+  
 }
 
 async function loadIncidetsResults() {
@@ -1229,39 +1264,6 @@ function submitModResolution(e) {
   }
 }
 
-inputIncident.addEventListener("keyup", async (e) => {
-  const input = inputIncident.value;
-  const filter = $("#dropdown__opt").val();
-
-  const response = await $.get("../controladores/findIncident.php", {
-    data: input,
-    filter: filter,
-  });
-  const container = $(contenedorIncidentesResueltos).html(response);
-
-  switch (filter) {
-    case "titulo":
-      findCoincidences(document.querySelectorAll('.titulo_incidente'), input)
-      break;
-    case "descripcion":
-      findCoincidences(document.querySelectorAll('.descripcion'), input)
-      break;
-    case "fecha":
-      findCoincidences(document.querySelectorAll('.fecha'), input)
-      break;
-
-    default:
-      break;
-  }
-  container.find(".dropdown_btn").on("click", (e) => showExtraInformation(e));
-  container
-    .find(".displayResolution_btn")
-    .on("click", (e) => displayResolution(e));
-  container.find(".reject-incident").on("click", (e) => rejectIncident(e));
-  container.find(".download_action").on("mouseover", (e) => previewImg(e));
-  container.find(".download_action").on("mouseout", () => previewImgOut());
-  container.find(".download_action").on("mousemove", (e) => followMouse(e));
-});
 
 const findCoincidences = (Elements, input) => {
   const regex = new RegExp(input, 'ig')
