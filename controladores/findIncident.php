@@ -5,6 +5,7 @@ include_once '../controladores/getPersonaIncidente.php';
 include_once '../controladores/getPersonasActividad.php';
 
 $resultado = incidente::findIncidente($_REQUEST['data'], $_REQUEST['filter']);
+$resultado = array_reverse($resultado);
 
 if(empty($resultado)){
     echo '<p class="title__name">No se encontró ningun incidente</p>';

@@ -114,7 +114,7 @@ body {
   background-color: #4a4a4a;
   padding: 5px;
   right: 0;
-  top: 0;
+  top: 100px;
   display: flex;
   justify-content: center;
   width: 160px;
@@ -122,7 +122,7 @@ body {
   transition: 0.1s;
 }
 .subMenu-hidden {
-  transform: translateY(-75px);
+  transform: translateY(-60px);
   visibility: collapse;
   border-radius: 10px;
   transition: 0.1s;
@@ -785,11 +785,10 @@ input[type="number"] {
 
   left: 0;
   top: 0;
-  
+
   opacity: 0.1;
   transition: 0.1s;
   z-index: 100;
-
 }
 #body__container--activity-form,
 #body__container--incident-form,
@@ -1010,55 +1009,60 @@ input[type="number"] {
   transition: 0.1s;
 }
 
-.contenedor__type{
+.contenedor__type {
   padding: 5px;
   border-radius: 5px 5px 5px 5px;
-  background-color: #1B1B1B;
+  background-color: #1b1b1b;
   border: 0;
   height: 33px;
   width: 500px;
-  color: #EAEAEA;
+  color: #eaeaea;
   font-size: 17px;
   margin-bottom: 5px;
   margin-top: 15px;
-    min-height: 33px;
+  min-height: 33px;
 }
 
-.activity__button--2{
+.activity__button--2 {
   width: 100%;
   display: flex;
   justify-content: center;
   margin-bottom: -30px;
 }
 
-.container__inputSearch{
+.container__inputSearch {
   display: grid;
   grid-template-columns: 4fr 1fr;
   margin: 20px 20px 0 20px;
 }
 
-#incident__locate--input, #dropdown__opt{
+#incident__locate--input,
+#dropdown__opt {
   max-height: 48px;
   margin: 0;
 }
 
-.highlight{
+.highlight {
   background-color: #ebff82;
   color: rgb(24, 24, 24);
   border-radius: 10%;
-  transition: .1s;
+  transition: 0.1s;
 }
 
-.notification{
+.notification {
   width: 10px;
   height: 10px;
   border-radius: 50%;
   background-color: red;
   position: absolute;
-  top: 1px;
+  top: -5px;
   right: 1px;
 }
 
-.navbar__element[id = 'Resoluciones']{
+.navbar__element[id="Resoluciones"] {
+  position: relative;
+}
+
+#main__container{
   position: relative;
 }

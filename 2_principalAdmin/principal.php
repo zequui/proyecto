@@ -10,6 +10,9 @@
 </head>
 <body>
     <div id="main__container">
+        <div class="emergent__subMenu subMenu-hidden">
+            <a href="../controladores/exitSession.php" class="subMenu__option"><i class="fa-solid fa-right-from-bracket fa-lg"></i>Cerrar sesion</a>
+        </div>
         <div id="container">
             <div id="container__navbar">
                 <a id="emergentes" class="navbar__element selected">Incidentes emergentes</a>
@@ -31,25 +34,17 @@
             ?>
         </div>
         <div class="emergent" id="incidentesEmergentes">
-            <div class="emergent__subMenu subMenu-hidden">
-                <a href="../controladores/exitSession.php" class="subMenu__option"><i class="fa-solid fa-right-from-bracket fa-lg"></i>Cerrar sesion</a>
-            </div>
+            
             <h1 class=emergent__title>Incidentes emergentes</h1>
             <div class="emergent__container" id="incidentesEmergentes-container">
             </div> 
         </div>
         <div class="emergent hidden" id="incidenteEnCurso">
-            <div class="emergent__subMenu subMenu-hidden">
-                <a href="../controladores/exitSession.php" class="subMenu__option"><i class="fa-solid fa-right-from-bracket fa-lg"></i>Cerrar sesion</a>
-            </div>
             <h1 class=emergent__title>Incidentes en curso</h1>
             <div class="emergent__container" id="onCourse-container">
             </div>
         </div>
         <div class="emergent hidden" id="incidenteResoluciones">
-            <div class="emergent__subMenu subMenu-hidden">
-                <a href="../controladores/exitSession.php" class="subMenu__option"><i class="fa-solid fa-right-from-bracket fa-lg"></i>Cerrar sesion</a>
-            </div>
             <h1 class="emergent__title">Resoluciones</h1>
             <div class="emergent__container" id="resolution-container">
 
