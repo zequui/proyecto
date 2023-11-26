@@ -22,7 +22,7 @@ body {
   margin-top: 30px;
   height: 73px;
   width: 95vw;
-  min-width: 1025px;
+  min-width: 1050px;
   overflow: hidden;
   display: flex;
   justify-content: space-between;
@@ -80,7 +80,7 @@ body {
   flex-direction: column;
   height: 80%;
   width: 95vw;
-  min-width: 1025px;
+  min-width: 1050px;
   overflow-x: hidden;
   overflow-y: scroll;
   background-color: #1d1d1d;
@@ -1047,4 +1047,18 @@ input[type="number"] {
   color: rgb(24, 24, 24);
   border-radius: 10%;
   transition: .1s;
+}
+
+.notification{
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: red;
+  position: absolute;
+  top: 1px;
+  right: 1px;
+}
+
+.navbar__element[id = 'Resoluciones']{
+  position: relative;
 }

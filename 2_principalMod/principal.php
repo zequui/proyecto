@@ -14,7 +14,10 @@
                 <a id="emergentes" class="navbar__element selected">Incidentes emergentes</a>
                 <a id="enCurso" class="navbar__element">Incidentes en curso</a>
                 <a id="pasados" class="navbar__element">Incidentes pasados</a>
-                <a id="Resoluciones" class="navbar__element">Resultado de resoluciones</a>
+                <a id="Resoluciones" class="navbar__element">
+                    Resultado de resoluciones
+                    <div class = "notification hidden"></div>
+                </a>
             </div>
             <?php
                 include_once '../negocio/usuario.php';

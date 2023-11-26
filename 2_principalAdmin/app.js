@@ -62,6 +62,7 @@ const submitResolutionBtn = document.querySelector(
 
 navbarBtns.forEach((opt) => {
   opt.addEventListener("click", (e) => {
+
     navbarBtns.forEach((btn) => btn.classList.remove("selected"));
     e.currentTarget.classList.add("selected");
 
@@ -72,6 +73,7 @@ navbarBtns.forEach((opt) => {
       .forEach((menu) => menu.classList.add("hidden"));
 
     subMenuHide();
+    checkRejected()
 
     switch (elementId) {
       case "emergentes":
@@ -82,7 +84,7 @@ navbarBtns.forEach((opt) => {
         incidentesEnCurso.classList.remove("hidden");
         loadIncourseIncidents();
         break;
-      case "resoluciones":
+      case "Resoluciones":
         resoluciones.classList.remove("hidden");
         loadResoluciones();
         break;
@@ -114,7 +116,10 @@ submitResolutionBtn.addEventListener("click", () => submitResolucion(true));
 
 
 
-window.onload = loadEmergentIncidents();
+window.onload = () => {
+  loadEmergentIncidents();
+  checkRejected()
+}
 
 async function loadEmergentIncidents() {
   const response = await $.get("../controladores/getIncidents.php", {
@@ -379,6 +384,7 @@ function acceptResolution() {
   setTimeout(() => {
     incident_element.classList.add("incident-active");
     setTimeout(() => {
+      checkRejected()
       incident_element.remove();
     }, 500);
   }, 500);
@@ -407,6 +413,7 @@ function modifyResolution() {
       setTimeout(() => {
         incident_element.classList.add("incident-active");
         setTimeout(() => {
+          checkRejected()
           incident_element.remove();
         }, 500);
       }, 500);
@@ -497,6 +504,7 @@ function submitReevaluar(e) {
   setTimeout(() => {
     incident_element.classList.add("incident-active");
     setTimeout(() => {
+      checkRejected()
       incident_element.remove();
     }, 500);
   }, 500);
@@ -533,3 +541,13 @@ function resetModForm(inputs) {
   ciInput.prop("readonly", true);
 }
 
+let checkRejected = () => {
+  const resolution_elemnt = document.querySelector('#Resoluciones')
+  $.get("../controladores/getIncidents.php", {
+    filter: 2,
+  }).done((response) => {
+    response.length > 100
+      ? resolution_elemnt.children[0].classList.remove("hidden")
+      : resolution_elemnt.children[0].classList.add("hidden");
+  });
+};
