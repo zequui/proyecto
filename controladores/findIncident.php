@@ -23,9 +23,14 @@ if(empty($resultado)){
         <div class="incident__title">
             <p class="title__name titulo_incidente">'.$incident->getTitulo().'</p>
                 <div id="incident__container">
-                    <button title="Desplegar resolución" class="container__button displayResolution_btn"><i class="fa-solid fa-inbox fa-xl"></i></button>
-                    <button title="Desplegar incidente" class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl active"></i></button>
-                </div>
+                    <button title="Desplegar resolución" class="container__button displayResolution_btn"><i class="fa-solid fa-inbox fa-xl"></i></button>';
+                    if($_REQUEST['filter'] == 'titulo'){
+                        echo '<button title="Desplegar incidente" class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl"></i></button>';
+                    }else{
+                        echo '<button title="Desplegar incidente" class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl active"></i></button>';
+                    }
+                    
+                echo '</div>
         </div>
         ';
         if($_REQUEST['filter'] == 'titulo'){
