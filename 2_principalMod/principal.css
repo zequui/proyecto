@@ -1066,3 +1066,9 @@ input[type="number"] {
 #main__container{
   position: relative;
 }
+#dropdown__opt{
+  background-color: #2e2e2e;
+  border: solid #2e2e2e;
+  border-radius: 5px;
+  color: #c4c4c4;
+}
