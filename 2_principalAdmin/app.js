@@ -436,16 +436,16 @@ function modifyResolution() {
     tipoResolucion.replaceWith(`
     <div class="lista contenedor__type" id="resolution-type">
     <div class="contenedor">
-        <input type="radio" name="tipo" value="Suspension">Suspencion</input>
+        <input type="radio" name="tipo" value="Suspensión">Suspención</input>
     </div>
     <div class="contenedor">
         <input type="radio" name="tipo" value="Trabajo comunitario">Trabajo comunitario</input>
     </div>
     <div class="contenedor">
-        <input type="radio" name="tipo" value="cambio de institucion">cambio de institucion</input>
+        <input type="radio" name="tipo" value="Cambio de institución">cambio de institución</input>
     </div>
     <div class="contenedor">
-        <input type="radio" name="tipo" value="otros">otros</input>
+        <input type="radio" name="tipo" value="otros">Otros</input>
     </div>
   </div>
     `);
