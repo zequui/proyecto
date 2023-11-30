@@ -95,7 +95,7 @@ if($_REQUEST['mod'] == 1){
     foreach($involucrados as $involucrado){
         echo '
         <div class="involucrado__container">
-            <div class="information__activity--title from_incident-'.$_REQUEST['id_incidente'].'">
+            <div class="information__activity--title from_incident'.$_REQUEST['id_incidente'].'">
                 <p class="title__name--2">'.$involucrado->getNombre().'</p>
                 <div class="title__container--buttons">
                     <button class="container__button--2 unlink_personIncident"><i class="fa-solid fa-xmark fa-xl"></i></button> 

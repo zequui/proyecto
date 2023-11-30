@@ -7,6 +7,9 @@
     <title>contraseña perdida</title>
 </head>
 <body>
+    <div class="img__container">
+        <img src="https://newsigns.com.au/cdn/shop/products/Caution-Out-Of-Service.jpg?v=1653282038&width=1946" alt="">
+    </div>
     <div id="container">
         <form action= "inicio_sesion.php" method="get">
             <h1 id="form__title">contraseña perdida</h1>
@@ -15,5 +18,11 @@
             <button type="submit">Ingresar</button>
         </form>
     </div>
+    <script>
+        const backgroud = document.querySelector('.img__container')
+        backgroud.addEventListener('click', () => {
+            window.location.href = '../1_login/inicio_sesion.php'
+        })
+    </script>
 </body>
 </html>

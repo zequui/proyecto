@@ -236,16 +236,6 @@
         </div>
     </div>
 
-    <div class="emergent__activity--form emergent__activity--hidden"  style="display: none;">
-        <div class="container__col">
-            <h1 class="emergent__title">Reevaluacion</h1>
-            <label>Descripción</label>
-            <textarea class="col__description" name="descripcion"></textarea>
-        </div>
-        <div class="activity__button">
-            <button class="form__submit" id="">Ingresar</button>
-        </div>
-    </div>
     <div id="emergent__incident--form" class=" emergent__activity--hidden">
         <h1 class="emergent__title">Editar Incidente</h1>
         <div class="activity__container">

@@ -522,6 +522,7 @@ function submitInvolucrado() {
   const phoneNumber = $(formularioInvolucrado).find(
     "input[name = phoneNumber]"
   );
+  console.log(id_incidente);
 
   const Denunciante = document.querySelector("#incident_" + id_incidente)
     .children[1].children[0].children[2];
@@ -697,7 +698,7 @@ function selectPerson(e) {
 
 const resetInputs = () => {
   document
-    .querySelectorAll("input, textarea, .lista")
+    .querySelectorAll("*")
     .forEach((input) => input.classList.remove("uncomplete--input"));
 };
 
@@ -1214,9 +1215,8 @@ function modifyResolution(e) {
 
   formModificarResolucion.setAttribute("id_incidente", id_incidente);
 
-  $(formModificarResolucion)
-    .find("#resolution-description")
-    .load("../controladores/getResolution.php", {
+ const resolutionTXT =  $(formModificarResolucion).find("#resolution-description")
+    resolutionTXT.load("../controladores/getResolution.php", {
       id_incidente: id_incidente,
       mod: "descripcion",
     });
@@ -1225,7 +1225,7 @@ function modifyResolution(e) {
     id_incidente: id_incidente,
     mod: "tipo",
   }).done((response) => {
-    response;
+    console.log(response);
     $(formModificarResolucion)
       .find("input[value = '" + response.trim() + "']")
       .prop("checked", true);
@@ -1248,6 +1248,8 @@ function submitModResolution(e) {
   );
   const newTipo = $(formModificarResolucion).find("input[name = tipo]:checked");
 
+  console.log(newTipo);
+  
   if (newDescripcion.text() && newTipo.val()) {
     $.ajax({
       url: "../controladores/updateResolution.php",
@@ -1271,8 +1273,8 @@ function submitModResolution(e) {
     return;
   } else {
     setTimeout(() => {
-      if (newDescripcion.text) newDescripcion.addClass("uncomplete--input ");
-      if (newTipo.val()) $(".lista").addClass("uncomplete--input ");
+      if (!newDescripcion.text()) newDescripcion.addClass("uncomplete--input ");
+      if (!newTipo.val()) $(".lista").addClass("uncomplete--input ");
     }, 50);
   }
  

@@ -22,7 +22,7 @@ body {
   margin-top: 30px;
   height: 73px;
   width: 95vw;
-  min-width: 1050px;
+  min-width: 1220px;
   overflow: hidden;
   display: flex;
   justify-content: space-between;
@@ -80,7 +80,7 @@ body {
   flex-direction: column;
   height: 80%;
   width: 95vw;
-  min-width: 1050px;
+  min-width: 1220px;
   overflow-x: hidden;
   overflow-y: scroll;
   background-color: #1d1d1d;
@@ -150,6 +150,9 @@ body {
   flex-direction: column;
   margin-bottom: 10px;
   transition: 0.1s;
+}
+.mod_input{
+  width: 500px;
 }
 .incident__title {
   z-index: 10;
@@ -1056,7 +1059,7 @@ input[type="number"] {
   background-color: red;
   position: absolute;
   top: -5px;
-  right: 1px;
+  right: -5px;
 }
 
 .navbar__element[id="Resoluciones"] {

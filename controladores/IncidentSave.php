@@ -4,8 +4,13 @@ include_once "../negocio/persona.php";
 include_once "../negocio/relaciones.php";
 
 session_start();
+
 if(checkIfEmpty() && checkCI($_POST['ci'])){
    
+    $extensiones_imagenes = ["jpg", "jpeg", "png", "gif", "svg"];
+    $extensiones_videos = ["mp4", "avi", "mov", "wmv", "mpg"];
+    $extensiones_documentos = ["doc", "docx", "pdf", "txt", "xlsx"];
+
     $namePersona = $_POST['name'];
     $surnamePersona = $_POST['surname'];
     $telefonoPersona = $_POST['phoneNumber'];
@@ -26,8 +31,10 @@ if(checkIfEmpty() && checkCI($_POST['ci'])){
         
         for($i = 0; $i<count($nomArchivos); $i++){
             $ext = pathinfo($nomArchivos[$i], PATHINFO_EXTENSION);
-            $name = 'archivo_incidente'.$i.'_'.date('d-m-Y_H-i-s', time()).'.'.$ext;
+            $name = 'archivo_incidente_'.$i.date('d-m-Y_H-i-s', time()).'.'.$ext;
             $pathFile = $dir.$name;
+
+            if(!(in_array($ext, $extensiones_documentos) || in_array($ext, $extensiones_imagenes) || in_array($ext, $extensiones_videos))) continue;
 
             if(move_uploaded_file($nomTempArchivos[$i], $pathFile)){
                 array_push($fileNames, $name);
