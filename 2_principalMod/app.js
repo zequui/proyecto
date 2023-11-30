@@ -178,9 +178,11 @@ window.onload = () => {
 };
 
 async function loadEmergentIncidents() {
+
   const response = await $.get("../controladores/getIncidents.php", {
     filter: 0,
-  });
+  })
+
   const contenedor = $(contenedorIncidentesEmergentes).html(response);
 
   contenedor.find(".dropdown_btn").on("click", (e) => showExtraInformation(e));
@@ -522,7 +524,6 @@ function submitInvolucrado() {
   const phoneNumber = $(formularioInvolucrado).find(
     "input[name = phoneNumber]"
   );
-  console.log(id_incidente);
 
   const Denunciante = document.querySelector("#incident_" + id_incidente)
     .children[1].children[0].children[2];

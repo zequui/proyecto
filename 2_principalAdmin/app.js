@@ -442,7 +442,7 @@ function modifyResolution() {
         <input type="radio" name="tipo" value="Trabajo comunitario">Trabajo comunitario</input>
     </div>
     <div class="contenedor">
-        <input type="radio" name="tipo" value="Cambio de institución">cambio de institución</input>
+        <input type="radio" name="tipo" value="Cambio de institución">Cambio de institución</input>
     </div>
     <div class="contenedor">
         <input type="radio" name="tipo" value="otros">Otros</input>
