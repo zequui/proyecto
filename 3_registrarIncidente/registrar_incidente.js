@@ -16,6 +16,13 @@ submitBtn.addEventListener("click", (e) => {
   }
 });
 
+document.querySelectorAll('input, textarea').forEach((input) => {
+  input.addEventListener("keydown", (e) => {
+    const keyCode = e.key;
+    if (keyCode == "<" || keyCode == ">") e.preventDefault();
+  });
+});
+
 document.querySelectorAll("*").forEach((elemnt) => {
   elemnt.addEventListener("click", () =>
     ciInput.classList.remove("unvalid--input")

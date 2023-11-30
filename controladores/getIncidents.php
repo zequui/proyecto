@@ -277,7 +277,7 @@ if($filtro == 0){
             <p class="title__name">'.$incident->getTitulo().'</p>
                 <div id="incident__container">
                     <button title="Desplegar resolución" class="container__button displayResolution_btn"><i class="fa-solid fa-inbox fa-xl"></i></button>
-                    <button title="Desplegar incidente" class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl active"></i></button>
+                    <button title="Desplegar incidente" class="container__button dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-2xl "></i></button>
                 </div>
         </div>
         <div class="inicident__information--2 incident__information-hidden">
