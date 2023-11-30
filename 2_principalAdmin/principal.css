@@ -22,7 +22,7 @@ body {
   margin-top: 30px;
   height: 73px;
   width: 95vw;
-  min-width: 1025px;
+  min-width: 1220px;
   overflow: hidden;
   display: flex;
   justify-content: space-between;
@@ -80,7 +80,7 @@ body {
   flex-direction: column;
   height: 80%;
   width: 95vw;
-  min-width: 1025px;
+  min-width: 1220px;
   overflow-x: hidden;
   overflow-y: scroll;
   background-color: #1d1d1d;
@@ -114,7 +114,7 @@ body {
   background-color: #4a4a4a;
   padding: 5px;
   right: 0;
-  top: 0;
+  top: 100px;
   display: flex;
   justify-content: center;
   width: 160px;
@@ -527,7 +527,7 @@ i {
   border: solid #ddd;
   transition: 0.1s;
 }
-.emergent__person--form {
+#emergent__person--form {
   display: flex;
   position: absolute;
   top: 50%;
@@ -538,6 +538,7 @@ i {
   z-index: 300;
   border-radius: 10px;
   border: solid #ddd;
+  width: 50%;
   transition: .1s;
 }
 .activity__container {
@@ -948,7 +949,6 @@ input{
   background-color: #1B1B1B;
   border: solid #1B1B1B;
   height: 33px;
-  width: 500px;
   color: #EAEAEA;
   font-size: 17px;
   margin-bottom: 5px;
@@ -1029,8 +1029,16 @@ margin-top: 15px;
 }
 
 .activity__button--2{
-  width: 100%;
+  width: auto;
   display: flex;
   justify-content: center;
   margin: 10px;
+
+}
+
+#dropdown__opt{
+  background-color: #2e2e2e;
+  border: solid #2e2e2e;
+  border-radius: 5px;
+  color: #c4c4c4;
 }
