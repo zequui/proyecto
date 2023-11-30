@@ -152,7 +152,7 @@
                     <input type="radio" name="tipo" value="Trabajo comunitario">Trabajo comunitario</input>
                 </div>
                 <div class="contenedor">
-                    <input type="radio" name="tipo" value="cambio de institución">Cambio de institución</input>
+                    <input type="radio" name="tipo" value="Cambio de institución">Cambio de institución</input>
                 </div>
                 <div class="contenedor">
                     <input type="radio" name="tipo" value="otros">Otros</input>
@@ -300,10 +300,10 @@
                     <input type="radio" name="tipo" value="Trabajo comunitario">Trabajo comunitario</input>
                 </div>
                 <div class="contenedor">
-                    <input type="radio" name="tipo" value="cambio de institucion">cambio de institucion</input>
+                    <input type="radio" name="tipo" value="Cambio de institución">Cambio de institución</input>
                 </div>
                 <div class="contenedor">
-                    <input type="radio" name="tipo" value="otros">otros</input>
+                    <input type="radio" name="tipo" value="Otros">Otros</input>
                 </div>
             </div>
         </div>
