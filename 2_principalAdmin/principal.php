@@ -210,7 +210,7 @@
                 <label>Descripción</label>
                 <textarea class="col__description" name="descripcion"></textarea>
                 <div class="col__title">
-                    <label>Fecha</label><p class="title__text">(Inserte la fecha en la que se realizo la actividad)</p>
+                    <label>Fecha</label><p class="title__text">(Inserte la fecha en la que se realizó la actividad)</p>
                 </div>
                 <input type="date" name="fecha" class="col__date">
             </div>
@@ -288,10 +288,10 @@
     </div>
     <div id="emergent__resolution--form" class="emergent__activity--hidden">
         <div class="container__col">
-            <h1 class="emergent__title">Subir Resolucion</h1>
+            <h1 class="emergent__title">Subir Resolución</h1>
             <label>Descripción</label>
             <textarea class="col__description" name="descripcion"></textarea>
-            <label>Tipo de resolucion</label>
+            <label>Tipo de resolución</label>
             <div class="lista">
                 <div class="contenedor">
                     <input type="radio" name="tipo" value="Suspension">Suspensión</input>
@@ -300,10 +300,10 @@
                     <input type="radio" name="tipo" value="Trabajo comunitario">Trabajo comunitario</input>
                 </div>
                 <div class="contenedor">
-                    <input type="radio" name="tipo" value="cambio de institucion">cambio de institucion</input>
+                    <input type="radio" name="tipo" value="Cambio de institución">Cambio de institución</input>
                 </div>
                 <div class="contenedor">
-                    <input type="radio" name="tipo" value="otros">otros</input>
+                    <input type="radio" name="tipo" value="Otros">Otros</input>
                 </div>
             </div>
         </div>
