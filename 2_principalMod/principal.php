@@ -115,13 +115,13 @@
             <div class="container__col">
                 <div class="col__title">
                     <label>Título</label> 
-                    <p class="title__text">(Inserte un título facil de identificar)</p>
+                    <p class="title__text">(Inserte un título fácil de identificar)</p>
                 </div>
                 <input type="text" name="titulo" maxlength="35">
                 <label>Descripción</label>
                 <textarea class="col__description" name="descripcion"></textarea>
                 <div class="col__title">
-                    <label>Fecha</label><p class="title__text">(Inserte la fecha en la que se realizo la actividad)</p>
+                    <label>Fecha</label><p class="title__text">(Inserte la fecha en la que se realizó la actividad)</p>
                 </div>
                 <input type="date" name="fecha" class="col__date">
             </div>
@@ -241,7 +241,7 @@
         <div class="activity__container">
             <div class="container__col">
                 <div class="col__title">
-                    <label>Título</label> <p class="title__text">(Inserte un título adecuado para ser indentificado mas facilmente)</p>
+                    <label>Título</label> <p class="title__text">(Inserte un título adecuado para ser indentificado más fácilmente)</p>
                 </div>
                 <input type="text" name="titulo" maxlength="35" required>
 

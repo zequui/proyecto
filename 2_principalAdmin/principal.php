@@ -204,7 +204,7 @@
             <div class="container__col">
                 <div class="col__title">
                     <label>Título</label> 
-                    <p class="title__text">(Inserte un título facil de identificar)</p>
+                    <p class="title__text">(Inserte un título fácil de identificar)</p>
                 </div>
                 <input type="text" name="titulo" maxlength="35">
                 <label>Descripción</label>
@@ -313,11 +313,11 @@
     </div>
     <div class="emergent__activity--form emergent__activity--hidden" style="display: none;">
         <div class="container__col">
-            <h1 class="emergent__title">Resolucion</h1>
+            <h1 class="emergent__title">Resolución</h1>
             <label>Descripción</label>
             <textarea class="col__description" name="descripcion"></textarea>
-            <label>Tipo de resolucion</label>
-            <div class="contenedor__type">Suspencion</div>
+            <label>Tipo de resolución</label>
+            <div class="contenedor__type">Suspención</div>
         </div>
         <div class="activity__button--2">
             <button type="submit" class="form__submit form__submit--2" id="">Aceptar</button>
@@ -327,7 +327,7 @@
 
     <div class="emergent__activity--form emergent__activity--hidden"  style="display: none;">
         <div class="container__col">
-            <h1 class="emergent__title">Reevaluacion</h1>
+            <h1 class="emergent__title">Reevaluación</h1>
             <label>Descripción</label>
             <textarea class="col__description" name="descripcion"></textarea>
         </div>
@@ -340,7 +340,7 @@
         <div class="activity__container">
             <div class="container__col">
                 <div class="col__title">
-                    <label>Título</label> <p class="title__text">(Inserte un título adecuado para ser indentificado mas facilmente)</p>
+                    <label>Título</label> <p class="title__text">(Inserte un título adecuado para ser indentificado más fácilmente)</p>
                 </div>
                 <input type="text" name="titulo" maxlength="35" required>
                 
