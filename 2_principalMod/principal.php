@@ -199,10 +199,10 @@
     </div>
     <div id="emergent__resolution--form" class="emergent__activity--hidden">
         <div class="container__col">
-            <h1 class="emergent__title">Enviar Resolucion</h1>
+            <h1 class="emergent__title">Enviar Resolución</h1>
             <label>Descripción</label>
             <textarea class="col__description" name="descripcion"></textarea>
-            <label>Tipo de resolucion</label>
+            <label>Tipo de resolución</label>
             <div class="lista">
                 <div class="contenedor">
                     <input type="radio" name="tipo" value="Suspensión">Suspensión</input>
@@ -211,7 +211,7 @@
                     <input type="radio" name="tipo" value="Trabajo comunitario">Trabajo comunitario</input>
                 </div>
                 <div class="contenedor">
-                    <input type="radio" name="tipo" value="Cambio de institucion">Cambio de institucion</input>
+                    <input type="radio" name="tipo" value="Cambio de institución">Cambio de institución</input>
                 </div>
                 <div class="contenedor">
                     <input type="radio" name="tipo" value="Otros">Otros</input>
@@ -224,11 +224,11 @@
     </div>
     <div class="emergent__activity--form emergent__activity--hidden" style="display: none;">
         <div class="container__col">
-            <h1 class="emergent__title">Resolucion</h1>
+            <h1 class="emergent__title">Resolución</h1>
             <label>Descripción</label>
             <textarea class="col__description" name="descripcion"></textarea>
-            <label>Tipo de resolucion</label>
-            <div class="contenedor__type">Suspencion</div>
+            <label>Tipo de resolución</label>
+            <div class="contenedor__type">Suspención</div>
         </div>
         <div class="activity__button--2">
             <button type="submit" class="form__submit form__submit--2" id="form__activity--submit">Aceptar</button>

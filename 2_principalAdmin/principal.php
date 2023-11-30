@@ -146,13 +146,13 @@
             <label>Tipo de resolucion</label>
             <div class="lista">
                 <div class="contenedor">
-                    <input type="radio" name="tipo" value="Suspencion">Suspencion</input>
+                    <input type="radio" name="tipo" value="Suspención">Suspención</input>
                 </div>
                 <div class="contenedor">
                     <input type="radio" name="tipo" value="Trabajo comunitario">Trabajo comunitario</input>
                 </div>
                 <div class="contenedor">
-                    <input type="radio" name="tipo" value="cambio de institucion">cambio de institucion</input>
+                    <input type="radio" name="tipo" value="cambio de institución">cambio de institución</input>
                 </div>
                 <div class="contenedor">
                     <input type="radio" name="tipo" value="otros">otros</input>
