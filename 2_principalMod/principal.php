@@ -82,9 +82,9 @@
         <div class="emergent hidden" id="incidentesPasados">
         <h1 class=emergent__title>Incidentes resueltos</h1>
         <div class="container__inputSearch">
-            <input type="text" class="emergent__input" id="incident__locate--input" placeholder="Escribe aqui para buscar entre los incidentes resueltos">
+            <input type="text" class="emergent__input" id="incident__locate--input" placeholder="Escribe aquí para buscar entre los incidentes resueltos">
             <select name="incident_data" id="dropdown__opt">
-                <option value="titulo">Titulo</option>
+                <option value="titulo">Título</option>
                 <option value="descripcion">Descripción</option>
                 <option value="fecha">Fecha</option>
             </select>
@@ -205,16 +205,16 @@
             <label>Tipo de resolucion</label>
             <div class="lista">
                 <div class="contenedor">
-                    <input type="radio" name="tipo" value="Suspension">Suspensión</input>
+                    <input type="radio" name="tipo" value="Suspensión">Suspensión</input>
                 </div>
                 <div class="contenedor">
                     <input type="radio" name="tipo" value="Trabajo comunitario">Trabajo comunitario</input>
                 </div>
                 <div class="contenedor">
-                    <input type="radio" name="tipo" value="cambio de institucion">cambio de institucion</input>
+                    <input type="radio" name="tipo" value="Cambio de institucion">Cambio de institucion</input>
                 </div>
                 <div class="contenedor">
-                    <input type="radio" name="tipo" value="otros">otros</input>
+                    <input type="radio" name="tipo" value="Otros">Otros</input>
                 </div>
             </div>
         </div>
@@ -282,15 +282,15 @@
 
     <div id="emergent__resolution--result" class="emergent__activity--form emergent__activity--hidden" id_incidente = "'.$incident->getId().'">
         <div class="container__col">
-            <h1 class="emergent__title">Resolucion</h1>
+            <h1 class="emergent__title">Resolución</h1>
             <label>Descripción</label>
             <div class="col__description" id="resolution-description"></div>
-            <label>Tipo de resolucion</label>
+            <label>Tipo de resolución</label>
             <div class="contenedor__type" id="resolution-type"></div>
         </div>
     </div>
 
-        <div class="emergent__activity--form emergent__activity--hidden" id="emergent__mssg--reevaluar">
+    <div class="emergent__activity--form emergent__activity--hidden" id="emergent__mssg--reevaluar">
         <div class="container__col">
             <h1 class="emergent__title">Reevaluar</h1>
             <label>Mensaje</label>

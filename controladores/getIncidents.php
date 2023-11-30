@@ -35,7 +35,7 @@ if($filtro == 0){
             </div>
             <div class="inicident__information incident__information-hidden">
                 <div class="information__col ">
-                    <label>Descripcion</label>
+                    <label>Descripción</label>
                     <p class="col__p information_description">'.$incident->getDescripcion().'</p>
                 </div>
                 <div class="information__col">
@@ -62,10 +62,10 @@ if($filtro == 0){
                     <label>Nombre y Apellido</label>
                     <p class="col__p">'.$denunciante->getNombre().' '.$denunciante->getApellido().'</p>
     
-                    <label>Cedula</label>
+                    <label>Cédula</label>
                     <p class="col__p">'.$denunciante->getCi().'</p>
                     
-                    <label>Telefono</label>
+                    <label>Teléfono</label>
                     <p class="col__p">'.$denunciante->getTelefono().'</p>
                 </div>
             </div>
@@ -102,7 +102,7 @@ if($filtro == 0){
                     <div class="inicident__information--2 incident__information-hidden">
                         <div class="information__container">
                             <div class="information__col--2">
-                                <label>Descripcion</label>
+                                <label>Descripción</label>
                                 <p class="col__p">'.$incident->getDescripcion().'</p>
                             </div>
                             <div class="information__col--2">
@@ -127,10 +127,10 @@ if($filtro == 0){
                                 <label>Nombre y Apellido</label>
                                 <p class="col__p">'.$denunciante->getNombre().' '.$denunciante->getApellido().'</p>
 
-                                <label>Cedula</label>
+                                <label>Cédula</label>
                                 <p class="col__p">'.$denunciante->getCi().'</p>
                                 
-                                <label>Telefono</label>
+                                <label>Teléfono</label>
                                 <p class="col__p">'.$denunciante->getTelefono().'</p>
                             </div>
                         </div>
@@ -157,7 +157,7 @@ if($filtro == 0){
                         <div class="activity__information--3 incident__information-hidden">
                             <div class="information__container--2">
                                 <div class="information__col--3">
-                                    <label>Descripcion</label>
+                                    <label>Descripción</label>
                                     <p class="col__p">'.$actividad->getDetalle().'</p>
                                 </div>
                                 <div class="information__col--3">
@@ -198,10 +198,10 @@ if($filtro == 0){
                                                     <label>Apellido</label>
                                                     <p class="col__p">'.$persona->getApellido().'</p>
     
-                                                    <label>Cedula</label>
+                                                    <label>Cédula</label>
                                                     <p class="col__p">'.$persona->getCi().'</p>
                                                     
-                                                    <label>Telefono</label>
+                                                    <label>Teléfono</label>
                                                     <p class="col__p">'.$persona->getTelefono().'</p>
                                                 </div>
                                             </div>  
@@ -243,10 +243,10 @@ if($filtro == 0){
                                                 <label>Apellido</label>
                                                 <p class="col__p">'.$involucrado->getApellido().'</p>
 
-                                                <label>Cedula</label>
+                                                <label>Cédula</label>
                                                 <p class="col__p">'.$involucrado->getCi().'</p>
                                                 
-                                                <label>Telefono</label>
+                                                <label>Teléfono</label>
                                                 <p class="col__p">'.$involucrado->getTelefono().'</p>
                                             </div>
                                         </div>  
@@ -283,7 +283,7 @@ if($filtro == 0){
         <div class="inicident__information--2 incident__information-hidden">
             <div class="information__container">
                 <div class="information__col--2">
-                    <label>Descripcion</label>
+                    <label>Descripción</label>
                     <p class="col__p">'.$incident->getDescripcion().'</p>
                 </div>
                 <div class="information__col--2">
@@ -308,10 +308,10 @@ if($filtro == 0){
                     <label>Nombre y Apellido</label>
                     <p class="col__p">'.$denunciante->getNombre().' '.$denunciante->getApellido().'</p>
 
-                    <label>Cedula</label>
+                    <label>Cédula</label>
                     <p class="col__p">'.$denunciante->getCi().'</p>
                     
-                    <label>Telefono</label>
+                    <label>Teléfono</label>
                     <p class="col__p">'.$denunciante->getTelefono().'</p>
                 </div>
         </div>';
@@ -334,7 +334,7 @@ if($filtro == 0){
             <div class="activity__information--3 incident__information-hidden">
                 <div class="information__container--2">
                     <div class="information__col--3">
-                        <label>Descripcion</label>
+                        <label>Descripción</label>
                         <p class="col__p">'.$actividad->getDetalle().'</p>
                     </div>
                     <div class="information__col--3">
@@ -373,10 +373,10 @@ if($filtro == 0){
                                         <label>Apellido</label>
                                         <p class="col__p">'.$persona->getApellido().'</p>
 
-                                        <label>Cedula</label>
+                                        <label>Cédula</label>
                                         <p class="col__p">'.$persona->getCi().'</p>
                                         
-                                        <label>Telefono</label>
+                                        <label>Teléfono</label>
                                         <p class="col__p">'.$persona->getTelefono().'</p>
                                     </div>
                                 </div>  
@@ -412,10 +412,10 @@ if($filtro == 0){
                                     <label>Apellido</label>
                                     <p class="col__p">'.$involucrado->getApellido().'</p>
 
-                                    <label>Cedula</label>
+                                    <label>Cédula</label>
                                     <p class="col__p">'.$involucrado->getCi().'</p>
                                     
-                                    <label>Telefono</label>
+                                    <label>Teléfono</label>
                                     <p class="col__p">'.$involucrado->getTelefono().'</p>
                                 </div>
                             </div>  
@@ -452,7 +452,7 @@ if($filtro == 0){
         <div class="inicident__information--2 incident__information-hidden">
             <div class="information__container">
                 <div class="information__col--2">
-                    <label>Descripcion</label>
+                    <label>Descripción</label>
                     <p class="col__p">'.$incident->getDescripcion().'</p>
                 </div>
                 <div class="information__col--2">
@@ -477,10 +477,10 @@ if($filtro == 0){
                     <label>Nombre y Apellido</label>
                     <p class="col__p">'.$denunciante->getNombre().' '.$denunciante->getApellido().'</p>
 
-                    <label>Cedula</label>
+                    <label>Cédula</label>
                     <p class="col__p">'.$denunciante->getCi().'</p>
                     
-                    <label>Telefono</label>
+                    <label>Teléfono</label>
                     <p class="col__p">'.$denunciante->getTelefono().'</p>
                 </div>
         </div>';
@@ -503,7 +503,7 @@ if($filtro == 0){
             <div class="activity__information--3 incident__information-hidden">
                 <div class="information__container--2">
                     <div class="information__col--3">
-                        <label>Descripcion</label>
+                        <label>Descripción</label>
                         <p class="col__p">'.$actividad->getDetalle().'</p>
                     </div>
                     <div class="information__col--3">
@@ -542,10 +542,10 @@ if($filtro == 0){
                                         <label>Apellido</label>
                                         <p class="col__p">'.$persona->getApellido().'</p>
 
-                                        <label>Cedula</label>
+                                        <label>Cédula</label>
                                         <p class="col__p">'.$persona->getCi().'</p>
                                         
-                                        <label>Telefono</label>
+                                        <label>Teléfono</label>
                                         <p class="col__p">'.$persona->getTelefono().'</p>
                                     </div>
                                 </div>  
@@ -581,10 +581,10 @@ if($filtro == 0){
                                     <label>Apellido</label>
                                     <p class="col__p">'.$involucrado->getApellido().'</p>
 
-                                    <label>Cedula</label>
+                                    <label>Cédula</label>
                                     <p class="col__p">'.$involucrado->getCi().'</p>
                                     
-                                    <label>Telefono</label>
+                                    <label>Teléfono</label>
                                     <p class="col__p">'.$involucrado->getTelefono().'</p>
                                 </div>
                             </div>  
@@ -614,7 +614,7 @@ if($filtro == 0){
             </div>
             <div class="inicident__information incident__information-hidden">
                 <div class="information__col ">
-                    <label>Descripcion</label>
+                    <label>Descripción</label>
                     <p class="col__p information_description">'.$incident->getDescripcion().'</p>
                 </div>
                 <div class="information__col">
@@ -641,10 +641,10 @@ if($filtro == 0){
                     <label>Nombre y Apellido</label>
                     <p class="col__p">'.$denunciante->getNombre().' '.$denunciante->getApellido().'</p>
     
-                    <label>Cedula</label>
+                    <label>Cédula</label>
                     <p class="col__p">'.$denunciante->getCi().'</p>
                     
-                    <label>Telefono</label>
+                    <label>Teléfono</label>
                     <p class="col__p">'.$denunciante->getTelefono().'</p>
                 </div>
             </div>
@@ -668,7 +668,7 @@ if($filtro == 0){
                     <div class="inicident__information--2">
                         <div class="information__container">
                             <div class="information__col--2">
-                                <label>Descripcion</label>
+                                <label>Descripción</label>
                                 <p class="col__p">vfsvfsddvfsvfdsvfdvfdvfd vfedfefvfwfs fdvfvfd fvwvfvfw vfevfdv vfevfdv vfdevfdv vefvefvefv fvevefvfe vfevevfe vfevfevfe vfevfev evefefefvfrefrefer</p>
                             </div>
                             <div class="information__col--2">
@@ -687,10 +687,10 @@ if($filtro == 0){
                                 <label>Nombre y Apellido</label>
                                 <p class="col__p">ezequiel rivero</p>
 
-                                <label>Cedula</label>
+                                <label>Cédula</label>
                                 <p class="col__p">55543952</p>
                                 
-                                <label>Telefono</label>
+                                <label>Teléfono</label>
                                 <p class="col__p">342342423</p>
                             </div>
                         </div>
@@ -706,7 +706,7 @@ if($filtro == 0){
                         <div class="activity__information--3">
                             <div class="information__container--2">
                                 <div class="information__col--3">
-                                    <label>Descripcion</label>
+                                    <label>Descripción</label>
                                     <p class="col__p">asdasdasd</p>
                                 </div>
                                 <div class="information__col--3">
@@ -729,10 +729,10 @@ if($filtro == 0){
                                             <label>Apellido</label>
                                             <p class="col__p">Saez</p>
 
-                                            <label>Cedula</label>
+                                            <label>Cédula</label>
                                             <p class="col__p">55449857</p>
                                             
-                                            <label>Telefono</label>
+                                            <label>Teléfono</label>
                                             <p class="col__p">92050575</p>
                                         </div>
                                     </div>  
@@ -756,10 +756,10 @@ if($filtro == 0){
                                             <label>Apellido</label>
                                             <p class="col__p">zxx<z< p="">
 
-                                            <label>Cedula</label>
+                                            <label>Cédula</label>
                                             </z<></p><p class="col__p">55214412</p>
                                             
-                                            <label>Telefono</label>
+                                            <label>Teléfono</label>
                                             <p class="col__p">342342342</p>
                                         </div>
                                     </div>  
@@ -778,10 +778,10 @@ if($filtro == 0){
                                             <label>Apellido</label>
                                             <p class="col__p">rivero</p>
 
-                                            <label>Cedula</label>
+                                            <label>Cédula</label>
                                             <p class="col__p">55543952</p>
                                             
-                                            <label>Telefono</label>
+                                            <label>Teléfono</label>
                                             <p class="col__p">342342423</p>
                                         </div>
                                     </div>  

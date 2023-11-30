@@ -81,8 +81,8 @@
             <div class="emergent__div">
                 <div id="mod__container">
                     <form class="mod__form">
-                        <h2 id="form__title">registrar moderador</h2>
-                        <p id="form__text"> Crea una cuenta para un moderador</p>
+                        <h2 id="form__title">Registrar moderador</h2>
+                        <p id="form__text">Crea una cuenta para un moderador</p>
                         <div id="form__name">
                             <div id="name__col">
                                 <label>Nombre</label>
@@ -94,10 +94,10 @@
                             </div>
                         </div>
 
-                        <label>Correo electronico</label>
+                        <label>Correo electrónico</label>
                         <input type="text" class="mod_input" name="email" required>
 
-                        <label>Cedula</label>
+                        <label>Cédula</label>
                         <input type="number" class="mod_input" name="ci" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
 
                         <div>
@@ -176,10 +176,10 @@
 
     <div id="emergent__resolution--result" class="emergent__activity--form emergent__activity--hidden" id_incidente = "'.$incident->getId().'">
             <div class="container__col">
-                <h1 class="emergent__title">Resolucion</h1>
+                <h1 class="emergent__title">Resolución</h1>
                 <label>Descripción</label>
                 <div class="col__description" id="resolution-description"></div>
-                <label>Tipo de resolucion</label>
+                <label>Tipo de resolución</label>
                 <div class="contenedor__type" id="resolution-type"></div>
             </div>
             <div class="activity__button--2">

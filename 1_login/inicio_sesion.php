@@ -13,9 +13,9 @@
     <div id="container--main">
         <div id="container--main__container">
             <form action= "../controladores/loginCheck.php" method="post">
-                <h1 id="form__title">Inicie sesion</h1>
+                <h1 id="form__title">Inicie sesión</h1>
 
-                <p id="form__text">Correo electronico</p>
+                <p id="form__text">Correo electrónico</p>
                 <input type="email" name="email" required>
 
                 <p id="form__text">Contraseña</p>
