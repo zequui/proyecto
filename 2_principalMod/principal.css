@@ -831,7 +831,7 @@ input[type="number"] {
 }
 .title__container--buttons--2 {
   grid-template-columns: 35px 35px;
-  width: 20%;
+  width: 23%;
   height: 35px;
 }
 

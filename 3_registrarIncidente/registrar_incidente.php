@@ -59,7 +59,7 @@
                         <input type="number" name="phoneNumber" minlength="8" maxlength="9" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
     
                         <div class="col__title">
-                            <label>Cédula</label> <p class="title__text">(sin puntos ni guiones)</p>
+                            <label>Cédula</label> <p class="title__text">(Sin puntos ni guiones)</p>
                         </div>
                         <input type="number" name="ci" maxlength="8" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required>
 
@@ -68,7 +68,7 @@
                         </div>
         
                         <div class="col__title">
-                            <label>Título</label> <p class="title__text">(inserte un titulo adecuado para ser indentificado mas facilmente)</p>
+                            <label>Título</label> <p class="title__text">(Inserte un titulo adecuado para ser indentificado mas facilmente)</p>
                         </div>
                         <input type="text" name="titulo" maxlength="35" required>
                         
@@ -83,7 +83,7 @@
                             </div><div class="contenedor">
                                 <input type="radio" name="tipo" value="Conducta inadecuada">Conducta inadecuada</input>
                             </div><div class="contenedor">
-                                <input type="radio" name="tipo" value="Tenencia de sustancias ilicitas">Tenencia de sustancias ilicitas</input>
+                                <input type="radio" name="tipo" value="Tenencia de sustancias ilícitas">Tenencia de sustancias ilícitas</input>
                             </div><div class="contenedor">
                                 <input type="radio" name="tipo" value="Tenencia de objeto dañino">Tenencia de objeto dañino</input>
                             </div><div class="contenedor">
@@ -93,7 +93,7 @@
                     </div>
                     <div class="container__col">
                             <div class="col__title">
-                            <label>Fecha</label><p class="title__text">(inserte la fecha en la que sucedió el incidente)</p>
+                            <label>Fecha</label><p class="title__text">(Inserte la fecha en la que sucedió el incidente)</p>
                             </div>
                             <input type="date" name="fecha" id="col__date" required>
                             <label>Descripción</label>

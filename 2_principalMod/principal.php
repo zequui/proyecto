@@ -115,13 +115,13 @@
             <div class="container__col">
                 <div class="col__title">
                     <label>Título</label> 
-                    <p class="title__text">(inserte un título facil de identificar)</p>
+                    <p class="title__text">(Inserte un título facil de identificar)</p>
                 </div>
                 <input type="text" name="titulo" maxlength="35">
                 <label>Descripción</label>
                 <textarea class="col__description" name="descripcion"></textarea>
                 <div class="col__title">
-                    <label>Fecha</label><p class="title__text">(inserte la fecha en la que se realizo la actividad)</p>
+                    <label>Fecha</label><p class="title__text">(Inserte la fecha en la que se realizo la actividad)</p>
                 </div>
                 <input type="date" name="fecha" class="col__date">
             </div>
@@ -132,10 +132,10 @@
                         <input type="radio" name="tipo" value="Toma de testimonios">Toma de testimonios</input>
                     </div>
                     <div class="contenedor">
-                        <input type="radio" name="tipo" value="Reunion de involucrados">Reunion de involucrados</input>
+                        <input type="radio" name="tipo" value="Reunión de involucrados">Reunión de involucrados</input>
                     </div>
                     <div class="contenedor">
-                        <input type="radio" name="tipo" value="Reunion del CAP">Reunion del CAP</input>
+                        <input type="radio" name="tipo" value="Reunión del CAP">Reunión del CAP</input>
                     </div>
                     <div class="contenedor">
                         <input type="radio" name="tipo" value="LLamada a padre">LLamada a padres</input>
@@ -241,7 +241,7 @@
         <div class="activity__container">
             <div class="container__col">
                 <div class="col__title">
-                    <label>Título</label> <p class="title__text">(inserte un titulo adecuado para ser indentificado mas facilmente)</p>
+                    <label>Título</label> <p class="title__text">(Inserte un título adecuado para ser indentificado mas facilmente)</p>
                 </div>
                 <input type="text" name="titulo" maxlength="35" required>
 
@@ -264,7 +264,7 @@
                     </div>
                 </div>
                 <div class="col__title">
-                    <label>Fecha</label><p class="title__text">(inserte la fecha en la que sucedió el incidente)</p>
+                    <label>Fecha</label><p class="title__text">(Inserte la fecha en la que sucedió el incidente)</p>
                 </div>
                 <input type="date" name="fecha" id="col__date" required>
                 <label>Archivo relevante</label>

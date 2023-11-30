@@ -140,10 +140,10 @@
 
     <div class="emergent__activity--form emergent__activity--hidden">
         <div class="container__col">
-            <h1 class="emergent__title">Enviar Resolucion</h1>
+            <h1 class="emergent__title">Enviar Resolución</h1>
             <label>Descripción</label>
             <textarea class="col__description" name="descripcion"></textarea>
-            <label>Tipo de resolucion</label>
+            <label>Tipo de resolución</label>
             <div class="lista">
                 <div class="contenedor">
                     <input type="radio" name="tipo" value="Suspención">Suspención</input>
@@ -152,10 +152,10 @@
                     <input type="radio" name="tipo" value="Trabajo comunitario">Trabajo comunitario</input>
                 </div>
                 <div class="contenedor">
-                    <input type="radio" name="tipo" value="cambio de institución">cambio de institución</input>
+                    <input type="radio" name="tipo" value="cambio de institución">Cambio de institución</input>
                 </div>
                 <div class="contenedor">
-                    <input type="radio" name="tipo" value="otros">otros</input>
+                    <input type="radio" name="tipo" value="otros">Otros</input>
                 </div>
             </div>
         </div>
@@ -204,13 +204,13 @@
             <div class="container__col">
                 <div class="col__title">
                     <label>Título</label> 
-                    <p class="title__text">(inserte un título facil de identificar)</p>
+                    <p class="title__text">(Inserte un título facil de identificar)</p>
                 </div>
                 <input type="text" name="titulo" maxlength="35">
                 <label>Descripción</label>
                 <textarea class="col__description" name="descripcion"></textarea>
                 <div class="col__title">
-                    <label>Fecha</label><p class="title__text">(inserte la fecha en la que se realizo la actividad)</p>
+                    <label>Fecha</label><p class="title__text">(Inserte la fecha en la que se realizo la actividad)</p>
                 </div>
                 <input type="date" name="fecha" class="col__date">
             </div>
@@ -221,10 +221,10 @@
                         <input type="radio" name="tipo" value="Toma de testimonios">Toma de testimonios</input>
                     </div>
                     <div class="contenedor">
-                        <input type="radio" name="tipo" value="Reunion de involucrados">Reunion de involucrados</input>
+                        <input type="radio" name="tipo" value="Reunión de involucrados">Reunión de involucrados</input>
                     </div>
                     <div class="contenedor">
-                        <input type="radio" name="tipo" value="Reunion del CAP">Reunion del CAP</input>
+                        <input type="radio" name="tipo" value="Reunión del CAP">Reunión del CAP</input>
                     </div>
                     <div class="contenedor">
                         <input type="radio" name="tipo" value="LLamada a padre">LLamada a padres</input>
@@ -340,7 +340,7 @@
         <div class="activity__container">
             <div class="container__col">
                 <div class="col__title">
-                    <label>Título</label> <p class="title__text">(inserte un titulo adecuado para ser indentificado mas facilmente)</p>
+                    <label>Título</label> <p class="title__text">(Inserte un título adecuado para ser indentificado mas facilmente)</p>
                 </div>
                 <input type="text" name="titulo" maxlength="35" required>
                 
@@ -355,7 +355,7 @@
                     </div><div class="contenedor">
                         <input type="radio" name="tipo" value="Conducta inadecuada">Conducta inadecuada</input>
                     </div><div class="contenedor">
-                        <input type="radio" name="tipo" value="Tenencia de sustancias ilicitas">Tenencia de sustancias ilicitas</input>
+                        <input type="radio" name="tipo" value="Tenencia de sustancias ilícitas">Tenencia de sustancias ilícitas</input>
                     </div><div class="contenedor">
                         <input type="radio" name="tipo" value="Tenencia de objeto dañino">Tenencia de objeto dañino</input>
                     </div><div class="contenedor">
@@ -363,7 +363,7 @@
                     </div>
                 </div>
                 <div class="col__title">
-                    <label>Fecha</label><p class="title__text">(inserte la fecha en la que sucedió el incidente)</p>
+                    <label>Fecha</label><p class="title__text">(Inserte la fecha en la que sucedió el incidente)</p>
                 </div>
                 <input type="date" name="fecha" id="col__date" required>
                 <label>Archivo relevante</label>
