@@ -991,6 +991,7 @@ margin-top: 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: auto;
 }
 .form__submit--2{
   border-radius: 5px 5px 5px 5px;
