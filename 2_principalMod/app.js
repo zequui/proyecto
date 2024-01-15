@@ -45,7 +45,6 @@ const formChoosePersonBG = document.querySelector(
 
 const ciSearch = document.querySelector("#CI_search");
 
-const personaActividadBtn = document.querySelector("#addInvolucradoActividad");
 const addNewPersonaBtn = document.querySelector("#addInvolucrado");
 const submitPersonaBtn = document.querySelector("#form__person--submit");
 const submitActividadBtn = document.querySelector("#form__activity--submit");
@@ -146,10 +145,6 @@ AllElmnts.forEach((elemnt) => {
 
 addNewPersonaBtn.addEventListener("click", (e) =>
   addInvolucrado(e, "incident")
-);
-
-personaActividadBtn.addEventListener("click", (e) =>
-  addInvolucrado(e, "activity")
 );
 
 $(submitPersonaBtn).on("click", () => submitInvolucrado());
@@ -1195,7 +1190,7 @@ function hideResoluciones() {
 const resetInput = () => {
   document
     .querySelectorAll("input, textarea")
-    .forEach((inpt) => (inpt.value = ""));
+    .forEach((input) => input.type == "radio" ? (input.checked = false) : (input.value = ""));
 };
 
 function displayMssg(e) {
@@ -1249,7 +1244,7 @@ function submitModResolution(e) {
   );
   const newTipo = $(formModificarResolucion).find("input[name = tipo]:checked");
 
-  console.log(newTipo);
+  console.log(newTipo.text() + 'prueba');
   
   if (newDescripcion.text() && newTipo.val()) {
     $.ajax({

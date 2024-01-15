@@ -21,6 +21,8 @@ if(!empty($_FILES)){
         $name = 'archivo_actividad'.$i.'_'.date('d-m-Y_H-i-s', time()).'.'.$ext;
         $pathFile = $dir.$name;
 
+        if(!(in_array($ext, $extensiones_documentos) || in_array($ext, $extensiones_imagenes) || in_array($ext, $extensiones_videos))) continue;
+
         if(move_uploaded_file($nomTempArchivos[$i], $pathFile)){
             array_push($fileNames, $name);
         }

@@ -59,10 +59,8 @@ const submitResolutionBtn = document.querySelector(
   "#form__instantResolution--submit"
 );
 
-
 navbarBtns.forEach((opt) => {
   opt.addEventListener("click", (e) => {
-
     navbarBtns.forEach((btn) => btn.classList.remove("selected"));
     e.currentTarget.classList.add("selected");
 
@@ -73,7 +71,7 @@ navbarBtns.forEach((opt) => {
       .forEach((menu) => menu.classList.add("hidden"));
 
     subMenuHide();
-    checkRejected()
+    checkRejected();
 
     switch (elementId) {
       case "emergentes":
@@ -114,12 +112,10 @@ formReevaluarBtn.addEventListener("click", (e) => submitReevaluar(e));
 
 submitResolutionBtn.addEventListener("click", () => submitResolucion(true));
 
-
-
 window.onload = () => {
   loadEmergentIncidents();
-  checkRejected()
-}
+  checkRejected();
+};
 
 async function loadEmergentIncidents() {
   const response = await $.get("../controladores/getIncidents.php", {
@@ -262,9 +258,13 @@ moderadorSubmitBtn.addEventListener("click", (e) => {
           contentType: false,
           processData: false,
         }).always((response) => {
-          if(response.match(/Integrity constraint violation: 1062 Duplicate entry/gm)) alert('Ese correo ya esta en uso')
-        })
-
+          if (
+            response.match(
+              /Integrity constraint violation: 1062 Duplicate entry/gm
+            )
+          )
+            alert("Ese correo ya esta en uso");
+        });
       } else {
         $.ajax({
           url: "../controladores/setModerador.php",
@@ -272,9 +272,9 @@ moderadorSubmitBtn.addEventListener("click", (e) => {
           data: formData,
           contentType: false,
           processData: false,
-        });
+        }).done((response) => (response ? alert(response) : null));
       }
-      
+
       resetModForm(inputs);
     }
   } else {
@@ -384,7 +384,7 @@ function acceptResolution() {
   setTimeout(() => {
     incident_element.classList.add("incident-active");
     setTimeout(() => {
-      checkRejected()
+      checkRejected();
       incident_element.remove();
     }, 500);
   }, 500);
@@ -406,14 +406,14 @@ function modifyResolution() {
           id_incidente: id_incidente,
           descripcion: descripcion_element.text().trim(),
           tipo: tipoResolucion.find("input[name=tipo]:checked").val(),
-          estado: 5
+          estado: 5,
         },
       });
       hideResoluciones();
       setTimeout(() => {
         incident_element.classList.add("incident-active");
         setTimeout(() => {
-          checkRejected()
+          checkRejected();
           incident_element.remove();
         }, 500);
       }, 500);
@@ -491,6 +491,8 @@ function submitReevaluar(e) {
   const incident_element = document.querySelector("#incident_" + id_incidente);
   const descripcion = $(formReevaluar).find("textarea").val();
 
+  console.log(incident_element);
+
   $.ajax({
     url: "../controladores/addMessageReval.php",
     type: "POST",
@@ -500,19 +502,21 @@ function submitReevaluar(e) {
     },
   });
   hideResoluciones();
-
   setTimeout(() => {
     incident_element.classList.add("incident-active");
     setTimeout(() => {
-      checkRejected()
+      checkRejected();
       incident_element.remove();
     }, 500);
   }, 500);
 }
 
 const resetInput = () => {
-  document.querySelectorAll("input").forEach((inpt) => (inpt.value = ""));
-  document.querySelectorAll("textarea").forEach((ta) => (ta.value = ""));
+  document
+    .querySelectorAll("input, textarea")
+    .forEach((input) =>
+      input.type == "radio" ? (input.checked = false) : (input.value = "")
+    );
 };
 
 function lightupElement(elemnt) {
@@ -542,7 +546,7 @@ function resetModForm(inputs) {
 }
 
 let checkRejected = () => {
-  const resolution_elemnt = document.querySelector('#Resoluciones')
+  const resolution_elemnt = document.querySelector("#Resoluciones");
   $.get("../controladores/getIncidents.php", {
     filter: 2,
   }).done((response) => {

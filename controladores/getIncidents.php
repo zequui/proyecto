@@ -272,6 +272,7 @@ if($filtro == 0){
         $actividades = Actividad::getRepo($incident->getID());
     
         echo '
+        </div>
     <div class="emergent__incident" id="incident_'.$incident->getID().'">
         <div class="incident__title">
             <p class="title__name">'.$incident->getTitulo().'</p>
@@ -326,17 +327,17 @@ if($filtro == 0){
                 $personasInvolucradas = getPersonasActividad($actividad->getId());
                 echo '
                 <div class="information__activity--title" id="activity_'.$actividad->getId().'">
-                <p class="title__name--2">'.$actividad->getNombre().'</p>
-                <div class="title__container">
-                <button title="Desplegar actividad" class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
-                </div>
-            </div>
-            <div class="activity__information--3 incident__information-hidden">
-                <div class="information__container--2">
-                    <div class="information__col--3">
-                        <label>Descripción</label>
-                        <p class="col__p">'.$actividad->getDetalle().'</p>
+                    <p class="title__name--2">'.$actividad->getNombre().'</p>
+                    <div class="title__container">
+                        <button title="Desplegar actividad" class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
                     </div>
+                </div>
+                <div class="activity__information--3 incident__information-hidden">
+                    <div class="information__container--2">
+                        <div class="information__col--3">
+                            <label>Descripción</label>
+                            <p class="col__p">'.$actividad->getDetalle().'</p>
+                        </div>
                     <div class="information__col--3">
                         <label>Fecha</label>
                         <p class="col__p">'.$actividad->getFecha().'</p>
@@ -364,7 +365,7 @@ if($filtro == 0){
                                 <div class="information__activity--title--2" id_incidente="'.$incident->getId().'" id_actividad="'.$actividad->getId().'">
                                     <p class="title__name--2">'.$persona->getNombre().'</p>
                                     <div class="title__container--buttons">
-                                    <button title="Desplegar actividad class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
+                                    <button title="Desplegar actividad" class="container__button--2 dropdown_btn"><i class="fa-solid fa-arrow-down-long fa-xl"></i></button>
                                     </div>
                                 </div>
                                 <div class = "activity__information--5 incident__information-hidden">
@@ -595,7 +596,6 @@ if($filtro == 0){
         }
     echo '</div>
     </div>
-    
     ';
     }
 }elseif($filtro == 3){

@@ -49,32 +49,6 @@
             <div class="emergent__container" id="resolution-container">
 
             </div>
-            <div class="activity__information--3 incident__information-hidden">
-                <div class="information__container">
-                    <div class="information__col--3">
-                        <label>Descripcion</label>
-                        <p class="col__p">'.$incident-&gt;getDescripcion().'</p>
-                    </div>
-                    <div class="information__col--3">
-                        <label>Fecha</label>
-                        <p class="col__p">'.$incident-&gt;getFecha().'</p>
-                        <label>Tipo</label>
-                        <p class="col__p">'.$incident-&gt;getTipo().'</p>
-                        <label>Archivo a descargar</label>
-                        <p class="col__p"><a href="'.loadFile($incident).'" download="archvoRelevante'.$incident->getID().'">Descargar</a></p>
-                    </div>
-                    <div class="information__col--3">
-                        <label>Nombre y Apellido</label>
-                        <p class="col__p">'.$denunciante-&gt;getNombre().' '.$denunciante-&gt;getApellido().'</p>
-
-                        <label>Cedula</label>
-                        <p class="col__p">'.$denunciante-&gt;getCi().'</p>
-                        
-                        <label>Telefono</label>
-                        <p class="col__p">'.$denunciante-&gt;getTelefono().'</p>
-                    </div>
-                </div>
-            </div>
         </div>
         <div class="emergent hidden" id="incidenteModeradores">
             <h1 class=emergent__title--2>Moderadores</h1>
@@ -239,7 +213,7 @@
                 <label>Archivo relevante</label>
                 <input type="file" id="col__file" name="archivos_relevantes" multiple>
                 <div class="col__people">
-                    <label>Agregar involucrado</label> <button title="Agregar involucrado" class="container__button--2" id="addInvolucradoActividad"><i class="fa-solid fa-plus fa-xl"></i></button>
+                    <label>Agregar involucrado</label>
                     <div id="PersonasActividades">
 
                     </div>

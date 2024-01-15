@@ -7,8 +7,20 @@ $surname = $_POST['surname'];
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-if(checkCI($ci)){
+$validUser = true;
+
+$Usuarios = Usuario::getRepo();
+
+foreach($Usuarios as $user){
+    if($user->getCi() == $ci){
+        $validUser = false;
+    }
+}
+
+if(checkCI($ci) && $validUser){
     Usuario::setMod($name, $surname, $ci, $email, $password);
+}else{
+    print('Cedula ya registrada!');
 }
 
 function checkCI($ci) {
